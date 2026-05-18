@@ -11,7 +11,6 @@ $.ajax({
             res?.Items ??
             [];
 
-        // holidays を辞書化（最重要）
         const holidayMap = {};
         rows
             .filter(row => row.ClassHash?.ClassA === "200")
@@ -47,7 +46,9 @@ $.ajax({
             });
         };
 
-        // FullCalendar の描画完了イベントを使う（最速）
-        document.addEventListener("datesSet", renderHolidays);
+        document.addEventListener("datesRender", renderHolidays);
+
+        // 初回実行
+        renderHolidays();
     }
 });
