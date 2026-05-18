@@ -383,18 +383,6 @@ td [class^="status-"] {
     background-color: var(--surface-base);
 }
 
-#Crosstab .field-auto-thin:first-child,
-#Kamban .field-auto-thin:first-child {
-    margin-left: 1.1rem;
-}
-
-#Crosstab .field-auto-thin,
-#Kamban .field-auto-thin {
-    padding: 0;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-
 #Crosstab .crosstab-row td,
 #ViewModeContainer:has(#Kamban) .kamban-row td,
 .grid-stack-item .kambanbody .kamban-row td {
