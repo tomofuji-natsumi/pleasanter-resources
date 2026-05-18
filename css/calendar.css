@@ -431,6 +431,7 @@ button.fc-today-button[disabled] {
 @media (max-width: 480px) {
 
     /* カレンダー全体を画面幅にフィット */
+    .fc .fc-col-header,
     .fc .fc-scrollgrid,
     .fc .fc-daygrid,
     .fc .fc-daygrid-body,
