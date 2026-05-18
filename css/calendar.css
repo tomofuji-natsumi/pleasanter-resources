@@ -6,6 +6,10 @@
     background-color: var(--surface-base) !important;
 }
 
+.fc-col-header {
+    width: 100% !important;
+}
+
 .fc-scrollgrid > thead > tr > th[role="presentation"],
 .fc-scrollgrid > tbody > tr > td[role="presentation"] {
     display: table-cell !important;
