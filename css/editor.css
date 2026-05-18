@@ -10,7 +10,7 @@
 }
 
 #Editor #MainForm {
-    box-shadow: 0 2px 1px var(--shadow-medium);
+    box-shadow: 0 2px 1px var(--shadow-light);
 }
 
 #FieldSetGeneral .field-label {
