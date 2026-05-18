@@ -393,6 +393,6 @@ td [class^="status-"] {
 #Crosstab .crosstab-row th,
 #ViewModeContainer:has(#Kamban) .kamban-row th,
 .grid-stack-item .kambanbody .kamban-row th {
-    border-top: 1px solid var(--surface-base);
-    border: 1px solid var(--cal-border);
+    border-top: 1px solid var(--cal-border);
+    border-right: 1px solid var(--cal-border);
 }
