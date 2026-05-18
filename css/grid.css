@@ -62,8 +62,8 @@ tr.crosstab-row th {
     border-color: var(--border-light);
 }
 
-.grid .grid-row > th,
-.grid .grid-row > td {
+.grid tr > th,
+.grid tr > td {
     background-color: var(--surface-base);
     border-right: 1px solid var(--border-light);
     border-bottom: 1px solid var(--border-light);
