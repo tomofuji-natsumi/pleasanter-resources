@@ -223,7 +223,8 @@ button:has(.primary-material-icons):active {
     font-size: 0.94rem;
 }
 
-#Header .hamburger-menubox .menubox .menulabel:hover {
+#Header .hamburger-menubox .menubox .menulabel:hover,
+#Header .hamburger-menubox .accordion a:hover {
     background-color: var(--bg-hover);
 }
 
