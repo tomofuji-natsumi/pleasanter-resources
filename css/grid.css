@@ -48,7 +48,7 @@ tr.crosstab-row th {
     vertical-align: middle;
 }
 
-.grid-row:hover td {
+tr:hover td {
     background-color: var(--bg-hover);
     transition: background-color 0.18s ease;
 }
@@ -110,16 +110,16 @@ tr.crosstab-row th {
    4. リンク
    ========================================================= */
 
-.grid-row td p a {
+tr td p a {
     text-decoration: none;
     transition: opacity 0.15s ease;
 }
 
-.grid-row td p a:not([href^="/items/"]) {
+tr td p a:not([href^="/items/"]) {
     color: var(--text-link);
 }
 
-.grid-row td p a:not([href^="/items/"]):hover {
+tr td p a:not([href^="/items/"]):hover {
     opacity: 0.85;
 }
 
@@ -237,8 +237,8 @@ th.sortable:hover {
 }
 
 .grid > thead > tr > th:first-child,
-.grid .grid-row > th:first-child,
-.grid .grid-row > td:first-child {
+.grid tr > th:first-child,
+.grid tr > td:first-child {
     border-left: none;
 }
 
@@ -262,13 +262,13 @@ ul.ui-widget-content {
     border-top: 1px solid var(--border-strong);
 }
 
-.grid-row,
+tr,
 .crosstab-row {
     background-color: var(--surface-base);
     border-bottom: 1px solid var(--border-light);
 }
 
-.grid:not(.not-link) .grid-row:hover {
+.grid:not(.not-link) tr:hover {
     background-color: var(--bg-surface-hover);
 }
 
