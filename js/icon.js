@@ -37,6 +37,7 @@ const lightIconMap = {
 }
 
 const primaryIconMap = {
+    "#OpenAnalyPartDialog": "add",
     "#OpenSiteTitleDialog": "add_ad",
     "#CreateCommand": "add_ad",
     "[aria-describedby='ExportSitePackageDialog'] #IncludeData": "add_box",
@@ -55,9 +56,6 @@ const primaryIconMap = {
     ".nav-site.to-parent a": "arrow_left",
     "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmRestore']": "restore_page",
     "#FieldSetHistories [data-action='RestoreFromHistory']": "restore_page",
-  
-    "#Process_2": "thumb_up",
-    "#Process_3": "undo"
 }
 
 const redIconMap = {
