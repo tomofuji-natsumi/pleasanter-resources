@@ -375,8 +375,10 @@ td [class^="status-"] {
    12. クロス集計・カンバン
    ========================================================= */
 #Crosstab,
+#ViewModeContainer:has(#Kamban) .kamban-container,
 #ViewModeContainer:has(#Kamban),
-.grid-stack-item .kambanbody {
+.grid-stack-item .kambanbody,
+.grid-stack-item .kambanbody .kamban-container {
     padding: 0;
     background-color: var(--surface-base);
 }
@@ -384,9 +386,22 @@ td [class^="status-"] {
     margin-left: 1.1rem;
 }
 
-#Crosstab, .field-auto-thin,
-#Kamban, .field-auto-thin {
+#Crosstab .field-auto-thin,
+#Kamban .field-auto-thin {
     padding: 0;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+#Crosstab .crosstab-row td,
+#ViewModeContainer:has(#Kamban) .kamban-row td,
+.grid-stack-item .kambanbody .kamban-row td {
+    border: 1px solid var(--cal-border);
+}
+
+#Crosstab .crosstab-row th,
+#ViewModeContainer:has(#Kamban) .kamban-row th,
+.grid-stack-item .kambanbody .kamban-row th {
+    border-top: 1px solid var(--surface-base);
+    border: 1px solid var(--cal-border);
 }
