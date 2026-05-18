@@ -434,7 +434,8 @@ button.fc-today-button[disabled] {
     .fc .fc-scrollgrid,
     .fc .fc-daygrid,
     .fc .fc-daygrid-body,
-    .fc .fc-daygrid-body table {
+    .fc .fc-daygrid-body table,
+    .fc .fc-scrollgrid table {
         width: 100% !important;
     }
 
