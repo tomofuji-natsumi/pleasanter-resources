@@ -63,7 +63,7 @@ const primaryIconMap = {
 
 const redIconMap = {
     "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']": "delete",
-    "#ImageLibBody [data-confirm='ConfirmDelete']": "delete,
+    "#ImageLibBody [data-confirm='ConfirmDelete']": "delete",
     "#BulkDeleteCommand": "delete",
     "#DeleteCommand": "delete",
     "#OpenDeleteSiteDialogCommand": "globe_2_cancel",
