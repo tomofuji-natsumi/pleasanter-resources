@@ -205,9 +205,14 @@ button:has(.primary-material-icons):active {
     background-color: var(--primary);
 }
 
+#Header .hamburger-menubox #NewMenuContainer span:first-child {
+    margin: auto 0;
+    height: 32px;
+}
+
 #Header .hamburger-menubox #NewMenuContainer span:last-child {
     font-size: 1rem;
-    margin: 0 0 0.35rem 0.3rem;
+    margin-left: 0.3rem;
 }
 
 #Header .hamburger-menubox .menubox a {
