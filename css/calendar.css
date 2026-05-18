@@ -6,7 +6,8 @@
     background-color: var(--surface-base) !important;
 }
 
-.fc-col-header {
+.fc-col-header,
+.fc-daygrid-body {
     width: 100% !important;
 }
 
