@@ -3,6 +3,9 @@ $p.events.on_editor_load_arr = [];
 
 $p.events.on_editor_load_arr.push(function() {
     let myData = JSON.parse($('#MyComments').val());
+
+    if (!myData) return;
+    
     let myKeys = Object.keys(myData);
     myKeys.forEach(function (myKey) {
         let $comment = $('[id="Comment' + myKey + '.wrapper"]');
