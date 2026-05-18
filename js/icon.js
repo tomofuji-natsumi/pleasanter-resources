@@ -9,6 +9,7 @@ const darkIconMap = {
     "#DropDownSearchDialogForm [data-icon='ui-icon-cancel']": "close",
     "#ImportSettingsDialog [data-icon='ui-icon-cancel']": "close",
     "#ExportSelectorDialog [data-icon='ui-icon-cancel']": "close",
+    "#AnalyPartDialog [data-icon='ui-icon-cancel']": "close",
     "#GoBack": "arrow_circle_left",
     "#ExcludeData": "indeterminate_check_box",
 }
@@ -38,6 +39,7 @@ const lightIconMap = {
 
 const primaryIconMap = {
     "#OpenAnalyPartDialog": "add",
+    "#AnalyPartDialog [data-icon='ui-icon-disk']": "add",
     "#OpenSiteTitleDialog": "add_ad",
     "#CreateCommand": "add_ad",
     "[aria-describedby='ExportSitePackageDialog'] #IncludeData": "add_box",
@@ -51,6 +53,7 @@ const primaryIconMap = {
     "#ReferenceCopyCommand": "file_copy",
     "#SitePackageForm [data-icon='ui-icon-arrowreturnthick-1-w']": "file_export",
     "#OpenExportSelectorDialogCommand": "file_export",
+    "#ExportCrosstabCommand": "file_export",
     "#DoExport": "file_export",
     "#DropDownSearchDialogForm [data-icon='ui-icon-disk']": "check",
     ".nav-site.to-parent a": "arrow_left",
@@ -60,6 +63,7 @@ const primaryIconMap = {
 
 const redIconMap = {
     "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']": "delete",
+    "#ImageLibBody [data-confirm='ConfirmDelete']": "delete,
     "#BulkDeleteCommand": "delete",
     "#DeleteCommand": "delete",
     "#OpenDeleteSiteDialogCommand": "globe_2_cancel",
