@@ -24,7 +24,7 @@ $.ajax({
 
         const renderHolidays = () => {
             const $cells = $(".fc-daygrid-day[data-date]");
-            if ($cells.length < 28) return; // ★ 全セル揃うまで待つ
+            if ($cells.length === 0) return;
 
             $(".holiday-name").remove();
             $cells.removeClass("holiday-100 holiday-200 holiday-300");
@@ -48,25 +48,19 @@ $.ajax({
         // 初回
         renderHolidays();
 
-        // ★ 監視対象は .fc（絶対に消えない）
-        const container = document.querySelector(".fc");
-        let timer = null;
+        // ★ navlink（内部遷移）をフック
+        $(document).on("click", "[data-navlink]", function () {
+            // FullCalendar が描画し終わるまで少し待つ
+            setTimeout(() => {
+                renderHolidays();
+            }, 50);
+        });
 
-        if (container) {
-            const observer = new MutationObserver(() => {
-
-                // 連続発火をまとめる（100ms以内に1回だけ）
-                clearTimeout(timer);
-                timer = setTimeout(() => {
-                    renderHolidays();
-                }, 100);
-
-            });
-
-            observer.observe(container, {
-                childList: true,
-                subtree: true
-            });
-        }
+        // ★ 月移動ボタンも一応フック
+        $(document).on("click", ".fc-prev-button, .fc-next-button, .fc-today-button", function () {
+            setTimeout(() => {
+                renderHolidays();
+            }, 50);
+        });
     }
 });
