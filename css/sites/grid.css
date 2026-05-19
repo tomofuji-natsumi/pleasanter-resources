@@ -148,6 +148,7 @@ markdown-field .notes {
 .grid td {
     vertical-align: middle !important;
     padding: 0.4rem 0.85rem !important;
+    border-left: none !important;
 }
 
 .grid td *:not(input[type="checkbox"]) {
