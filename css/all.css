@@ -868,6 +868,6 @@ span.flatpickr-weekday {
    ========================================================= */
 
 #MainCommandsContainer {
-    background-color: var(--bg-footer);
+    background-color: var(--bg-footer) !important;
 }
 
