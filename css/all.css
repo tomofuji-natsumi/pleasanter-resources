@@ -678,13 +678,13 @@ input:focus,
 }
 
 markdown-field .md-viewer:not(.control-text) {
-    background-color: var(--surface-base);
+    background-color: var(--surface-base) !important;
 }
 
 markdown-field .md-viewer {
-    background-color: var(--surface-base);
-    border: 1px solid var(--border-strong);
-    color: var(--text-main);
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    padding: 8px 32px 8px 8px;
 }
 
 markdown-field .bottom-tools {
