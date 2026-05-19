@@ -15,7 +15,7 @@
     --primary-hover: oklch(from var(--primary) calc(l - 0.08) c h);
 
     /* --- Primary Surface（背景レイヤー） --- */
-    --primary-border: oklch(from var(--primary) calc(l + 0.35) calc(c - 0.12) h);
+    --primary-border: #5A8EE0;
     --primary-surface: oklch(from var(--primary) calc(l + 0.42) calc(c - 0.14) h);
     --primary-surface-hover: oklch(from var(--primary) calc(l + 0.45) calc(c - 0.15) h);
     /* --primary-surface-hover: oklch(from var(--primary) calc(l + 0.48) calc(c - 0.16) h); */
@@ -47,9 +47,8 @@
     --bg-main-dark: #E5E8ED;
     /* --bg-main-dark: #E7E7E7; */
 
-    --bg-surface-hover: #E2E8F0;
+    --bg-surface-hover: oklch(0.950 0.002 255);
 
-    --bg-focus: #F0F6FF;
     --bg-hover: #F0F0F0;
 
     --bg-hamburger-outer: rgba(3, 3, 3, 0.2);
@@ -66,7 +65,6 @@
     --bg-dialog-header: #E3E7EE;
     --bg-count: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.18) h);
     --bg-chart: #E6EBF3;
-    /* --bg-chart: #E9EEF5; */
 
     --bg-footer: rgba(0, 0, 0, 0.45);
 
@@ -78,7 +76,6 @@
     --border-light:  #D7D8DD;
     --border-normal: #D5DAE2;
     --border-strong: #C3C9D2;
-    /* --border-strong: #C8CDD5; */
 
     --border-nav: #AFC4E8;
     --border-count: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
@@ -107,12 +104,10 @@
     --text-main:      #2A323C;
     --text-emphasis:  #3A424C;
     --text-sub:       #4B4F55;
-    --text-muted:      #757C88;
-    /* --text-muted:     #6B7280; */
+    --text-muted:     #757C88;
     --text-disabled:  #9CA3AF;
 
     --text-breadcrumb-current: var(--text-on-primary);
-    --text-hover: #E5E8EB;
     --text-link: var(--primary);
     --text-link-active: var(--primary-active);
     --text-link-hover: var(--primary-hover);
@@ -187,13 +182,9 @@
        8. ボタン
        ========================================================= */
 
-    --btn-create-bg: var(--primary);
-
-    --btn-default-bg: oklch(from var(--primary) calc(l - 0.05) c h);
-    --btn-default-hover: oklch(from var(--primary) calc(l - 0.10) c h);
-
     --btn-back-bg: #444;
     --btn-back-hover: #333;
+
     --btn-delete-bg: var(--semantic-danger);
     --btn-delete-hover: #C0392B;
 
@@ -217,13 +208,7 @@
     --readonly-value: var(--text-main);
 
     /* =========================================================
-       11. フォント
-       ========================================================= */
-
-    --yu-gothic: 游ゴシック体,YuGothic,游ゴシック Medium,Yu Gothic Medium,游ゴシック,Yu Gothic,sans-serif;
-
-    /* =========================================================
-       12. ステータス
+       11. ステータス
        ========================================================= */
 
     --status-text: var(--text-main);
@@ -259,7 +244,7 @@
     --status-rejected-border-hover: #DDBA9A;
 
     /* =========================================================
-       13. 集計アイテム
+       12. 集計アイテム
        ========================================================= */
 
     --agg-item-bg: #E1E4E9;
