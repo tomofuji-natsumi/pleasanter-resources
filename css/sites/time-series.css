@@ -16,3 +16,7 @@ path {
     border-radius: 0;
     background-color: transparent;
 }
+
+#TimeSeriesBody {
+    background-color: var(--bg-chart);
+}
