@@ -65,8 +65,8 @@ tr:hover td {
 .grid tr > th,
 .grid tr > td {
     background-color: var(--surface-base);
-    border-right: 1px solid var(--border-light);
-    border-bottom: 1px solid var(--border-light);
+    border-right: 1px solid var(--border-light) !important;
+    border-bottom: 1px solid var(--border-light) !important;
     box-shadow: 1px 0 0 var(--surface-base);
 }
 
@@ -265,7 +265,7 @@ ul.ui-widget-content {
 tr,
 .crosstab-row {
     background-color: var(--surface-base);
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light) !important;
 }
 
 .grid:not(.not-link) tr:hover {
