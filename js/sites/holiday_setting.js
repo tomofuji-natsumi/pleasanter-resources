@@ -24,7 +24,7 @@ $.ajax({
 
         const renderHolidays = () => {
             const $cells = $(".fc-daygrid-day[data-date]");
-            if ($cells.length === 0) return;
+            if ($cells.length < 28) return; // ★ 全セル揃うまで待つ
 
             $(".holiday-name").remove();
             $cells.removeClass("holiday-100 holiday-200 holiday-300");
@@ -48,25 +48,19 @@ $.ajax({
         // 初回
         renderHolidays();
 
-        // ★ 監視対象は「絶対に消えない .fc」
+        // ★ 監視対象は .fc（絶対に消えない）
         const container = document.querySelector(".fc");
-        let renderScheduled = false;
+        let timer = null;
 
         if (container) {
             const observer = new MutationObserver(() => {
 
-                // .fc-daygrid-day が出現したら一度だけ実行
-                if (document.querySelector(".fc-daygrid-day[data-date]")) {
+                // 連続発火をまとめる（100ms以内に1回だけ）
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    renderHolidays();
+                }, 100);
 
-                    if (!renderScheduled) {
-                        renderScheduled = true;
-
-                        setTimeout(() => {
-                            renderHolidays();
-                            renderScheduled = false;
-                        }, 50);
-                    }
-                }
             });
 
             observer.observe(container, {
