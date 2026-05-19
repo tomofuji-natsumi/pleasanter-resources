@@ -103,6 +103,7 @@ td[role="presentation"],
 
 .fc-daygrid-day-frame .fc-daygrid-day-number {
     font-size: 0.95rem;
+    white-space: nowrap;
 }
 
 .fc-day:not(.fc-day-other) .fc-daygrid-day-number {
@@ -150,12 +151,12 @@ td[role="presentation"],
     font-size: 0.90em;
     color: var(--cal-holi-cell-text);
     line-height: 1.2;
-    margin: 0;
-    padding: 4px;
     flex-shrink: 0;
     position: relative;
     top: -1px;
     letter-spacing: 0.02em;
+    margin: 0 0.25em;
+    white-space: pre-wrap;
 }
 
 /* 今日 */
