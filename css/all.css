@@ -62,7 +62,7 @@ span.ui-button-icon.ui-icon,
 }
 
 /* アイコン配置 */
-.material-symbols-outlined:not(.md-btn-icon) {
+.material-symbols-outlined:not(.md-btn-icon):not([id^="DeleteChartIcon_"]) {
     position: absolute;
     top: 51%;
     left: 5px !important;
