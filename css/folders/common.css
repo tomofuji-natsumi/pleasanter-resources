@@ -1,0 +1,35 @@
+.nav-site.to-parent:has(.primary-material-icons) a span {
+    left: 0.75rem;
+}
+
+.nav-site.to-parent:has(.primary-material-icons),
+.nav-site.to-parent:has(.primary-material-icons):focus,
+.nav-site.to-parent:has(.primary-material-icons) a span,
+.nav-site.to-parent:has(.primary-material-icons):focus  a span {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+    font-weight: 550;
+}
+
+.nav-site.to-parent:has(.primary-material-icons):hover,
+.nav-site.to-parent:has(.primary-material-icons):hover a span,
+.nav-site.to-parent:has(.primary-material-icons):active,
+.nav-site.to-parent:has(.primary-material-icons):active a span {
+    background: var(--primary-hover) !important;
+    color: var(--surface-strong);
+    font-weight: 550;
+}
+
+label[for="Import"] {
+    white-space: nowrap;
+}
+
+[aria-describedby="ImportSitePackageDialog"] {
+    width: 50em !important;
+}
+
+#ImportSitePackageDialog #Import {
+    z-index: 1000;
+    width: fit-content;
+    cursor: pointer;
+}
