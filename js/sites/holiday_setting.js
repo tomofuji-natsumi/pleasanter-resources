@@ -49,12 +49,17 @@ $.ajax({
         renderHolidays();
 
         const container = document.querySelector(".fc-daygrid-body");
+        let renderScheduled = false;
 
         if (container) {
             const observer = new MutationObserver(() => {
-                if (document.querySelector(".fc-daygrid-day[data-date]")) {
+                if (renderScheduled) return;
+                renderScheduled = true;
+
+                setTimeout(() => {
                     renderHolidays();
-                }
+                    renderScheduled = false;
+                }, 50);
             });
 
             observer.observe(container, {
