@@ -46,7 +46,17 @@ $.ajax({
             });
         };
 
-        document.addEventListener("datesRender", renderHolidays);
+        // ★ FullCalendar の DOM が再生成されたら実行
+        const observer = new MutationObserver(() => {
+            if ($(".fc-daygrid-day").length > 0) {
+                renderHolidays();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
 
         // 初回実行
         renderHolidays();
