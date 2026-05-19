@@ -6,7 +6,7 @@
 #ImageLibBody .item {
     padding: 0.8rem 1rem !important;
     border-radius: 8px !important;
-    background-color: var(--surface-base);
+    background-color: var(--surface-base) !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .01);
     transition: transform .12s ease, box-shadow .12s ease;
     filter: drop-shadow(0 2px 4px var(--shadow-medium));
