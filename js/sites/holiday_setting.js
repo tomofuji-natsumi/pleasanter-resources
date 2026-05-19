@@ -48,7 +48,6 @@ $.ajax({
         // 初回
         renderHolidays();
 
-        // ★ 正しい監視対象（Pleasanter構造に合わせる）
         const container = document.querySelector(".fc-daygrid-body");
 
         if (container) {
