@@ -1,0 +1,13 @@
+#Crosstab .field-auto-thin:first-child,
+#TimeSeriesBody .field-auto-thin:first-child,
+#Kamban .field-auto-thin:first-child {
+    margin-left: 1.1rem;
+}
+
+#Crosstab .field-auto-thin,
+#TimeSeriesBody .field-auto-thin,
+#Kamban .field-auto-thin {
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
