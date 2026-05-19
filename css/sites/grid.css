@@ -383,13 +383,6 @@ td [class^="status-"] {
     background-color: var(--surface-base);
 }
 
-#Crosstab .crosstab-row td,
-#ViewModeContainer:has(#Kamban) .kamban-row td,
-.grid-stack-item .kambanbody .kamban-row td {
-    border-top: 1px solid var(--cal-border);
-    border-bottom: 0;
-}
-
 #Crosstab .crosstab-row th,
 #ViewModeContainer:has(#Kamban) .kamban-row th,
 .grid-stack-item .kambanbody .kamban-row th {
