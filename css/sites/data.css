@@ -260,6 +260,7 @@
    ========================================================= */
 
 #ViewModeContainer:not(:has(.grid)) {
+   padding: 0;
     background-color: var(--surface-base) !important;
 }
 
