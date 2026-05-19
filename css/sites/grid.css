@@ -435,6 +435,7 @@ td [class^="status-"] {
 .grid td {
     vertical-align: middle !important;
     padding: 0.4rem 0.85rem !important;
+    border-left: none !important;
 }
 
 .grid td, #Grid td a {
