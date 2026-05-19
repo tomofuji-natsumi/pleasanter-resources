@@ -65,7 +65,7 @@ tr:hover td {
 .grid tr > th,
 .grid tr > td {
     background-color: var(--surface-base);
-    border-right: 1px solid var(--border-light) !important;
+    border-right: 1px solid var(--cal-border) !important;
     border-bottom: none !important;
     box-shadow: 1px 0 0 var(--surface-base);
 }
@@ -148,7 +148,7 @@ markdown-field .notes {
 .grid td {
     vertical-align: middle !important;
     padding: 0.4rem 0.85rem !important;
-    border-left: solid 1px var(--border-light) !important;
+    border-left: solid 1px var(--cal-border) !important;
 }
 
 .grid td *:not(input[type="checkbox"]) {
