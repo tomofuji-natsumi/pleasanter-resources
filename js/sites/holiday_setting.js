@@ -23,16 +23,14 @@ $.ajax({
             });
 
         const renderHolidays = () => {
-            const $cells = $(".fc-daygrid-day");
-            if ($cells.length === 0) return; // まだ描画されていない
+            const $cells = $(".fc-daygrid-day[data-date]");
+            if ($cells.length === 0) return; // data-date がまだ付いていない
 
             $(".holiday-name").remove();
             $cells.removeClass("holiday-100 holiday-200 holiday-300");
 
             $cells.each(function () {
-                const date = $(this).data("date");
-                if (!date) return;
-
+                const date = $(this).attr("data-date");
                 const holiday = holidayMap[date];
                 if (!holiday) return;
 
@@ -50,12 +48,12 @@ $.ajax({
         // 初回
         renderHolidays();
 
-        // ★ FullCalendar の描画が完了した瞬間を監視
+        // ★ 月移動後の描画を確実に拾う
         const container = document.querySelector(".fc-view-container");
 
         const observer = new MutationObserver(() => {
-            // day セルが出現したら実行
-            if (document.querySelector(".fc-daygrid-day")) {
+            // data-date が付いたら実行
+            if (document.querySelector(".fc-daygrid-day[data-date]")) {
                 renderHolidays();
             }
         });
