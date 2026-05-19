@@ -24,7 +24,7 @@ $.ajax({
 
         const renderHolidays = () => {
             const $cells = $(".fc-daygrid-day[data-date]");
-            if ($cells.length === 0) return; // data-date がまだ付いていない
+            if ($cells.length === 0) return;
 
             $(".holiday-name").remove();
             $cells.removeClass("holiday-100 holiday-200 holiday-300");
@@ -48,19 +48,20 @@ $.ajax({
         // 初回
         renderHolidays();
 
-        // ★ 月移動後の描画を確実に拾う
-        const container = document.querySelector(".fc-view-container");
+        // ★ 正しい監視対象（Pleasanter構造に合わせる）
+        const container = document.querySelector(".fc-daygrid-body");
 
-        const observer = new MutationObserver(() => {
-            // data-date が付いたら実行
-            if (document.querySelector(".fc-daygrid-day[data-date]")) {
-                renderHolidays();
-            }
-        });
+        if (container) {
+            const observer = new MutationObserver(() => {
+                if (document.querySelector(".fc-daygrid-day[data-date]")) {
+                    renderHolidays();
+                }
+            });
 
-        observer.observe(container, {
-            childList: true,
-            subtree: true
-        });
+            observer.observe(container, {
+                childList: true,
+                subtree: true
+            });
+        }
     }
 });
