@@ -45,20 +45,13 @@ $.ajax({
                 }
             });
         };
-
-        // ★ FullCalendar の DOM が再生成されたら実行
-        const observer = new MutationObserver(() => {
-            if ($(".fc-daygrid-day").length > 0) {
-                renderHolidays();
-            }
-        });
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-
+        
         // 初回実行
         renderHolidays();
+
+        // 月移動・今日ボタンで再実行
+        $(document).on("click", ".fc-prev-button, .fc-next-button, .fc-today-button", function () {
+            setTimeout(renderHolidays, 0);
+        });
     }
 });
