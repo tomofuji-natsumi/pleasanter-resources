@@ -260,7 +260,7 @@
    ========================================================= */
 
 /* #ViewModeContainer:not(:has(.grid)) { */
-#ViewModeContainer:not(:has(#ImageLib)) {
+#ViewModeContainer:not(:has(#ImageLib)):not(:has(#AnalyBody)) {
     padding: 0 !important;
     background-color: var(--surface-base) !important;
 }
