@@ -1,0 +1,9 @@
+text {
+    font-weight: 200;
+    font-size: 0.7rem;
+    fill: var(--text-main);
+}
+
+path {
+    stroke: var(--text-main);
+}
