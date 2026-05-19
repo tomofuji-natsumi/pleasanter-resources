@@ -158,9 +158,9 @@ markdown-field .notes {
     white-space: pre-line;
 }
 
-markdown-field,
-markdown-field .md-viewer,
-markdown-field .notes {
+.grid markdown-field,
+.grid markdown-field .md-viewer,
+.grid markdown-field .notes {
     display: inline-flex !important;
     align-items: center !important;
     line-height: 1.5 !important;
