@@ -11,3 +11,8 @@
 path {
     stroke: var(--text-main);
 }
+
+#TimeSeries {
+    border-radius: 0;
+    background-color: transparent;
+}
