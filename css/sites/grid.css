@@ -401,6 +401,11 @@ td [class^="status-"] {
 .grid-stack-item .kambanbody .kamban-item {
     color: var(--text-main);
     background-color: var(--primary-surface);
-    border: solid 1px var(--primary);
+    border: solid 1px var(--primary-border);
 }
-   
+
+#ViewModeContainer:has(#Kamban) .kamban-item:hover,
+.grid-stack-item .kambanbody .kamban-item:hover {
+    background-color: var(--primary-surface-hover);
+    border: solid 1px var(--primary-border);
+}
