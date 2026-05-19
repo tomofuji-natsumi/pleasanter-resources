@@ -23,12 +23,13 @@ $.ajax({
             });
 
         const renderHolidays = () => {
+            const $cells = $(".fc-daygrid-day");
+            if ($cells.length === 0) return; // まだ描画されていない
 
             $(".holiday-name").remove();
-            $(".fc-daygrid-day")
-                .removeClass("holiday-100 holiday-200 holiday-300");
+            $cells.removeClass("holiday-100 holiday-200 holiday-300");
 
-            $(".fc-daygrid-day").each(function () {
+            $cells.each(function () {
                 const date = $(this).data("date");
                 if (!date) return;
 
@@ -45,13 +46,23 @@ $.ajax({
                 }
             });
         };
-        
-        // 初回実行
+
+        // 初回
         renderHolidays();
 
-        // 月移動・今日ボタンで再実行
-        $(document).on("click", ".fc-prev-button, .fc-next-button, .fc-today-button", function () {
-            setTimeout(renderHolidays, 0);
+        // ★ FullCalendar の描画が完了した瞬間を監視
+        const container = document.querySelector(".fc-view-container");
+
+        const observer = new MutationObserver(() => {
+            // day セルが出現したら実行
+            if (document.querySelector(".fc-daygrid-day")) {
+                renderHolidays();
+            }
+        });
+
+        observer.observe(container, {
+            childList: true,
+            subtree: true
         });
     }
 });
