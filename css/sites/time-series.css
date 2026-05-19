@@ -1,4 +1,8 @@
-text {
+#TimeSeries .index {
+    fill: var(--text-main);
+}
+
+.tick text {
     font-weight: 200;
     font-size: 0.7rem;
     fill: var(--text-main);
