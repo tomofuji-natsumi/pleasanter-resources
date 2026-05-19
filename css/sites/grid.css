@@ -303,7 +303,7 @@ td [class^="status-"] {
 
     /* Box */
     padding: 2px 6px !important;
-    border-radius: 4px !important;
+    border-radius: var(--radius-small) !important;
 
     /* Layout */
     position: relative;
