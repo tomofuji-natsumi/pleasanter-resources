@@ -218,7 +218,7 @@ body.site-list {
         gap: 8px;
         padding: 8px 12px;
 
-        border-radius: 6px;
+        border-radius: var(--radius-large);
         text-decoration: none;
         font-size: 95%;
         font-weight: 550;
