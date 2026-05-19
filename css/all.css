@@ -689,6 +689,7 @@ markdown-field:not(.is-comment) .md-viewer {
 
 markdown-field .bottom-tools {
    margin-top: 0.3rem;
+}
 
 markdown-field .md-btn-icon {
     color: var(--icon-color);
@@ -870,4 +871,3 @@ span.flatpickr-weekday {
 #MainCommandsContainer {
     background-color: var(--bg-footer) !important;
 }
-
