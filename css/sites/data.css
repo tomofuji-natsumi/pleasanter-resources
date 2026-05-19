@@ -259,8 +259,7 @@
    8. ViewModeContainer
    ========================================================= */
 
-/* #ViewModeContainer:not(:has(.grid)) { */
-#ViewModeContainer:not(:has(#ImageLib)):not(:has(#AnalyBody)) {
+#ViewModeContainer:not(:has(#ImageLib)):not(:has(#AnalyBody)):not(:has(.grid)) {
     padding: 0 !important;
     background-color: var(--surface-base) !important;
 }
