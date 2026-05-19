@@ -45,8 +45,7 @@ td[role="presentation"],
     opacity: 1 !important;
 }
 
-.fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-number,
-.fc .fc-daygrid-day.fc-day-other .holiday-name {
+.fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-number {
     color: var(--cal-other-text) !important;
 }
 
@@ -151,7 +150,6 @@ td[role="presentation"],
     font-size: 0.90em;
     color: var(--cal-holi-cell-text);
     line-height: 1.2;
-    flex-shrink: 0;
     position: relative;
     top: -1px;
     letter-spacing: 0.02em;
