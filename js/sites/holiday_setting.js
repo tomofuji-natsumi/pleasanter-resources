@@ -59,7 +59,7 @@ $.ajax({
                 setTimeout(() => {
                     renderHolidays();
                     renderScheduled = false;
-                }, 50);
+                }, 100);
             });
 
             observer.observe(container, {
