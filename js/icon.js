@@ -124,4 +124,7 @@ $(function () {
     applyIcons(primaryIconMap, "primary-material-icons");
     applyIcons(redIconMap, "red-material-icons");
     applyIcons(displayIconMap, "display-material-icons");
+
+    // 表示
+    document.body.style.opacity = "1";
 });
