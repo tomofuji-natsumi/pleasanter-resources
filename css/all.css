@@ -688,6 +688,9 @@ markdown-field .md-viewer {
     color: var(--text-main);
 }
 
+markdown-field .bottom-tools {
+   margin-top: 0.3rem;
+
 markdown-field .md-btn-icon {
     color: var(--icon-color);
 }
