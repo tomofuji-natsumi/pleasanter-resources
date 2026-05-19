@@ -263,7 +263,7 @@ ul.ui-widget-content {
 }
 
 tr,
-.crosstab-row {
+.crosstab-row td {
     background-color: var(--surface-base);
     border-bottom: 1px solid var(--border-light) !important;
 }
@@ -386,8 +386,7 @@ td [class^="status-"] {
 #Crosstab .crosstab-row th,
 #ViewModeContainer:has(#Kamban) .kamban-row th,
 .grid-stack-item .kambanbody .kamban-row th {
-    border-top: 1px solid var(--cal-border);
-    border-right: 1px solid var(--cal-border);
+    border-top: 1px solid var(--border-light);
 }
 
 #ViewModeContainer:has(#Kamban) .kamban-item,
@@ -405,6 +404,10 @@ td [class^="status-"] {
     border: solid 1px var(--primary) !important;
 }
 
+#ViewModeContainer:has(#Kamban) .kamban-row td,
+.grid-stack-item .kambanbody .kamban-row td {
+   border-top: 1px solid var(--border-light) !important;
+}
 
 
 
