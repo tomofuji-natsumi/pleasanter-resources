@@ -397,20 +397,20 @@ td [class^="status-"] {
     border-right: 1px solid var(--cal-border);
 }
 
-.kamban-item,
+#ViewModeContainer:has(#Kamban) .kamban-item,
 .grid-stack-item .kambanbody .kamban-item {
     color: var(--text-main);
-    background-color: var(--primary-surface);
-    border: solid 1px var(--primary);
+    background-color: var(--primary-surface) !important;
+    border: solid 1px var(--primary) !important;
+    font-size: 0.8rem;
+    padding: 0.25rem 1.4rem 0.25rem 0.6rem;
 }
 
 #ViewModeContainer:has(#Kamban) .kamban-item:hover,
 .grid-stack-item .kambanbody .kamban-item:hover {
-    color: var(--text-main);
-    background-color: var(--primary-surface-hover);
-    border: solid 1px var(--primary);
+    background-color: var(--primary-surface-hover) !important;
+    border: solid 1px var(--primary) !important;
 }
-
 
 
 
