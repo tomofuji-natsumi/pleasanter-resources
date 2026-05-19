@@ -48,18 +48,25 @@ $.ajax({
         // 初回
         renderHolidays();
 
-        const container = document.querySelector(".fc-daygrid-body");
+        // ★ 監視対象は「絶対に消えない .fc」
+        const container = document.querySelector(".fc");
         let renderScheduled = false;
 
         if (container) {
             const observer = new MutationObserver(() => {
-                if (renderScheduled) return;
-                renderScheduled = true;
 
-                setTimeout(() => {
-                    renderHolidays();
-                    renderScheduled = false;
-                }, 100);
+                // .fc-daygrid-day が出現したら一度だけ実行
+                if (document.querySelector(".fc-daygrid-day[data-date]")) {
+
+                    if (!renderScheduled) {
+                        renderScheduled = true;
+
+                        setTimeout(() => {
+                            renderHolidays();
+                            renderScheduled = false;
+                        }, 50);
+                    }
+                }
             });
 
             observer.observe(container, {
