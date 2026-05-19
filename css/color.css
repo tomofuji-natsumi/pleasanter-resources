@@ -49,20 +49,20 @@
     --bg-focus: #F0F6FF;
     --bg-hover: #F0F0F0;
 
+    --bg-hamburger-outer: rgba(3, 3, 3, 0.2);
     --bg-site-list: oklch(0.94 0.005 270);
 
     --bg-filter: oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
-
     --bg-guide: #FFF9E3;
-    --bg-hamburger-outer: rgba(3, 3, 3, 0.2);
+   
     --bg-editor-sub: oklch(0.968 0.007 255);
-
     --bg-toolbar: oklch(from var(--primary) calc(l + 0.06) calc(c * 0.8) h);
 
     --bg-data-title: var(--bg-filter);
 
     --bg-dialog-header: #E3E7EE;
     --bg-count: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.18) h);
+    --bg-chart: #E9EEF5;
 
     --bg-footer: rgba(0, 0, 0, 0.45);
 
