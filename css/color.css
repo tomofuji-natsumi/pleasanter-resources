@@ -17,7 +17,8 @@
     /* --- Primary Surface（背景レイヤー） --- */
     --primary-border: oklch(from var(--primary) calc(l + 0.35) calc(c - 0.12) h);
     --primary-surface: oklch(from var(--primary) calc(l + 0.42) calc(c - 0.14) h);
-    --primary-surface-hover: oklch(from var(--primary) calc(l + 0.48) calc(c - 0.16) h);
+    --primary-surface-hover: oklch(from var(--primary) calc(l + 0.45) calc(c - 0.15) h);
+    /* --primary-surface-hover: oklch(from var(--primary) calc(l + 0.48) calc(c - 0.16) h); */
 
     /* --- On Primary（文字色） --- */
     --on-primary: #F9FAFB;
@@ -35,14 +36,16 @@
     /* --- Surface（白系3レイヤー / もっと白に） --- */
     --surface-base:   oklch(0.990 0.002 255);
     --surface-soft:   oklch(0.986 0.0018 255);
-    --surface-strong: oklch(0.970 0.003 255);
+    --surface-strong: oklch(0.975 0.0025 255);
+    /* --surface-strong: oklch(0.970 0.003 255); */
 
     /* =========================================================
        2. ベース背景（UI全体の背景レイヤー）
        ========================================================= */
 
     --bg-main: #EEF1F5;
-    --bg-main-dark: #E7E7E7;
+    --bg-main-dark: #E5E8ED;
+    /* --bg-main-dark: #E7E7E7; */
 
     --bg-surface-hover: #E2E8F0;
 
@@ -62,7 +65,8 @@
 
     --bg-dialog-header: #E3E7EE;
     --bg-count: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.18) h);
-    --bg-chart: #E9EEF5;
+    --bg-chart: #E6EBF3;
+    /* --bg-chart: #E9EEF5; */
 
     --bg-footer: rgba(0, 0, 0, 0.45);
 
@@ -73,7 +77,8 @@
     --border-subtle: rgba(0, 0, 0, 0.06);
     --border-light:  #D7D8DD;
     --border-normal: #D5DAE2;
-    --border-strong: #C8CDD5;
+    --border-strong: #C3C9D2;
+    /* --border-strong: #C8CDD5; */
 
     --border-nav: #AFC4E8;
     --border-count: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
@@ -102,7 +107,8 @@
     --text-main:      #2A323C;
     --text-emphasis:  #3A424C;
     --text-sub:       #4B4F55;
-    --text-muted:     #6B7280;
+    --text-muted:      #757C88;
+    /* --text-muted:     #6B7280; */
     --text-disabled:  #9CA3AF;
 
     --text-breadcrumb-current: var(--text-on-primary);
