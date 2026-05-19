@@ -4,9 +4,9 @@
 }
 
 #ImageLibBody .item {
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
-    background: var(--surface-base);
+    padding: 0.8rem 1rem !important;
+    border-radius: 8px !important;
+    background-color: var(--surface-base);
     box-shadow: 0 2px 4px rgba(0, 0, 0, .01);
     transition: transform .12s ease, box-shadow .12s ease;
     filter: drop-shadow(0 2px 4px var(--shadow-medium));
@@ -18,5 +18,13 @@
 }
 
 #ImageLibBody .image a {
-    border: 1px solid var(--border-normal);
+    border: 1px solid var(--border-normal) !important;
+}
+
+#ImageLibBody .image img:hover {
+    transform: none !important;
+}
+
+.red-material-icons {
+    left: 6px !important;
 }
