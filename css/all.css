@@ -376,7 +376,7 @@ select:focus,
 input:focus,
 .check-option .check-icon:not(:has(input:checked)):focus,
 .ui-widget.ui-state-default.ui-multiselect:focus {
-    border: 1px solid var(--input-border-focus) !important;
+    border: 1px solid var(--primary-border) !important;
     color: var(--text-main) !important;
 }
 
@@ -385,26 +385,15 @@ input:focus,
     font-size: 0.85rem !important;
 }
 
-.control-dropdown {
-    border: 1px solid var(--input-border-focus) !important;
-    color: var(--text-main) !important;
-}
-
 /* セレクトボックス */
 .select-field:not(:has(div.ui-icon-person)) .control-dropdown {
     padding: 3px 4px 4px 5px !important;
 }
-/*
-.save-button {
-    margin-top: 20px;
-}
-*/
+
 
 /* =========================================================
    9. 入力コントロール（textbox / dropdown / checkbox / spinner）
    ========================================================= */
-
-
 
 .check-option .check-icon:before {
     color: var(--surface-base) !important;
@@ -432,12 +421,6 @@ input:focus,
     margin-bottom: 20px;
     padding: 0 20px 0 0;
 }
-
-/*
-.spinner-field .control-spinner {
-    padding: 4px 22px 4px 8px !important;
-}
-*/
 
 .spinner-field .ui-spinner .ui-button {
     position: absolute !important;
@@ -476,7 +459,7 @@ input:focus,
 }
 
 .ui-dialog-title {
-    font-family: var(--yu-gothic);
+    font-family: 游ゴシック体,YuGothic,游ゴシック Medium,Yu Gothic Medium,游ゴシック,Yu Gothic,sans-serif;
     font-weight: 600;
     line-height: 1.5;
     font-size: 0.85rem;
@@ -555,7 +538,6 @@ input:focus,
 #ExportSitePackageDialog #SitePackageForm .field-wide {
     margin-bottom: 5px;
 }
-
 
 
 /* =========================================================
@@ -752,7 +734,6 @@ markdown-field.is-comment .md-viewer {
 
 .file-button:hover {
     background: var(--primary-hover);
-    color: var(--text-hover);
 }
 
 .file-name {
