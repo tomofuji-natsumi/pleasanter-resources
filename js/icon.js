@@ -63,6 +63,7 @@ const primaryIconMap = {
 
 const redIconMap = {
     "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']": "delete",
+    "#FieldSetHistories [data-confirm='ConfirmPhysicalDelete']": "delete",
     "#ImageLibBody [data-confirm='ConfirmDelete']": "delete",
     "#BulkDeleteCommand": "delete",
     "#DeleteCommand": "delete",
