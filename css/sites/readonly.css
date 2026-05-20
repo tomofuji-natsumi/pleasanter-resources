@@ -46,28 +46,20 @@ body.readonly-mode {
     #Editor div:has([id^="Results_Num"]) .readonly-value,
     #Editor .spinner-field input,
     #Editor .sun-editor .se-wrapper-inner,
-    #Editor .input-field {
-        /* Layout */
+    #Editor .input-field,
+    #Editor .data-field{
         flex: 1;
-
-        /* Box */
         padding: 6px 10px;
         min-height: fit-content !important;
         box-sizing: border-box;
-
-        /* Typography */
         font-size: 13.5px;
         line-height: 1.5;
         color: var(--readonly-value);
         white-space: pre-line;
         user-select: text;
-
-        /* Background */
         background: var(--readonly-bg);
-
-        /* Border */
         border: 1px solid var(--readonly-border);
-        border-radius: var(--radius-medium);
+        border-radius: var(--radius-medium) !important;
     }
 
     .container-normal:has(span),
@@ -79,7 +71,7 @@ body.readonly-mode {
         background-color: transparent !important;
         border: none !important;
         padding-left: 0 !important;
-        border-radius: var(--radius-medium);
+        border-radius: var(--radius-medium) !important;
     }
 
     .field-markdown .readonly-value {
@@ -90,13 +82,6 @@ body.readonly-mode {
     /* -----------------------------------------------------
        3. 入力 UI を非表示
        ----------------------------------------------------- */
-    input.flatpickr-input,
-    select.control-dropdown,
-    textarea.control-markdown,
-    .ui-spinner-button,
-    a.ui-button.ui-widget.ui-spinner-button,
-    .sun-editor .se-toolbar,
-    .sun-editor .btn-editable-cmd,
     .se-resizing-bar,
     #Notes {
         display: none !important;
@@ -119,7 +104,7 @@ body.readonly-mode {
     .control-attachments-item {
         background: var(--readonly-bg);
         border: 1px solid var(--readonly-border);
-        border-radius: var(--radius-medium);
+        border-radius: var(--radius-medium) !important;
         padding: 8px 12px;
     }
 
@@ -138,7 +123,7 @@ body.readonly-mode {
     #Results_OwnerField .control-text {
         flex: 1;
         padding: 10px 14px;
-        border-radius: var(--radius-medium);
+        border-radius: var(--radius-medium) !important;
          line-height: 1.5;
     }
 
