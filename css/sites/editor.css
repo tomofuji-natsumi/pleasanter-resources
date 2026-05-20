@@ -16,9 +16,9 @@
 #FieldSetGeneral .field-label {
     font-size: 0.85rem;
     color: var(--text-main);
-   line-height: 1.5;
-    padding: 0 !important;
-   margin-bottom: 0;
+    line-height: 1.5;
+    padding: 0 0.7em 0 0;
+    margin-bottom: 0;
 }
 
 #FieldSetGeneral .field-label label {
@@ -56,9 +56,8 @@
 }
 
 
-
 /* =========================================================
-   1. テキストエリア（高さ自動調整）
+   1. テキストエリア
    ========================================================= */
 
 textarea {
@@ -68,7 +67,6 @@ textarea {
     max-height: 20lh;
     height: auto !important;
 }
-
 
 
 /* =========================================================
@@ -114,7 +112,7 @@ textarea {
     background-color: var(--primary) !important;
 }
 
-rt-editor .sun-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
+.sun-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
     color: var(--surface-base) !important;
     font-size: 0.9rem;
 }
@@ -478,4 +476,8 @@ rt-editor .sun-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable
     #SearchPermissionElements {
         margin: 0;
     }
+
+   #Notes .readonly {
+      display: none;
+   }
 }
