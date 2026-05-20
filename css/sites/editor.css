@@ -483,7 +483,7 @@ textarea {
         margin: 0;
     }
 
-   #Notes .readonly {
-      display: none;
+   #Notes > .readonly {
+      display: none !important;
    }
 }
