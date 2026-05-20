@@ -12,8 +12,7 @@ body.readonly-mode {
     .field-markdown {
         display: flex;
         align-items: flex-start;
-        gap: 8px;
-        margin-bottom: 15px;
+        margin-bottom: 18px;
     }
 
     .field-label {
@@ -26,9 +25,7 @@ body.readonly-mode {
     }
 
     .field-label label {
-        /* Typography */
         font-weight: 600;
-        color: inherit;
     }
 
     /* -----------------------------------------------------
@@ -83,11 +80,11 @@ body.readonly-mode {
     /* -----------------------------------------------------
        4. 添付ファイル
        ----------------------------------------------------- */
-    #Results_AttachmentsAField:has(#AttachmentsA.items:empty) {
+    [id^="Results_Attachments"][id$="Field"]:has(.items:empty) {
         display: none;
     }
 
-    #Results_AttachmentsAField .field-control {
+    [id^="Results_Attachments"][id$="Field"] .field-control {
         flex: 1;
         display: flex;
         gap: 16px;
@@ -104,22 +101,9 @@ body.readonly-mode {
         display: none;
     }
 
-   
-    /* -----------------------------------------------------
-       5. Owner（提案者）
-       ----------------------------------------------------- */
-    #Results_OwnerField .field-control {
-        align-items: center;
-    }
-
-    #Results_OwnerField .control-text {
-        flex: 1;
-        border-radius: var(--radius-medium) !important;
-        line-height: 1.5;
-    }
 
     /* -----------------------------------------------------
-       6. SunEditor 読取専用
+       5. SunEditor 読取専用
        ----------------------------------------------------- */
     .sun-editor {
         border: 0;
@@ -135,7 +119,7 @@ body.readonly-mode {
     }
 
     /* -----------------------------------------------------
-       7. チェックボックス系
+       6. チェックボックス系
        ----------------------------------------------------- */
     .check-option,
     .check-icon {
@@ -152,7 +136,7 @@ body.readonly-mode {
     }
 
     /* -----------------------------------------------------
-       8. その他 UI 調整
+       7. その他 UI 調整
        ----------------------------------------------------- */
     #EditorComments::before {
         display: none;
@@ -200,10 +184,6 @@ body.readonly-mode {
         border: none !important;
     }
 
-    .container-normal:has(textarea) {
-        display: none;
-    }
-
     .field-control {
         float: left;
     }
@@ -212,25 +192,28 @@ body.readonly-mode {
         display: none;
     }
 
-   .container-normal:has(span[data-readonly="1"]),
-   .container-normal:has(date-field),
-   .container-normal div.readonly-value,
-   #Encoding,
-   #ExportEncoding {
-       padding: 0.35rem 0.7rem !important;
-       background: var(--readonly-bg) !important;
-       color: var(--readonly-value) !important;
-       border: 1px solid var(--border-strong) !important;
-       border-radius: var(--radius-medium) !important;
-       pointer-events: none;
-       user-select: text;
-   }
+    .container-normal:has(span[data-readonly="1"]),
+    .container-normal div.readonly-value,
+    #Encoding,
+    #ExportEncoding {
+        padding: 0.35rem 0.7rem !important;
+        background: var(--readonly-bg) !important;
+        color: var(--readonly-value) !important;
+        border: 1px solid var(--border-strong) !important;
+        border-radius: var(--radius-medium) !important;
+        pointer-events: none;
+        user-select: text;
+    }
 
-   .container-normal span[data-readonly="1"] {
-       background: transparent !important;
-       border: none !important;
-       min-height: fit-content;
-       height: fit-content;
-       line-height: 1.5;
-   }
+    .container-normal span[data-readonly="1"] {
+        background: transparent !important;
+        border: none !important;
+        min-height: fit-content;
+        height: fit-content;
+        line-height: 1.5;
+    }
+
+    .container-normal:has(date-field) {
+        display: none;
+    }
 }
