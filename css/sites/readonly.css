@@ -25,7 +25,7 @@ body.readonly-mode {
 
     .field-label label {
         font-weight: 600;
-		vertical-align: -webkit-baseline-middle;
+		vertical-align: -webkit-baseline-middle !important;
     }
 
     /* -----------------------------------------------------
@@ -211,9 +211,5 @@ body.readonly-mode {
         min-height: fit-content;
         height: fit-content;
         line-height: 1.5;
-    }
-
-    .container-normal:has(date-field) {
-        display: none;
     }
 }
