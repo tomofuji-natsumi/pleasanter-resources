@@ -206,7 +206,8 @@ body.readonly-mode {
 
     .container-normal:has(span[data-readonly="1"]),
 	.container-normal:has(.spinner-field),
-	.container-normal:has(data-field)
+	.container-normal:has(data-field),
+	.control-attachments[value="[]"],
     .container-normal div.readonly-value,
     #Encoding,
     #ExportEncoding {
