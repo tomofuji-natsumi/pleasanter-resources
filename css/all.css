@@ -641,7 +641,6 @@ input:focus,
 
 
 .readonly-style,
-.container-normal span[data-readonly="1"],
 #Encoding,
 #ExportEncoding {
     background-color: var(--readonly-bg) !important;
@@ -652,8 +651,26 @@ input:focus,
     user-select: text;
 }
 
+.container-normal:has(span[data-readonly="1"]) {
+     padding: 0.35rem 0.7rem !important;
+     background: var(--readonly-bg) !important;
+     color: var(--readonly-value) !important;
+     border: 1px solid var(--border-strong) !important;
+     border-radius: var(--radius-medium) !important;
+     pointer-events: none;
+     user-select: text;
+}
+
+.container-normal span[data-readonly="1"] {
+     background: transparent !important;
+     border: none !important;
+     min-height: fit-content;
+     height: fit-content;
+     line-height: 1.5;
+}
+
 .container-normal span[data-readonly="1"]:not(:empty) {
-   padding: 0 !important;
+      padding: 0 !important;
 }
 
 .field-label {
