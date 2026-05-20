@@ -12,7 +12,7 @@ body.readonly-mode {
 	}
 
 	#Notes:not(:empty) {
-		display: none;
+		display: none !important;
     }
 	
     .field-normal,
@@ -242,7 +242,9 @@ body.readonly-mode {
 		margin: 0;
 	}
 
-	.readonly-value:empty,
+	.readonly-value:empty, 
+	.field-control:has(.control-attachments[value="[]"]),
+	.container-normal:has(.control-attachments[value="[]"]),
 	.control-attachments[value="[]"] {
 		height: 2.47em;
 	}
