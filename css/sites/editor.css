@@ -370,6 +370,10 @@ rt-editor .sun-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable
     box-shadow: 3px 3px 3px var(--shadow-medium);
 }
 
+.comment > .time {
+    margin: 0 10px 8px 0;
+}
+
 #CommentList .md {
     background-color: transparent;
 }
