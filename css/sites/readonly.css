@@ -230,4 +230,14 @@ body.readonly-mode {
 	.ui-spinner .ui-spinner-button {
 		display: none;
 	}
+
+	.control-attachments-items {
+		margin: 0;
+	}
+
+	.control-attachments-item {
+		padding: 0.5em 0.7em;
+		gap: 0.6em;
+		margin: 0;
+	}
 }
