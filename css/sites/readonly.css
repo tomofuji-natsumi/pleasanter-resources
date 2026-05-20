@@ -122,9 +122,8 @@ body.readonly-mode {
 
     #Results_OwnerField .control-text {
         flex: 1;
-        padding: 10px 14px;
         border-radius: var(--radius-medium) !important;
-         line-height: 1.5;
+        line-height: 1.5;
     }
 
     /* -----------------------------------------------------
@@ -226,10 +225,11 @@ body.readonly-mode {
    .container-normal date-field,
    #Encoding,
    #ExportEncoding {
-       padding: 0.35rem 0.7rem;
+       padding: 0.35rem 0.7rem !important;
        background: var(--readonly-bg) !important;
        color: var(--readonly-value) !important;
        border: 1px solid var(--border-strong) !important;
+       border-radius: var(--radius-medium) !important;
        pointer-events: none;
        user-select: text;
    }
