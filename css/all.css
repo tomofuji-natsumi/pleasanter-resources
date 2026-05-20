@@ -258,6 +258,7 @@ button:has(.primary-material-icons):active {
 }
 
 #Breadcrumb {
+	padding: 0 1.5em;
     background-color: var(--surface-soft) !important;
     border-bottom: 1px solid var(--border-light) !important;
     box-shadow: none !important;
@@ -267,6 +268,7 @@ button:has(.primary-material-icons):active {
     font-size: 0.8rem;
     font-weight: 550;
     white-space: pre;
+	line-height: 1.4;
     color: var(--icon-color);
 }
 
@@ -378,6 +380,7 @@ input:focus,
 .check-option .check-icon:not(:has(input:checked)):focus,
 .ui-widget.ui-state-default.ui-multiselect:focus {
     border: 1px solid var(--primary-border) !important;
+	background-color: var(--surface-base) !important;
     color: var(--text-main) !important;
 }
 
@@ -574,6 +577,7 @@ input:focus,
 .ui-multiselect-checkboxes li label span {
     padding-left: 5px;
     vertical-align: text-top;
+	line-height: 1.45;
 }
 
 
