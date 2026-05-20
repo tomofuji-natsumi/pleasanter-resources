@@ -9,12 +9,21 @@ $(function () {
     if (!$("body").hasClass("readonly-mode")) return;
 
     // ▼ 添付ファイル：ある時だけ表示、ない時は非表示
-    const hasFiles = $("#AttachmentsA\\.items").children().length > 0;
+    const $attachments = $("[id^='Attachments'][id$='\\.items']");
+    let hasFiles = false;
+    
+    $attachments.each(function () {
+        if ($(this).children().length > 0) {
+            hasFiles = true;
+        }
+    });
+    
     if (hasFiles) {
-        $("#Results_AttachmentsAField").show();
+        $("[id^='Results_Attachments'][id$='Field']").show();
     } else {
-        $("#Results_AttachmentsAField").hide();
+        $("[id^='Results_Attachments'][id$='Field']").hide();
     }
+
 
     document.querySelectorAll("date-field").forEach(df => {
         const shadow = df.shadowRoot;
@@ -55,7 +64,7 @@ $(function () {
         }
 
         // textarea（markdown）
-        const textarea = control.find("textarea.control-markdown");
+        const textarea = control.find("textarea.control-markdown, textarea.control-textarea");
         if (textarea.length) {
             const val = textarea.val().replace(/\n/g, "<br>");
             textarea.hide();
