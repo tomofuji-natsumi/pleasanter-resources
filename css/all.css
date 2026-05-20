@@ -649,28 +649,6 @@ input:focus,
     user-select: text;
 }
 
-.container-normal:has(span[data-readonly="1"]) {
-     padding: 0.35rem 0.7rem !important;
-     background: var(--readonly-bg) !important;
-     color: var(--readonly-value) !important;
-     border: 1px solid var(--border-strong) !important;
-     border-radius: var(--radius-medium) !important;
-     pointer-events: none;
-     user-select: text;
-}
-
-.container-normal span[data-readonly="1"] {
-     background: transparent !important;
-     border: none !important;
-     min-height: fit-content;
-     height: fit-content;
-     line-height: 1.5;
-}
-
-.container-normal span[data-readonly="1"]:not(:empty) {
-      padding: 0 !important;
-}
-
 .field-label {
     flex: 0 0 auto;
     max-width: 100%;
@@ -870,4 +848,28 @@ span.flatpickr-weekday {
 
 #MainCommandsContainer {
     background-color: var(--bg-footer) !important;
+}
+
+
+
+.container-normal:has(span[data-readonly="1"]) {
+     padding: 0.3rem 0.55rem !important;
+     background: var(--readonly-bg) !important;
+     color: var(--readonly-value) !important;
+     border: 1px solid var(--border-strong) !important;
+     border-radius: var(--radius-medium) !important;
+     pointer-events: none;
+     user-select: text;
+}
+
+.container-normal span[data-readonly="1"] {
+     background: transparent !important;
+     border: none !important;
+     min-height: fit-content;
+     height: fit-content;
+     line-height: 1.5;
+}
+
+.container-normal span[data-readonly="1"]:not(:empty) {
+      padding: 0 !important;
 }
