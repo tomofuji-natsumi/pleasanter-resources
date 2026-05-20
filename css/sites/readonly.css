@@ -247,4 +247,8 @@ body.readonly-mode {
 	.container-normal:has(.control-attachments[value="[]"]) {
 		height: 2.47em;
 	}
+
+	.container-normal:has(.control-attachments[value="[]"]) {
+		width: 100%;
+	}
 }
