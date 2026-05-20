@@ -53,7 +53,7 @@ body.readonly-mode {
         /* Box */
         padding: 6px 10px;
         min-height: 32px;
-        min-height: 2.1rem !important;
+        min-height: fit-content !important;
         box-sizing: border-box;
 
         /* Typography */
@@ -73,24 +73,17 @@ body.readonly-mode {
 
     .container-normal:has(span),
     .container-normal:has(.control-text[data-readonly="1"]) {
-        /* Box */
-        min-height: 2.1rem !important;
+        min-height: fit-content !important;
     }
 
     #FieldSetGeneral input {
-        /* Background */
         background-color: transparent !important;
-
-        /* Border */
         border: none !important;
-
-        /* Box */
         padding-left: 0 !important;
         border-radius: var(--radius-medium);
     }
 
     .field-markdown .readonly-value {
-        /* Box */
         min-height: auto;
         max-height: none;
     }
@@ -122,23 +115,15 @@ body.readonly-mode {
     }
 
     #Results_AttachmentsAField .field-control {
-        /* Layout */
         flex: 1;
         display: flex;
-
-        /* Box */
         gap: 16px;
     }
 
     .control-attachments-item {
-        /* Background */
         background: var(--readonly-bg);
-
-        /* Border */
         border: 1px solid var(--readonly-border);
         border-radius: var(--radius-medium);
-
-        /* Box */
         padding: 8px 12px;
     }
 
@@ -146,44 +131,29 @@ body.readonly-mode {
         display: none;
     }
 
+   
     /* -----------------------------------------------------
        5. Owner（提案者）
        ----------------------------------------------------- */
     #Results_OwnerField .field-control {
-        /* Layout */
         align-items: center;
     }
 
     #Results_OwnerField .control-text {
-        /* Layout */
         flex: 1;
-
-        /* Box */
         padding: 10px 14px;
-
-        /* Background */
-        background: var(--readonly-bg);
-
-        /* Border */
-        border: 1px solid var(--readonly-border);
         border-radius: var(--radius-medium);
-
-        /* Typography */
-        font-size: 14px;
-        color: var(--readonly-value);
-        line-height: 1.6;
+         line-height: 1.5;
     }
 
     /* -----------------------------------------------------
        6. SunEditor 読取専用
        ----------------------------------------------------- */
     .sun-editor {
-        /* Border */
         border: 0;
     }
 
     .sun-editor .se-wrapper-inner {
-        /* Box */
         padding: 8px 10px;
         min-height: 32px;
     }
@@ -197,18 +167,15 @@ body.readonly-mode {
        ----------------------------------------------------- */
     .check-option,
     .check-icon {
-        /* Other */
         pointer-events: none;
         cursor: default;
     }
 
     .check-icon {
-        /* Background */
         background: var(--readonly-bg);
     }
 
     .check-icon:before {
-        /* Typography */
         color: transparent;
     }
 
@@ -220,17 +187,14 @@ body.readonly-mode {
     }
 
     .container-normal:not(:has(.check-option)) {
-        /* Box */
         margin-left: 0;
     }
 
     .container-normal:has(date-field) {
-        /* Background */
         background: transparent;
     }
 
     .input-field:focus {
-        /* Background */
         background: var(--readonly-bg);
     }
 
@@ -239,16 +203,12 @@ body.readonly-mode {
     }
 
     #Editor input.control-textbox::placeholder {
-        /* Typography */
         color: transparent;
     }
 
     .field-control input {
-        /* Box */
         padding: 0 !important;
         height: fit-content;
-
-        /* Border */
         border: none;
     }
 
@@ -264,10 +224,7 @@ body.readonly-mode {
     .control-markdown:focus,
     .ui-widget.ui-state-default.ui-multiselect:focus,
     .ui-widget.ui-state-default.ui-multiselect:not(.has-css):focus {
-        /* Background */
         background-color: transparent !important;
-
-        /* Border */
         border: none !important;
     }
 
