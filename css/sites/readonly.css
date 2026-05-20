@@ -52,7 +52,6 @@ body.readonly-mode {
 
         /* Box */
         padding: 6px 10px;
-        min-height: 32px;
         min-height: fit-content !important;
         box-sizing: border-box;
 
