@@ -27,6 +27,7 @@
 
 #FieldSetGeneral .check-option {
     margin: 4px 0 !important;
+	gap: 0.8em;
 }
 
 .field-wide,
