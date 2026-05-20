@@ -82,7 +82,7 @@ body.readonly-mode {
         background-color: transparent !important;
 
         /* Border */
-        border: none;
+        border: none !important;
 
         /* Box */
         padding-left: 0 !important;
