@@ -237,8 +237,12 @@ body.readonly-mode {
 	}
 
 	.control-attachments-item {
-		padding: 0.5em 0.7em;
+		padding: 0.35rem 0.7rem !important;
 		gap: 0.6em;
 		margin: 0;
+	}
+
+	.readonly-value:empty {
+		height: 2.47em;
 	}
 }
