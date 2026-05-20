@@ -101,10 +101,7 @@ body.readonly-mode {
     #Notes {
         display: none !important;
     }
-
-   .container-normal {
-      display: none;
-   }
+   
 
     /* -----------------------------------------------------
        4. 添付ファイル
