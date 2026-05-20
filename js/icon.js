@@ -1,7 +1,12 @@
 // ===============================
-// 1. アイコンマップ
+// 0. サイト側追加マップの受け皿
 // ===============================
+window.__pleasanterCustomIconMap = window.__pleasanterCustomIconMap || {};
 
+
+// ===============================
+// 1. アイコンマップ（共通）
+// ===============================
 const darkIconMap = {
     "[aria-describedby='ImportSitePackageDialog'] [data-icon='ui-icon-cancel']": "close",
     "#ExportSitePackageDialog [data-icon='ui-icon-cancel']:not(#ExcludeData)": "close",
@@ -12,7 +17,7 @@ const darkIconMap = {
     "#AnalyPartDialog [data-icon='ui-icon-cancel']": "close",
     "#GoBack": "arrow_circle_left",
     "#ExcludeData": "indeterminate_check_box",
-}
+};
 
 const lightIconMap = {
     "#OpenPermissionsDialog": "settings",
@@ -26,7 +31,6 @@ const lightIconMap = {
     "#DeleteTemplateButton": "delete",
     "#ToEnableAllDropDownSearchResults": "keyboard_double_arrow_left",
     "#ToEnableDropDownSearchResults": "keyboard_arrow_left",
-    "#ToEnableDropDownSearchResults": "keyboard_arrow_left",
     "#ToDisableExportSites": "keyboard_arrow_left",
     "#AddPermissions": "keyboard_arrow_left",
     "#Previous": "arrow_left",
@@ -35,7 +39,7 @@ const lightIconMap = {
     "#ToEnableExportSites": "keyboard_arrow_right",
     "#DeletePermissions": "keyboard_arrow_right",
     "#Next": "arrow_right",
-}
+};
 
 const primaryIconMap = {
     "#OpenAnalyPartDialog": "add",
@@ -59,7 +63,7 @@ const primaryIconMap = {
     ".nav-site.to-parent a": "arrow_left",
     "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmRestore']": "restore_page",
     "#FieldSetHistories [data-action='RestoreFromHistory']": "restore_page",
-}
+};
 
 const redIconMap = {
     "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']": "delete",
@@ -78,6 +82,21 @@ const displayIconMap = {
     "#CopyDirectUrlToClipboard": "share",
 };
 
+
+// ===============================
+// 1.5 サイト側追加マップをマージ
+// ===============================
+function mergeCustomMaps() {
+    const custom = window.__pleasanterCustomIconMap;
+
+    if (custom.dark) Object.assign(darkIconMap, custom.dark);
+    if (custom.light) Object.assign(lightIconMap, custom.light);
+    if (custom.primary) Object.assign(primaryIconMap, custom.primary);
+    if (custom.red) Object.assign(redIconMap, custom.red);
+    if (custom.display) Object.assign(displayIconMap, custom.display);
+}
+
+
 // ===============================
 // 2. アイコン適用関数
 // ===============================
@@ -85,10 +104,7 @@ function applyIcons(map, className) {
     for (const selector in map) {
         const $el = $(selector);
 
-        // 要素が存在しない → まだ生成されていない
         if ($el.length === 0) continue;
-
-        // すでにアイコンが付いている → スキップ
         if ($el.find("." + className).length > 0) continue;
 
         $el.prepend(
@@ -99,9 +115,11 @@ function applyIcons(map, className) {
 
 
 // ===============================
-// 3. MutationObserver（ボタンが生成された瞬間だけ反応）
+// 3. MutationObserver
 // ===============================
 const iconObserver = new MutationObserver(() => {
+    mergeCustomMaps();
+
     applyIcons(darkIconMap, "dark-material-icons");
     applyIcons(lightIconMap, "light-material-icons");
     applyIcons(primaryIconMap, "primary-material-icons");
@@ -119,6 +137,8 @@ iconObserver.observe(document.body, {
 // 4. 初回適用
 // ===============================
 $(function () {
+    mergeCustomMaps();
+
     applyIcons(darkIconMap, "dark-material-icons");
     applyIcons(lightIconMap, "light-material-icons");
     applyIcons(primaryIconMap, "primary-material-icons");
