@@ -1,17 +1,55 @@
-$(function () {
+// ===============================
+// 0. 読取専用モード判定（最速で実行）
+// ===============================
+if (document.querySelector("#Notes .readonly")) {
+    document.body.classList.add("readonly-mode");
+}
 
-    // ===============================
-    // 1. 読取専用モード判定
-    // ===============================
-    if ($("#Notes .readonly").length > 0) {
-        $("body").addClass("readonly-mode");
-    }
+
+// ===============================
+// 1. readonly のときだけ date-field の Shadow DOM に CSS を注入
+// ===============================
+if (document.body.classList.contains("readonly-mode")) {
+
+    const injectDateFieldCSS = () => {
+        document.querySelectorAll("date-field").forEach(df => {
+            const shadow = df.shadowRoot;
+            if (!shadow) return;
+
+            // すでに注入済みならスキップ
+            if (shadow.querySelector("style[data-hide-current-date]")) return;
+
+            const style = document.createElement("style");
+            style.setAttribute("data-hide-current-date", "true");
+            style.textContent = `
+                .current-date {
+                    display: none !important;
+                }
+            `;
+            shadow.appendChild(style);
+        });
+    };
+
+    // すぐ実行（最速）
+    injectDateFieldCSS();
+
+    // date-field が後から生成されても対応
+    const dateObserver = new MutationObserver(injectDateFieldCSS);
+    dateObserver.observe(document.body, { childList: true, subtree: true });
+}
+
+
+
+// ===============================
+// 2. jQuery 処理（DOM 構築後）
+// ===============================
+$(function () {
 
     if (!$("body").hasClass("readonly-mode")) return;
 
 
     // ===============================
-    // 2. 添付ファイルの表示制御（非同期対応）
+    // 添付ファイルの表示制御（非同期対応）
     // ===============================
     const checkAttachments = () => {
         const hasFiles = $("[id^='Attachments'][id$='\\.items']")
@@ -27,38 +65,18 @@ $(function () {
     attachObserver.observe(document.body, { childList: true, subtree: true });
 
 
-    // ===============================
-    // 3. date-field の「今日」ボタンを非表示（Shadow DOM）
-    // ===============================
-    const hideDateButtons = () => {
-        document.querySelectorAll("date-field").forEach(df => {
-            const shadow = df.shadowRoot;
-            if (!shadow) return;
-
-            const btn = shadow.querySelector(".current-date");
-            if (btn) btn.style.display = "none";
-        });
-    };
-
-    // ShadowRoot が遅れて生成されるため遅延実行
-    setTimeout(hideDateButtons, 300);
-
 
     // ===============================
-    // 4. フォーム要素を正しく読取専用化
+    // フォーム要素を正しく読取専用化
     // ===============================
-    // input / textarea → readonly
     $("form input:not([type='hidden']), form textarea").attr("readonly", true);
-
-    // select / checkbox / radio → disabled
     $("form select, form input[type='checkbox'], form input[type='radio']").attr("disabled", true);
 
 
-    // ===============================
-    // 5. フィールドをラベル化（SunEditor対応）
-    // ===============================
 
-    // HTMLエスケープ（記号が消えないように）
+    // ===============================
+    // フィールドをラベル化（SunEditor対応）
+    // ===============================
     const escapeHtml = (str) =>
         str.replace(/[&<>"']/g, s => ({
             "&": "&amp;",
@@ -73,44 +91,31 @@ $(function () {
         const control = field.find(".field-control");
 
         if (control.length === 0) return;
-
-        // すでにラベル化済みならスキップ
         if (control.children(".readonly-value").length > 0) return;
 
 
-        // -------------------------------
         // input date（flatpickr）
-        // -------------------------------
         control.find("input.flatpickr-input").each(function () {
             const val = escapeHtml($(this).val());
             $(this).hide();
             control.append(`<div class="readonly-value">${val}</div>`);
         });
 
-
-        // -------------------------------
-        // select（ドロップダウン）
-        // -------------------------------
+        // select
         control.find("select.control-dropdown").each(function () {
             const text = escapeHtml($(this).find("option:selected").text());
             $(this).hide();
             control.append(`<div class="readonly-value">${text}</div>`);
         });
 
-
-        // -------------------------------
         // textarea（markdown / textarea）
-        // -------------------------------
         control.find("textarea.control-markdown, textarea.control-textarea").each(function () {
             const val = escapeHtml($(this).val()).replace(/\n/g, "<br>");
             $(this).hide();
             control.append(`<div class="readonly-value">${val}</div>`);
         });
 
-
-        // -------------------------------
-        // SunEditor（iframe）
-        // -------------------------------
+        // SunEditor
         const sun = control.find(".sun-editor");
         if (sun.length) {
             sun.addClass("readonly-sun-editor");
@@ -118,8 +123,9 @@ $(function () {
     });
 
 
+
     // ===============================
-    // 6. 添付ファイルアップロードUIは常に非表示
+    // 添付ファイルアップロードUIは常に非表示
     // ===============================
     $(".control-attachments-upload").hide();
 
