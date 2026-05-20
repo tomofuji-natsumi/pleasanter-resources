@@ -71,8 +71,7 @@ body.readonly-mode {
     /* -----------------------------------------------------
        3. 入力 UI を非表示
        ----------------------------------------------------- */
-    .se-resizing-bar,
-    #Notes {
+    .se-resizing-bar {
         display: none !important;
     }
    
@@ -186,6 +185,7 @@ body.readonly-mode {
 
     .field-control {
         float: left;
+       margin-left: 120px;
     }
 
      .select-field {
