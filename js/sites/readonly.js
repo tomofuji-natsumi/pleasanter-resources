@@ -85,6 +85,8 @@ $(function () {
             '"': "&quot;",
             "'": "&#39;"
         }[s]));
+    
+    const val = escapeHtml(textarea.val()).replace(/\n/g, "<br>");
 
     $(".field-normal, .field-wide, .field-markdown, .field-control").each(function () {
         const field = $(this);
@@ -103,9 +105,10 @@ $(function () {
 
         // select
         control.find("select.control-dropdown").each(function () {
-            const text = escapeHtml($(this).find("option:selected").text());
+            const val = $(this).val();
+            const safe = escapeHtml(val);
             $(this).hide();
-            control.append(`<div class="readonly-value">${text}</div>`);
+            control.append(`<div class="readonly-value">${safe}</div>`);
         });
 
         // textarea（markdown / textarea）
