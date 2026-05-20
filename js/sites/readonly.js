@@ -16,6 +16,7 @@ if (document.body.classList.contains("readonly-mode")) {
             const shadow = df.shadowRoot;
             if (!shadow) return;
 
+            // すでに注入済みならスキップ
             if (shadow.querySelector("style[data-hide-current-date]")) return;
 
             const style = document.createElement("style");
@@ -29,18 +30,21 @@ if (document.body.classList.contains("readonly-mode")) {
         });
     };
 
+    // すぐ実行（早すぎる場合は何も起きない）
     injectDateFieldCSS();
 
+    // date-field が後から生成されても対応
     const dateObserver = new MutationObserver(injectDateFieldCSS);
     dateObserver.observe(document.body, { childList: true, subtree: true });
 
-    // 初回ロード時に必ず実行
+    // 初回ロード時に必ず実行（遅延生成対策）
     $(function () {
         setTimeout(injectDateFieldCSS, 0);
         setTimeout(injectDateFieldCSS, 200);
         setTimeout(injectDateFieldCSS, 500);
     });
 }
+
 
 
 // ===============================
@@ -88,8 +92,7 @@ $(function () {
             '"': "&quot;",
             "'": "&#39;"
         }[s]));
-    
-    const val = escapeHtml(textarea.val()).replace(/\n/g, "<br>");
+
 
     $(".field-normal, .field-wide, .field-markdown, .field-control").each(function () {
         const field = $(this);
@@ -99,29 +102,38 @@ $(function () {
         if (control.children(".readonly-value").length > 0) return;
 
 
+        // -------------------------------
         // input date（flatpickr）
+        // -------------------------------
         control.find("input.flatpickr-input").each(function () {
             const val = escapeHtml($(this).val());
             $(this).hide();
             control.append(`<div class="readonly-value">${val}</div>`);
         });
 
-        // select
+        // -------------------------------
+        // select（カンマが消えない安全版）
+        // -------------------------------
         control.find("select.control-dropdown").each(function () {
-            const val = $(this).val();
+            const val = $(this).val(); // ← カンマが絶対に消えない
             const safe = escapeHtml(val);
             $(this).hide();
             control.append(`<div class="readonly-value">${safe}</div>`);
         });
 
+        // -------------------------------
         // textarea（markdown / textarea）
+        // -------------------------------
         control.find("textarea.control-markdown, textarea.control-textarea").each(function () {
-            const val = escapeHtml($(this).val()).replace(/\n/g, "<br>");
-            $(this).hide();
+            const textarea = $(this); // ← 必須
+            const val = escapeHtml(textarea.val()).replace(/\n/g, "<br>");
+            textarea.hide();
             control.append(`<div class="readonly-value">${val}</div>`);
         });
 
+        // -------------------------------
         // SunEditor
+        // -------------------------------
         const sun = control.find(".sun-editor");
         if (sun.length) {
             sun.addClass("readonly-sun-editor");
