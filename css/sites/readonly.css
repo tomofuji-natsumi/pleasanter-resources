@@ -242,7 +242,8 @@ body.readonly-mode {
 		margin: 0;
 	}
 
-	.readonly-value:empty {
+	.readonly-value:empty,
+	.control-attachments[value="[]"] {
 		height: 2.47em;
 	}
 }
