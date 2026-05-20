@@ -358,7 +358,7 @@ button:has(.primary-material-icons):active {
    7. 入力コントロール
    ========================================================= */
 
-[class^="control-"]:not(.control-selectable):not(.control-attachments-items),
+[class^="control-"]:not(.control-selectable):not(.control-attachments-upload),
 textarea,
 select,
 input,
