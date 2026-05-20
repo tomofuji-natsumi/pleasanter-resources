@@ -358,7 +358,7 @@ button:has(.primary-material-icons):active {
    7. 入力コントロール
    ========================================================= */
 
-[class^="control-"]:not(.control-selectable):not(.control-attachments-upload),
+[class^="control-"]:not(.control-selectable):not(.control-attachments-upload):not(.control-attachments-items),
 textarea,
 select,
 input,
@@ -370,7 +370,7 @@ input,
     color: var(--text-main);
 }
 
-[class^="control-"]:not(.control-selectable):not(.control-attachments-items):focus,
+[class^="control-"]:not(.control-selectable):not(.control-attachments-upload):not(.control-attachments-items):focus,
 textarea:focus,
 select:focus,
 input:focus,
