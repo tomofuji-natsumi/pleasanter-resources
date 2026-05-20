@@ -207,7 +207,7 @@ body.readonly-mode {
     .container-normal:has(span[data-readonly="1"]),
 	.container-normal:has(.spinner-field),
 	.container-normal:has(data-field),
-	.control-attachments[value="[]"],
+	.container-normal:has(.control-attachments[value="[]"]),
     .container-normal div.readonly-value,
     #Encoding,
     #ExportEncoding {
@@ -244,8 +244,7 @@ body.readonly-mode {
 
 	.readonly-value:empty, 
 	.field-control:has(.control-attachments[value="[]"]),
-	.container-normal:has(.control-attachments[value="[]"]),
-	.control-attachments[value="[]"] {
+	.container-normal:has(.control-attachments[value="[]"]) {
 		height: 2.47em;
 	}
 }
