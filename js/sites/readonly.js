@@ -58,6 +58,7 @@ $(function () {
     // ===============================
     // 添付ファイルの表示制御（非同期対応）
     // ===============================
+    /*
     const checkAttachments = () => {
         const hasFiles = $("[id^='Attachments'][id$='\\.items']")
             .toArray()
@@ -70,7 +71,7 @@ $(function () {
 
     const attachObserver = new MutationObserver(checkAttachments);
     attachObserver.observe(document.body, { childList: true, subtree: true });
-
+    */
 
 
     // ===============================
