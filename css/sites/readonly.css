@@ -13,6 +13,7 @@ body.readonly-mode {
 
 	#Notes:not(:empty) {
 		display: none;
+    }
 	
     .field-normal,
     .field-wide,
