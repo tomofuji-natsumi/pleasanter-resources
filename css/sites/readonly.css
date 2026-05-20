@@ -18,7 +18,6 @@ body.readonly-mode {
     .field-label {
         min-width: 120px;
         flex-shrink: 0;
-        margin: auto 0;
         color: var(--readonly-label) !important;
         user-select: none;
         pointer-events: none;
@@ -26,6 +25,7 @@ body.readonly-mode {
 
     .field-label label {
         font-weight: 600;
+		vertical-align: -webkit-baseline-middle;
     }
 
     /* -----------------------------------------------------
@@ -185,7 +185,7 @@ body.readonly-mode {
 
     .field-control {
         float: left;
-       margin-left: 120px;
+		margin-left: 120px;
     }
 
      .select-field {
