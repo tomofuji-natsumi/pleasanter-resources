@@ -16,7 +16,6 @@ if (document.body.classList.contains("readonly-mode")) {
             const shadow = df.shadowRoot;
             if (!shadow) return;
 
-            // すでに注入済みならスキップ
             if (shadow.querySelector("style[data-hide-current-date]")) return;
 
             const style = document.createElement("style");
@@ -30,14 +29,18 @@ if (document.body.classList.contains("readonly-mode")) {
         });
     };
 
-    // すぐ実行（最速）
     injectDateFieldCSS();
 
-    // date-field が後から生成されても対応
     const dateObserver = new MutationObserver(injectDateFieldCSS);
     dateObserver.observe(document.body, { childList: true, subtree: true });
-}
 
+    // 初回ロード時に必ず実行
+    $(function () {
+        setTimeout(injectDateFieldCSS, 0);
+        setTimeout(injectDateFieldCSS, 200);
+        setTimeout(injectDateFieldCSS, 500);
+    });
+}
 
 
 // ===============================
