@@ -364,9 +364,9 @@ select,
 input,
 .check-option .check-icon:not(:has(input:checked)),
 .ui-widget.ui-state-default.ui-multiselect {
-    background: var(--surface-base) !important;
-    background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-strong) !important;
+    background: var(--surface-base);
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-strong);
     color: var(--text-main);
 }
 
@@ -617,8 +617,6 @@ input:focus,
 /* =========================================================
    11. control-* 共通
    ========================================================= */
-
-
 
 .field-control .container-radio {
     padding: 5px 0 6px 3px;
