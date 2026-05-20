@@ -223,6 +223,7 @@ body.readonly-mode {
 
    .container-normal span[data-readonly="1"],
    .container-normal div.readonly-value,
+   .container-normal date-field,
    #Encoding,
    #ExportEncoding {
        padding: 0.35rem 0.7rem;
