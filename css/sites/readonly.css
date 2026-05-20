@@ -221,8 +221,10 @@ body.readonly-mode {
         display: none;
     }
 
-   span[data-readonly="1"],
-   div.readonly-value {
+   .container-normal span[data-readonly="1"],
+   .container-normal div.readonly-value,
+   #Encoding,
+   #ExportEncoding {
        padding: 0.35rem 0.7rem;
        background: var(--readonly-bg) !important;
        color: var(--readonly-value) !important;
