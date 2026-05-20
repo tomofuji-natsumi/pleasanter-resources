@@ -220,7 +220,7 @@ body.readonly-mode {
         display: none;
     }
 
-   .container-normal span[data-readonly="1"],
+   .container-normal:has(span[data-readonly="1"]),
    .container-normal div.readonly-value,
    .container-normal date-field,
    #Encoding,
@@ -232,5 +232,9 @@ body.readonly-mode {
        border-radius: var(--radius-medium) !important;
        pointer-events: none;
        user-select: text;
+   }
+
+   .container-normal span[data-readonly="1"] {
+      padding: 0 !important;
    }
 }
