@@ -258,7 +258,6 @@ button:has(.primary-material-icons):active {
 }
 
 #Breadcrumb {
-	padding: 0 1.5em;
     background-color: var(--surface-soft) !important;
     border-bottom: 1px solid var(--border-light) !important;
     box-shadow: none !important;
@@ -305,6 +304,9 @@ button:has(.primary-material-icons):active {
     border-left: 15px solid var(--primary) !important;
 }
 
+#Breadcrumb .item a {
+	padding: 0 1.5em !important;
+}
 
 /* =========================================================
    5. ガイド
