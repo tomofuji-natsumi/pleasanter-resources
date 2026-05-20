@@ -641,7 +641,7 @@ input:focus,
 
 
 .readonly-style,
-[class^="control-"]:not(.control-selectable):not(.control-attachments-items)[data-readonly="1"],
+.container-normal span[data-readonly="1"],
 #Encoding,
 #ExportEncoding {
     background-color: var(--readonly-bg) !important;
@@ -650,6 +650,10 @@ input:focus,
     border: 1px solid var(--border-strong) !important;
     pointer-events: none;
     user-select: text;
+}
+
+.container-normal span[data-readonly="1"]:not(:empty) {
+   padding: 0 !important;
 }
 
 .field-label {
