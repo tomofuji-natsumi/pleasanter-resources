@@ -272,7 +272,11 @@ body.readonly-mode {
     }
 
     .field-control {
-        /* Layout */
         float: left;
     }
+
+     .select-field {
+        display: none;
+    }
+
 }
