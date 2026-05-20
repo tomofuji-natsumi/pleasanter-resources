@@ -234,7 +234,10 @@ body.readonly-mode {
    }
 
    .container-normal span[data-readonly="1"] {
-      padding: 0 !important;
+          background: transparent !important;
+          border: none !important;
+          min-height: fit-content;
+          height: fit-content;
    }
 
    date-field {
