@@ -84,15 +84,17 @@ $(function () {
     // ===============================
     // フィールドをラベル化（SunEditor対応）
     // ===============================
-    const escapeHtml = (str) =>
-        str.replace(/[&<>"']/g, s => ({
+    const escapeHtml = (str) => {
+        if (str == null) return "";
+        str = String(str);
+        return str.replace(/[&<>"']/g, s => ({
             "&": "&amp;",
             "<": "&lt;",
             ">": "&gt;",
             '"': "&quot;",
             "'": "&#39;"
         }[s]));
-
+    };
 
     $(".field-normal, .field-wide, .field-markdown, .field-control").each(function () {
         const field = $(this);
