@@ -206,6 +206,7 @@ body.readonly-mode {
 
     .container-normal:has(span[data-readonly="1"]),
 	.container-normal:has(.spinner-field),
+	.container-normal:has(data-field)
     .container-normal div.readonly-value,
     #Encoding,
     #ExportEncoding {
@@ -225,4 +226,8 @@ body.readonly-mode {
         height: fit-content;
         line-height: 1.5;
     }
+
+	.ui-spinner .ui-spinner-button {
+		display: none;
+	}
 }
