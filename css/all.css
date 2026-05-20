@@ -867,7 +867,7 @@ span.flatpickr-weekday {
      border: none !important;
      min-height: fit-content;
      height: fit-content;
-     line-height: 1.5;
+     line-height: 1.4;
 }
 
 .container-normal span[data-readonly="1"]:not(:empty) {
