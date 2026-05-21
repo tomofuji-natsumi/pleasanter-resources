@@ -93,13 +93,10 @@ const displayIconMap = {
 // ===============================
 // 1.5 サイト側追加マップをマージ
 // ===============================
-// ===============================
-// 1.5 サイト側追加マップをマージ（初回のみ）
-// ===============================
 let __customIconMapMerged = false;
 
 function mergeCustomMaps() {
-    if (__customIconMapMerged) return; // ← 追加：2回目以降はスキップ
+    if (__customIconMapMerged) return;
 
     const custom = window.__pleasanterCustomIconMap;
 
@@ -109,7 +106,7 @@ function mergeCustomMaps() {
     if (custom.red) Object.assign(redIconMap, custom.red);
     if (custom.display) Object.assign(displayIconMap, custom.display);
 
-    __customIconMapMerged = true; // ← 初回マージ完了
+    __customIconMapMerged = true;
 }
 
 
@@ -152,7 +149,7 @@ iconObserver.observe(document.body, {
 // ===============================
 // 4. 初回適用
 // ===============================
-$(function () {
+document.addEventListener("pjax:end", function () {
     mergeCustomMaps();
 
     applyIcons(darkIconMap, "dark-material-icons");
