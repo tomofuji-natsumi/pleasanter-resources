@@ -13,6 +13,6 @@ $(function () {
     // 初回チェック
     updateFlag();
 
-    const observer = new MutationObserver(updateFlag);
-    observer.observe(document.body, { childList: true, subtree: true });
+    const cssSettingObserver = new MutationObserver(updateFlag);
+    cssSettingObserver.observe(document.body, { childList: true, subtree: true });
 });
