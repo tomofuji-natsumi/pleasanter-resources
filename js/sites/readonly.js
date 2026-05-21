@@ -44,7 +44,7 @@ if (document.body.classList.contains("readonly-mode")) {
     const observer = new MutationObserver(mutations => {
         for (const m of mutations) {
             [...m.addedNodes].forEach(node => {
-                if (node.tagName === "DATE-FIELD") {
+                if (node.nodeType === 1 && node.tagName.toLowerCase() === "date-field") {
                     watchDateField(node);
                 }
             });
