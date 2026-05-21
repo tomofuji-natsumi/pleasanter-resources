@@ -170,7 +170,6 @@ button:has(.primary-material-icons):active {
    3. ヘッダー
    ========================================================= */
 
-/* Header（ヘッダー全体） */
 #Header {
     padding: 2px 12px 2px 12px;
     background-color: var(--surface-soft) !important;
@@ -245,7 +244,6 @@ button:has(.primary-material-icons):active {
    4. ブレッドクラム
    ========================================================= */
 
-/* リンクコピー */
 #CopyToClipboards {
     top: initial;
     z-index: 95;
@@ -307,6 +305,7 @@ button:has(.primary-material-icons):active {
 #Breadcrumb .item a {
 	padding: 0 1.5em !important;
 }
+
 
 /* =========================================================
    5. ガイド
@@ -371,7 +370,7 @@ input,
     background: var(--surface-base);
     background-color: var(--surface-base);
     border: 1px solid var(--border-strong);
-   border-radius: var(--radius-medium);
+    border-radius: var(--radius-medium);
     color: var(--text-main);
 }
 
@@ -382,7 +381,7 @@ input:focus,
 .check-option .check-icon:not(:has(input:checked)):focus,
 .ui-widget.ui-state-default.ui-multiselect:focus {
     border: 1px solid var(--primary-border) !important;
-	background-color: var(--surface-base) !important;
+    background-color: var(--surface-base) !important;
     color: var(--text-main) !important;
 }
 
@@ -451,7 +450,6 @@ input:focus,
    7. UIダイアログ
    ========================================================= */
 
-/* ダイアログ背景 */
 .ui-widget-overlay {
     background: var(--primary-overlay);
     opacity: 0.55;
@@ -550,7 +548,6 @@ input:focus,
    8. multiselect
    ========================================================= */
 
-/* フィルター選択 */
 .ui-widget.ui-multiselect-menu {
     background-color: var(--surface-base);
     border: 1px solid var(--border-strong);
@@ -579,7 +576,7 @@ input:focus,
 .ui-multiselect-checkboxes li label span {
     padding-left: 5px;
     vertical-align: text-top;
-	line-height: 1.45;
+    line-height: 1.45;
 }
 
 
@@ -663,6 +660,11 @@ input:focus,
     color: var(--text-main);
 }
 
+
+/* =========================================================
+   markdown-field
+   ========================================================= */
+
 markdown-field .md-viewer:not(.control-text) {
     background-color: var(--surface-base) !important;
 }
@@ -674,7 +676,7 @@ markdown-field:not(.is-comment) .md-viewer {
 }
 
 markdown-field .bottom-tools {
-   margin-top: 0.3rem;
+    margin-top: 0.3rem;
 }
 
 markdown-field .md-btn-icon {
@@ -689,6 +691,11 @@ markdown-field.is-comment .md-viewer {
     border: none !important;
 }
 
+
+/* =========================================================
+   fieldset
+   ========================================================= */
+   
 .fieldset > .legend {
     background-color: var(--bg-main-dark);
     border: 1px solid var(--border-normal);
@@ -707,7 +714,6 @@ markdown-field.is-comment .md-viewer {
     border: 1px solid var(--border-normal);
     box-shadow: 0 0 4px var(--shadow-strong);
 }
-
 
 
 /* =========================================================
@@ -759,17 +765,9 @@ markdown-field.is-comment .md-viewer {
 }
 
 
-
 /* =========================================================
    13. ダイアログ（後半）
    ========================================================= */
-
-#Import {
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    opacity: 0;
-}
 
 #Encoding,
 #ExportEncoding,
@@ -785,7 +783,6 @@ fieldset.fieldset.cf.enclosed-thin .ui-button {
     top: 7px;
     right: 12px;
 }
-
 
 
 /* =========================================================
@@ -858,6 +855,9 @@ span.flatpickr-weekday {
 }
 
 
+/* =========================================================
+   readonly / data-readonly / textarea
+   ========================================================= */
 
 .container-normal:has(span[data-readonly="1"]) {
     padding: 0.3rem 0.55rem !important;
@@ -876,7 +876,7 @@ span.flatpickr-weekday {
     height: fit-content;
     line-height: 1.4;
 }
-	
+
 .container-normal span[data-readonly="1"]:not(:empty) {
     padding: 0 !important;
 }
@@ -886,5 +886,5 @@ span.flatpickr-weekday {
 }
 
 textarea {
-	resize: none;
+    resize: none !important;
 }
