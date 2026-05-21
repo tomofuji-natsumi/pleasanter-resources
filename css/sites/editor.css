@@ -79,6 +79,18 @@ textarea {
     border: 1px solid var(--border-strong) !important;
 }
 
+#EditorComments::before {
+    display: block;
+    color: var(--semantic-danger);
+    font-weight: 550;
+    font-size: 0.83rem;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background-color: var(--semantic-warning-bg);
+    border: 1px solid var(--semantic-danger-border);
+    border-radius: var(--radius-large);
+}
+
 #Editor #EditorComments {
     padding: 16px 23px;
     background: transparent;
