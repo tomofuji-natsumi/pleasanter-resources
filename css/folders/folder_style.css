@@ -42,6 +42,11 @@ body.site-list {
         display: flex;
         justify-content: center;
         margin: 0;
+        background: var(--primary);
+    }
+
+    #SiteMenu nav:first-of-type .nav-sites li.to-parent .title {
+        color: var(--on-primary);
     }
 
     #SiteMenu nav:first-of-type .primary-material-icons {
