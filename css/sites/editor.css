@@ -354,19 +354,6 @@ textarea {
    12. コメント（説明文・カード）
    ========================================================= */
 
-#EditorComments::before {
-    content: "取り下げ理由等を記載してください。";
-    display: block;
-    color: var(--semantic-danger);
-    font-weight: 550;
-    font-size: 0.83rem;
-    margin-bottom: 10px;
-    padding: 6px 12px;
-    background-color: var(--semantic-warning-bg);
-    border: 1px solid var(--semantic-danger-border);
-    border-radius: var(--radius-large);
-}
-
 #Editor #EditorComments .comment + .comment {
     border: none;
 }
