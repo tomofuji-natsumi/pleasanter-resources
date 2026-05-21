@@ -129,6 +129,9 @@ function applyIcons(map, className) {
     }
 }
 
+// ===============================
+// 初回ロード & PJAX 完了後に必ず実行
+// ===============================
 function runIconApply() {
     mergeCustomMaps();
     applyIcons(darkIconMap, "dark-material-icons");
@@ -138,21 +141,14 @@ function runIconApply() {
     applyIcons(displayIconMap, "display-material-icons");
 }
 
+// ★ Pleasanter の UI が完全に描画された後に発火するイベント
+$(document).on("pjax:success", runIconApply);
+$(document).on("pjax:complete", runIconApply);  // ← これが決定打
 
-// ===============================
-// 3. MutationObserver
-// ===============================
-// 3. MutationObserver
-const iconObserver = new MutationObserver(() => {
-    runIconApply();
-});
+// ★ 初回ロードでも UI 完成後に発火する
+$(document).ready(runIconApply);
 
-iconObserver.observe(document.body, {
-    childList: true,
-    subtree: true
-});
+// ★ DOM 変化にも追従
+const iconObserver = new MutationObserver(runIconApply);
+iconObserver.observe(document.body, { childList: true, subtree: true });
 
-// 初回適用
-document.addEventListener("pjax:end", runIconApply);
-
-document.addEventListener("DOMContentLoaded", runIconApply);
