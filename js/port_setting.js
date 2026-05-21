@@ -32,7 +32,7 @@ $(function () {
             const file = this.files[0];
 
             // 既存エラー削除
-            $('#ImportSettingsDialog > p.message-dialog').remove();
+            $('#ImportSettingsDialog > p.message-dialog, #ImportUserTemplateDialog > p.message-dialog').remove();
 
             if (!file) {
                 fileName.text('選択されていません');
@@ -62,8 +62,6 @@ $(function () {
 
 /* インポート */
 const observer = new MutationObserver(() => {
-
-    // エクスポートの文字コード
     const exportEncoding = document.querySelector("#ExportEncoding");
     if (exportEncoding) {
         exportEncoding.value = "UTF-8";
