@@ -197,7 +197,6 @@ body.readonly-mode {
 
     .container-normal:has(span[data-readonly="1"]),
 	.container-normal:has(.spinner-field),
-	.container-normal:has(date-field),
 	.container-normal:has(.control-attachments[value="[]"]),
     .container-normal div.readonly-value,
     #Encoding,
@@ -219,6 +218,7 @@ body.readonly-mode {
         line-height: 1.5;
     }
 
+	.container-normal:has(date-field),
 	.ui-spinner .ui-spinner-button {
 		display: none;
 	}
