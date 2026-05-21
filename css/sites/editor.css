@@ -80,6 +80,7 @@ textarea {
 }
 
 #EditorComments::before {
+	content: "";
     display: block;
     color: var(--semantic-danger);
     font-weight: 550;
