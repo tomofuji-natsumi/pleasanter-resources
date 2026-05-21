@@ -10,14 +10,14 @@
     // 初回ロード
     replaceText();
 
-    // 画面遷移開始（描画前）
-    document.addEventListener("pjax:send", function () {
+    // nav-sites の生成を監視
+    const observer = new MutationObserver(() => {
         replaceText();
     });
 
-    // 画面遷移完了（描画後）
-    document.addEventListener("pjax:end", function () {
-        replaceText();
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
     });
 
 })();
