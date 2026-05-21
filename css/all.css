@@ -279,11 +279,10 @@ button:has(.primary-material-icons):active {
 
 #Breadcrumb li:last-child {
     background-color: var(--primary) !important;
-    color: var(--text-on-primary);
 }
 
 #Breadcrumb li:last-child a span {
-    color: var(--text-breadcrumb-current) !important;
+    color: var(--on-primary);
 }
 
 /* セパレーター（三角形） */
