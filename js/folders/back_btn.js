@@ -10,9 +10,14 @@
     // 初回ロード
     replaceText();
 
-    // PJAX で画面が切り替わった後に実行
+    // 画面遷移開始（描画前）
+    document.addEventListener("pjax:send", function () {
+        replaceText();
+    });
+
+    // 画面遷移完了（描画後）
     document.addEventListener("pjax:end", function () {
-        setTimeout(replaceText, 50);
+        replaceText();
     });
 
 })();
