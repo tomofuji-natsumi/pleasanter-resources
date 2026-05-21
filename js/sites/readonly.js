@@ -54,33 +54,11 @@ $(function () {
 
     if (!$("body").hasClass("readonly-mode")) return;
 
-
-    // ===============================
-    // 添付ファイルの表示制御（非同期対応）
-    // ===============================
-    /*
-    const checkAttachments = () => {
-        const hasFiles = $("[id^='Attachments'][id$='\\.items']")
-            .toArray()
-            .some(el => $(el).children().length > 0);
-
-        $("[id^='Results_Attachments'][id$='Field']").toggle(hasFiles);
-    };
-
-    checkAttachments();
-
-    const attachObserver = new MutationObserver(checkAttachments);
-    attachObserver.observe(document.body, { childList: true, subtree: true });
-    */
-
-
     // ===============================
     // フォーム要素を正しく読取専用化
     // ===============================
     $("form input:not([type='hidden']), form textarea").attr("readonly", true);
     $("form select, form input[type='checkbox'], form input[type='radio']").attr("disabled", true);
-
-
 
     // ===============================
     // フィールドをラベル化（SunEditor対応）
@@ -104,7 +82,6 @@ $(function () {
         if (control.length === 0) return;
         if (control.children(".readonly-value").length > 0) return;
 
-
         // -------------------------------
         // input date（flatpickr）
         // -------------------------------
@@ -115,11 +92,16 @@ $(function () {
         });
 
         // -------------------------------
-        // select（カンマが消えない安全版）
+        // select
         // -------------------------------
         control.find("select.control-dropdown").each(function () {
-            const val = $(this).val(); // ← カンマが絶対に消えない
-            const safe = escapeHtml(val);
+            const texts = $(this)
+                .find("option:selected")
+                .map(function () { return $(this).text(); })
+                .get()
+                .join(", ");
+        
+            const safe = escapeHtml(texts);
             $(this).hide();
             control.append(`<div class="readonly-value">${safe}</div>`);
         });
@@ -142,7 +124,6 @@ $(function () {
             sun.addClass("readonly-sun-editor");
         }
     });
-
 
 
     // ===============================
