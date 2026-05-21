@@ -16,14 +16,13 @@
     fixGoBack();
 
     // nav-sites の完成を監視
-    const observer = new MutationObserver(() => {
+    const backObserver = new MutationObserver(() => {
         if (fixGoBack()) {
-            // 成功したら監視を止めてもいい（止めなくてもOK）
-            // observer.disconnect();
+            observer.disconnect();
         }
     });
 
-    observer.observe(document.body, {
+    backObserver.observe(document.body, {
         childList: true,
         subtree: true
     });
