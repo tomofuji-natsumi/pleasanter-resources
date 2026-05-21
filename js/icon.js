@@ -1,7 +1,13 @@
 // ===============================
 // 0. サイト側追加マップの受け皿
 // ===============================
-window.__pleasanterCustomIconMap = window.__pleasanterCustomIconMap || {};
+window.__pleasanterCustomIconMap = Object.assign({
+    dark: {},
+    light: {},
+    primary: {},
+    red: {},
+    display: {}
+}, window.__pleasanterCustomIconMap);
 
 
 // ===============================
@@ -87,7 +93,14 @@ const displayIconMap = {
 // ===============================
 // 1.5 サイト側追加マップをマージ
 // ===============================
+// ===============================
+// 1.5 サイト側追加マップをマージ（初回のみ）
+// ===============================
+let __customIconMapMerged = false;
+
 function mergeCustomMaps() {
+    if (__customIconMapMerged) return; // ← 追加：2回目以降はスキップ
+
     const custom = window.__pleasanterCustomIconMap;
 
     if (custom.dark) Object.assign(darkIconMap, custom.dark);
@@ -95,6 +108,8 @@ function mergeCustomMaps() {
     if (custom.primary) Object.assign(primaryIconMap, custom.primary);
     if (custom.red) Object.assign(redIconMap, custom.red);
     if (custom.display) Object.assign(displayIconMap, custom.display);
+
+    __customIconMapMerged = true; // ← 初回マージ完了
 }
 
 
@@ -103,7 +118,7 @@ function mergeCustomMaps() {
 // ===============================
 function applyIcons(map, className) {
     for (const selector in map) {
-        const $el = $(selector);
+        const $el = $(selector).filter(":visible");
 
         if ($el.length === 0) continue;
         if ($el.find("." + className).length > 0) continue;
