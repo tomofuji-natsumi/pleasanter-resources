@@ -43,6 +43,7 @@ body:not(.site-list) {
 
     #TemplateTabsContainer .template-viewer .template-tab-container {
         padding: 0;
+        min-height: fit-content;
     }
 
     .ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) {
@@ -147,10 +148,6 @@ body:not(.site-list) {
         border: 1px solid var(--primary);
     }
     
-    .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
-        color: var(--on-primary);
-    }
-    
     .ui-tabs .ui-tabs-nav {
         border-bottom: 3px solid var(--border-light) !important;
     }
@@ -169,10 +166,6 @@ body:not(.site-list) {
         padding: 8px 12px;
         border-radius: var(--radius-large);
         border-bottom: 1px solid var(--border-light);
-    }
-
-    .template-tab-container {
-        min-height: fit-content;
     }
 
     .template-selectable .command-left {
