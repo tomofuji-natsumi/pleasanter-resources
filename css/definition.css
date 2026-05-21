@@ -18,7 +18,6 @@
     --primary-border: #5A8EE0;
     --primary-surface: oklch(from var(--primary) calc(l + 0.42) calc(c - 0.14) h);
     --primary-surface-hover: oklch(from var(--primary) calc(l + 0.45) calc(c - 0.15) h);
-    /* --primary-surface-hover: oklch(from var(--primary) calc(l + 0.48) calc(c - 0.16) h); */
 
     /* --- On Primary（文字色） --- */
     --on-primary: #F9FAFB;
@@ -37,7 +36,6 @@
     --surface-base:   oklch(0.990 0.002 255);
     --surface-soft:   oklch(0.986 0.0018 255);
     --surface-strong: oklch(0.975 0.0025 255);
-    /* --surface-strong: oklch(0.970 0.003 255); */
 
     /* =========================================================
        2. ベース背景（UI全体の背景レイヤー）
@@ -45,8 +43,6 @@
 
     --bg-main: #EEF1F5;
     --bg-main-dark: #E5E8ED;
-    /* --bg-main-dark: #E7E7E7; */
-
     --bg-surface-hover: oklch(0.950 0.002 255);
 
     --bg-hover: #F0F0F0;
@@ -246,7 +242,6 @@
     /* =========================================================
        12. 集計アイテム
        ========================================================= */
-
     --agg-item-bg: #E1E4E9;
     --agg-item-border: #B7BEC7;
     --agg-item-text: #2F3A45;
