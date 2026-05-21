@@ -7,11 +7,18 @@ body.readonly-mode {
     /* -----------------------------------------------------
        1. 基本レイアウト（ラベル + 値）
        ----------------------------------------------------- */
-	#Notes .readonly {
-		display: none;
-	}
-
-	#Notes:not(:empty) {
+       
+    [id^="Results_Attachments"][id$="Field"]:has(.items:empty),
+    .ui-icon-circle-close,
+	#Notes .readonly,
+    .se-placeholder,
+    .container-normal:has(date-field),
+	.ui-spinner .ui-spinner-button,
+    #EditorComments::before,
+    .required::before,
+    .select-field,
+    #Notes:not(:empty),
+    .se-resizing-bar {
 		display: none !important;
     }
 	
@@ -76,19 +83,8 @@ body.readonly-mode {
     }
 
     /* -----------------------------------------------------
-       3. 入力 UI を非表示
+       43. 添付ファイル
        ----------------------------------------------------- */
-    .se-resizing-bar {
-        display: none !important;
-    }
-   
-
-    /* -----------------------------------------------------
-       4. 添付ファイル
-       ----------------------------------------------------- */
-    [id^="Results_Attachments"][id$="Field"]:has(.items:empty) {
-        display: none;
-    }
 
     [id^="Results_Attachments"][id$="Field"] .field-control {
         flex: 1;
@@ -103,13 +99,10 @@ body.readonly-mode {
         padding: 8px 12px;
     }
 
-    .ui-icon-circle-close {
-        display: none;
-    }
 
 
     /* -----------------------------------------------------
-       5. SunEditor 読取専用
+       4. SunEditor 読取専用
        ----------------------------------------------------- */
     .sun-editor {
         border: 0;
@@ -120,12 +113,9 @@ body.readonly-mode {
         min-height: 32px;
     }
 
-    .se-placeholder {
-        display: none;
-    }
 
     /* -----------------------------------------------------
-       6. チェックボックス系
+       5. チェックボックス系
        ----------------------------------------------------- */
     .check-option,
     .check-icon {
@@ -142,18 +132,10 @@ body.readonly-mode {
     }
 
     /* -----------------------------------------------------
-       7. その他 UI 調整
+       6. その他 UI 調整
        ----------------------------------------------------- */
-    #EditorComments::before {
-        display: none;
-    }
-
     .input-field:focus {
         background: var(--readonly-bg);
-    }
-
-    .required::before {
-        display: none;
     }
 
     #Editor input.control-textbox::placeholder {
@@ -191,10 +173,6 @@ body.readonly-mode {
 		margin-left: 120px;
     }
 
-     .select-field {
-        display: none;
-    }
-
     .container-normal:has(span[data-readonly="1"]),
 	.container-normal:has(.spinner-field),
 	.container-normal:has(.control-attachments[value="[]"]),
@@ -217,11 +195,6 @@ body.readonly-mode {
         height: fit-content;
         line-height: 1.5;
     }
-
-	.container-normal:has(date-field),
-	.ui-spinner .ui-spinner-button {
-		display: none;
-	}
 
 	.control-attachments-items {
 		margin: 0;
