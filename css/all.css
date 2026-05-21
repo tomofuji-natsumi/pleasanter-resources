@@ -340,7 +340,7 @@ button:has(.primary-material-icons):active {
     font-size: 0.9rem;
     user-select: none;
     pointer-events: auto;
-    color: var(--on-primary) !important;
+    color: var(--text-white) !important;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     border: none;
 }
