@@ -4,21 +4,15 @@
         const title = document.querySelector("ul.nav-sites li.to-parent .title");
         if (title) {
             title.textContent = "戻る";
-            return true;
         }
-        return false;
     }
 
-    // nav-sites の完成を監視
-    const observer = new MutationObserver(() => {
-        if (replaceText()) {
-            observer.disconnect(); // ← 一度成功したら監視終了
-        }
-    });
+    // 初回ロード
+    replaceText();
 
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
+    // PJAX で画面が切り替わった後に実行
+    document.addEventListener("pjax:end", function () {
+        setTimeout(replaceText, 50);
     });
 
 })();
