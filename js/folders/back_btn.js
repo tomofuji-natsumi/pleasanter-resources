@@ -1,26 +1,31 @@
 (function () {
 
-    function fixGoBack() {
-        const link = document.querySelector("ul.nav-sites li.to-parent a");
-        if (!link) return;
-
-        const title = link.querySelector(".title");
-        if (title && title.textContent !== "戻る") {
+    function replaceText() {
+        const title = document.querySelector("ul.nav-sites li.to-parent .title");
+        if (title) {
             title.textContent = "戻る";
+            return true;
         }
+        return false;
     }
 
-    // nav-sites の完成を監視
+    let timer = null;
+
     const observer = new MutationObserver(() => {
-        fixGoBack();
+        if (replaceText()) {
+
+            if (timer) clearTimeout(timer);
+
+            timer = setTimeout(() => {
+                replaceText();
+                observer.disconnect();
+            }, 50);
+        }
     });
 
     observer.observe(document.body, {
         childList: true,
         subtree: true
     });
-
-    // 初回ロード
-    fixGoBack();
 
 })();
