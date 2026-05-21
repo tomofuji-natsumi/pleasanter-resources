@@ -1,7 +1,7 @@
 (function () {
 
     function replaceText() {
-        const title = document.querySelector("#SiteMenu ul.nav-sites li.to-parent .title");
+        const title = document.querySelector("ul.nav-sites li.to-parent .title");
         if (title) {
             title.textContent = "戻る";
             return true;
@@ -9,19 +9,28 @@
         return false;
     }
 
-    // 初回ロード（最初の nav-sites に対して）
-    replaceText();
+    let fixed = false;
 
-    // nav-sites の差し替えを監視（ここが重要）
-    const target = document.querySelector("#SiteMenu");
+    const observer = new MutationObserver(() => {
+        if (fixed) return;
 
-    const backObserver = new MutationObserver(() => {
-        replaceText();
+        // nav-sites が完成した瞬間だけ実行
+        if (replaceText()) {
+            fixed = true;
+
+            // 50ms 後にもう一度実行（Pleasanter の上書き対策）
+            setTimeout(() => {
+                replaceText();
+            }, 50);
+        }
     });
 
-    backObserver.observe(target, {
+    observer.observe(document.body, {
         childList: true,
         subtree: true
     });
+
+    // 初回ロードで既に存在していれば即反映
+    replaceText();
 
 })();
