@@ -263,7 +263,7 @@ ul.ui-widget-content {
 
 tr,
 .crosstab-row td {
-    background-color: var(--surface-base);
+    background-color: var(--surface-base) !important;
     border-bottom: 1px solid var(--border-light) !important;
 }
 
