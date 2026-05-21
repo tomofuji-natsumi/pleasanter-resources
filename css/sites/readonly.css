@@ -43,8 +43,7 @@ body.readonly-mode {
     #Editor div:has([id^="Results_Num"]) .readonly-value,
     #Editor .spinner-field input,
     #Editor .sun-editor .se-wrapper-inner,
-    #Editor .input-field,
-    #Editor .date-field {
+    #Editor .input-field {
         flex: 1;
         padding: 0.35rem 0.7rem;
         min-height: fit-content !important;
