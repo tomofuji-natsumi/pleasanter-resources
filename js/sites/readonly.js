@@ -5,67 +5,70 @@ if (document.querySelector("#Notes .readonly")) {
     document.body.classList.add("readonly-mode");
 }
 
-
 // ===============================
 // 1. readonly のときだけ date-field の Shadow DOM に CSS を注入
 // ===============================
 if (document.body.classList.contains("readonly-mode")) {
 
-    const injectDateFieldCSS = () => {
-        document.querySelectorAll("date-field").forEach(df => {
-            const shadow = df.shadowRoot;
-            if (!shadow) return;
+    const injectDateFieldCSS = (shadow) => {
+        if (!shadow) return;
+        if (shadow.querySelector("style[data-hide-current-date]")) return;
 
-            if (shadow.querySelector("style[data-hide-current-date]")) return;
-
-            const style = document.createElement("style");
-            style.dataset.hideCurrentDate = "true";
-            style.textContent = `
-                .current-date {
-                    display: none !important;
-                }
-            `;
-            shadow.appendChild(style);
-        });
+        const style = document.createElement("style");
+        style.dataset.hideCurrentDate = "true";
+        style.textContent = `
+            .current-date {
+                display: none !important;
+            }
+        `;
+        shadow.appendChild(style);
     };
 
-    // 初回
-    injectDateFieldCSS();
-
-    // date-field が追加されたときだけ監視（軽量化）
-    const dateObserver = new MutationObserver(mutations => {
-        for (const m of mutations) {
-            if ([...m.addedNodes].some(n => n.tagName === "DATE-FIELD")) {
-                injectDateFieldCSS();
+    // date-field の Shadow DOM が生成されるまで監視
+    const watchDateField = (df) => {
+        const timer = setInterval(() => {
+            if (df.shadowRoot) {
+                injectDateFieldCSS(df.shadowRoot);
+                clearInterval(timer);
             }
+        }, 50);
+
+        // 1秒経っても shadowRoot が無ければ諦める（安全）
+        setTimeout(() => clearInterval(timer), 1000);
+    };
+
+    // 既存の date-field
+    document.querySelectorAll("date-field").forEach(watchDateField);
+
+    // 後から追加される date-field
+    const observer = new MutationObserver(mutations => {
+        for (const m of mutations) {
+            [...m.addedNodes].forEach(node => {
+                if (node.tagName === "DATE-FIELD") {
+                    watchDateField(node);
+                }
+            });
         }
     });
-    dateObserver.observe(document.body, { childList: true, subtree: true });
 
-    // 念のため1回だけ遅延実行
-    setTimeout(injectDateFieldCSS, 200);
+    observer.observe(document.body, { childList: true, subtree: true });
 }
 
-
-
 // ===============================
-// 2. jQuery 処理（DOM 構築後）
+// 2. jQuery 処理
 // ===============================
 $(function () {
 
     if (!$("body").hasClass("readonly-mode")) return;
 
-
     // ===============================
-    // 2-1. フォーム要素を完全に無効化（安全） 
+    // 2-1. フォーム要素を完全に無効化
     // ===============================
     $("form input:not([type='hidden']), form textarea, form select, form input[type='checkbox'], form input[type='radio']")
         .prop("disabled", true);
 
-
-
     // ===============================
-    // 2-2. HTMLエスケープ（軽量化版）
+    // 2-2. HTMLエスケープ
     // ===============================
     const escapeMap = {
         "&": "&amp;",
@@ -77,8 +80,6 @@ $(function () {
     const escapeHtml = (str) =>
         String(str ?? "").replace(/[&<>"']/g, s => escapeMap[s]);
 
-
-
     // ===============================
     // 2-3. フィールドをラベル化
     // ===============================
@@ -86,7 +87,6 @@ $(function () {
         const control = $(this);
 
         if (control.children(".readonly-value").length > 0) return;
-
 
         // -------------------------------
         // input date（flatpickr）
@@ -97,9 +97,8 @@ $(function () {
             control.append(`<div class="readonly-value">${val}</div>`);
         });
 
-
         // -------------------------------
-        // select（表示テキストを正しく取得）
+        // select
         // -------------------------------
         control.find("select.control-dropdown").each(function () {
 
@@ -114,7 +113,6 @@ $(function () {
             control.append(`<div class="readonly-value">${safe}</div>`);
         });
 
-
         // -------------------------------
         // textarea（markdown / textarea）
         // -------------------------------
@@ -124,17 +122,14 @@ $(function () {
             control.append(`<div class="readonly-value">${val}</div>`);
         });
 
-
         // -------------------------------
-        // SunEditor（iframe 内は触らず安全に非活性化）
+        // SunEditor
         // -------------------------------
         const sun = control.find(".sun-editor");
         if (sun.length) {
             sun.addClass("readonly-sun-editor");
         }
     });
-
-
 
     // ===============================
     // 2-4. 添付ファイルアップロードUIは常に非表示
