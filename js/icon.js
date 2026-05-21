@@ -115,14 +115,17 @@ function mergeCustomMaps() {
 // ===============================
 function applyIcons(map, className) {
     for (const selector in map) {
-        const $el = $(selector).filter(":visible");
+        const $targets = $(selector);
 
-        if ($el.length === 0) continue;
-        if ($el.find("." + className).length > 0) continue;
+        $targets.each(function () {
+            const $el = $(this);
 
-        $el.prepend(
-            `<span class="material-symbols-outlined ${className}">${map[selector]}</span>`
-        );
+            if ($el.children("." + className).length > 0) return;
+
+            $el.prepend(
+                `<span class="material-symbols-outlined ${className}">${map[selector]}</span>`
+            );
+        });
     }
 }
 
