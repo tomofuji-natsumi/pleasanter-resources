@@ -2,29 +2,25 @@
 
     function fixGoBack() {
         const link = document.querySelector("ul.nav-sites li.to-parent a");
-        if (!link) return false;
+        if (!link) return;
 
-        // 既存の中身を全部消して、戻るボタンとして再構築
-        link.innerHTML = `
-            <span class="ui-icon ui-icon-circle-arrow-n"></span>
-            <span class="title">戻る</span>
-        `;
-        return true;
+        const title = link.querySelector(".title");
+        if (title && title.textContent !== "戻る") {
+            title.textContent = "戻る";
+        }
     }
 
-    // 初回ロード
-    fixGoBack();
-
     // nav-sites の完成を監視
-    const backObserver = new MutationObserver(() => {
-        if (fixGoBack()) {
-            observer.disconnect();
-        }
+    const observer = new MutationObserver(() => {
+        fixGoBack();
     });
 
-    backObserver.observe(document.body, {
+    observer.observe(document.body, {
         childList: true,
         subtree: true
     });
+
+    // 初回ロード
+    fixGoBack();
 
 })();
