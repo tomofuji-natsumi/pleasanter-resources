@@ -1,5 +1,5 @@
 // ===============================
-// 0. 読取専用モード判定（最速で実行）
+// 0. 読取専用モード判定（最速）
 // ===============================
 if (document.querySelector("#Notes .readonly")) {
     document.body.classList.add("readonly-mode");
@@ -16,11 +16,10 @@ if (document.body.classList.contains("readonly-mode")) {
             const shadow = df.shadowRoot;
             if (!shadow) return;
 
-            // すでに注入済みならスキップ
             if (shadow.querySelector("style[data-hide-current-date]")) return;
 
             const style = document.createElement("style");
-            style.setAttribute("data-hide-current-date", "true");
+            style.dataset.hideCurrentDate = "true";
             style.textContent = `
                 .current-date {
                     display: none !important;
@@ -30,19 +29,21 @@ if (document.body.classList.contains("readonly-mode")) {
         });
     };
 
-    // すぐ実行（早すぎる場合は何も起きない）
+    // 初回
     injectDateFieldCSS();
 
-    // date-field が後から生成されても対応
-    const dateObserver = new MutationObserver(injectDateFieldCSS);
+    // date-field が追加されたときだけ監視（軽量化）
+    const dateObserver = new MutationObserver(mutations => {
+        for (const m of mutations) {
+            if ([...m.addedNodes].some(n => n.tagName === "DATE-FIELD")) {
+                injectDateFieldCSS();
+            }
+        }
+    });
     dateObserver.observe(document.body, { childList: true, subtree: true });
 
-    // 初回ロード時に必ず実行（遅延生成対策）
-    $(function () {
-        setTimeout(injectDateFieldCSS, 0);
-        setTimeout(injectDateFieldCSS, 200);
-        setTimeout(injectDateFieldCSS, 500);
-    });
+    // 念のため1回だけ遅延実行
+    setTimeout(injectDateFieldCSS, 200);
 }
 
 
@@ -54,33 +55,38 @@ $(function () {
 
     if (!$("body").hasClass("readonly-mode")) return;
 
-    // ===============================
-    // フォーム要素を正しく読取専用化
-    // ===============================
-    $("form input:not([type='hidden']), form textarea").attr("readonly", true);
-    $("form select, form input[type='checkbox'], form input[type='radio']").attr("disabled", true);
 
     // ===============================
-    // フィールドをラベル化（SunEditor対応）
+    // 2-1. フォーム要素を完全に無効化（安全） 
     // ===============================
-    const escapeHtml = (str) => {
-        if (str == null) return "";
-        str = String(str);
-        return str.replace(/[&<>"']/g, s => ({
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            '"': "&quot;",
-            "'": "&#39;"
-        }[s]));
+    $("form input:not([type='hidden']), form textarea, form select, form input[type='checkbox'], form input[type='radio']")
+        .prop("disabled", true);
+
+
+
+    // ===============================
+    // 2-2. HTMLエスケープ（軽量化版）
+    // ===============================
+    const escapeMap = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
     };
+    const escapeHtml = (str) =>
+        String(str ?? "").replace(/[&<>"']/g, s => escapeMap[s]);
 
-    $(".field-normal, .field-wide, .field-markdown, .field-control").each(function () {
-        const field = $(this);
-        const control = field.find(".field-control");
 
-        if (control.length === 0) return;
+
+    // ===============================
+    // 2-3. フィールドをラベル化
+    // ===============================
+    $(".field-control").each(function () {
+        const control = $(this);
+
         if (control.children(".readonly-value").length > 0) return;
+
 
         // -------------------------------
         // input date（flatpickr）
@@ -91,33 +97,36 @@ $(function () {
             control.append(`<div class="readonly-value">${val}</div>`);
         });
 
+
         // -------------------------------
-        // select
+        // select（表示テキストを正しく取得）
         // -------------------------------
         control.find("select.control-dropdown").each(function () {
+
             const texts = $(this)
                 .find("option:selected")
                 .map(function () { return $(this).text(); })
                 .get()
                 .join(", ");
-        
+
             const safe = escapeHtml(texts);
             $(this).hide();
             control.append(`<div class="readonly-value">${safe}</div>`);
         });
 
+
         // -------------------------------
         // textarea（markdown / textarea）
         // -------------------------------
         control.find("textarea.control-markdown, textarea.control-textarea").each(function () {
-            const textarea = $(this); // ← 必須
-            const val = escapeHtml(textarea.val()).replace(/\n/g, "<br>");
-            textarea.hide();
+            const val = escapeHtml($(this).val()).replace(/\n/g, "<br>");
+            $(this).hide();
             control.append(`<div class="readonly-value">${val}</div>`);
         });
 
+
         // -------------------------------
-        // SunEditor
+        // SunEditor（iframe 内は触らず安全に非活性化）
         // -------------------------------
         const sun = control.find(".sun-editor");
         if (sun.length) {
@@ -126,8 +135,9 @@ $(function () {
     });
 
 
+
     // ===============================
-    // 添付ファイルアップロードUIは常に非表示
+    // 2-4. 添付ファイルアップロードUIは常に非表示
     // ===============================
     $(".control-attachments-upload").hide();
 
