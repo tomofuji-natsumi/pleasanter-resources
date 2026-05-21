@@ -2,26 +2,21 @@
 
     function replaceText() {
         const title = document.querySelector("ul.nav-sites li.to-parent .title");
-        if (title) {
-            title.textContent = "戻る";
-            return true;
-        }
-        return false;
+        if (!title) return false;
+
+        // すでに戻るなら何もしない
+        if (title.textContent === "戻る") return false;
+
+        // Pleasanter の初期値「上へ」だけを書き換える
+        title.textContent = "戻る";
+        return true;
     }
 
-    let fixed = false;
-
     const observer = new MutationObserver(() => {
-        if (fixed) return;
-
-        // nav-sites が完成した瞬間だけ実行
+        // 「上へ」が出現した瞬間だけ書き換える
         if (replaceText()) {
-            fixed = true;
-
-            // 50ms 後にもう一度実行（Pleasanter の上書き対策）
-            setTimeout(() => {
-                replaceText();
-            }, 50);
+            // 書き換えに成功したら監視終了（ちらつき防止）
+            observer.disconnect();
         }
     });
 
