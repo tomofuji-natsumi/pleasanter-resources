@@ -1,9 +1,6 @@
-// ===============================
-// インポート input の UI セットアップ
-// ===============================
 function setupImportInput(input) {
 
-    // すでに file-wrapper が無ければ作成
+    // file-wrapper がなければ作成
     if (!input.parent().hasClass('file-wrapper')) {
 
         const wrapper = $(`
@@ -22,11 +19,12 @@ function setupImportInput(input) {
     // CSV のみ選択可
     input.attr('accept', '.csv');
 
-    // change イベント（重複防止のため off → on）
+    // file-button を input のクリックトリガーにする
+    input.parent().find('.file-button').off('click').on('click', () => input.click());
+
     input.off('change.import').on('change.import', function () {
         const file = this.files[0];
 
-        // 既存エラー削除（両方対応）
         $('#ImportSettingsDialog > p.message-dialog, #ImportUserTemplateDialog > p.message-dialog').remove();
 
         if (!file) {
@@ -52,33 +50,3 @@ function setupImportInput(input) {
         fileName.text(file.name);
     });
 }
-
-
-// ===============================
-// MutationObserver（Import + Export 両対応）
-// ===============================
-const portObserver = new MutationObserver(() => {
-
-    // --- Import UI ---
-    const inputs = $('#Import, #ImportUserTemplate_Import');
-    inputs.each(function () {
-        const input = $(this);
-
-        // 二重適用防止
-        if (!input.data('customized')) {
-            setupImportInput(input);
-            input.data('customized', true);
-        }
-    });
-
-    // --- Export Encoding ---
-    const exportEncoding = document.querySelector("#ExportEncoding");
-    if (exportEncoding) {
-        exportEncoding.value = "UTF-8";
-    }
-});
-
-portObserver.observe(document.body, {
-    childList: true,
-    subtree: true
-});
