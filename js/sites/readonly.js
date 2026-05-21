@@ -85,50 +85,63 @@ $(function () {
     // ===============================
     $(".field-control").each(function () {
         const control = $(this);
-
+    
         if (control.children(".readonly-value").length > 0) return;
-
-        // -------------------------------
+    
         // input date（flatpickr）
-        // -------------------------------
         control.find("input.flatpickr-input").each(function () {
             const val = escapeHtml($(this).val());
             $(this).hide();
-            control.append(`<div class="readonly-value">${val}</div>`);
+            control.append(`<div class="readonly-value" data-source="#${this.id}">${val}</div>`);
         });
-
-        // -------------------------------
+    
         // select
-        // -------------------------------
         control.find("select.control-dropdown").each(function () {
-
-            const texts = $(this)
-                .find("option:selected")
-                .map(function () { return $(this).text(); })
-                .get()
-                .join(", ");
-
-            const safe = escapeHtml(texts);
             $(this).hide();
-            control.append(`<div class="readonly-value">${safe}</div>`);
+            control.append(`<div class="readonly-value" data-source="#${this.id}"></div>`);
         });
-
-        // -------------------------------
-        // textarea（markdown / textarea）
-        // -------------------------------
+    
+        // textarea
         control.find("textarea.control-markdown, textarea.control-textarea").each(function () {
-            const val = escapeHtml($(this).val()).replace(/\n/g, "<br>");
             $(this).hide();
-            control.append(`<div class="readonly-value">${val}</div>`);
+            control.append(`<div class="readonly-value" data-source="#${this.id}"></div>`);
         });
-
-        // -------------------------------
+    
         // SunEditor
-        // -------------------------------
         const sun = control.find(".sun-editor");
         if (sun.length) {
             sun.addClass("readonly-sun-editor");
         }
+    });
+
+    // ===============================
+    // 2-3.5 readonly-value に元の値を反映
+    // ===============================
+    $(".readonly-value").each(function () {
+        const selector = $(this).data("source");
+        if (!selector) return;
+    
+        const $src = $(selector);
+        let text = "";
+    
+        if ($src.is("select")) {
+            text = $src.find("option:selected").map(function () {
+                return $(this).text();
+            }).get().join(", ");
+        }
+        else if ($src.is(":radio")) {
+            text = $src.filter(":checked").closest("label").text().trim();
+        }
+        else if ($src.is(":checkbox")) {
+            text = $src.filter(":checked").map(function () {
+                return $(this).closest("label").text().trim();
+            }).get().join(", ");
+        }
+        else {
+            text = $src.val();
+        }
+    
+        $(this).html(escapeHtml(text).replace(/\n/g, "<br>"));
     });
 
     // ===============================
