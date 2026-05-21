@@ -12,15 +12,15 @@
         return true;
     }
 
-    const observer = new MutationObserver(() => {
+    const backObserver = new MutationObserver(() => {
         // 「上へ」が出現した瞬間だけ書き換える
         if (replaceText()) {
             // 書き換えに成功したら監視終了（ちらつき防止）
-            observer.disconnect();
+            backObserver.disconnect();
         }
     });
 
-    observer.observe(document.body, {
+    backObserver.observe(document.body, {
         childList: true,
         subtree: true
     });
