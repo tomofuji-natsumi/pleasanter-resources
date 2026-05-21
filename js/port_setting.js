@@ -57,7 +57,7 @@ function setupImportInput(input) {
 // ===============================
 // MutationObserver（Import + Export 両対応）
 // ===============================
-const observer = new MutationObserver(() => {
+const portObserver = new MutationObserver(() => {
 
     // --- Import UI ---
     const inputs = $('#Import, #ImportUserTemplate_Import');
@@ -78,7 +78,7 @@ const observer = new MutationObserver(() => {
     }
 });
 
-observer.observe(document.body, {
+portObserver.observe(document.body, {
     childList: true,
     subtree: true
 });
