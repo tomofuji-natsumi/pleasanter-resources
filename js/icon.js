@@ -22,7 +22,7 @@ const darkIconMap = {
     "#ExportSelectorDialog [data-icon='ui-icon-cancel']": "close",
     "#AnalyPartDialog [data-icon='ui-icon-cancel']": "close",
     "#GoBack": "arrow_circle_left",
-    "#MainCommands [data-icon='ui-icon-disk']": "arrow_circle_left",
+    "#MainCommands:has(.ui-icon-circle-arrow-w)": "arrow_circle_left",
     "#ExcludeData": "indeterminate_check_box",
 };
 
