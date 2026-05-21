@@ -887,3 +887,7 @@ span.flatpickr-weekday {
 textarea {
     resize: none !important;
 }
+
+label[for="Import"] {
+	cursor: default;
+}
