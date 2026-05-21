@@ -10,14 +10,12 @@ body.readonly-mode {
        
     [id^="Results_Attachments"][id$="Field"]:has(.items:empty),
     .ui-icon-circle-close,
-	#Notes .readonly,
     .se-placeholder,
     .container-normal:has(date-field),
 	.ui-spinner .ui-spinner-button,
     #EditorComments::before,
     .required::before,
     .select-field,
-    #Notes:not(:empty),
     .se-resizing-bar {
 		display: none !important;
     }
