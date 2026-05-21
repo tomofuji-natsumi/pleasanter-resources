@@ -129,18 +129,22 @@ function applyIcons(map, className) {
     }
 }
 
-
-// ===============================
-// 3. MutationObserver
-// ===============================
-const iconObserver = new MutationObserver(() => {
+function runIconApply() {
     mergeCustomMaps();
-
     applyIcons(darkIconMap, "dark-material-icons");
     applyIcons(lightIconMap, "light-material-icons");
     applyIcons(primaryIconMap, "primary-material-icons");
     applyIcons(redIconMap, "red-material-icons");
     applyIcons(displayIconMap, "display-material-icons");
+}
+
+
+// ===============================
+// 3. MutationObserver
+// ===============================
+// 3. MutationObserver
+const iconObserver = new MutationObserver(() => {
+    runIconApply();
 });
 
 iconObserver.observe(document.body, {
@@ -148,16 +152,7 @@ iconObserver.observe(document.body, {
     subtree: true
 });
 
+// 初回適用
+document.addEventListener("pjax:end", runIconApply);
 
-// ===============================
-// 4. 初回適用
-// ===============================
-document.addEventListener("pjax:end", function () {
-    mergeCustomMaps();
-
-    applyIcons(darkIconMap, "dark-material-icons");
-    applyIcons(lightIconMap, "light-material-icons");
-    applyIcons(primaryIconMap, "primary-material-icons");
-    applyIcons(redIconMap, "red-material-icons");
-    applyIcons(displayIconMap, "display-material-icons");
-});
+document.addEventListener("DOMContentLoaded", runIconApply);
