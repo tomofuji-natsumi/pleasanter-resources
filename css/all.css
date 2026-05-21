@@ -884,3 +884,7 @@ span.flatpickr-weekday {
 .check-option .check-icon:has(input:disabled):has(input:checked) {
     background-color: var(--text-disabled);
 }
+
+textarea {
+	resize: none;
+}
