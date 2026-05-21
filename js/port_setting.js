@@ -1,55 +1,64 @@
 $(function () {
-    const input = $('#Import');
 
-    if (!input.length) return;
+    // 対象となる input をまとめて取得
+    const inputs = $('#Import, #ImportUserTemplate_Import');
 
-    if (!input.parent().hasClass('file-wrapper')) {
+    if (!inputs.length) return;
 
-        const wrapper = $(`
-            <div class="file-wrapper">
-                <div class="file-button">選択</div>
-                <span class="file-name">選択されていません</span>
-            </div>
-        `);
+    inputs.each(function () {
+        const input = $(this);
 
-        input.after(wrapper);
-        wrapper.append(input);
-    }
+        // すでに file-wrapper が無ければ作成
+        if (!input.parent().hasClass('file-wrapper')) {
 
-    const fileName = $('.file-name');
+            const wrapper = $(`
+                <div class="file-wrapper">
+                    <div class="file-button">選択</div>
+                    <span class="file-name">選択されていません</span>
+                </div>
+            `);
 
-    // CSVのみ選択可
-    input.attr('accept', '.csv');
-
-    input.on('change', function () {
-        const file = this.files[0];
-
-        // 既存エラー削除
-        $('#ImportSettingsDialog > p.message-dialog').remove();
-
-        if (!file) {
-            fileName.text('選択されていません');
-            return;
+            input.after(wrapper);
+            wrapper.append(input);
         }
 
-        const isCsv = /\.csv$/i.test(file.name);
+        const fileName = input.parent().find('.file-name');
 
-        if (!isCsv) {
-            const errorHtml = `
-                <p class="message-dialog">
-                    <span class="body alert-error">CSVファイルを選択してください。</span>
-                </p>
-            `;
-            $('#ImportSettingsDialog .command-center').before(errorHtml);
+        // CSV のみ選択可
+        input.attr('accept', '.csv');
 
-            fileName.text('選択されていません');
-            $(this).val(null);
-            return;
-        }
+        // change イベント
+        input.on('change', function () {
+            const file = this.files[0];
 
-        fileName.text(file.name);
+            // 既存エラー削除
+            $('#ImportSettingsDialog > p.message-dialog').remove();
+
+            if (!file) {
+                fileName.text('選択されていません');
+                return;
+            }
+
+            const isCsv = /\.csv$/i.test(file.name);
+
+            if (!isCsv) {
+                const errorHtml = `
+                    <p class="message-dialog">
+                        <span class="body alert-error">CSVファイルを選択してください。</span>
+                    </p>
+                `;
+                $('#ImportSettingsDialog .command-center').before(errorHtml);
+
+                fileName.text('選択されていません');
+                $(this).val(null);
+                return;
+            }
+
+            fileName.text(file.name);
+        });
     });
 });
+
 
 /* インポート */
 const observer = new MutationObserver(() => {
