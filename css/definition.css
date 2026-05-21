@@ -28,7 +28,9 @@
     --semantic-danger: rgba(210, 60, 60, 0.9);
     --semantic-danger-bg: oklch(from var(--semantic-danger) calc(l + 0.35) calc(c * 0.25) h);
     --semantic-danger-border: #EECFCF;
-    --semantic-success: rgba(70, 165, 145, 0.9);
+    --semantic-success: oklch(0.48 0.13 160);
+    --semantic-success-bg: oklch(0.88 0.03 160);
+    --semantic-success-border: oklch(0.62 0.10 160);
     --semantic-warning: rgba(240, 170, 70, 0.9);
     --semantic-warning-bg: #FFF8E5;
 
@@ -70,7 +72,7 @@
 
     --border-subtle: rgba(0, 0, 0, 0.06);
     --border-light:  #D7D8DD;
-    --border-normal: #D5DAE2;
+    --border-normal: #C8CED6;
     --border-strong: #C3C9D2;
 
     --border-nav: #AFC4E8;
@@ -97,13 +99,14 @@
        4. テキストカラー（文字色）
        ========================================================= */
 
-    --text-main:      #2A323C;
+    --text-main:      #1F2937;
     --text-emphasis:  #3A424C;
     --text-sub:       #4B4F55;
-    --text-muted:     #757C88;
+    --text-muted:     #6A7280;
     --text-disabled:  #9CA3AF;
 
-    --text-breadcrumb-current: var(--text-on-primary);
+    --text-white: #F5F5F5;
+
     --text-link: var(--primary);
     --text-link-active: var(--primary-active);
     --text-link-hover: var(--primary-hover);
