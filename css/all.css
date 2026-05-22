@@ -736,6 +736,7 @@ markdown-field.is-comment .md-viewer {
     z-index: 999;
     font-weight: 500;
     cursor: pointer !important;
+	user-select: none;
 }
 
 .file-button:hover {
