@@ -21,6 +21,7 @@ const darkIconMap = {
     "#ImportSettingsDialog [data-icon='ui-icon-cancel']": "close",
     "#ExportSelectorDialog [data-icon='ui-icon-cancel']": "close",
     "#AnalyPartDialog [data-icon='ui-icon-cancel']": "close",
+    "#MainCommands [data-action='SiteMenu']": "arrow_circle_left",
     "#GoBack": "arrow_circle_left",
     "#ExcludeData": "indeterminate_check_box",
 };
