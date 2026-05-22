@@ -106,12 +106,12 @@ span.ui-button-icon.ui-icon,
 }
 
 .ui-button:hover {
-    font-weight: 550;
+    font-weight: 550 !important;
 }
 
 button:has(.dark-material-icons),
 button:has(.dark-material-icons):focus {
-    background: var(--btn-back-bg);
+    background: var(--btn-back-bg) !important;
     color: var(--on-primary) !important;
 }
 
@@ -126,7 +126,7 @@ button:has(.light-material-icons):focus {
     background: var(--surface-base);
     border: 1px solid var(--border-light) !important;
     color: var(--text-emphasis);
-    font-weight: 550;
+    font-weight: 550 !important;
 }
 
 button:has(.light-material-icons):hover,
@@ -134,35 +134,32 @@ button:has(.light-material-icons):active {
     background: var(--surface-soft);
     border: 1px solid var(--border-light) !important;
     color: var(--text-emphasis);
-    font-weight: 550;
 }
 
 button:has(.red-material-icons),
 button:has(.red-material-icons):focus {
     background: var(--btn-delete-bg) !important;
     color: var(--on-primary) !important;
-    font-weight: 550;
+    font-weight: 550 !important;
 }
 
 button:has(.red-material-icons):hover,
 button:has(.red-material-icons):active {
     background: var(--btn-delete-hover) !important;
-    color: var(--surface-strong);
-    font-weight: 550;
+    color: var(--surface-strong) !important;
 }
 
 button:has(.primary-material-icons),
 button:has(.primary-material-icons):focus {
     background: var(--primary) !important;
     color: var(--on-primary) !important;
-    font-weight: 550;
+    font-weight: 550 !important;
 }
 
 button:has(.primary-material-icons):hover,
 button:has(.primary-material-icons):active {
     background: var(--primary-hover) !important;
-    color: var(--surface-strong);
-    font-weight: 550;
+    color: var(--surface-strong) !important;
 }
 
 
