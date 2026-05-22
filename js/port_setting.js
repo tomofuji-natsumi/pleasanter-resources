@@ -1,9 +1,11 @@
 function setupImportInput(input) {
 
-    // file-wrapper がなければ作成
-    if (!input.parent().hasClass('file-wrapper')) {
+    let wrapper = input.closest('.file-wrapper');
 
-        const wrapper = $(`
+    // file-wrapper がなければ作成
+    if (wrapper.length === 0) {
+
+        wrapper = $(`
             <div class="file-wrapper">
                 <div class="file-button">選択</div>
                 <span class="file-name">選択されていません</span>
@@ -14,13 +16,14 @@ function setupImportInput(input) {
         wrapper.append(input);
     }
 
+    const fileButton = wrapper.find('.file-button');
     const fileName = input.parent().find('.file-name');
 
     // CSV のみ選択可
     input.attr('accept', '.csv');
 
     // file-button を input のクリックトリガーにする
-    input.parent().find('.file-button').off('click').on('click', () => input.click());
+    fileButton.off('click').on('click', () => input.click());
 
     input.off('change.import').on('change.import', function () {
         const file = this.files[0];
