@@ -13,8 +13,6 @@ function setupImportInput(input) {
     }
 
     const fileButton = input.parent().find('.file-button');
-    fileButton.off('click').on('click', () => input.click());
-
     const fileName = wrapper.find('.file-name');
 
     input.attr('accept', '.csv');
@@ -47,7 +45,8 @@ function setupImportInput(input) {
             $(this).val(null);
             return;
         }
-
+        
+        fileButton.off('click').on('click', () => input.click());
         fileName.text(file.name);
     });
 }
