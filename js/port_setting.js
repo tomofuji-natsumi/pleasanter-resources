@@ -53,10 +53,11 @@ function setupImportInput(input) {
 const importWatcher = new MutationObserver(() => {
     if ($('#Import').length) {
         setupImportInput($('#Import'));
-        importWatcher.disconnect();
-    }
-    else if ($('#ImportUserTemplate_Import').length) {
-        setupImportInput($('#ImportUserTemplate_Import'));
+        
+        if ($('#ImportUserTemplate_Import').length) {
+            setupImportInput($('#ImportUserTemplate_Import'));
+        }
+        
         importWatcher.disconnect();
     }
 });
