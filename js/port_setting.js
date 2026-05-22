@@ -54,17 +54,19 @@ function setupImportInput(input) {
 
 
 // ===============================
-// 本物の input[type=file] が追加された瞬間だけ処理する
+// #Import も #ImportUserTemplate_Import も、
+// さらにその他の file input も全部対応
 // ===============================
 const importWatcher = new MutationObserver(mutations => {
     for (const m of mutations) {
         for (const node of m.addedNodes) {
 
+            // 本物の input[type=file] が追加された瞬間だけ処理
             if (node.nodeType === 1 && node.matches("input[type='file']")) {
 
                 const $node = $(node);
 
-                // Import 系だけ対象
+                // 対象は Import 系だけに限定
                 if ($node.attr("id") === "Import" ||
                     $node.attr("id") === "ImportUserTemplate_Import") {
 
