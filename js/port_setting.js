@@ -52,11 +52,11 @@ function setupImportInput(input) {
 // #Import が出てきた瞬間に 1 回だけ実行
 const importWatcher = new MutationObserver(() => {
     if ($('#Import').length) {
-        setupImportInput($('#Import');
+        setupImportInput($('#Import'));
         importWatcher.disconnect();
     }
     else if ($('#ImportUserTemplate_Import').length) {
-        setupImportInput($('#ImportUserTemplate_Import');
+        setupImportInput($('#ImportUserTemplate_Import'));
         importWatcher.disconnect();
     }
 });
