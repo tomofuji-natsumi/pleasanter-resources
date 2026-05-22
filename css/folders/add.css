@@ -21,26 +21,20 @@ body:not(.site-list) {
     }
 
     .ui-tabs .ui-tabs-nav {
-        padding: 12px 16px;
+        padding: 0.75rem 1rem;
         gap: 5px;
-        background-color: var(--bg-filter);
-        border-bottom: 4px solid var(--primary);
+        background-color: var(--bg-editor-sub);
     }
 
     .description,
     .samples-displayed {
         font-size: 0.85rem;
+        padding: 0.7rem 1rem;
     }
 
     #TemplateTabsContainer .template-viewer .description {
-        color: var(--text-strong);
+        color: var(--text-emphasis);
         background: var(--bg-guide);
-        padding: 10px 16px;
-    }
-
-    #TemplateTabsContainer .template-viewer .samples-displayed {
-        padding: 10px 16px;
-        
     }
 
     #TemplateTabsContainer .template {
@@ -120,7 +114,7 @@ body:not(.site-list) {
     }
     
     #TemplateTabsContainer .template-viewer .template-tab-container .ui-tabs-panel {
-        background-color: var(--on-primary);
+        background-color: var(--surface-base);
     }
 
     .nav-site {
