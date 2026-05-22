@@ -289,7 +289,8 @@ button:has(.primary-material-icons):active {
     background-color: var(--primary) !important;
 }
 
-#Breadcrumb li:last-child a span {
+#Breadcrumb li:last-child a span,
+#Breadcrumb .item:last-child:is(.trashbox) span {
     color: var(--on-primary);
 }
 
