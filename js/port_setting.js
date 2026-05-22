@@ -51,12 +51,13 @@ function setupImportInput(input) {
 
 // #Import が出てきた瞬間に 1 回だけ実行
 const importWatcher = new MutationObserver(() => {
+
+    if ($('#ImportUserTemplate_Import').length) {
+        setupImportInput($('#ImportUserTemplate_Import'));
+    }
+
     if ($('#Import').length) {
         setupImportInput($('#Import'));
-        
-        if ($('#ImportUserTemplate_Import').length) {
-            setupImportInput($('#ImportUserTemplate_Import'));
-        }
         
         importWatcher.disconnect();
     }
