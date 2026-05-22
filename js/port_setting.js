@@ -55,9 +55,8 @@ function setupImportInput(input) {
 
 
 // ===============================
-// Pleasanter が DOM を作り終わった後に実行
+// Import input が DOM に追加された瞬間を監視
 // ===============================
-// Import input を監視して file-wrapper を作る
 const importObserver = new MutationObserver(mutations => {
     mutations.forEach(m => {
         m.addedNodes.forEach(node => {
@@ -68,7 +67,6 @@ const importObserver = new MutationObserver(mutations => {
     });
 });
 
-// body 全体を監視
 importObserver.observe(document.body, {
     childList: true,
     subtree: true
