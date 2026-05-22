@@ -71,7 +71,7 @@
 
 #ViewFilters_Reset {
     position: relative;
-    margin: 0 10px 0 0;
+    margin: 0 0.5rem 0 0;
     height: 30px;
     background: var(--surface-base);
     background-color: var(--surface-base) !important;
@@ -80,6 +80,7 @@
     font-weight: 500;
     color: var(--btn-reset-text) !important;
     box-shadow: 0 1px var(--shadow-medium);
+	line-height: 0.2rem;
 }
 
 #ViewFilters_Reset:hover {
