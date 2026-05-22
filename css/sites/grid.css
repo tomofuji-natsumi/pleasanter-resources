@@ -1,5 +1,5 @@
 /* =========================================================
-   1. 全体フォント・可読性
+   1. グリッド（フォント・可読性）
    ========================================================= */
 
 .grid {
@@ -7,6 +7,7 @@
     line-height: 1.55;
     letter-spacing: 0.3px;
     color: var(--text-main);
+    width: 100%;
 }
 
 .grid th {
@@ -25,7 +26,6 @@
 .grid td a {
     color: var(--text-main);
 }
-
 
 
 /* =========================================================
@@ -55,11 +55,6 @@ tr:hover td {
     padding: 7px 10px 5px !important;
 }
 
-.grid td,
-.grid th {
-    border-color: var(--border-light);
-}
-
 .grid tr > th,
 .grid tr > td {
     background-color: var(--surface-base);
@@ -67,7 +62,6 @@ tr:hover td {
     border-bottom: none !important;
     box-shadow: 1px 0 0 var(--surface-base);
 }
-
 
 
 /* =========================================================
@@ -80,16 +74,7 @@ tr:hover td {
     padding: 0 8px !important;
 }
 
-.grid td:first-child .check-option {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: sub;
-    margin: 0 !important;
-    padding: 0 !important;
-    gap: 0;
-}
-
+.grid td:first-child .check-option,
 .grid td .check-option .check-icon {
     display: inline-flex;
     align-items: center;
@@ -103,6 +88,7 @@ tr:hover td {
     height: 18px;
     margin: 0;
 }
+
 
 /* =========================================================
    4. リンク
@@ -122,7 +108,6 @@ tr td p a:not([href^="/items/"]):hover {
 }
 
 
-
 /* =========================================================
    5. Markdown 表示
    ========================================================= */
@@ -136,7 +121,6 @@ markdown-field .md-viewer {
 markdown-field .notes {
     padding: 2px 0;
 }
-
 
 
 /* =========================================================
@@ -167,7 +151,6 @@ markdown-field .notes {
 }
 
 
-
 /* =========================================================
    7. グリッドタイトル・フィルタ
    ========================================================= */
@@ -189,21 +172,8 @@ th.sortable:hover {
 }
 
 
-
 /* =========================================================
-   8. PC画面（レイアウト固定）
-   ========================================================= */
-
-@media (min-width: 901px) {
-    .grid {
-        width: 100% !important;
-    }
-}
-
-
-
-/* =========================================================
-   9. エンコード選択（非表示）
+   8. エンコード選択（非表示）
    ========================================================= */
 
 #Encoding,
@@ -222,9 +192,8 @@ th.sortable:hover {
 }
 
 
-
 /* =========================================================
-   10. ラベルと input の間隔
+   9. ラベル・メニュー・補助UI
    ========================================================= */
 
 .field-label {
@@ -289,8 +258,9 @@ tr,
     font-weight: normal;
 }
 
+
 /* =========================================================
-   11. ステータス色（100〜910）
+   10. ステータス色（100〜910）
    ========================================================= */
 
 td [class^="status-"] {
@@ -299,17 +269,22 @@ td [class^="status-"] {
     line-height: 1.3 !important;
     white-space: nowrap !important;
     color: var(--status-text) !important;
-
-    /* Box */
     padding: 2px 6px !important;
     border-radius: var(--radius-small) !important;
-
-    /* Layout */
     position: relative;
     top: -1px;
 }
 
-/* 100 未着手 */
+.status-new,
+.status-preparation,
+.status-inprogress,
+.status-review,
+.status-closed,
+.status-rejected {
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
 .status-new {
     background-color: var(--status-new-bg) !important;
     border-color: var(--status-new-border) !important;
@@ -319,7 +294,7 @@ td [class^="status-"] {
     border-color: var(--status-new-border-hover) !important;
 }
 
-/* 150 準備 */
+/* 以下同様にまとめ済み */
 .status-preparation {
     background-color: var(--status-preparation-bg) !important;
     border-color: var(--status-preparation-border) !important;
@@ -369,10 +344,10 @@ td [class^="status-"] {
     border-color: var(--status-rejected-border-hover) !important;
 }
 
-
 /* =========================================================
-   12. クロス集計・カンバン
+   11. クロス集計・カンバン
    ========================================================= */
+
 #Crosstab,
 #ViewModeContainer:has(#Kamban) .kamban-container,
 #ViewModeContainer:has(#Kamban),
@@ -405,5 +380,5 @@ td [class^="status-"] {
 
 #ViewModeContainer:has(#Kamban) .kamban-row td,
 .grid-stack-item .kambanbody .kamban-row td {
-   border-top: 1px solid var(--border-light) !important;
+    border-top: 1px solid var(--border-light) !important;
 }
