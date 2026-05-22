@@ -27,6 +27,11 @@ body:not(.site-list) {
         border-bottom: 4px solid var(--primary);
     }
 
+    .description,
+    .samples-displayed {
+        font-size: 0.85rem;
+    }
+
     #TemplateTabsContainer .template-viewer .description {
         color: var(--text-strong);
         background: var(--bg-guide);
@@ -35,6 +40,7 @@ body:not(.site-list) {
 
     #TemplateTabsContainer .template-viewer .samples-displayed {
         padding: 10px 16px;
+        
     }
 
     #TemplateTabsContainer .template {
