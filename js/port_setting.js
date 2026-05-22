@@ -12,7 +12,12 @@ function setupImportInput(input) {
         wrapper.append(input);
     }
 
-    const fileName = input.parent().find('.file-name');
+    const wrapper = input.parent();
+    const fileButton = wrapper.find('.file-button');
+    const fileName = wrapper.find('.file-name');
+
+    // ★ これが無かったので追加
+    fileButton.off('click').on('click', () => input.click());
 
     input.attr('accept', '.csv');
 
@@ -48,22 +53,3 @@ function setupImportInput(input) {
         fileName.text(file.name);
     });
 }
-
-// #Import が出てきた瞬間に 1 回だけ実行
-const importWatcher = new MutationObserver(() => {
-
-    if ($('#ImportUserTemplate_Import').length) {
-        setupImportInput($('#ImportUserTemplate_Import'));
-    }
-
-    if ($('#Import').length) {
-        setupImportInput($('#Import'));
-        
-        importWatcher.disconnect();
-    }
-});
-
-importWatcher.observe(document.body, {
-    childList: true,
-    subtree: true
-});
