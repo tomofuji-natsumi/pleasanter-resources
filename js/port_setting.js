@@ -1,25 +1,32 @@
 function setupImportInput(input) {
-    if (!input.length) return;
 
-    if (!input.parent().hasClass('file-wrapper')) {
-        const wrapper = $(`
+    const field = input.closest('.field-control');
+
+    let wrapper = field.children('.file-wrapper');
+
+    if (wrapper.length === 0) {
+        wrapper = $(`
             <div class="file-wrapper">
                 <div class="file-button">選択</div>
                 <span class="file-name">選択されていません</span>
             </div>
         `);
-        input.after(wrapper);
-        wrapper.append(input);
+        field.append(wrapper);
     }
 
-    const fileName = input.parent().find('.file-name');
+    wrapper.append(input);
+
+    const fileButton = wrapper.find('.file-button');
+    const fileName = wrapper.find('.file-name');
 
     input.attr('accept', '.csv');
+
+    fileButton.off('click').on('click', () => input.click());
 
     input.off('change.import').on('change.import', function () {
         const file = this.files[0];
 
-        $('#ImportSettingsDialog > p.message-dialog').remove();
+        $('#ImportSettingsDialog > p.message-dialog, #ImportUserTemplateDialog > p.message-dialog').remove();
 
         if (!file) {
             fileName.text('選択されていません');
@@ -34,7 +41,7 @@ function setupImportInput(input) {
                     <span class="body alert-error">CSVファイルを選択してください。</span>
                 </p>
             `;
-            $('#ImportSettingsDialog .command-center').before(errorHtml);
+            $('#ImportSettingsDialog .command-center, #ImportUserTemplateDialog .command-center').before(errorHtml);
 
             fileName.text('選択されていません');
             $(this).val(null);
@@ -45,12 +52,28 @@ function setupImportInput(input) {
     });
 }
 
-// #Import が出てきた瞬間に 1 回だけ実行
-const importWatcher = new MutationObserver(() => {
-    const input = $('#Import');
-    if (input.length) {
-        setupImportInput(input);
-        importWatcher.disconnect(); // 一度ラップできたら監視終了
+
+// ===============================
+// #Import も #ImportUserTemplate_Import も、
+// さらにその他の file input も全部対応
+// ===============================
+const importWatcher = new MutationObserver(mutations => {
+    for (const m of mutations) {
+        for (const node of m.addedNodes) {
+
+            // 本物の input[type=file] が追加された瞬間だけ処理
+            if (node.nodeType === 1 && node.matches("input[type='file']")) {
+
+                const $node = $(node);
+
+                // 対象は Import 系だけに限定
+                if ($node.attr("id") === "Import" ||
+                    $node.attr("id") === "ImportUserTemplate_Import") {
+
+                    setupImportInput($node);
+                }
+            }
+        }
     }
 });
 
