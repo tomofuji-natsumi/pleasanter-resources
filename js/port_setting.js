@@ -57,10 +57,19 @@ function setupImportInput(input) {
 // ===============================
 // Pleasanter が DOM を作り終わった後に実行
 // ===============================
-$(document).on("pjax:complete", function () {
-
-    $("#Import, #ImportUserTemplate_Import").each(function () {
-        setupImportInput($(this));
+// Import input を監視して file-wrapper を作る
+const importObserver = new MutationObserver(mutations => {
+    mutations.forEach(m => {
+        m.addedNodes.forEach(node => {
+            if (node.nodeType === 1 && node.matches("input[type='file']")) {
+                setupImportInput($(node));
+            }
+        });
     });
+});
 
+// body 全体を監視
+importObserver.observe(document.body, {
+    childList: true,
+    subtree: true
 });
