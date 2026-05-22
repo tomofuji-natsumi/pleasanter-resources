@@ -2,10 +2,8 @@ function setupImportInput(input) {
 
     const field = input.closest('.field-control');
 
-    // すでに file-wrapper があるか？
     let wrapper = field.children('.file-wrapper');
 
-    // なければ作成
     if (wrapper.length === 0) {
         wrapper = $(`
             <div class="file-wrapper">
@@ -14,11 +12,9 @@ function setupImportInput(input) {
             </div>
         `);
 
-        // ★ field-control の直下に追加（ここが最重要）
         field.append(wrapper);
     }
 
-    // input を wrapper の中へ移動
     wrapper.append(input);
 
     const fileButton = wrapper.find('.file-button');
@@ -56,3 +52,15 @@ function setupImportInput(input) {
         fileName.text(file.name);
     });
 }
+
+
+// ===============================
+// Pleasanter が DOM を作り終わった後に実行
+// ===============================
+$(document).on("pjax:complete", function () {
+
+    $("#Import, #ImportUserTemplate_Import").each(function () {
+        setupImportInput($(this));
+    });
+
+});
