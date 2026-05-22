@@ -1,6 +1,7 @@
 /* =========================================================
-   0. body / html 初期化（基盤）
+   0. Reset / Base
    ========================================================= */
+
 html,
 body {
     box-sizing: border-box;
@@ -13,7 +14,17 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* フォント統一（UI 全体） */
+@media (max-width: 320px) {
+    body {
+        min-width: 320px !important;
+    }
+}
+
+
+/* =========================================================
+   1. Typography（フォント・文字）
+   ========================================================= */
+
 body,
 pre,
 input,
@@ -32,32 +43,31 @@ button,
     line-height: 1.36;
 }
 
-/* メディアクエリ（320px 以下） */
-@media (max-width: 320px) {
-    body {
-        min-width: 320px !important;
-    }
+
+/* =========================================================
+   2. Layout（全体レイアウト）
+   ========================================================= */
+
+.gridObserver {
+    display: none;
 }
 
 
 /* =========================================================
-   1. アイコン
+   3. Icons（アイコン）
    ========================================================= */
 
-/* 削除 */
+/* 不要アイコンの非表示 */
 .ui-icon-person:not(.current-user),
 .ui-icon-link,
-#MainForm .nav-site.to-parent span.ui-icon:not(.ui-icon-triangle-1-s) {
-    display: none !important;
-}
-
-/* 非表示 */
+#MainForm .nav-site.to-parent span.ui-icon:not(.ui-icon-triangle-1-s),
 span.ui-button-icon.ui-icon,
 .current-user,
 #ReduceGuides .ui-icon-minusthick,
 #ExpandGuides .ui-icon-plusthick,
 #CopyDirectUrlToClipboard .ui-icon {
     background-image: none !important;
+    display: none !important;
 }
 
 /* アイコン配置 */
@@ -81,19 +91,15 @@ span.ui-button-icon.ui-icon,
     color: var(--icon-color);
 }
 
-#ReduceGuides .ui-icon-minusthick,
-#ExpandGuides .ui-icon-plusthick {
-    margin-right: 4px;
-}
-
 .ui-multiselect-open .ui-icon {
     right: 3px;
 }
 
 
 /* =========================================================
-   2. ボタン
+   4. Buttons（ボタン）
    ========================================================= */
+
 .ui-button {
     position: relative;
     padding: 4px 7px 6px 9px !important;
@@ -109,53 +115,49 @@ span.ui-button-icon.ui-icon,
     font-weight: 550 !important;
 }
 
+/* ダークボタン */
 button:has(.dark-material-icons),
 button:has(.dark-material-icons):focus {
     background: var(--btn-back-bg) !important;
     color: var(--on-primary) !important;
 }
-
 button:has(.dark-material-icons):hover,
 button:has(.dark-material-icons):active {
     background: var(--btn-back-hover);
     color: var(--surface-strong);
 }
 
+/* ライトボタン */
 button:has(.light-material-icons),
 button:has(.light-material-icons):focus {
     background: var(--surface-base);
     border: 1px solid var(--border-light) !important;
     color: var(--text-emphasis);
-    font-weight: 550 !important;
 }
-
 button:has(.light-material-icons):hover,
 button:has(.light-material-icons):active {
     background: var(--surface-soft);
     border: 1px solid var(--border-light) !important;
-    color: var(--text-emphasis);
 }
 
+/* 削除ボタン */
 button:has(.red-material-icons),
 button:has(.red-material-icons):focus {
     background: var(--btn-delete-bg) !important;
     color: var(--on-primary) !important;
-    font-weight: 550 !important;
 }
-
 button:has(.red-material-icons):hover,
 button:has(.red-material-icons):active {
     background: var(--btn-delete-hover) !important;
     color: var(--surface-strong) !important;
 }
 
+/* プライマリーボタン */
 button:has(.primary-material-icons),
 button:has(.primary-material-icons):focus {
     background: var(--primary) !important;
     color: var(--on-primary) !important;
-    font-weight: 550 !important;
 }
-
 button:has(.primary-material-icons):hover,
 button:has(.primary-material-icons):active {
     background: var(--primary-hover) !important;
@@ -164,11 +166,11 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   3. ヘッダー
+   5. Header（ヘッダー / ハンバーガー）
    ========================================================= */
 
 #Header {
-    padding: 2px 12px 2px 12px;
+    padding: 2px 12px;
     background-color: var(--surface-soft) !important;
     border-bottom: 1px solid var(--border-light);
     font-size: 0.9rem;
@@ -176,7 +178,7 @@ button:has(.primary-material-icons):active {
     box-shadow: 0 1px 2px var(--shadow-light);
 }
 
-/* ハンバーガーメニュー */
+/* ハンバーガー */
 #Header .hamburger-switch {
     background-color: transparent !important;
 }
@@ -238,7 +240,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   4. ブレッドクラム
+   6. Breadcrumb（パンくず）
    ========================================================= */
 
 #CopyToClipboards {
@@ -262,7 +264,7 @@ button:has(.primary-material-icons):active {
     font-size: 0.8rem;
     font-weight: 550;
     white-space: pre;
-	line-height: 1.4;
+    line-height: 1.4;
     color: var(--icon-color);
 }
 
@@ -299,12 +301,12 @@ button:has(.primary-material-icons):active {
 }
 
 #Breadcrumb .item a {
-	padding: 0 1.5em !important;
+    padding: 0 1.5em !important;
 }
 
 
 /* =========================================================
-   5. ガイド
+   7. Guide（ガイド）
    ========================================================= */
 
 #Guide {
@@ -330,14 +332,14 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   6. メッセージ / アラート
+   8. Messages / Alerts（メッセージ）
    ========================================================= */
 
 #Message .body {
     font-size: 0.9rem;
     user-select: none;
     pointer-events: auto;
-    color: var(--text-white) !important;
+    color: var(--text-white);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     border: none;
 }
@@ -354,7 +356,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   7. 入力コントロール
+   9. Inputs（textbox / select / checkbox / spinner）
    ========================================================= */
 
 [class^="control-"]:not(.control-selectable):not(.control-attachments-upload):not(.control-attachments-items),
@@ -364,7 +366,7 @@ input,
 .check-option .check-icon:not(:has(input:checked)),
 .ui-widget.ui-state-default.ui-multiselect {
     background: var(--surface-base);
-    background-color: var(--surface-base);
+	/* background-color: var(--surface-base); */
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-medium);
     color: var(--text-main);
@@ -391,11 +393,7 @@ input:focus,
     padding: 3px 4px 4px 5px !important;
 }
 
-
-/* =========================================================
-   9. 入力コントロール（textbox / dropdown / checkbox / spinner）
-   ========================================================= */
-
+/* チェックボックス */
 .check-option .check-icon:before {
     color: var(--surface-base) !important;
 }
@@ -405,24 +403,12 @@ input:focus,
     border: 1px solid var(--border-strong);
 }
 
+/* タブ */
 .ui-tabs .ui-tabs-panel {
     padding: 1.2rem 2.8rem;
 }
 
-.field-wide,
-.field-markdown {
-    min-height: initial;
-    margin-bottom: 20px;
-    padding: 0 10px 0 0;
-}
-
-.field-normal {
-    height: initial;
-    max-width: 100%;
-    margin-bottom: 20px;
-    padding: 0 20px 0 0;
-}
-
+/* スピナー */
 .spinner-field .ui-spinner .ui-button {
     position: absolute !important;
     background-color: var(--surface-base);
@@ -433,6 +419,7 @@ input:focus,
     padding-left: 5px;
 }
 
+/* 日付アイコン */
 .current-date {
     right: 2%;
 }
@@ -443,7 +430,7 @@ input:focus,
 
 
 /* =========================================================
-   7. UIダイアログ
+   10. Dialog（UIダイアログ）
    ========================================================= */
 
 .ui-widget-overlay {
@@ -459,7 +446,7 @@ input:focus,
 }
 
 .ui-dialog-title {
-    font-family: 游ゴシック体,YuGothic,游ゴシック Medium,Yu Gothic Medium,游ゴシック,Yu Gothic,sans-serif;
+    font-family: 游ゴシック体, YuGothic, 游ゴシック Medium, Yu Gothic Medium, 游ゴシック, Yu Gothic, sans-serif;
     font-weight: 600;
     line-height: 1.5;
     font-size: 0.85rem;
@@ -494,7 +481,7 @@ input:focus,
 
 
 /* =========================================================
-   8. ダイアログ
+   11. Dialog（細部）
    ========================================================= */
 
 .dialog {
@@ -541,7 +528,7 @@ input:focus,
 
 
 /* =========================================================
-   8. multiselect
+   12. Multiselect（複数選択 UI）
    ========================================================= */
 
 .ui-widget.ui-multiselect-menu {
@@ -577,7 +564,7 @@ input:focus,
 
 
 /* =========================================================
-   9. selectable（リスト選択 UI）
+   13. Selectable（リスト選択 UI）
    ========================================================= */
 
 .wrapper {
@@ -615,52 +602,29 @@ input:focus,
 
 
 /* =========================================================
-   11. control-* 共通
+   14. Fieldset / Markdown
    ========================================================= */
 
-.field-control .container-radio {
-    padding: 5px 0 6px 3px;
-    gap: 8px 22px;
+.fieldset > .legend {
+    background-color: var(--bg-main-dark);
+    border: 1px solid var(--border-normal);
+    color: var(--text-emphasis);
 }
 
-.field-control .container-radio .radio-icon {
-    background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-strong);
+.fieldset.enclosed,
+.fieldset.enclosed-half,
+.fieldset.enclosed-thin {
+    background: var(--bg-main);
 }
 
-.field-control .container-radio .radio-icon:has(input:checked):before {
-    background-color: var(--primary);
+.fieldset.enclosed:has(.legend),
+.fieldset.enclosed-half:has(.legend),
+.fieldset.enclosed-thin:has(.legend) {
+    border: 1px solid var(--border-normal);
+    box-shadow: 0 0 4px var(--shadow-strong);
 }
 
-.field-control .container-radio .radio-text {
-    font-size: 0.85rem;
-    padding: 1px 0 0 3px;
-}
-
-
-.readonly-style,
-#Encoding,
-#ExportEncoding {
-    background-color: var(--readonly-bg) !important;
-    background: var(--readonly-bg) !important;
-    color: var(--readonly-value) !important;
-    border: 1px solid var(--border-strong) !important;
-    pointer-events: none;
-    user-select: text;
-}
-
-.field-label {
-    flex: 0 0 auto;
-    max-width: 100%;
-    font-size: 0.85rem;
-    color: var(--text-main);
-}
-
-
-/* =========================================================
-   markdown-field
-   ========================================================= */
-
+/* Markdown */
 markdown-field .md-viewer:not(.control-text) {
     background-color: var(--surface-base) !important;
 }
@@ -689,31 +653,7 @@ markdown-field.is-comment .md-viewer {
 
 
 /* =========================================================
-   fieldset
-   ========================================================= */
-   
-.fieldset > .legend {
-    background-color: var(--bg-main-dark);
-    border: 1px solid var(--border-normal);
-    color: var(--text-emphasis);
-}
-
-.fieldset.enclosed,
-.fieldset.enclosed-half,
-.fieldset.enclosed-thin {
-    background: var(--bg-main);
-}
-
-.fieldset.enclosed:has(.legend),
-.fieldset.enclosed-half:has(.legend),
-.fieldset.enclosed-thin:has(.legend) {
-    border: 1px solid var(--border-normal);
-    box-shadow: 0 0 4px var(--shadow-strong);
-}
-
-
-/* =========================================================
-   12. ファイルアップロード UI
+   15. File Upload（ファイルアップロード UI）
    ========================================================= */
 
 .file-wrapper {
@@ -736,8 +676,8 @@ markdown-field.is-comment .md-viewer {
     z-index: 999;
     font-weight: 500;
     cursor: pointer !important;
-	user-select: none;
-	font-size: 0.85rem;
+    user-select: none;
+    font-size: 0.85rem;
 }
 
 .file-button:hover {
@@ -764,27 +704,281 @@ markdown-field.is-comment .md-viewer {
 
 
 /* =========================================================
-   13. ダイアログ（後半）
+   10. Dialog（UIダイアログ）
    ========================================================= */
 
-#Encoding,
-#ExportEncoding,
-#ExportId {
-    padding: 4px 4px 4px 8px !important;
+.ui-widget-overlay {
+    background: var(--primary-overlay);
+    opacity: 0.55;
 }
 
-fieldset.fieldset.cf.enclosed-thin .ui-button {
-    box-shadow: 2px 3px var(--shadow-light) !important;
+.ui-dialog {
+    border-radius: 10px;
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.08),
+        0 3px 6px rgba(0, 0, 0, 0.04);
 }
 
-#ViewSelectorField {
-    top: 7px;
-    right: 12px;
+.ui-dialog-title {
+    font-family: 游ゴシック体, YuGothic, 游ゴシック Medium, Yu Gothic Medium, 游ゴシック, Yu Gothic, sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: 0.85rem;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    background: var(--bg-dialog-header);
+    border: 1px solid var(--border-normal);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    color: var(--text-main);
+    height: 42px !important;
+    margin: 0;
+    padding: 0.6rem 1.1rem;
+}
+
+.ui-dialog .ui-dialog-content {
+    background: var(--surface-strong);
+    border: 1px solid var(--border-normal);
+    border-radius: 0 0 10px 10px;
+    margin: 0;
+    padding: 15px 24px !important;
+}
+
+.ui-dialog .command-center button {
+    font-size: 0.9rem;
+}
+
+.ui-dialog .field-label {
+    padding: 5px 12px 7px 7px;
 }
 
 
 /* =========================================================
-   flatpickr（カレンダー UI）
+   11. Dialog（細部）
+   ========================================================= */
+
+.dialog {
+    color: var(--text-main);
+}
+
+.dialog .field-control .check-text {
+    margin-left: 5px !important;
+}
+
+.dialog .field-wide .container-normal:has(.check-option) {
+    margin: 0;
+    place-self: center;
+}
+
+.dialog .command-center:last-of-type {
+    margin: 16px 0 2px 0;
+    gap: 14px;
+}
+
+.dialog .command-left button,
+.dialog .command-right button {
+    padding: 4px 8px 5px 3px !important;
+    font-size: 0.8rem;
+}
+
+#DropDownSearchDialogBody .material-symbols-outlined {
+    font-size: 1.1rem;
+    top: 54%;
+    left: 4%;
+}
+
+#ExportSitePackageDialog .field-control .material-symbols-outlined {
+    left: 2%;
+}
+
+#ExportSitePackageDialog #SitePackageForm .command-center {
+    margin: 0 0 30px;
+}
+
+#ExportSitePackageDialog #SitePackageForm .field-wide {
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   12. Multiselect（複数選択 UI）
+   ========================================================= */
+
+.ui-widget.ui-multiselect-menu {
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+    font-size: 0.93rem;
+    padding: 5px;
+}
+
+.ui-widget-content a,
+.ui-widget-content .check-text {
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.ui-multiselect-header {
+    background: var(--bg-main-dark);
+    border: 1px solid var(--border-strong);
+}
+
+.ui-multiselect-checkboxes .ui-state-hover {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+}
+
+.ui-multiselect-checkboxes li label span {
+    padding-left: 5px;
+    vertical-align: text-top;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   13. Selectable（リスト選択 UI）
+   ========================================================= */
+
+.wrapper {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    scrollbar-color: var(--border-strong) var(--surface-base) !important;
+}
+
+.ui-selectable .ui-selectee {
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+}
+
+.control-selectable {
+    padding: 5px 10px 5px 5px !important;
+}
+
+.control-selectable li {
+    padding: 1px 7px 3px;
+    margin: 4px 3px;
+    border-radius: var(--radius-small);
+    width: auto;
+}
+
+.ui-selectable .ui-selectee:hover {
+    box-shadow: 0 1px 4px var(--shadow-strong);
+}
+
+.ui-selectable .ui-selectee.ui-selecting,
+.ui-selectable .ui-selectee.ui-selected {
+    background: var(--primary);
+    color: var(--surface-base);
+}
+
+
+/* =========================================================
+   14. Fieldset / Markdown
+   ========================================================= */
+
+.fieldset > .legend {
+    background-color: var(--bg-main-dark);
+    border: 1px solid var(--border-normal);
+    color: var(--text-emphasis);
+}
+
+.fieldset.enclosed,
+.fieldset.enclosed-half,
+.fieldset.enclosed-thin {
+    background: var(--bg-main);
+}
+
+.fieldset.enclosed:has(.legend),
+.fieldset.enclosed-half:has(.legend),
+.fieldset.enclosed-thin:has(.legend) {
+    border: 1px solid var(--border-normal);
+    box-shadow: 0 0 4px var(--shadow-strong);
+}
+
+/* Markdown */
+markdown-field .md-viewer:not(.control-text) {
+    background-color: var(--surface-base) !important;
+}
+
+markdown-field:not(.is-comment) .md-viewer {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    padding: 8px 32px 8px 8px;
+}
+
+markdown-field .bottom-tools {
+    margin-top: 0.3rem;
+}
+
+markdown-field .md-btn-icon {
+    color: var(--icon-color);
+}
+
+markdown-field .md-btn.is-editor {
+    right: 15px;
+}
+
+markdown-field.is-comment .md-viewer {
+    border: none !important;
+}
+
+
+/* =========================================================
+   15. File Upload（ファイルアップロード UI）
+   ========================================================= */
+
+.file-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 32px;
+    width: 100%;
+    z-index: 500;
+}
+
+.file-button {
+    display: flex;
+    align-items: center;
+    background: var(--primary);
+    color: var(--surface-base) !important;
+    padding: 6px 15px 7px;
+    border-radius: var(--radius-small);
+    z-index: 999;
+    font-weight: 500;
+    cursor: pointer !important;
+    user-select: none;
+    font-size: 0.85rem;
+}
+
+.file-button:hover {
+    background: var(--primary-hover);
+}
+
+.file-name {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    z-index: 500;
+    user-select: none;
+}
+
+#Import,
+#ImportUserTemplate_Import {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    opacity: 0;
+}
+
+
+/* =========================================================
+   16. Calendar（flatpickr）
    ========================================================= */
 
 .flatpickr-current-month .flatpickr-monthDropdown-months,
@@ -845,7 +1039,7 @@ span.flatpickr-weekday {
 
 
 /* =========================================================
-   6. フッターコマンド
+   17. Footer（フッターコマンド）
    ========================================================= */
 
 #MainCommandsContainer {
@@ -854,7 +1048,7 @@ span.flatpickr-weekday {
 
 
 /* =========================================================
-   readonly / data-readonly / textarea
+   18. Readonly / textarea
    ========================================================= */
 
 .container-normal:has(span[data-readonly="1"]) {
@@ -888,13 +1082,344 @@ textarea {
 }
 
 label[for="Import"] {
-	cursor: default;
+    cursor: default;
 }
 
 label.error {
-	font-size: 0.75rem;
+    font-size: 0.75rem;
 }
 
 #AnnouncementModule div div {
     padding: 0.5rem 0.8rem !important;
+}
+
+
+/* =========================================================
+   19. Grid（一覧）
+   ========================================================= */
+
+.grid {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    letter-spacing: 0.3px;
+    color: var(--text-main);
+    width: 100%;
+}
+
+.grid th {
+    background-color: var(--primary) !important;
+    color: var(--on-primary) !important;
+    box-shadow:
+        inset 0 -1px 0 rgba(253, 254, 255, 0.18),
+        0 1px 2px var(--border-subtle);
+}
+
+.grid th span {
+    font-weight: 550;
+}
+
+.grid td,
+.grid td a {
+    color: var(--text-main);
+}
+
+/* ヘッダー行 */
+tr.ui-widget-header,
+tr.crosstab-row th {
+    background: var(--primary);
+    color: var(--surface-base);
+}
+
+/* タイトル行 */
+.grid .grid-title-body {
+    margin-bottom: 0;
+    padding: 0;
+    background-color: transparent !important;
+    border: none !important;
+    vertical-align: middle;
+}
+
+/* hover */
+tr:hover td {
+    background-color: var(--bg-hover);
+    transition: background-color 0.18s ease;
+}
+
+/* ステータスセル */
+.grid td:has(p[class*=status]) {
+    padding: 7px 10px 5px !important;
+}
+
+/* セル共通 */
+.grid tr > th,
+.grid tr > td {
+    background-color: var(--surface-base);
+    border-right: 1px solid var(--border-light) !important;
+    border-bottom: none !important;
+    box-shadow: 1px 0 0 var(--surface-base);
+}
+
+/* 左端チェックボックス列 */
+.grid td:first-child {
+    display: table-cell !important;
+    vertical-align: middle !important;
+    padding: 0 8px !important;
+}
+
+.grid td:first-child .check-option,
+.grid td .check-option .check-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.grid td .check-option .check-icon input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+/* リンク */
+tr td p a {
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+}
+
+tr td p a:not([href^="/items/"]) {
+    color: var(--text-link);
+}
+
+tr td p a:not([href^="/items/"]):hover {
+    opacity: 0.85;
+}
+
+/* Markdown */
+markdown-field .md-viewer {
+    color: var(--text-main);
+    line-height: 1.55;
+    letter-spacing: 0.2px;
+}
+
+markdown-field .notes {
+    padding: 2px 0;
+}
+
+/* セル内レイアウト */
+.grid td {
+    vertical-align: middle !important;
+    padding: 0.4rem 0.85rem !important;
+    border-left: none !important;
+}
+
+.grid td *:not(input[type="checkbox"]) {
+    display: inline-block;
+    align-items: center;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.grid markdown-field,
+.grid markdown-field .md-viewer,
+.grid markdown-field .notes {
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 1.5 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ソート可能ヘッダー */
+th.sortable {
+    padding: 0.5rem 0.85rem !important;
+}
+
+th.sortable:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+/* チェックボックス位置 */
+.ui-widget-header:first-child .check-option {
+    justify-content: center;
+}
+
+/* 下線 */
+#Grid:has(tbody:not(:empty)) {
+    border-bottom: 1px solid var(--border-light) !important;
+}
+
+/* メニュー */
+ul.ui-widget-content {
+    background: var(--surface-base);
+    border: 1px solid var(--border-strong) !important;
+    border-top: none;
+    color: var(--text-emphasis) !important;
+}
+
+.ui-menu-item-wrapper:hover {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+}
+
+.menu-sort .ui-menu-item {
+    border-top: 1px solid var(--border-strong);
+}
+
+/* 行背景 */
+tr,
+.crosstab-row td {
+    background-color: var(--surface-base) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+}
+
+.grid:not(.not-link) tr:hover {
+    background-color: var(--bg-surface-hover);
+}
+
+/* その他 */
+.grid-title-body.focus-inform {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.grid > tbody > tr > td > p > span.ui-icon {
+    display: none;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.user > span {
+    font-weight: normal;
+}
+
+
+/* =========================================================
+   20. Status（100〜910）
+   ========================================================= */
+
+td [class^="status-"] {
+    font-size: 0.85rem;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    white-space: nowrap !important;
+    color: var(--status-text) !important;
+    padding: 2px 6px !important;
+    border-radius: var(--radius-small) !important;
+    position: relative;
+    top: -1px;
+}
+
+/* 共通 border */
+.status-new,
+.status-preparation,
+.status-inprogress,
+.status-review,
+.status-closed,
+.status-rejected {
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+/* 100 未着手 */
+.status-new {
+    background-color: var(--status-new-bg) !important;
+    border-color: var(--status-new-border) !important;
+}
+.status-new:hover {
+    background-color: var(--status-new-bg-hover) !important;
+    border-color: var(--status-new-border-hover) !important;
+}
+
+/* 150 準備 */
+.status-preparation {
+    background-color: var(--status-preparation-bg) !important;
+    border-color: var(--status-preparation-border) !important;
+}
+.status-preparation:hover {
+    background-color: var(--status-preparation-bg-hover) !important;
+    border-color: var(--status-preparation-border-hover) !important;
+}
+
+/* 200 実施中 */
+.status-inprogress {
+    background-color: var(--status-inprogress-bg) !important;
+    border-color: var(--status-inprogress-border) !important;
+}
+.status-inprogress:hover {
+    background-color: var(--status-inprogress-bg-hover) !important;
+    border-color: var(--status-inprogress-border-hover) !important;
+}
+
+/* 300 レビュー */
+.status-review {
+    background-color: var(--status-review-bg) !important;
+    border-color: var(--status-review-border) !important;
+}
+.status-review:hover {
+    background-color: var(--status-review-bg-hover) !important;
+    border-color: var(--status-review-border-hover) !important;
+}
+
+/* 900 完了 */
+.status-closed {
+    background-color: var(--status-closed-bg) !important;
+    border-color: var(--status-closed-border) !important;
+}
+.status-closed:hover {
+    background-color: var(--status-closed-bg-hover) !important;
+    border-color: var(--status-closed-border-hover) !important;
+}
+
+/* 910 保留（却下） */
+.status-rejected {
+    background-color: var(--status-rejected-bg) !important;
+    border-color: var(--status-rejected-border) !important;
+}
+.status-rejected:hover {
+    background-color: var(--status-rejected-bg-hover) !important;
+    border-color: var(--status-rejected-border-hover) !important;
+}
+
+
+/* =========================================================
+   21. Crosstab / Kanban（クロス集計・カンバン）
+   ========================================================= */
+
+#Crosstab,
+#ViewModeContainer:has(#Kamban) .kamban-container,
+#ViewModeContainer:has(#Kamban),
+.grid-stack-item .kambanbody,
+.grid-stack-item .kambanbody .kamban-container {
+    padding: 0;
+    background-color: var(--surface-base);
+}
+
+#Crosstab .crosstab-row th,
+#ViewModeContainer:has(#Kamban) .kamban-row th,
+.grid-stack-item .kambanbody .kamban-row th {
+    border-top: 1px solid var(--border-light);
+}
+
+#ViewModeContainer:has(#Kamban) .kamban-item,
+.grid-stack-item .kambanbody .kamban-item {
+    color: var(--text-main);
+    background-color: var(--primary-surface) !important;
+    border: solid 1px var(--primary) !important;
+    font-size: 0.8rem;
+    padding: 0.25rem 1.4rem 0.25rem 0.6rem;
+}
+
+#ViewModeContainer:has(#Kamban) .kamban-item:hover,
+.grid-stack-item .kambanbody .kamban-item:hover {
+    background-color: var(--primary-surface-hover) !important;
+    border: solid 1px var(--primary) !important;
+}
+
+#ViewModeContainer:has(#Kamban) .kamban-row td,
+.grid-stack-item .kambanbody .kamban-row td {
+    border-top: 1px solid var(--border-light) !important;
 }
