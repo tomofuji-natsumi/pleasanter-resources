@@ -890,6 +890,10 @@ label[for="Import"] {
 	cursor: default;
 }
 
+label.error {
+	font-size: 0.75rem;
+}
+
 #AnnouncementModule div div {
     padding: 0.5rem 0.8rem !important;
 }
