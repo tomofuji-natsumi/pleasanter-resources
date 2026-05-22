@@ -35,7 +35,7 @@
 tr.ui-widget-header,
 tr.crosstab-row th {
     background: var(--primary);
-    color: var(--surface-base);
+    color: var(--on-primary);
 }
 
 .grid .grid-title-body {
