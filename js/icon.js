@@ -70,10 +70,12 @@ const primaryIconMap = {
     ".nav-site.to-parent a": "arrow_left",
     "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmRestore']": "restore_page",
     "#FieldSetHistories [data-action='RestoreFromHistory']": "restore_page",
+    "#ViewModeContainer [data-confirm='ConfirmRestore']": "restore_page",
 };
 
 const redIconMap = {
     "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']": "delete",
+    "#ViewModeContainer [data-confirm='ConfirmPhysicalDelete']": "delete",    
     "#FieldSetHistories [data-confirm='ConfirmPhysicalDelete']": "delete",
     "#ImageLibBody [data-confirm='ConfirmDelete']": "delete",
     "#BulkDeleteCommand": "delete",
