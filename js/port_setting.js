@@ -2,7 +2,7 @@ function setupImportInput(input) {
 
     const field = input.closest('.field-control');
 
-    // すでに file-wrapper があるか確認
+    // すでに file-wrapper があるか？
     let wrapper = field.children('.file-wrapper');
 
     // なければ作成
@@ -14,11 +14,11 @@ function setupImportInput(input) {
             </div>
         `);
 
-        // field-control の末尾に追加
+        // ★ field-control の直下に追加（ここが最重要）
         field.append(wrapper);
     }
 
-    // input を wrapper の中に移動
+    // input を wrapper の中へ移動
     wrapper.append(input);
 
     const fileButton = wrapper.find('.file-button');
