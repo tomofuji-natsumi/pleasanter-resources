@@ -71,12 +71,21 @@ span.ui-button-icon.ui-icon,
 }
 
 /* アイコン配置 */
-.material-symbols-outlined:not(.md-btn-icon):not([id^="DeleteChartIcon_"]) {
+/* .material-symbols-outlined:not(.md-btn-icon):not([id^="DeleteChartIcon_"]) {
     position: absolute;
     top: 51%;
     left: 5px !important;
     transform: translateY(-50%);
     font-size: 1.2rem !important;
+}
+*/
+
+.material-symbols-outlined {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0.35rem;
+    font-size: 1.18rem;
 }
 
 .dialog .material-symbols-outlined {
@@ -102,7 +111,7 @@ span.ui-button-icon.ui-icon,
 
 .ui-button {
     position: relative;
-    padding: 4px 7px 6px 9px !important;
+    padding: 0.3rem 0.4rem 0.35rem 1.7rem !important;
     border-radius: var(--radius-small);
     border: 1px solid transparent !important;
     font-size: 0.85rem !important;
