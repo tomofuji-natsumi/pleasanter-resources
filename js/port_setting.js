@@ -11,13 +11,15 @@ function setupImportInput(input) {
         input.after(wrapper);
         wrapper.append(input);
     }
-
-    const fileButton = input.parent().find('.file-button');
+    
+    const fileName = input.parent().find('.file-name');
+    const wrapper = input.parent();
+    const fileButton = wrapper.find('.file-button');
     const fileName = wrapper.find('.file-name');
     
-    fileButton.off('click').on('click', () => input.click());
-    
     input.attr('accept', '.csv');
+    
+    fileButton.off('click').on('click', () => input.click());
 
     input.off('change.import').on('change.import', function () {
         const file = this.files[0];
