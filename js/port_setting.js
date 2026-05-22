@@ -1,33 +1,25 @@
 function setupImportInput(input) {
+    if (!input.length) return;
 
-    const field = input.closest('.field-control');
-
-    let wrapper = field.children('.file-wrapper');
-
-    if (wrapper.length === 0) {
-        wrapper = $(`
+    if (!input.parent().hasClass('file-wrapper')) {
+        const wrapper = $(`
             <div class="file-wrapper">
                 <div class="file-button">選択</div>
                 <span class="file-name">選択されていません</span>
             </div>
         `);
-
-        field.append(wrapper);
+        input.after(wrapper);
+        wrapper.append(input);
     }
 
-    wrapper.append(input);
-
-    const fileButton = wrapper.find('.file-button');
-    const fileName = wrapper.find('.file-name');
+    const fileName = input.parent().find('.file-name');
 
     input.attr('accept', '.csv');
-
-    fileButton.off('click').on('click', () => input.click());
 
     input.off('change.import').on('change.import', function () {
         const file = this.files[0];
 
-        $('#ImportSettingsDialog > p.message-dialog, #ImportUserTemplateDialog > p.message-dialog').remove();
+        $('#ImportSettingsDialog > p.message-dialog').remove();
 
         if (!file) {
             fileName.text('選択されていません');
@@ -42,7 +34,7 @@ function setupImportInput(input) {
                     <span class="body alert-error">CSVファイルを選択してください。</span>
                 </p>
             `;
-            $('#ImportSettingsDialog .command-center, #ImportUserTemplateDialog .command-center').before(errorHtml);
+            $('#ImportSettingsDialog .command-center').before(errorHtml);
 
             fileName.text('選択されていません');
             $(this).val(null);
@@ -53,23 +45,16 @@ function setupImportInput(input) {
     });
 }
 
-
-// ===============================
-// Import input が DOM に追加された瞬間を監視
-// ===============================
-const importObserver = new MutationObserver(mutations => {
-    for (const m of mutations) {
-        for (const node of m.addedNodes) {
-
-            // 本物の input[type=file] が追加された瞬間だけ処理
-            if (node.nodeType === 1 && node.matches("input[type='file']")) {
-                setupImportInput($(node));
-            }
-        }
+// #Import が出てきた瞬間に 1 回だけ実行
+const importWatcher = new MutationObserver(() => {
+    const input = $('#Import');
+    if (input.length) {
+        setupImportInput(input);
+        importWatcher.disconnect(); // 一度ラップできたら監視終了
     }
 });
 
-importObserver.observe(document.body, {
+importWatcher.observe(document.body, {
     childList: true,
     subtree: true
 });
