@@ -58,13 +58,15 @@ function setupImportInput(input) {
 // Import input が DOM に追加された瞬間を監視
 // ===============================
 const importObserver = new MutationObserver(mutations => {
-    mutations.forEach(m => {
-        m.addedNodes.forEach(node => {
+    for (const m of mutations) {
+        for (const node of m.addedNodes) {
+
+            // 本物の input[type=file] が追加された瞬間だけ処理
             if (node.nodeType === 1 && node.matches("input[type='file']")) {
                 setupImportInput($(node));
             }
-        });
-    });
+        }
+    }
 });
 
 importObserver.observe(document.body, {
