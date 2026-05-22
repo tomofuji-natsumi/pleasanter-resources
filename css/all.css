@@ -737,6 +737,7 @@ markdown-field.is-comment .md-viewer {
     font-weight: 500;
     cursor: pointer !important;
 	user-select: none;
+	font-size: 0.85rem;
 }
 
 .file-button:hover {
@@ -745,7 +746,7 @@ markdown-field.is-comment .md-viewer {
 
 .file-name {
     color: var(--text-muted);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
