@@ -292,6 +292,7 @@ button:has(.primary-material-icons):active {
 #Breadcrumb li:last-child a span,
 #Breadcrumb .item:last-child:is(.trashbox) span {
     color: var(--on-primary);
+    text-shadow: 0 1px 2px var(--shadow-strong);
 	font-weight: 550;
 }
 
@@ -1164,4 +1165,9 @@ ul.ui-widget-content {
 #ViewModeContainer:has(#Kamban) .kamban-row td,
 .grid-stack-item .kambanbody .kamban-row td {
     border-top: 1px solid var(--border-light) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	color: var(--on-primary);
+    text-shadow: 0 1px 2px var(--shadow-strong);
 }
