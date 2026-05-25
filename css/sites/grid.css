@@ -55,13 +55,6 @@ tr:hover td {
     padding: 7px 10px 5px !important;
 }
 
-.grid tr > th,
-.grid tr > td {
-    background-color: var(--surface-base);
-    border-right: 1px solid var(--border-light) !important;
-    box-shadow: 1px 0 0 var(--surface-base);
-}
-
 
 /* =========================================================
    3. チェックボックス（左端列）
