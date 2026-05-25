@@ -80,7 +80,7 @@ span.ui-button-icon.ui-icon,
 }
 */
 
-.material-symbols-outlined {
+.material-symbols-outlined:not(.md-btn-icon) {
     position: absolute;
     transform: translateY(-50%);
     top: 50%;
@@ -88,7 +88,7 @@ span.ui-button-icon.ui-icon,
     font-size: 1.18rem;
 }
 
-.dialog .material-symbols-outlined {
+.dialog .material-symbols-outlined:not(.md-btn-icon) {
     font-size: 1.1rem;
     left: 6px;
 }
@@ -518,13 +518,13 @@ input:focus,
     font-size: 0.8rem;
 }
 
-#DropDownSearchDialogBody .material-symbols-outlined {
+#DropDownSearchDialogBody .material-symbols-outlined:not(.md-btn-icon) {
     font-size: 1.1rem;
     top: 54%;
     left: 4%;
 }
 
-#ExportSitePackageDialog .field-control .material-symbols-outlined {
+#ExportSitePackageDialog .field-control .material-symbols-outlined:not(.md-btn-icon) {
     left: 2%;
 }
 
@@ -792,13 +792,13 @@ markdown-field.is-comment .md-viewer {
     font-size: 0.8rem;
 }
 
-#DropDownSearchDialogBody .material-symbols-outlined {
+#DropDownSearchDialogBody .material-symbols-outlined:not(.md-btn-icon) {
     font-size: 1.1rem;
     top: 54%;
     left: 4%;
 }
 
-#ExportSitePackageDialog .field-control .material-symbols-outlined {
+#ExportSitePackageDialog .field-control .material-symbols-outlined:not(.md-btn-icon) {
     left: 2%;
 }
 
