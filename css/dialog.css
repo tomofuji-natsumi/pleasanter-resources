@@ -1,3 +1,6 @@
+/* =========================================================
+   1. ダイアログ
+   ========================================================= */
 .dialog {
     color: var(--text-main);
 }
@@ -32,6 +35,10 @@
     border: solid 1px var(--semantic-danger);
 }
 
+/* =========================================================
+   2. UIダイアログ
+   ========================================================= */
+
 .ui-dialog {
     border-radius: 10px;
     box-shadow:
@@ -65,12 +72,16 @@
     padding: 15px 24px !important;
 }
 
-.ui-dialog .command-center button {
-    font-size: 0.9rem;
+.ui-dialog .ui-dialog-content .field-label {
+    font-size: 0.85rem;
 }
 
-.ui-dialog .field-label {
-    padding: 5px 12px 7px 7px;
+.ui-dialog .ui-dialog-content .command-left .input-field {
+    width: 8rem;
+}
+
+.ui-dialog .command-center button {
+    font-size: 0.9rem;
 }
 
 #DropDownSearchDialogBody .material-symbols-outlined:not(.md-btn-icon) {
@@ -91,13 +102,14 @@
     margin-bottom: 5px;
 }
 
-.ui-dialog-content .command-left .input-field {
-    width: 8rem;
-}
 
 /* =========================================================
-   13. Selectable（リスト選択 UI）
+   リスト
    ========================================================= */
+
+.container-selectable:has(.wrapper) {
+    margin-top: 1.2rem;
+}
 
 .wrapper {
     background-color: var(--surface-base) !important;
@@ -105,87 +117,37 @@
     scrollbar-color: var(--border-strong) var(--surface-base) !important;
 }
 
-.ui-selectable .ui-selectee {
-    background-color: var(--surface-strong);
-    border: 1px solid var(--border-strong);
-    color: var(--text-main);
-}
-
-.ui-selectable .ui-selectee:hover {
-    box-shadow: 0 1px 4px var(--shadow-strong);
-}
-
-.ui-selectable .ui-selectee.ui-selecting,
-.ui-selectable .ui-selectee.ui-selected {
-    background: var(--primary);
-    color: var(--surface-base);
-}
-
-.control-selectable {
+.wrapper .ui-selectable {
     padding: 5px 10px 5px 5px !important;
 }
 
-.control-selectable li {
+.wrapper .ui-selectable .ui-selectee:hover {
+    box-shadow: 0 1px 4px var(--shadow-strong);
+}
+
+.wrapper .ui-selectable li {
     padding: 1px 7px 3px;
     margin: 4px 3px;
     border-radius: var(--radius-small);
     width: auto;
 }
 
-
-/* =========================================================
-   14. Fieldset / Markdown
-   ========================================================= */
-
-.fieldset > .legend {
-    background-color: var(--bg-main-dark);
-    border: 1px solid var(--border-normal);
-    color: var(--text-emphasis);
+.wrapper .ui-selectable .ui-selectee {
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
 }
 
-.fieldset.enclosed,
-.fieldset.enclosed-half,
-.fieldset.enclosed-thin {
-    background: var(--bg-main);
+.wrapper .ui-selectable .ui-selectee.ui-selecting,
+.wrapper .ui-selectable .ui-selectee.ui-selected {
+    background: var(--primary);
+    color: var(--surface-base);
 }
 
-.fieldset.enclosed:has(.legend),
-.fieldset.enclosed-half:has(.legend),
-.fieldset.enclosed-thin:has(.legend) {
-    border: 1px solid var(--border-normal);
-    box-shadow: 0 0 4px var(--shadow-strong);
-}
-
-/* Markdown */
-markdown-field .md-viewer:not(.control-text) {
-    background-color: var(--surface-base) !important;
-}
-
-markdown-field:not(.is-comment) .md-viewer {
-    background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-strong) !important;
-    padding: 8px 32px 8px 8px;
-}
-
-markdown-field .bottom-tools {
-    margin-top: 0.3rem;
-}
-
-markdown-field .md-btn-icon {
-    color: var(--icon-color);
-}
-
-markdown-field .md-btn.is-editor {
-    right: 15px;
-}
-
-markdown-field.is-comment .md-viewer {
-    border: none !important;
-}
 
 
 /* =========================================================
-   15. File Upload（ファイルアップロード UI）
+   ファイルアップロード
    ========================================================= */
 
 .file-wrapper {
