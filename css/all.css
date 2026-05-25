@@ -919,22 +919,6 @@ markdown-field:not(.is-comment) .md-viewer {
     padding: 8px 32px 8px 8px;
 }
 
-markdown-field .bottom-tools {
-    margin-top: 0.3rem;
-}
-
-markdown-field .md-btn-icon {
-    color: var(--icon-color);
-}
-
-markdown-field .md-btn.is-editor {
-    right: 15px;
-}
-
-markdown-field.is-comment .md-viewer {
-    border: none !important;
-}
-
 
 /* =========================================================
    15. File Upload（ファイルアップロード UI）
