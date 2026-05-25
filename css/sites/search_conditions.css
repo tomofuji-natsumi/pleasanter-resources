@@ -336,8 +336,9 @@
     border-color: var(--status-rejected-border-hover);
 }
 
-
+#ViewFilters .ui-icon-folder-open,
 #ViewFilters .ui-icon-close,
+#Aggregations .ui-icon-folder-open,
 #Aggregations .ui-icon-close {
 	display: none;
 }
