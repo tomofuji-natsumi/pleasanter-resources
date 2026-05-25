@@ -311,7 +311,7 @@ button:has(.primary-material-icons):active {
 }
 
 #Breadcrumb .item a {
-    padding: 0 1.5em !important;
+    padding: 0 1.1rem !important;
 }
 
 
