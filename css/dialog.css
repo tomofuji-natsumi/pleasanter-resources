@@ -91,9 +91,8 @@
     margin-bottom: 5px;
 }
 
-
 .ui-dialog-content .command-left .input-field {
-    width: fit-content;
+    width: 8rem;
 }
 
 /* =========================================================
