@@ -1,0 +1,1166 @@
+/* =========================================================
+   0. Reset / Base
+   ========================================================= */
+
+html,
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    min-width: auto !important;
+    overflow-x: hidden;
+    background-color: var(--bg-main) !important;
+    color: var(--text-main) !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 320px) {
+    body {
+        min-width: 320px !important;
+    }
+}
+
+
+/* =========================================================
+   1. Typography（フォント・文字）
+   ========================================================= */
+
+body,
+pre,
+input,
+select,
+textarea,
+button,
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button,
+.grid .data,
+.grid .label,
+.dashboard-custom-body {
+    font-family: auto !important;
+    line-height: 1.36;
+}
+
+
+/* =========================================================
+   2. Layout（全体レイアウト）
+   ========================================================= */
+
+.gridObserver {
+    display: none;
+}
+
+
+/* =========================================================
+   3. Icons（アイコン）
+   ========================================================= */
+
+/* 不要アイコンの非表示 */
+.ui-icon-person:not(.current-user),
+.ui-icon-link,
+#MainForm .nav-site.to-parent span.ui-icon:not(.ui-icon-triangle-1-s),
+span.ui-button-icon.ui-icon,
+.current-user,
+#ReduceGuides .ui-icon-minusthick,
+#ExpandGuides .ui-icon-plusthick,
+#CopyDirectUrlToClipboard .ui-icon {
+    background-image: none !important;
+    display: none !important;
+}
+
+/* アイコン配置 */
+/* .material-symbols-outlined:not(.md-btn-icon):not([id^="DeleteChartIcon_"]) {
+    position: absolute;
+    top: 51%;
+    left: 5px !important;
+    transform: translateY(-50%);
+    font-size: 1.2rem !important;
+}
+*/
+
+.material-symbols-outlined:not(.md-btn-icon) {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0.35rem;
+    font-size: 1.18rem;
+}
+
+.dialog .material-symbols-outlined:not(.md-btn-icon) {
+    font-size: 1.1rem;
+    left: 6px;
+}
+
+.display-material-icons {
+    left: 4px !important;
+    width: 20px;
+    text-align: center;
+    color: var(--icon-color);
+}
+
+.ui-multiselect-open .ui-icon {
+    right: 3px;
+}
+
+
+/* =========================================================
+   4. Buttons（ボタン）
+   ========================================================= */
+
+.ui-button {
+    position: relative;
+    padding: 0.3rem 0.4rem 0.35rem 1.7rem !important;
+    border-radius: var(--radius-small);
+    border: 1px solid transparent !important;
+    font-size: 0.85rem !important;
+    font-weight: 550;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--elevation-3);
+}
+
+.ui-button:hover {
+    font-weight: 550 !important;
+}
+
+/* ダークボタン */
+button:has(.dark-material-icons),
+button:has(.dark-material-icons):focus {
+    background: var(--btn-back-bg) !important;
+    color: var(--on-primary) !important;
+}
+button:has(.dark-material-icons):hover,
+button:has(.dark-material-icons):active {
+    background: var(--btn-back-hover);
+    color: var(--surface-strong);
+}
+
+/* ライトボタン */
+button:has(.light-material-icons),
+button:has(.light-material-icons):focus {
+    background: var(--surface-base);
+    border: 1px solid var(--border-light) !important;
+    color: var(--text-emphasis);
+}
+button:has(.light-material-icons):hover,
+button:has(.light-material-icons):active {
+    background: var(--surface-soft);
+    border: 1px solid var(--border-light) !important;
+}
+
+/* 削除ボタン */
+button:has(.red-material-icons),
+button:has(.red-material-icons):focus {
+    background: var(--btn-delete-bg) !important;
+    color: var(--on-primary) !important;
+}
+button:has(.red-material-icons):hover,
+button:has(.red-material-icons):active {
+    background: var(--btn-delete-hover) !important;
+    color: var(--surface-strong) !important;
+}
+
+/* プライマリーボタン */
+button:has(.primary-material-icons),
+button:has(.primary-material-icons):focus {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+}
+button:has(.primary-material-icons):hover,
+button:has(.primary-material-icons):active {
+    background: var(--primary-hover) !important;
+    color: var(--surface-strong) !important;
+}
+
+
+/* =========================================================
+   5. Header（ヘッダー / ハンバーガー）
+   ========================================================= */
+
+#Header {
+    padding: 2px 12px;
+    background-color: var(--surface-soft) !important;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.9rem;
+    color: var(--text-main) !important;
+    box-shadow: 0 1px 2px var(--shadow-light);
+}
+
+/* ハンバーガー */
+#Header .hamburger-switch {
+    background-color: transparent !important;
+}
+
+#Header .hamburger-switch .hamburger-switch-line,
+#Header .hamburger-switch .hamburger-switch-line:before,
+#Header .hamburger-switch .hamburger-switch-line:after {
+    background: var(--text-emphasis);
+}
+
+#Header .hamburger-menubox .hamburger-cover {
+    background: var(--bg-hamburger-outer);
+}
+
+#Header .hamburger-menubox .hamburger-menuwrap {
+    background-color: var(--surface-soft) !important;
+    box-shadow: 2px 0 2px var(--shadow-medium);
+}
+
+#Header .hamburger-menubox .accordion a img.new {
+    background-color: var(--primary);
+}
+
+#Header .hamburger-menubox #NewMenuContainer span:has(img) {
+    margin: auto 0;
+    height: 32px;
+}
+
+#Header .hamburger-menubox #NewMenuContainer span:last-child {
+    font-size: 1rem;
+    margin-left: 0.3rem;
+}
+
+#Header .hamburger-menubox .menubox a {
+    color: var(--text-main);
+}
+
+#Header .hamburger-menubox .menubox .menulabel span:last-child {
+    font-size: 0.94rem;
+}
+
+#Header .hamburger-menubox .menubox .menulabel:hover,
+#Header .hamburger-menubox .accordion a:hover {
+    background-color: var(--bg-hover);
+}
+
+#Header .hamburger-menubox .menubox-sub {
+    background-color: var(--surface-strong);
+    font-size: 0.85rem;
+}
+
+#Header .hamburger-menubox .menubox-sub ul a {
+    padding: 10px 8px 10px 52px;
+}
+
+#Header .hamburger-menubox .menubox-sub ul a:hover {
+    background: var(--bg-hover);
+}
+
+
+/* =========================================================
+   6. Breadcrumb（パンくず）
+   ========================================================= */
+
+#CopyToClipboards {
+    top: initial;
+    z-index: 95;
+}
+
+#CopyToClipboards #CopyDirectUrlToClipboard {
+    background-color: transparent !important;
+    border: none !important;
+    height: 40px !important;
+}
+
+#Breadcrumb {
+    background-color: var(--surface-soft) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: none !important;
+}
+
+#Breadcrumb span.label {
+    font-size: 0.8rem;
+    font-weight: 550;
+    white-space: pre;
+    line-height: 1.4;
+    color: var(--icon-color);
+}
+
+#Breadcrumb li:first-child a {
+    padding-left: 42px !important;
+}
+
+#Breadcrumb li:not(:last-child) a:hover {
+    text-decoration-color: var(--icon-color);
+}
+
+#Breadcrumb li:last-child {
+    background-color: var(--primary) !important;
+}
+
+#Breadcrumb li:last-child a span,
+#Breadcrumb .item:last-child:is(.trashbox) span {
+    color: var(--on-primary);
+}
+
+/* セパレーター（三角形） */
+#Breadcrumb li:is(.trashbox) span:before,
+#Breadcrumb li .separator:before {
+    border-left: 15px solid var(--border-nav) !important;
+}
+
+#Breadcrumb li:is(.trashbox) span:after,
+#Breadcrumb li .separator:after {
+    border-left: 15px solid var(--surface-soft) !important;
+}
+
+#Breadcrumb li:last-child:is(.trashbox) span:after,
+#Breadcrumb li:last-child .separator:after {
+    border-left: 15px solid var(--primary) !important;
+}
+
+#Breadcrumb .item a {
+    padding: 0 1.5em !important;
+}
+
+
+/* =========================================================
+   7. Guide（ガイド）
+   ========================================================= */
+
+#Guide {
+    background-color: var(--bg-guide);
+}
+
+#Guide:not(:empty) {
+    padding: 0.8rem !important;
+    border-bottom: 1px solid var(--border-light) !important;
+}
+
+#Guide > div {
+    position: relative;
+    padding: 0 0.6rem !important;
+    background-color: transparent;
+    border: none !important;
+}
+
+#Guide .notes {
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   8. Messages / Alerts（メッセージ）
+   ========================================================= */
+
+#Message .body {
+    font-size: 0.9rem;
+    user-select: none;
+    pointer-events: auto;
+    color: var(--text-white);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    border: none;
+}
+
+#Message .alert-success {
+    background-color: var(--semantic-success) !important;
+    border: none;
+}
+
+#Message .alert-error {
+    background-color: var(--semantic-danger) !important;
+    border: none;
+}
+
+
+/* =========================================================
+   9. Inputs（textbox / select / checkbox / spinner）
+   ========================================================= */
+
+[class^="control-"]:not(.control-selectable):not(.control-attachments-upload):not(.control-attachments-items),
+textarea,
+select,
+input,
+.check-option .check-icon:not(:has(input:checked)),
+.ui-widget.ui-state-default.ui-multiselect {
+    background: var(--surface-base);
+	/* background-color: var(--surface-base); */
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-medium);
+    color: var(--text-main);
+}
+
+[class^="control-"]:not(.control-selectable):not(.control-attachments-upload):not(.control-attachments-items):focus,
+textarea:focus,
+select:focus,
+input:focus,
+.check-option .check-icon:not(:has(input:checked)):focus,
+.ui-widget.ui-state-default.ui-multiselect:focus {
+    border: 1px solid var(--primary-border) !important;
+    background-color: var(--surface-base) !important;
+    color: var(--text-main) !important;
+}
+
+[class^="control-"]:not(#SitePackagesSelectable) {
+    padding: 4px 4px 4px 8px;
+    font-size: 0.85rem !important;
+}
+
+/* セレクトボックス */
+.select-field:not(:has(div.ui-icon-person)) .control-dropdown {
+    padding: 3px 4px 4px 5px !important;
+}
+
+/* チェックボックス */
+.check-option .check-icon:before {
+    color: var(--surface-base) !important;
+}
+
+.check-option .check-icon:has(input:checked) {
+    background-color: var(--primary);
+    border: 1px solid var(--border-strong);
+}
+
+/* タブ */
+.ui-tabs .ui-tabs-panel {
+    padding: 1.2rem 2.8rem;
+}
+
+/* スピナー */
+.spinner-field .ui-spinner .ui-button {
+    position: absolute !important;
+    background-color: var(--surface-base);
+    border-left: 1px solid var(--border-light);
+}
+
+.spinner-field:has(.with-unit) .unit {
+    padding-left: 5px;
+}
+
+/* 日付アイコン */
+.current-date {
+    right: 2%;
+}
+
+.current-date .material-symbols-sharp {
+    color: var(--icon-color) !important;
+}
+
+
+/* =========================================================
+   10. Dialog（UIダイアログ）
+   ========================================================= */
+
+.ui-widget-overlay {
+    background: var(--primary-overlay);
+    opacity: 0.55;
+}
+
+.ui-dialog {
+    border-radius: 10px;
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.08),
+        0 3px 6px rgba(0, 0, 0, 0.04);
+}
+
+.ui-dialog-title {
+    font-family: 游ゴシック体, YuGothic, 游ゴシック Medium, Yu Gothic Medium, 游ゴシック, Yu Gothic, sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: 0.85rem;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    background: var(--bg-dialog-header);
+    border: 1px solid var(--border-normal);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    color: var(--text-main);
+    height: 42px !important;
+    margin: 0;
+    padding: 0.6rem 1.1rem;
+}
+
+.ui-dialog .ui-dialog-content {
+    background: var(--surface-strong);
+    border: 1px solid var(--border-normal);
+    border-radius: 0 0 10px 10px;
+    margin: 0;
+    padding: 15px 24px !important;
+}
+
+.ui-dialog .command-center button {
+    font-size: 0.9rem;
+}
+
+.ui-dialog .field-label {
+    padding: 5px 12px 7px 7px;
+}
+
+
+/* =========================================================
+   11. Dialog（細部）
+   ========================================================= */
+
+.dialog {
+    color: var(--text-main);
+}
+
+.dialog .field-control .check-text {
+    margin-left: 5px !important;
+}
+
+.dialog .field-wide .container-normal:has(.check-option) {
+    margin: 0;
+    place-self: center;
+}
+
+.dialog .command-center:last-of-type {
+    margin: 16px 0 2px 0;
+    gap: 14px;
+}
+
+.dialog .command-left button,
+.dialog .command-right button {
+    padding: 4px 8px 5px 3px !important;
+    font-size: 0.8rem;
+}
+
+#DropDownSearchDialogBody .material-symbols-outlined:not(.md-btn-icon) {
+    font-size: 1.1rem;
+    top: 54%;
+    left: 4%;
+}
+
+#ExportSitePackageDialog .field-control .material-symbols-outlined:not(.md-btn-icon) {
+    left: 2%;
+}
+
+#ExportSitePackageDialog #SitePackageForm .command-center {
+    margin: 0 0 30px;
+}
+
+#ExportSitePackageDialog #SitePackageForm .field-wide {
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   12. Multiselect（複数選択 UI）
+   ========================================================= */
+
+.ui-widget.ui-multiselect-menu {
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+    font-size: 0.93rem;
+    padding: 5px;
+}
+
+.ui-widget-content a,
+.ui-widget-content .check-text {
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.ui-multiselect-header {
+    background: var(--bg-main-dark);
+    border: 1px solid var(--border-strong);
+}
+
+.ui-multiselect-checkboxes .ui-state-hover {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+}
+
+.ui-multiselect-checkboxes li label span {
+    padding-left: 5px;
+    vertical-align: text-top;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   13. Selectable（リスト選択 UI）
+   ========================================================= */
+
+.wrapper {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    scrollbar-color: var(--border-strong) var(--surface-base) !important;
+}
+
+.ui-selectable .ui-selectee {
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+}
+
+.control-selectable {
+    padding: 5px 10px 5px 5px !important;
+}
+
+.control-selectable li {
+    padding: 1px 7px 3px;
+    margin: 4px 3px;
+    border-radius: var(--radius-small);
+    width: auto;
+}
+
+.ui-selectable .ui-selectee:hover {
+    box-shadow: 0 1px 4px var(--shadow-strong);
+}
+
+.ui-selectable .ui-selectee.ui-selecting,
+.ui-selectable .ui-selectee.ui-selected {
+    background: var(--primary);
+    color: var(--surface-base);
+}
+
+
+/* =========================================================
+   14. Fieldset / Markdown
+   ========================================================= */
+
+.fieldset > .legend {
+    background-color: var(--bg-main-dark);
+    border: 1px solid var(--border-normal);
+    color: var(--text-emphasis);
+}
+
+.fieldset.enclosed,
+.fieldset.enclosed-half,
+.fieldset.enclosed-thin {
+    background: var(--bg-main);
+}
+
+.fieldset.enclosed:has(.legend),
+.fieldset.enclosed-half:has(.legend),
+.fieldset.enclosed-thin:has(.legend) {
+    border: 1px solid var(--border-normal);
+    box-shadow: 0 0 4px var(--shadow-strong);
+}
+
+/* Markdown */
+markdown-field .md-viewer:not(.control-text) {
+    background-color: var(--surface-base) !important;
+}
+
+markdown-field:not(.is-comment) .md-viewer {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    padding: 8px 32px 8px 8px;
+}
+
+markdown-field .bottom-tools {
+    margin-top: 0.3rem;
+}
+
+markdown-field .md-btn-icon {
+    color: var(--icon-color);
+}
+
+markdown-field .md-btn.is-editor {
+    right: 15px;
+}
+
+markdown-field.is-comment .md-viewer {
+    border: none !important;
+}
+
+
+/* =========================================================
+   15. File Upload（ファイルアップロード UI）
+   ========================================================= */
+
+.file-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 32px;
+    width: 100%;
+    z-index: 500;
+}
+
+.file-button {
+    display: flex;
+    align-items: center;
+    background: var(--primary);
+    color: var(--surface-base) !important;
+    padding: 6px 15px 7px;
+    border-radius: var(--radius-small);
+    z-index: 999;
+    font-weight: 500;
+    cursor: pointer !important;
+    user-select: none;
+    font-size: 0.85rem;
+}
+
+.file-button:hover {
+    background: var(--primary-hover);
+}
+
+.file-name {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    z-index: 500;
+    user-select: none;
+}
+
+#Import,
+#ImportUserTemplate_Import {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    opacity: 0;
+}
+
+
+/* =========================================================
+   10. Dialog（UIダイアログ）
+   ========================================================= */
+
+.ui-widget-overlay {
+    background: var(--primary-overlay);
+    opacity: 0.55;
+}
+
+.ui-dialog {
+    border-radius: 10px;
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.08),
+        0 3px 6px rgba(0, 0, 0, 0.04);
+}
+
+.ui-dialog-title {
+    font-family: 游ゴシック体, YuGothic, 游ゴシック Medium, Yu Gothic Medium, 游ゴシック, Yu Gothic, sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+    font-size: 0.85rem;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    background: var(--bg-dialog-header);
+    border: 1px solid var(--border-normal);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    color: var(--text-main);
+    height: 42px !important;
+    margin: 0;
+    padding: 0.6rem 1.1rem;
+}
+
+.ui-dialog .ui-dialog-content {
+    background: var(--surface-strong);
+    border: 1px solid var(--border-normal);
+    border-radius: 0 0 10px 10px;
+    margin: 0;
+    padding: 15px 24px !important;
+}
+
+.ui-dialog .command-center button {
+    font-size: 0.9rem;
+}
+
+.ui-dialog .field-label {
+    padding: 5px 12px 7px 7px;
+}
+
+
+/* =========================================================
+   11. Dialog（細部）
+   ========================================================= */
+
+.dialog {
+    color: var(--text-main);
+}
+
+.dialog .field-control .check-text {
+    margin-left: 5px !important;
+}
+
+.dialog .field-wide .container-normal:has(.check-option) {
+    margin: 0;
+    place-self: center;
+}
+
+.dialog .command-center:last-of-type {
+    margin: 16px 0 2px 0;
+    gap: 14px;
+}
+
+.dialog .command-left button,
+.dialog .command-right button {
+    padding: 4px 8px 5px 3px !important;
+    font-size: 0.8rem;
+}
+
+#DropDownSearchDialogBody .material-symbols-outlined:not(.md-btn-icon) {
+    font-size: 1.1rem;
+    top: 54%;
+    left: 4%;
+}
+
+#ExportSitePackageDialog .field-control .material-symbols-outlined:not(.md-btn-icon) {
+    left: 2%;
+}
+
+#ExportSitePackageDialog #SitePackageForm .command-center {
+    margin: 0 0 30px;
+}
+
+#ExportSitePackageDialog #SitePackageForm .field-wide {
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   12. Multiselect（複数選択 UI）
+   ========================================================= */
+
+.ui-widget.ui-multiselect-menu {
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+    font-size: 0.93rem;
+    padding: 5px;
+}
+
+.ui-widget-content a,
+.ui-widget-content .check-text {
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.ui-multiselect-header {
+    background: var(--bg-main-dark);
+    border: 1px solid var(--border-strong);
+}
+
+.ui-multiselect-checkboxes .ui-state-hover {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+}
+
+.ui-multiselect-checkboxes li label span {
+    padding-left: 5px;
+    vertical-align: text-top;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   13. Selectable（リスト選択 UI）
+   ========================================================= */
+
+.wrapper {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    scrollbar-color: var(--border-strong) var(--surface-base) !important;
+}
+
+.ui-selectable .ui-selectee {
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+}
+
+.control-selectable {
+    padding: 5px 10px 5px 5px !important;
+}
+
+.control-selectable li {
+    padding: 1px 7px 3px;
+    margin: 4px 3px;
+    border-radius: var(--radius-small);
+    width: auto;
+}
+
+.ui-selectable .ui-selectee:hover {
+    box-shadow: 0 1px 4px var(--shadow-strong);
+}
+
+.ui-selectable .ui-selectee.ui-selecting,
+.ui-selectable .ui-selectee.ui-selected {
+    background: var(--primary);
+    color: var(--surface-base);
+}
+
+
+/* =========================================================
+   14. Fieldset / Markdown
+   ========================================================= */
+
+.fieldset > .legend {
+    background-color: var(--bg-main-dark);
+    border: 1px solid var(--border-normal);
+    color: var(--text-emphasis);
+}
+
+.fieldset.enclosed,
+.fieldset.enclosed-half,
+.fieldset.enclosed-thin {
+    background: var(--bg-main);
+}
+
+.fieldset.enclosed:has(.legend),
+.fieldset.enclosed-half:has(.legend),
+.fieldset.enclosed-thin:has(.legend) {
+    border: 1px solid var(--border-normal);
+    box-shadow: 0 0 4px var(--shadow-strong);
+}
+
+/* Markdown */
+markdown-field .md-viewer:not(.control-text) {
+    background-color: var(--surface-base) !important;
+}
+
+markdown-field:not(.is-comment) .md-viewer {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    padding: 8px 32px 8px 8px;
+}
+
+
+/* =========================================================
+   15. File Upload（ファイルアップロード UI）
+   ========================================================= */
+
+.file-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 32px;
+    width: 100%;
+    z-index: 500;
+}
+
+.file-button {
+    display: flex;
+    align-items: center;
+    background: var(--primary);
+    color: var(--surface-base) !important;
+    padding: 6px 15px 7px;
+    border-radius: var(--radius-small);
+    z-index: 999;
+    font-weight: 500;
+    cursor: pointer !important;
+    user-select: none;
+    font-size: 0.85rem;
+}
+
+.file-button:hover {
+    background: var(--primary-hover);
+}
+
+.file-name {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    z-index: 500;
+    user-select: none;
+}
+
+#Import,
+#ImportUserTemplate_Import {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    opacity: 0;
+}
+
+
+/* =========================================================
+   16. Calendar（flatpickr）
+   ========================================================= */
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year,
+span.flatpickr-weekday {
+    color: var(--on-primary);
+    background: transparent !important;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: var(--on-primary) !important;
+    fill: var(--on-primary) !important;
+    line-height: 1.4;
+}
+
+.flatpickr-day.selected {
+    color: var(--on-primary);
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day.selected:hover,
+.flatpickr-day.selected:focus {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-weekdays {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day {
+    color: var(--text-main);
+}
+
+.flatpickr-day.today {
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.today:hover,
+.flatpickr-day.today:focus {
+    background: var(--cal-other-bg);
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.notAllowed,
+.flatpickr-day.notAllowed.prevMonthDay,
+.flatpickr-day.notAllowed.nextMonthDay {
+    color: var(--text-other-month);
+}
+
+
+/* =========================================================
+   17. Footer（フッターコマンド）
+   ========================================================= */
+
+#MainCommandsContainer {
+    background-color: var(--bg-footer) !important;
+}
+
+
+/* =========================================================
+   18. Readonly / textarea
+   ========================================================= */
+
+.container-normal:has(span[data-readonly="1"]) {
+    padding: 0.3rem 0.55rem !important;
+    background: var(--readonly-bg) !important;
+    color: var(--readonly-value) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius-medium) !important;
+    pointer-events: none;
+    user-select: text;
+}
+
+.container-normal span[data-readonly="1"] {
+    background: transparent !important;
+    border: none !important;
+    min-height: fit-content;
+    height: fit-content;
+    line-height: 1.4;
+}
+
+.container-normal span[data-readonly="1"]:not(:empty) {
+    padding: 0 !important;
+}
+
+.check-option .check-icon:has(input:disabled):has(input:checked) {
+    background-color: var(--text-disabled);
+}
+
+textarea {
+    resize: none !important;
+}
+
+label[for="Import"] {
+    cursor: default;
+}
+
+label.error {
+    font-size: 0.75rem;
+}
+
+#AnnouncementModule div div {
+    padding: 0.5rem 0.8rem !important;
+}
+
+/* Markdown */
+markdown-field .md-viewer {
+    color: var(--text-main);
+    line-height: 1.55;
+    letter-spacing: 0.2px;
+}
+
+markdown-field .notes {
+    padding: 2px 0;
+}
+
+/* メニュー */
+ul.ui-widget-content {
+    background: var(--surface-base);
+    border: 1px solid var(--border-strong) !important;
+    border-top: none;
+    color: var(--text-emphasis) !important;
+}
+
+.ui-menu-item-wrapper:hover {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+}
+
+.menu-sort .ui-menu-item {
+    border-top: 1px solid var(--border-strong);
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.user > span {
+    font-weight: normal;
+}
+
+
+
+/* =========================================================
+   21. Crosstab / Kanban（クロス集計・カンバン）
+   ========================================================= */
+
+#Crosstab,
+#ViewModeContainer:has(#Kamban) .kamban-container,
+#ViewModeContainer:has(#Kamban),
+.grid-stack-item .kambanbody,
+.grid-stack-item .kambanbody .kamban-container {
+    padding: 0;
+    background-color: var(--surface-base);
+}
+
+#Crosstab .crosstab-row th,
+#ViewModeContainer:has(#Kamban) .kamban-row th,
+.grid-stack-item .kambanbody .kamban-row th {
+    border-top: 1px solid var(--border-light);
+}
+
+#ViewModeContainer:has(#Kamban) .kamban-item,
+.grid-stack-item .kambanbody .kamban-item {
+    color: var(--text-main);
+    background-color: var(--primary-surface) !important;
+    border: solid 1px var(--primary) !important;
+    font-size: 0.8rem;
+    padding: 0.25rem 1.4rem 0.25rem 0.6rem;
+}
+
+#ViewModeContainer:has(#Kamban) .kamban-item:hover,
+.grid-stack-item .kambanbody .kamban-item:hover {
+    background-color: var(--primary-surface-hover) !important;
+    border: solid 1px var(--primary) !important;
+}
+
+#ViewModeContainer:has(#Kamban) .kamban-row td,
+.grid-stack-item .kambanbody .kamban-row td {
+    border-top: 1px solid var(--border-light) !important;
+}
