@@ -92,41 +92,9 @@
 }
 
 
-.ui-dialog.ui-multiselect-menu {
-    background-color: var(--surface-base);
-    border: 1px solid var(--border-strong);
-    color: var(--text-main);
-    font-size: 0.93rem;
-    padding: 5px;
-}
-
-.ui-dialog-content a,
-.ui-dialog-content .check-text {
-    color: var(--text-main);
-    font-size: 0.85rem;
-}
-
 .ui-dialog-content .command-left .input-field {
     width: fit-content;
 }
-
-.ui-multiselect-header {
-    background: var(--bg-main-dark);
-    border: 1px solid var(--border-strong);
-}
-
-.ui-multiselect-checkboxes .ui-state-hover {
-    background: var(--bg-hover);
-    border: 1px solid var(--border-strong);
-    color: var(--text-main);
-}
-
-.ui-multiselect-checkboxes li label span {
-    padding-left: 5px;
-    vertical-align: text-top;
-    line-height: 1.45;
-}
-
 
 /* =========================================================
    13. Selectable（リスト選択 UI）
@@ -136,6 +104,12 @@
     background-color: var(--surface-base) !important;
     border: 1px solid var(--border-strong) !important;
     scrollbar-color: var(--border-strong) var(--surface-base) !important;
+}
+
+.ui-selectable .ui-selectee {
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
 }
 
 .ui-selectable .ui-selectee:hover {
@@ -262,107 +236,11 @@ markdown-field.is-comment .md-viewer {
 }
 
 
-/* =========================================================
-   10. Dialog（UIダイアログ）
-   ========================================================= */
 
 .ui-dialog-overlay {
     background: var(--primary-overlay);
     opacity: 0.55;
 }
-
-.ui-dialog {
-    border-radius: 10px;
-    box-shadow:
-        0 10px 28px rgba(0, 0, 0, 0.08),
-        0 3px 6px rgba(0, 0, 0, 0.04);
-}
-
-.ui-dialog-title {
-    font-family: 游ゴシック体, YuGothic, 游ゴシック Medium, Yu Gothic Medium, 游ゴシック, Yu Gothic, sans-serif;
-    font-weight: 600;
-    line-height: 1.5;
-    font-size: 0.85rem;
-}
-
-.ui-dialog .ui-dialog-titlebar {
-    background: var(--bg-dialog-header);
-    border: 1px solid var(--border-normal);
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    color: var(--text-main);
-    height: 42px !important;
-    margin: 0;
-    padding: 0.6rem 1.1rem;
-}
-
-.ui-dialog .ui-dialog-content {
-    background: var(--surface-strong);
-    border: 1px solid var(--border-normal);
-    border-radius: 0 0 10px 10px;
-    margin: 0;
-    padding: 15px 24px !important;
-}
-
-.ui-dialog .command-center button {
-    font-size: 0.9rem;
-}
-
-.ui-dialog .field-label {
-    padding: 5px 12px 7px 7px;
-}
-
-
-/* =========================================================
-   11. Dialog（細部）
-   ========================================================= */
-
-.dialog {
-    color: var(--text-main);
-}
-
-.dialog .field-control .check-text {
-    margin-left: 5px !important;
-}
-
-.dialog .field-wide .container-normal:has(.check-option) {
-    margin: 0;
-    place-self: center;
-}
-
-.dialog .command-center:last-of-type {
-    margin: 16px 0 2px 0;
-    gap: 14px;
-}
-
-.dialog .command-left button,
-.dialog .command-right button {
-    padding: 4px 8px 5px 3px !important;
-    font-size: 0.8rem;
-}
-
-#DropDownSearchDialogBody .material-symbols-outlined:not(.md-btn-icon) {
-    font-size: 1.1rem;
-    top: 54%;
-    left: 4%;
-}
-
-#ExportSitePackageDialog .field-control .material-symbols-outlined:not(.md-btn-icon) {
-    left: 2%;
-}
-
-#ExportSitePackageDialog #SitePackageForm .command-center {
-    margin: 0 0 30px;
-}
-
-#ExportSitePackageDialog #SitePackageForm .field-wide {
-    margin-bottom: 5px;
-}
-
-
-/* =========================================================
-   12. Multiselect（複数選択 UI）
-   ========================================================= */
 
 .ui-dialog.ui-multiselect-menu {
     background-color: var(--surface-base);
@@ -393,17 +271,6 @@ markdown-field.is-comment .md-viewer {
     padding-left: 5px;
     vertical-align: text-top;
     line-height: 1.45;
-}
-
-
-/* =========================================================
-   13. Selectable（リスト選択 UI）
-   ========================================================= */
-
-.ui-selectable .ui-selectee {
-    background-color: var(--surface-strong);
-    border: 1px solid var(--border-strong);
-    color: var(--text-main);
 }
 
 label[for="Import"] {
