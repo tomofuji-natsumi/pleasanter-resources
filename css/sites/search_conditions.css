@@ -36,13 +36,6 @@
     font-size: 0.82rem !important;
 }
 
-#ReduceViewFilters .ui-icon,
-#ExpandViewFilters .ui-icon,
-#ReduceAggregations .ui-icon,
-#ExpandAggregations .ui-icon {
-    background-image: none;
-}
-
 
 /* =========================================================
    2. ViewFilters / Aggregations
