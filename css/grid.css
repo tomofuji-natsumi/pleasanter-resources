@@ -69,9 +69,7 @@ tr,
 
 /* 6. チェックボックス列 */
 .grid td:first-child {
-    display: table-cell !important;
-    vertical-align: middle !important;
-    padding: 0 8px !important;
+    padding: 0 !important;
 }
 .grid td:first-child .check-option,
 .grid td .check-option .check-icon {
@@ -80,11 +78,6 @@ tr,
     justify-content: center;
     margin: 0 !important;
     padding: 0 !important;
-}
-.grid td .check-option .check-icon input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin: 0;
 }
 
 /* 7. Markdown */
