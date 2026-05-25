@@ -292,6 +292,7 @@ button:has(.primary-material-icons):active {
 #Breadcrumb li:last-child a span,
 #Breadcrumb .item:last-child:is(.trashbox) span {
     color: var(--on-primary);
+	font-weight: 550;
 }
 
 /* セパレーター（三角形） */
