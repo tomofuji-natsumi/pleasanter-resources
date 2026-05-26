@@ -51,6 +51,7 @@ button,
 #CopyToClipboards .ui-icon-link,
 #ReduceGuides .ui-icon-minusthick,
 #ExpandGuides .ui-icon-plusthick,
+.comment-header .ui-icon-person,
 .button-icon .ui-icon {
     display: none !important;
 }
@@ -58,9 +59,9 @@ button,
 .material-symbols-outlined:not(.md-btn-icon) {
     position: absolute;
     transform: translateY(-50%);
-    top: 50%;
+    top: 52%;
     left: 0.35rem;
-    font-size: 1.18rem;
+    font-size: 1.16rem;
 }
 
 .display-material-icons {
