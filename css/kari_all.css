@@ -62,6 +62,7 @@ button,
     top: 52%;
     left: 0.35rem;
     font-size: 1.16rem;
+	user-select: none;
 }
 
 .display-material-icons {
@@ -454,8 +455,13 @@ ul.ui-widget-content {
     text-shadow: 0 1px 2px var(--shadow-strong);
 }
 
-#Guide>div>#ReduceGuides {
-	padding-right: 0px;
+#ReduceGuides {
+	padding-right: 0px !important;
+    user-select: none;
+}
+
+img {
+	user-select: none;
 }
 
 
