@@ -107,7 +107,6 @@ textarea {
 rt-editor {
     color: var(--text-main);
     background-color: var(--surface-base);
-    border: 1px solid var(--border-strong);
 }
 
 rt-editor .se-toolbar {
@@ -134,7 +133,8 @@ rt-editor button {
 
 rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
     flex: 1;
-    max-width: max-content;
+    max-width: fit-content;
+    min-width: max-content;
     background-color: var(--surface-base) !important;
     border: 1px solid var(--border-normal);
 }
