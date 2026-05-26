@@ -2,7 +2,6 @@
    8. Inputs（textbox / select / checkbox / spinner）
    ========================================================= */
 
-[class^="control-"]:not(.control-selectable):not(.control-attachments-upload):not(.control-attachments-items),
 textarea,
 select,
 input,
@@ -14,7 +13,6 @@ input,
     color: var(--text-main);
 }
 
-[class^="control-"]:not(.control-selectable):not(.control-attachments-upload):not(.control-attachments-items):focus,
 textarea:focus,
 select:focus,
 input:focus,
