@@ -13,16 +13,20 @@
     box-shadow: 0 2px 1px var(--shadow-light);
 }
 
+#FieldSetGeneral {
+    padding: 1.7rem 2.4rem 0.5rem 2.4rem;
+}
+
 #FieldSetGeneral .field-label {
-    line-height: 1.6;
-    padding: 0 0.75rem 0 0;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 0 0.8em 0 0;
     margin-bottom: 0;
 }
 
 #FieldSetGeneral .field-label label {
-    font-size: 0.85rem;
     vertical-align: sub;
-    color: var(--text-main);
 }
 
 #FieldSetGeneral .check-option {
