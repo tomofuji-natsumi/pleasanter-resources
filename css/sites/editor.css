@@ -99,7 +99,7 @@ textarea {
 
 #Editor #EditorComments #Comments {
     width: 100%;
-    min-width: 80px;
+    min-width: fit-content;
     background: var(--surface-base) !important;
     border: 1px solid var(--border-strong);
 }
@@ -141,6 +141,7 @@ rt-editor .se-btn:enabled:hover {
 
 rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
     flex: 1;
+	width: fit-content;
     max-width: fit-content;
     min-width: max-content;
     background-color: var(--surface-base) !important;
@@ -444,25 +445,6 @@ rt-editor button.se-btn-select > svg {
     margin-top: 0px;
 }
 
-@media screen and (max-width: 1024px) and (min-width: 0) {
-    body:has(#Editor) #TitleContainer #HeaderTitle {
-        color: var(--text-main);
-    }
-
-	.display-material-icons {
-		color: var(--on-primary);
-	}
-
-	.field-normal,
-	.field-wide,
-	.field-auto,
-	.field-textarea,
-	.field-markdown {
-		min-height: auto;
-	}
-}
-
-
 /* =========================================================
    14. 変更履歴の一覧
    ========================================================= */
@@ -501,4 +483,31 @@ rt-editor button.se-btn-select > svg {
    #Notes > .readonly {
       display: none !important;
    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 0) {
+    body:has(#Editor) #TitleContainer #HeaderTitle {
+        color: var(--text-main);
+    }
+
+	.display-material-icons {
+		color: var(--on-primary);
+	}
+
+	.field-normal,
+	.field-wide,
+	.field-auto,
+	.field-textarea,
+	.field-markdown {
+		min-height: auto;
+	}
+
+	#Editor #EditorComments {
+		background: var(--bg-editor-sub);
+	}
+
+	#Editor #EditorComments #CommentField {
+		background-color: transparent;
+		border-bottom: none;
+	}
 }
