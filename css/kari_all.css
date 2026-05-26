@@ -47,15 +47,11 @@ button,
    ========================================================= */
 
 /* 不要アイコンの非表示 */
-.ui-icon-person:not(.current-user),
-.ui-icon-link,
-#MainForm .nav-site.to-parent span.ui-icon:not(.ui-icon-triangle-1-s),
-span.ui-button-icon.ui-icon,
-.current-user,
+#Header .ui-icon-person,
+#CopyToClipboards .ui-icon-link,
 #ReduceGuides .ui-icon-minusthick,
 #ExpandGuides .ui-icon-plusthick,
-#CopyDirectUrlToClipboard .ui-icon {
-    background-image: none !important;
+.ui-button .ui-icon {
     display: none !important;
 }
 
