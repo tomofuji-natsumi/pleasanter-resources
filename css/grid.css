@@ -93,7 +93,7 @@ tr,
     margin: 0 !important;
 }
 .grid td *:not(input[type="checkbox"]) {
-    display: inline-block;
+    /* display: inline-block; */
     line-height: 1.5;
     white-space: pre-line;
 }
@@ -214,4 +214,9 @@ p.status-rejected {
 p.status-rejected:hover {
     background: var(--status-rejected-bg-hover) !important;
     border-color: var(--status-rejected-border-hover) !important;
+}
+
+/* 変更履歴一覧 */
+.grid:has(tbody:not(:empty)) {
+	border-bottom: none;
 }
