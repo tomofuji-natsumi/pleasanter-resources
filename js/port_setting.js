@@ -56,8 +56,8 @@ function setupImportInput(input) {
 // #Import が出てきた瞬間に 1 回だけ実行
 const importWatcher = new MutationObserver(() => {
 
-    $("#Encoding").val("UTF-8").prop("disabled", true);
-    $("#ExportEncoding").val("UTF-8").prop("disabled", true);
+    $("#Encoding").val("UTF-8").prop("readonly", true);
+    $("#ExportEncoding").val("UTF-8").prop("readonly", true);
 
     if ($('#ImportUserTemplate_Import').length) {
         setupImportInput($('#ImportUserTemplate_Import'));
