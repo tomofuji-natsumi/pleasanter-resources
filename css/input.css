@@ -9,7 +9,6 @@ input,
 .check-option .check-icon:not(:has(input:checked)),
 .ui-widget.ui-state-default.ui-multiselect {
     background: var(--surface-base);
-	/* background-color: var(--surface-base); */
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-medium);
     color: var(--text-main);
@@ -37,13 +36,16 @@ input:focus,
 }
 
 /* チェックボックス */
+.check-option .check-icon {
+    border: 1px solid var(--border-light);
+}
+
 .check-option .check-icon:before {
     color: var(--surface-base) !important;
 }
 
 .check-option .check-icon:has(input:checked) {
     background-color: var(--primary);
-    border: 1px solid var(--border-strong);
 }
 
 /* タブ */
@@ -175,8 +177,7 @@ markdown-field .notes {
    Readonly / textarea
    ========================================================= */
 
-.container-normal:has(span[data-readonly="1"]),
-.select-field:has(disabled) {
+.container-normal:has(span[data-readonly="1"]) {
     padding: 0.3rem 0.55rem !important;
     background: var(--readonly-bg) !important;
     color: var(--readonly-value) !important;
@@ -186,8 +187,7 @@ markdown-field .notes {
     user-select: text;
 }
 
-.container-normal span[data-readonly="1"],
-.container-normal disabled {
+.container-normal span[data-readonly="1"] {
     background: transparent !important;
     border: none !important;
     min-height: fit-content;
