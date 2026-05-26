@@ -51,7 +51,7 @@ button,
 #CopyToClipboards .ui-icon-link,
 #ReduceGuides .ui-icon-minusthick,
 #ExpandGuides .ui-icon-plusthick,
-.ui-button .ui-icon {
+.button-icon .ui-icon {
     display: none !important;
 }
 
