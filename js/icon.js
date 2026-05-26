@@ -84,8 +84,10 @@ const redIconMap = {
 };
 
 const displayIconMap = {
+    "#ReduceGuides": "expand_more",
     "#ReduceAggregations": "expand_more",
     "#ReduceViewFilters": "expand_more",
+    "#ExpandGuides": "expand_more",
     "#ExpandAggregations": "chevron_right",
     "#ExpandViewFilters": "chevron_right",
     "#CopyDirectUrlToClipboard": "share",
