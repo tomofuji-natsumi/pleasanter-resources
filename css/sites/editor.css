@@ -104,53 +104,53 @@ textarea {
     border: 1px solid var(--border-strong);
 }
 
-.sun-editor {
+rt-editor {
     color: var(--text-main);
     background-color: var(--surface-base);
     border: 1px solid var(--border-strong);
 }
 
-.se-toolbar {
+rt-editor .se-toolbar {
     background-color: var(--bg-toolbar) !important;
     border-bottom: 1px solid var(--border-strong) !important;
     padding: 4px !important;
 }
 
-.sun-editor .se-btn {
-    width: 28px;
-    height: 28px;
-    color: var(--text-main);
+rt-editor .toggle:after {
+    background-color: var(--bg-toolbar) !important;
 }
 
-.sun-editor .toggle:after {
-    background-color: var(--primary) !important;
-}
-
-.sun-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
+rt-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
     color: var(--surface-base) !important;
-    font-size: 0.9rem;
 }
 
-.sun-editor .se-btn-tray {
+rt-editor .se-btn-tray {
     gap: 4px !important;
 }
 
-.se-btn-tray .se-btn-module {
+rt-editor .se-btn-tray .se-btn-module{
     flex: 1;
     max-width: max-content;
-    background-color: var(--surface-base);
+    background-color: var(--surface-base) !important;
     border: 1px solid var(--border-normal);
 }
 
-.sun-editor .se-tooltip .se-tooltip-inner {
+rt-editor .se-btn-list,
+rt-editor .se-btn,
+rt-editor button {
+	width: 2rem;
+    height: 2rem;
+}
+
+rt-editor .se-tooltip .se-tooltip-inner {
     width: 0;
 }
 
-.sun-editor .se-btn-select {
+rt-editor .se-btn-select {
     padding: 2px 6px 6px 6px;
 }
 
-.sun-editor button.se-btn-select > svg {
+rt-editor button.se-btn-select > svg {
     margin: 8px 0 3px 10px;
 }
 
