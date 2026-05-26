@@ -56,8 +56,17 @@ function setupImportInput(input) {
 // #Import が出てきた瞬間に 1 回だけ実行
 const importWatcher = new MutationObserver(() => {
 
-    $("#Encoding").val("UTF-8").prop("readonly", true);
-    $("#ExportEncoding").val("UTF-8").prop("readonly", true);
+    const enc = $("#Encoding");
+    if (enc.length) {
+        enc.val("UTF-8");
+        enc.prop("readonly", true);
+    }
+
+    const exp = $("#ExportEncoding");
+    if (exp.length) {
+        exp.val("UTF-8");
+        exp.prop("readonly", true);
+    }
 
     if ($('#ImportUserTemplate_Import').length) {
         setupImportInput($('#ImportUserTemplate_Import'));
