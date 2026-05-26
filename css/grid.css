@@ -215,12 +215,3 @@ p.status-rejected:hover {
     background: var(--status-rejected-bg-hover) !important;
     border-color: var(--status-rejected-border-hover) !important;
 }
-
-/* 変更履歴一覧 */
-.grid:has(tbody:not(:empty)) {
-	border-bottom: none;
-}
-
-.grid .comment.height-auto {
-	max-height: 100px !important;
-}
