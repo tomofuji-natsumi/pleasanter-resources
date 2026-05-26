@@ -146,7 +146,6 @@
 }
 
 
-
 /* =========================================================
    ファイルアップロード
    ========================================================= */
@@ -197,20 +196,14 @@
     opacity: 0;
 }
 
-
-
-.ui-dialog-overlay {
-    background: var(--primary-overlay);
-    opacity: 0.55;
+label[for="Import"] {
+    cursor: default;
 }
 
-.ui-dialog.ui-multiselect-menu {
-    background-color: var(--surface-base);
-    border: 1px solid var(--border-strong);
-    color: var(--text-main);
-    font-size: 0.93rem;
-    padding: 5px;
+label.error {
+    font-size: 0.75rem;
 }
+
 
 .ui-dialog-content a,
 .ui-dialog-content .check-text {
@@ -218,27 +211,40 @@
     font-size: 0.85rem;
 }
 
-.ui-multiselect-header {
+
+.ui-dialog-overlay {
+    background: var(--primary-overlay);
+    opacity: 0.55;
+}
+
+/* =========================================================
+   選択肢
+   ========================================================= */
+.ui-multiselect-menu {
+    font-size: 0.9rem;
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+    padding: 5px;
+}
+
+.ui-multiselect-menu .ui-multiselect-header {
     background: var(--bg-main-dark);
     border: 1px solid var(--border-strong);
 }
 
-.ui-multiselect-checkboxes .ui-state-hover {
+.ui-multiselect-menu .ui-multiselect-checkboxes .ui-state-hover {
     background: var(--bg-hover);
     border: 1px solid var(--border-strong);
     color: var(--text-main);
 }
 
-.ui-multiselect-checkboxes li label span {
+.ui-multiselect-menu .ui-multiselect-checkboxes li label {
+	padding: 0.3rem 0.3rem 0.3rem 1.3rem;
+}
+
+.ui-multiselect-menu .ui-multiselect-checkboxes li label span {
     padding-left: 5px;
     vertical-align: text-top;
-    line-height: 1.45;
-}
-
-label[for="Import"] {
-    cursor: default;
-}
-
-label.error {
-    font-size: 0.75rem;
+    line-height: 1.1;
 }
