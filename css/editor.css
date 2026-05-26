@@ -450,8 +450,22 @@ rt-editor button.se-btn-select > svg {
 
 #FieldSetHistories {
     .command-left {
-        margin: 0 0 15px;
+        margin: 0 0 0.85rem;
     }
+
+	.grid {
+		border-left: 1px solid var(--cal-border);
+	}
+
+	.grid .grid-row .comment,
+	.grid .grid-row .comment.focus-inform {
+		background: none;
+		border: none;
+	}
+
+	.grid .grid-row .comment.height-auto {
+		max-height: 100px;
+	}
 }
 
 /* =========================================================
