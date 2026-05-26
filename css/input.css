@@ -1,0 +1,206 @@
+/* =========================================================
+   8. Inputs（textbox / select / checkbox / spinner）
+   ========================================================= */
+
+[class^="control-"]:not(.control-selectable):not(.control-attachments-upload):not(.control-attachments-items),
+textarea,
+select,
+input,
+.check-option .check-icon:not(:has(input:checked)),
+.ui-widget.ui-state-default.ui-multiselect {
+    background: var(--surface-base);
+	/* background-color: var(--surface-base); */
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-medium);
+    color: var(--text-main);
+}
+
+[class^="control-"]:not(.control-selectable):not(.control-attachments-upload):not(.control-attachments-items):focus,
+textarea:focus,
+select:focus,
+input:focus,
+.check-option .check-icon:not(:has(input:checked)):focus,
+.ui-widget.ui-state-default.ui-multiselect:focus {
+    border: 1px solid var(--primary-border) !important;
+    background-color: var(--surface-base) !important;
+    color: var(--text-main) !important;
+}
+
+[class^="control-"]:not(#SitePackagesSelectable) {
+    padding: 4px 4px 4px 8px;
+    font-size: 0.85rem !important;
+}
+
+/* セレクトボックス */
+.select-field:not(:has(div.ui-icon-person)) .control-dropdown {
+    padding: 3px 4px 4px 5px !important;
+}
+
+/* チェックボックス */
+.check-option .check-icon:before {
+    color: var(--surface-base) !important;
+}
+
+.check-option .check-icon:has(input:checked) {
+    background-color: var(--primary);
+    border: 1px solid var(--border-strong);
+}
+
+/* タブ */
+.ui-tabs .ui-tabs-panel {
+    padding: 1.2rem 2.8rem;
+}
+
+/* スピナー */
+.spinner-field .ui-spinner .ui-button {
+    position: absolute !important;
+    background-color: var(--surface-base);
+    border-left: 1px solid var(--border-light);
+}
+
+.spinner-field:has(.with-unit) .unit {
+    padding-left: 5px;
+}
+
+/* 日付アイコン */
+.current-date {
+    right: 2%;
+}
+
+.current-date .material-symbols-sharp {
+    color: var(--icon-color) !important;
+}
+
+/* =========================================================
+   Calendar（flatpickr）
+   ========================================================= */
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year,
+span.flatpickr-weekday {
+    color: var(--on-primary);
+    background: transparent !important;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: var(--on-primary) !important;
+    fill: var(--on-primary) !important;
+    line-height: 1.4;
+}
+
+.flatpickr-day.selected {
+    color: var(--on-primary);
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day.selected:hover,
+.flatpickr-day.selected:focus {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-weekdays {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day {
+    color: var(--text-main);
+}
+
+.flatpickr-day.today {
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.today:hover,
+.flatpickr-day.today:focus {
+    background: var(--cal-other-bg);
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.notAllowed,
+.flatpickr-day.notAllowed.prevMonthDay,
+.flatpickr-day.notAllowed.nextMonthDay {
+    color: var(--text-other-month);
+}
+
+
+/* =========================================================
+   Markdown
+   ========================================================= */
+markdown-field .md-viewer:not(.control-text) {
+    background-color: var(--surface-base) !important;
+}
+
+markdown-field:not(.is-comment) .md-viewer {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    padding: 8px 32px 8px 8px;
+}
+
+markdown-field .bottom-tools {
+    margin-top: 0.3rem;
+}
+
+markdown-field .md-btn-icon {
+    color: var(--icon-color);
+}
+
+markdown-field .md-btn.is-editor {
+    right: 15px;
+}
+
+markdown-field.is-comment .md-viewer {
+    border: none !important;
+}
+
+markdown-field .md-viewer {
+    color: var(--text-main);
+    line-height: 1.55;
+    letter-spacing: 0.2px;
+}
+
+markdown-field .notes {
+    padding: 2px 0;
+}
+
+/* =========================================================
+   Readonly / textarea
+   ========================================================= */
+
+.container-normal:has(span[data-readonly="1"]) {
+    padding: 0.3rem 0.55rem !important;
+    background: var(--readonly-bg) !important;
+    color: var(--readonly-value) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius-medium) !important;
+    pointer-events: none;
+    user-select: text;
+}
+
+.container-normal span[data-readonly="1"] {
+    background: transparent !important;
+    border: none !important;
+    min-height: fit-content;
+    height: fit-content;
+    line-height: 1.4;
+}
+
+.container-normal span[data-readonly="1"]:not(:empty) {
+    padding: 0 !important;
+}
+
+.check-option .check-icon:has(input:disabled):has(input:checked) {
+    background-color: var(--text-disabled);
+}
+
+textarea {
+    resize: none !important;
+}
