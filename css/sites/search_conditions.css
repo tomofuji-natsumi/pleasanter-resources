@@ -30,6 +30,13 @@
     line-height: 28px;
 }
 
+#ViewFilters .ui-icon-folder-open,
+#ViewFilters .ui-icon-close,
+#Aggregations .ui-icon-folder-open,
+#Aggregations .ui-icon-close {
+	display: none;
+}
+
 #ViewFilters select, 
 #ViewFilters input[type="text"] {
     height: 30px !important;
@@ -53,20 +60,16 @@
 
 
 /* =========================================================
-   3. リセットボタン（フィルタ欄）
+   3. フィルタ
    ========================================================= */
 
+/* リセット */
 #ViewFilters_Reset {
     position: relative;
     margin: 0 0.5rem 0 0;
     height: 30px;
-    background: var(--surface-base);
-    background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-normal) !important;
-    border-radius: var(--radius-small);
-    font-weight: 500;
     color: var(--btn-reset-text) !important;
-    box-shadow: 0 1px var(--shadow-medium);
+    box-shadow: var(--elevation-2);
 	line-height: 0.2rem;
 }
 
@@ -162,16 +165,6 @@
 
 
 /* =========================================================
-   6. MainForm 背景色
-   ========================================================= */
-
-#MainForm {
-    background-color: var(--surface-base-soft);
-}
-
-
-
-/* =========================================================
    7. フィールド（ラベル・入力欄）
    ========================================================= */
 
@@ -197,31 +190,6 @@
     min-width: 0;
 }
 
-#ViewSelectorField .field-normal .control-dropdown {
-    width: auto;
-    min-width: 100px;
-    max-width: 200px;
-    padding: 2px 4px !important;
-    height: auto;
-    font-size: 0.83rem !important;
-}
-
-#Crosstab .field-auto-thin:first-child,
-#ViewModeContainer:has(#TimeSeriesBody) .field-auto-thin:first-child,
-#Kamban .field-auto-thin:first-child {
-    margin-left: 1.1rem;
-}
-
-#Crosstab .field-auto-thin,
-#ViewModeContainer:has(#TimeSeriesBody) .field-auto-thin,
-#Kamban .field-auto-thin {
-    padding: 0;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    margin-right: 1.3rem;
-    gap: 0.5rem;
-}
-
 .data.link:not([data-selector="#ViewFilters__Status"]) {
     background-color: var(--agg-item-bg);
     border: 1px solid var(--agg-item-border);
@@ -233,19 +201,6 @@
     border-color: var(--agg-item-border-hover);
 }
 
-#Guide>div>#ReduceGuides {
-	padding-right: 0px;
-}
-
-
-/* =========================================================
-   8. ViewModeContainer
-   ========================================================= */
-
-#ViewModeContainer:not(:has(#ImageLib)):not(:has(#AnalyBody)):not(:has(.grid)) {
-    padding: 0 !important;
-    background-color: var(--surface-base) !important;
-}
 
 
 /* =========================================================
@@ -318,12 +273,6 @@
     border-color: var(--status-rejected-border-hover);
 }
 
-#ViewFilters .ui-icon-folder-open,
-#ViewFilters .ui-icon-close,
-#Aggregations .ui-icon-folder-open,
-#Aggregations .ui-icon-close {
-	display: none;
-}
 
 /* =========================================================
    10. レスポンシブ
