@@ -74,6 +74,7 @@
 
 .ui-dialog .ui-dialog-content .field-label {
     font-size: 0.85rem;
+    padding: 0.4rem 0.7rem 0.4rem 0;
 }
 
 .ui-dialog .ui-dialog-content .command-left .input-field {
@@ -188,14 +189,6 @@
     user-select: none;
 }
 
-label[for="Import"] {
-    cursor: default;
-}
-
-label.error {
-    font-size: 0.75rem;
-}
-
 #Import,
 #ImportUserTemplate_Import {
     position: absolute;
@@ -225,14 +218,7 @@ label.error {
     font-size: 0.85rem;
 }
 
-/* =========================================================
-   選択肢
-   ========================================================= */
-.ui-multiselect-menu {
-    font-size: 0.85rem;
-}
-
-.ui-multiselect-menu .ui-multiselect-header {
+.ui-multiselect-header {
     background: var(--bg-main-dark);
     border: 1px solid var(--border-strong);
 }
@@ -243,12 +229,16 @@ label.error {
     color: var(--text-main);
 }
 
-.ui-multiselect-menu .ui-multiselect-checkboxes li label {
-	padding: 0.3rem 0.3rem 0.3rem 1.3rem;
-}
-
-.ui-multiselect-menu .ui-multiselect-checkboxes li label span {
+.ui-multiselect-checkboxes li label span {
     padding-left: 5px;
     vertical-align: text-top;
-    line-height: 1.1;
+    line-height: 1.45;
+}
+
+label[for="Import"] {
+    cursor: default;
+}
+
+label.error {
+    font-size: 0.75rem;
 }
