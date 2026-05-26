@@ -64,11 +64,6 @@ input:focus,
     border: 1px solid var(--border-strong);
 }
 
-/* タブ */
-.ui-tabs .ui-tabs-panel {
-    padding: 1.2rem 2.8rem;
-}
-
 /* スピナー */
 .spinner-field .ui-spinner .ui-button {
     position: absolute !important;
