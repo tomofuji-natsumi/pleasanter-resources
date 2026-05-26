@@ -127,8 +127,16 @@ rt-editor .se-btn-tray {
     gap: 4px !important;
 }
 
-rt-editor button {
-	color: var(--text-emphasis);
+rt-editor button:not([disabled="true"]) {
+	color: var(--text-main) !important;
+	font-weight: 450;
+}
+
+rt-editor .se-btn:enabled:active,
+rt-editor .se-btn:enabled:focus,
+rt-editor .se-btn:enabled:hover {
+	background-color: var(--surface-strong);
+	border: none;
 }
 
 rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
@@ -140,9 +148,9 @@ rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
 }
 
 rt-editor .se-btn-list,
-rt-editor .se-btn:not(.se-btn-select) {
-	width: max-content;
-	margin: 0 0.45rem !important;
+rt-editor .se-btn:not(.se-btn-select):not(.btn-editable-cmd) {
+	width: min-content;
+    padding: 0 0.4rem !important;
 }
 
 rt-editor .se-tooltip .se-tooltip-inner {
@@ -356,8 +364,8 @@ rt-editor button.se-btn-select > svg {
     padding: 25px 8px !important;
     color: var(--text-main);
     background: var(--surface-base);
-    border-color: var(--primary) !important;
-   border-radius: var(--radius-medium);
+    border-color: 2px dotted var(--primary);
+    border-radius: var(--radius-medium);
 }
 
 .control-attachments-upload:hover {
