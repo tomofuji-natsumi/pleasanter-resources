@@ -248,6 +248,10 @@
     font-weight: 550 !important;
 }
 
+#Guide>div>#ReduceGuides {
+	padding-right: 0px;
+}
+
 
 /* =========================================================
    8. ViewModeContainer
