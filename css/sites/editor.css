@@ -128,7 +128,11 @@ rt-editor .se-btn-tray {
     gap: 4px !important;
 }
 
-rt-editor .se-btn-tray .se-btn-module{
+rt-editor button {
+	color: var(--text-emphasis);
+}
+
+rt-editor .se-btn-tray .se-btn-module {
     flex: 1;
     max-width: max-content;
     background-color: var(--surface-base) !important;
@@ -136,10 +140,9 @@ rt-editor .se-btn-tray .se-btn-module{
 }
 
 rt-editor .se-btn-list,
-rt-editor .se-btn,
-rt-editor button {
-	width: 2rem;
-    height: 2rem;
+rt-editor .se-btn:not(.se-btn-select) {
+	width: 2rem !important;
+    height: 2rem !important;
 }
 
 rt-editor .se-tooltip .se-tooltip-inner {
