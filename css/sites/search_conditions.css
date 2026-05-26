@@ -1,7 +1,22 @@
 /* =========================================================
-   1. フィルタ / 集計 開閉ボタン（UI トグル）
+   0. 検索条件（フィルタ / 集計）
    ========================================================= */
 
+#ViewFilters,
+#Aggregations {
+    position: relative;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    padding: 0.8rem !important;
+    gap: 1.0rem 0.9rem;
+    background-color: var(--bg-filter) !important;
+    border-bottom: 1px solid var(--border-strong) !important;
+    box-shadow: var(--shadow-light);
+}
+
+/* =========================================================
+   1. 開閉トグル
+   ========================================================= */
 #ReduceViewFilters,
 #ExpandViewFilters,
 #ReduceAggregations,
@@ -38,27 +53,6 @@
 
 
 /* =========================================================
-   2. ViewFilters / Aggregations
-   ========================================================= */
-
-#ViewFilters,
-#Aggregations {
-    position: relative;
-    flex-shrink: 0 !important;
-    width: 100% !important;
-    padding: 0.8rem !important;
-    gap: 1.0rem 0.9rem;
-    background-color: var(--bg-filter) !important;
-    border-bottom: 1px solid var(--border-strong) !important;
-    box-shadow: var(--shadow-light);
-}
-
-#ViewFilters .field-label {
-    margin-right: 3px;
-}
-
-
-/* =========================================================
    3. リセットボタン（フィルタ欄）
    ========================================================= */
 
@@ -86,6 +80,7 @@
    ========================================================= */
 
 #ViewFilters {
+    font-size: 0.85rem !important;
     overflow: hidden;
     transition: height 0.28s ease, opacity 0.22s ease;
 }
@@ -156,12 +151,13 @@
 }
 
 #Aggregations .data:not(.link) {
-    padding: 0 0 1px 0;
+    padding: 0 0 2px 0;
     color: var(--text-emphasis);
 }
 
-.link span {
-    margin-right: 8px;
+#Aggregations .link .bold {
+    margin-right: 0.5rem;
+    font-weight: 550 !important;
 }
 
 
@@ -179,24 +175,17 @@
    7. フィールド（ラベル・入力欄）
    ========================================================= */
 
-.field-auto-thin > .field-label {
-    padding: 4px 7px 20px 0;
-}
 
 .field-auto-thin {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 0.5rem;
 }
 
 .field-auto-thin .field-label {
     flex: 0 0 auto;
     margin: 0;
     padding: 0;
-}
-
-#ViewFilters:not(.display-control) {
-    font-size: 0.85rem !important;
 }
 
 #ViewFilters .check-option {
@@ -242,10 +231,6 @@
 .data.link:not([data-selector="#ViewFilters__Status"]):hover {
     background-color: var(--agg-item-bg-hover);
     border-color: var(--agg-item-border-hover);
-}
-
-.link span.bold {
-    font-weight: 550 !important;
 }
 
 #Guide>div>#ReduceGuides {
