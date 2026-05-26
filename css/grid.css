@@ -94,7 +94,7 @@ tr,
 }
 .grid td *:not(input[type="checkbox"]) {
     /* display: inline-block; */
-    line-height: 1.5;
+    /* line-height: 1.5; */
     white-space: pre-line;
 }
 
@@ -120,7 +120,7 @@ th.sortable:hover {
 }
 
 /* 10. 補助UI */
-.grid-title-body.focus-inform {
+.focus-inform {
     background-color: transparent !important;
     border: none !important;
 }
