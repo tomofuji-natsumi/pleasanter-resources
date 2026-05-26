@@ -132,7 +132,7 @@ rt-editor button {
 	color: var(--text-emphasis);
 }
 
-rt-editor .se-btn-tray .se-btn-module {
+rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
     flex: 1;
     max-width: max-content;
     background-color: var(--surface-base) !important;
@@ -141,8 +141,8 @@ rt-editor .se-btn-tray .se-btn-module {
 
 rt-editor .se-btn-list,
 rt-editor .se-btn:not(.se-btn-select) {
-	width: 2rem !important;
-    height: 2rem !important;
+	width: max-content;
+	margin: 0 0.45rem !important;
 }
 
 rt-editor .se-tooltip .se-tooltip-inner {
@@ -150,7 +150,7 @@ rt-editor .se-tooltip .se-tooltip-inner {
 }
 
 rt-editor .se-btn-select {
-    padding: 2px 6px 6px 6px;
+	margin: 0 !important;
 }
 
 rt-editor button.se-btn-select > svg {
