@@ -46,6 +46,11 @@ input:focus,
     background-color: var(--primary);
 }
 
+.field-control .control-markdown {
+    min-width: 80px;
+    border: 1px solid var(--border-strong);
+}
+
 /* タブ */
 .ui-tabs .ui-tabs-panel {
     padding: 1.2rem 2.8rem;
