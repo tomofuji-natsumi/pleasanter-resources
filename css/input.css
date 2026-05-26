@@ -175,7 +175,7 @@ markdown-field .notes {
    Readonly / textarea
    ========================================================= */
 
-.container-normal:has(span[data-readonly="1"]) {
+.container-normal:has(span[data-readonly="1"], disabled) {
     padding: 0.3rem 0.55rem !important;
     background: var(--readonly-bg) !important;
     color: var(--readonly-value) !important;
@@ -185,7 +185,8 @@ markdown-field .notes {
     user-select: text;
 }
 
-.container-normal span[data-readonly="1"] {
+.container-normal span[data-readonly="1"],
+.container-normal disabled {
     background: transparent !important;
     border: none !important;
     min-height: fit-content;
