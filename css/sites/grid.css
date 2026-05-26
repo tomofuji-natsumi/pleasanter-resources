@@ -126,7 +126,7 @@ markdown-field .notes {
 }
 
 .grid td *:not(input[type="checkbox"]) {
-    display: inline-block;
+    /* display: inline-block; */
     align-items: center;
     line-height: 1.5;
     white-space: pre-line;
