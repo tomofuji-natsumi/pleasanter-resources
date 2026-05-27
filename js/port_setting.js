@@ -62,12 +62,6 @@ const importWatcher = new MutationObserver(() => {
         enc.prop("disabled", true);
     }
 
-    const exp = $("#ExportEncoding");
-    if (exp.length) {
-        exp.val("UTF-8");
-        exp.prop("disabled", true);
-    }
-
     if ($('#ImportUserTemplate_Import').length) {
         setupImportInput($('#ImportUserTemplate_Import'));
     }
@@ -79,6 +73,26 @@ const importWatcher = new MutationObserver(() => {
 });
 
 importWatcher.observe(document.body, {
+    childList: true,
+    subtree: true
+});
+
+
+const exportWatcher = new MutationObserver(mutations => {
+    for (const m of mutations) {
+        for (const node of m.addedNodes) {
+
+            if (node.nodeType === 1 && node.id === "ExportEncoding") {
+
+                const exp = $("#ExportEncoding");
+                exp.val("UTF-8");
+                exp.prop("disabled", true);
+            }
+        }
+    }
+});
+
+exportWatcher.observe(document.body, {
     childList: true,
     subtree: true
 });
