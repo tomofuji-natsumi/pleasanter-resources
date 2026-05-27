@@ -11,8 +11,10 @@
     width: 100%;
 }
 
-/* 2. 表見出し */
-.grid tr.ui-widget-header,
+/* =========================================================
+   表見出し
+   ========================================================= */
+.grid thead tr,
 tr.crosstab-row th {
     background: var(--primary);
     border: none;
@@ -29,19 +31,45 @@ tr.crosstab-row th {
         0 1px 2px var(--border-subtle) !important;
 }
 
-.grid th span {
+.grid th.sortable {
+    padding: 0.5rem 0.85rem !important;
+}
+
+.grid th.sortable:hover,
+.grid th.sortable.active {
+    background-color: var(--primary-hover) !important;
+    transition: background-color 0.2s ease-out;
+}
+
+.grid th.sortable span {
     font-weight: 550;
 }
 
-/* チェックボックス */
-.grid th:has(.control-checkbox) .check-option {
-    margin: 0 auto !important;
-    width: fit-content;
+/* =========================================================
+   データセル
+   ========================================================= */
+
+.grid tr > td {
+    background-color: var(--surface-base) !important;
+    border-left: none !important;
+    border-right: 1px solid var(--border-light) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: 1px 0 0 var(--surface-base) !important;
+    vertical-align: middle !important;
+    padding: 0.4rem 0.85rem !important;
+    color: var(--text-main) !important;
 }
 
-.grid th:has(.control-checkbox) .check-option .check-icon:has(input:checked) {
-    border: 1px solid var(--on-primary);
+.grid td {
+    vertical-align: middle !important;
+    padding: 0.4rem 0.85rem !important;
+    border-left: none !important;
+    color: var(--text-main) !important;
 }
+
+
+
+
 
 /* hover */
 .grid:not(.not-link) tr:hover {
@@ -58,22 +86,10 @@ tr.crosstab-row th {
     vertical-align: middle;
 }
 
-/* 5. セル共通 */
-.grid tr > td {
-    background-color: var(--surface-base) !important;
-    border-right: 1px solid var(--border-light) !important;
-    border-bottom: 1px solid var(--border-light) !important;
-    box-shadow: 1px 0 0 var(--surface-base) !important;
-}
+/* =========================================================
+   チェックボックス列
+   ========================================================= */
 
-.grid td {
-    vertical-align: middle !important;
-    padding: 0.4rem 0.85rem !important;
-    border-left: none !important;
-    color: var(--text-main) !important;
-}
-
-/* 6. チェックボックス列 */
 .grid td:first-child {
     padding: 0 !important;
 }
@@ -87,6 +103,20 @@ tr.crosstab-row th {
     padding: 0 !important;
 }
 
+.grid th:has(.control-checkbox) .check-option {
+    margin: 0 auto !important;
+    width: fit-content;
+}
+
+.grid th:has(.control-checkbox) .check-option .check-icon:has(input:checked) {
+    border: 1px solid var(--on-primary);
+}
+
+/* =========================================================
+   個別
+   ========================================================= */
+
+/* ユーザー名 */
 .grid td .user span {
 	font-weight: 400;
 }
@@ -97,13 +127,10 @@ tr.crosstab-row th {
 .grid markdown-field .notes {
     display: inline-flex !important;
     align-items: center !important;
-    line-height: 1.5 !important;
     padding: 0 !important;
-    margin: 0 !important;
 }
+
 .grid td *:not(input[type="checkbox"]) {
-    /* display: inline-block; */
-    /* line-height: 1.5; */
     white-space: pre-line;
 }
 
@@ -119,26 +146,14 @@ tr td p a:not([href^="/items/"]):hover {
     opacity: 0.85;
 }
 
-/* 9. ソート可能ヘッダー */
-th.sortable {
-    padding: 0.5rem 0.85rem !important;
-}
-th.sortable:hover {
-    background-color: var(--primary-hover) !important;
-    transition: background-color 0.2s ease-out;
-}
-
 /* 10. 補助UI */
 .focus-inform {
     background-color: transparent !important;
     border: none !important;
 }
-.grid > tbody > tr > td > p > span.ui-icon {
-    display: none;
-}
 
 /* 11. 下線 */
-#Grid:has(tbody:not(:empty)) {
+.grid:has(tbody:not(:empty)) {
     border-bottom: none !important;
 }
 
