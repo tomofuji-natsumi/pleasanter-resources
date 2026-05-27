@@ -60,7 +60,7 @@ img {
 #RecordHeader .ui-icon-person,
 #ReduceGuides .ui-icon-minusthick,
 #ExpandGuides .ui-icon-plusthick,
-#Grid .ui-icon-person,
+.grid-row .ui-icon-person,
 .comment-header .ui-icon-person,
 .button-icon .ui-icon {
     display: none !important;
