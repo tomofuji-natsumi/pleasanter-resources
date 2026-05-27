@@ -355,7 +355,7 @@ rt-editor button.se-btn-select > svg {
     padding: 1.7rem 0.8rem !important;
     color: var(--text-main);
     background: var(--surface-base);
-    border-color: 2px dotted var(--primary);
+    border-color: 2px dotted var(--primary) !important;
     border-radius: var(--radius-medium);
 }
 
