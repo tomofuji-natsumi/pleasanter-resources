@@ -116,7 +116,7 @@ button:has(.light-material-icons),
 button:has(.light-material-icons):focus {
     background: var(--surface-base);
     border: 1px solid var(--border-light) !important;
-    color: var(--text-emphasis);
+    color: var(--text-emphasis) !important;
 }
 button:has(.light-material-icons):hover,
 button:has(.light-material-icons):active {
