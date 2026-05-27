@@ -1,16 +1,19 @@
 /* =========================================================
    0. 検索条件（フィルタ / 集計）
    ========================================================= */
+#Guide .display-material-icons {
+	font-size: 1.11rem;
+    top: 55%;
+}
 
 #ViewFilters,
 #Aggregations {
     position: relative;
-    flex-shrink: 0 !important;
-    width: 100% !important;
-    padding: 0.8rem !important;
+    width: 100%;
+    padding: 0.9rem 0.8rem;
     gap: 1.0rem 0.9rem;
-    background-color: var(--bg-filter) !important;
-    border-bottom: 1px solid var(--border-strong) !important;
+    background-color: var(--bg-filter);
+    border-bottom: 1px solid var(--border-strong);
     box-shadow: var(--shadow-light);
 }
 
