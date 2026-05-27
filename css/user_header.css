@@ -60,6 +60,8 @@
 
 #Guide #ExpandGuides {
 	height: 1.65rem;
+    display: flex;
+	align-items: center;
 }
 
 #Guide #ReduceGuides {
@@ -178,7 +180,6 @@
 #Aggregations .label {
     background: none;
     border: none;
-    padding: 0 0 3px 0;
     font-size: 0.86rem;
     font-weight: 400;
     color: var(--text-emphasis);
