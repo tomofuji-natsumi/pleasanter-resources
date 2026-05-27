@@ -13,6 +13,10 @@
     box-shadow: 0 2px 1px var(--shadow-light);
 }
 
+#Editor #MainForm:after {
+    background-color: var(--bg-editor-sub);
+}
+
 #FieldSetGeneral {
     padding: 1.7rem 2.4rem 0.5rem 2.4rem;
 }
@@ -29,83 +33,155 @@
     vertical-align: sub;
 }
 
-#FieldSetGeneral .check-option {
-    margin: 4px 0 !important;
-	gap: 0.8em;
+#FieldSetGeneral .field-normal,
+#FieldSetGeneral .field-wide,
+#FieldSetGeneral .field-markdown {
+    margin-bottom: 20px;
 }
 
-.field-wide,
-.field-markdown {
+#FieldSetGeneral .field-wide,
+#FieldSetGeneral .field-markdown {
     min-height: initial;
-    margin-bottom: 20px;
     padding: 0 10px 0 0;
 }
 
-.field-normal {
+#FieldSetGeneral .field-normal {
     height: initial;
     max-width: 100%;
-    margin-bottom: 20px;
     padding: 0 20px 0 0;
-}
-
-.field-markdown {
-    padding: 0 10px 0 0;
 }
 
 #SiteImageIconContainer {
     display: none;
 }
 
-.ui-icon {
-    color: var(--icon-color);
-}
-
 
 /* =========================================================
-   1. テキストエリア
+    1. タイトル
    ========================================================= */
 
-textarea {
-    field-sizing: content;
-    resize: vertical;
-    min-height: 4lh;
-    max-height: 20lh;
-    height: auto !important;
+#TitleContainer {
+    padding: 5px;
+    background-color: var(--bg-data-title) !important;
+}
+
+#TitleContainer:not(:empty) + #Warnings:empty + #Editor:has(#RecordHeader) {
+    margin-top: 0px;
+}
+
+#TitleContainer #HeaderTitle {
+    padding: 18px;
+    color: var(--text-main);
 }
 
 
 /* =========================================================
-   2. Markdown
+   2. レコードヘッダー
+   ========================================================= */
+
+#RecordHeader {
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--bg-data-title) !important;
+    color: var(--text-main) !important;
+    padding: 0 23px 16px 23px !important;
+}
+
+#RecordHeader #RecordInfo div {
+    gap: 12px !important;
+}
+
+#RecordHeader #RecordSwitchers {
+    gap: 12px;
+}
+
+
+#EditorTabs {
+    padding: 9px 16px;
+    gap: 7px;
+}
+
+
+/* =========================================================
+   3. 見出し（セクション）
+   ========================================================= */
+
+.field-section {
+    gap: 10px;
+    font-weight: 550;
+    font-size: 0.95rem;
+    color: var(--on-primary);
+    background-color: var(--bg-toolbar) !important;
+    padding: 8px 12px;
+    border-radius: var(--radius-large);
+    cursor: default;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.field-section .ui-icon {
+    color: var(--on-primary);
+}
+
+
+/* =========================================================
+   4. 必須マーク
+   ========================================================= */
+
+.required::before {
+    color: var(--semantic-danger);
+    margin-right: 3px;
+    content: "*";
+}
+
+.required::after {
+    content: none !important;
+}
+
+
+/* =========================================================
+   5. レイアウト（field / responsive）
+   ========================================================= */
+
+.field {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.field-label {
+    flex: 0 0 auto;
+    max-width: 100%;
+}
+
+.field-control {
+    min-width: 0 !important;
+}
+
+.field-wide .field-control {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+#FieldSetGeneral .check-option {
+    margin: 4px 0 !important;
+}
+
+.field-control input,
+.field-control select,
+.field-control textarea,
+.field-control .control-markdown {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   6. Markdown
    ========================================================= */
 
 .field-control .control-markdown {
     min-width: 80px;
-    border: 1px solid var(--border-strong) !important;
-}
-
-#EditorComments::before {
-	content: "";
-    display: block;
-    color: var(--semantic-danger);
-    font-weight: 550;
-    font-size: 0.83rem;
-    margin-bottom: 10px;
-    padding: 6px 12px;
-    background-color: var(--semantic-warning-bg);
-    border: 1px solid var(--semantic-danger-border);
-    border-radius: var(--radius-large);
-}
-
-#Editor #EditorComments {
-    padding: 16px 23px;
-    background: transparent;
-}
-
-#Editor #EditorComments #Comments {
-    width: 100%;
-    min-width: fit-content;
-    background: var(--surface-base) !important;
-    border: 1px solid var(--border-strong);
 }
 
 rt-editor {
@@ -172,190 +248,14 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   3. 必須マーク
-   ========================================================= */
-
-.required::before {
-    color: var(--semantic-danger);
-    margin-right: 3px;
-    content: "*";
-}
-
-.required::after {
-    content: none !important;
-}
-
-
-
-/* =========================================================
-   4. 見出し（セクション）
-   ========================================================= */
-
-.field-section {
-    gap: 10px;
-    font-weight: 550;
-    font-size: 0.95rem;
-    color: var(--on-primary);
-    background-color: var(--bg-toolbar) !important;
-    padding: 8px 12px;
-    border-radius: var(--radius-large);
-    cursor: default;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.field-section .ui-icon {
-    color: var(--on-primary);
-}
-
-
-/* =========================================================
-   6. レイアウト（field / responsive）
-   ========================================================= */
-
-.field {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.field-label {
-    flex: 0 0 auto;
-    max-width: 100%;
-}
-
-.field-control {
-    flex: 1 1 0;
-    min-width: 0 !important;
-}
-
-.field-wide .field-control {
-    flex: 1 1 auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-}
-
-.field-control input,
-.field-control select,
-.field-control textarea,
-.field-control .control-markdown {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box;
-}
-
-
-/* =========================================================
-   7. タブ（色・境界線）
-   ========================================================= */
-
-
-.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) {
-    background: var(--surface-soft) !important;
-    border: 1px solid var(--primary);
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover {
-    background: var(--primary) !important;
-    border: 1px solid var(--primary);
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) a {
-    font-weight: 500;
-    color: var(--primary);
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover a {
-    color: var(--on-primary)  !important;
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-active {
-    background: var(--primary) !important;
-    border: 1px solid var(--primary);
-    border-radius: var(--radius-small) !important;
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
-    color: var(--on-primary);
-}
-
-.ui-tabs .ui-tabs-nav {
-    border-bottom: 3px solid var(--thick-line) !important;
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
-    padding: 8px 16px;
-    font-size: 0.85rem;
-}
-
-
-
-/* =========================================================
-   8. レコード情報（メタ情報）
-   ========================================================= */
-
-#RecordInfo div {
-    gap: 12px !important;
-}
-
-
-
-/* =========================================================
-   9. EditorTabs / MainForm 背景
-   ========================================================= */
-
-#EditorTabs,
-#Editor #MainForm:after {
-    background-color: var(--bg-editor-sub);
-}
-
-
-
-/* =========================================================
-   10. レコードヘッダー
-   ========================================================= */
-
-#RecordHeader {
-    border-bottom: 1px solid var(--border-light);
-    background-color: var(--bg-data-title) !important;
-    color: var(--text-main) !important;
-    padding: 0 23px 16px 23px !important;
-}
-
-#TitleContainer {
-    padding: 5px;
-    background-color: var(--bg-data-title) !important;
-}
-
-#TitleContainer #HeaderTitle {
-    padding: 18px;
-    color: var(--text-main);
-}
-
-#Editor #RecordSwitchers {
-    gap: 12px;
-}
-
-#Editor #RecordSwitchers button {
-    font-weight: 550;
-}
-
-#EditorTabs {
-    padding: 9px 16px;
-    gap: 7px;
-}
-
-
-
-/* =========================================================
-   11. 添付ファイル
+   7. 添付ファイル
    ========================================================= */
 
 .control-attachments-upload {
     padding: 1.7rem 0.8rem !important;
     color: var(--text-main);
     background: var(--surface-base);
-    border-color: 2px dotted var(--primary) !important;
+    border: 2px dotted var(--primary) !important;
     border-radius: var(--radius-medium);
 }
 
@@ -374,13 +274,37 @@ rt-editor button.se-btn-select > svg {
 }
 
 
-
 /* =========================================================
-   12. コメント（説明文・カード）
+   8. コメント（説明文・カード）
    ========================================================= */
 
 #Editor #EditorComments .comment + .comment {
     border: none;
+}
+
+#Editor #EditorComments {
+    padding: 16px 23px;
+    background: transparent;
+}
+
+#Editor #EditorComments::before {
+	content: "";
+    display: block;
+    color: var(--semantic-danger);
+    font-weight: 550;
+    font-size: 0.83rem;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background-color: var(--semantic-warning-bg);
+    border: 1px solid var(--semantic-danger-border);
+    border-radius: var(--radius-large);
+}
+
+#Editor #EditorComments #Comments {
+    width: 100%;
+    min-width: fit-content;
+    background: var(--surface-base) !important;
+    border: 1px solid var(--border-strong);
 }
 
 #CommentField markdown-field {
@@ -412,12 +336,6 @@ rt-editor button.se-btn-select > svg {
     font-size: 0.75rem;
 }
 
-/*
-#CommentList .comment > .time {
-    margin: 0 10px 8px 0;
-}
-*/
-
 #CommentList markdown-field .is-delete {
     right: -5px;
     color: var(--icon-color);
@@ -440,9 +358,6 @@ rt-editor button.se-btn-select > svg {
     width: 60%;
 }
 
-#TitleContainer:not(:empty) + #Warnings:empty + #Editor:has(#RecordHeader) {
-    margin-top: 0px;
-}
 
 /* =========================================================
    14. 変更履歴の一覧
