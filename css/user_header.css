@@ -6,8 +6,7 @@
     position: relative !important;
 	padding: 0 0.2rem 0 1.75rem !important;
     font-weight: 600 !important;
-	font-size: 0.9rem;
-    color: var(--text-main);
+    color: var(--text-main) !important;
 }
 
 .display-material-icons {
@@ -39,7 +38,6 @@
 }
 
 #Guide > div {
-    position: relative;
     background-color: transparent;
     font-size: 0.85rem;
     border: none !important;
@@ -53,7 +51,6 @@
 
 #ReduceGuides {
 	padding-right: 0px !important;
-    user-select: none;
 }
 
 
