@@ -308,12 +308,10 @@ button:has(.primary-material-icons):active {
 /* =========================================================
    7. タブ（色・境界線）
    ========================================================= */
-.ui-tabs {
-    background-color: var(--bg-editor-sub);
-}
 
 .ui-tabs .ui-tabs-nav {
     border-bottom: 3px solid var(--thick-line) !important;
+    background-color: var(--bg-editor-sub);
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) {
@@ -342,7 +340,8 @@ button:has(.primary-material-icons):active {
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
-    color: var(--on-primary);
+	color: var(--on-primary);
+    text-shadow: 0 1px 2px var(--shadow-strong);
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
@@ -376,31 +375,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   9. Fieldset
-   ========================================================= */
-
-.fieldset > .legend {
-    background-color: var(--bg-main-dark);
-    border: 1px solid var(--border-normal);
-    color: var(--text-emphasis);
-}
-
-.fieldset.enclosed,
-.fieldset.enclosed-half,
-.fieldset.enclosed-thin {
-    background: var(--bg-main);
-}
-
-.fieldset.enclosed:has(.legend),
-.fieldset.enclosed-half:has(.legend),
-.fieldset.enclosed-thin:has(.legend) {
-    border: 1px solid var(--border-normal);
-    box-shadow: 0 0 4px var(--shadow-strong);
-}
-
-
-/* =========================================================
-   10. Footer（フッターコマンド）
+   9. Footer（フッターコマンド）
    ========================================================= */
 
 #MainCommandsContainer {
@@ -409,7 +384,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   11. Crosstab / Kanban（クロス集計・カンバン）
+   10. Crosstab / Kanban（クロス集計・カンバン）
    ========================================================= */
 
 
@@ -434,11 +409,6 @@ button:has(.primary-material-icons):active {
 .grid-stack-item .kambanbody .kamban-item:hover {
     background-color: var(--primary-surface-hover) !important;
     border: solid 1px var(--primary) !important;
-}
-
-.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
-	color: var(--on-primary);
-    text-shadow: 0 1px 2px var(--shadow-strong);
 }
 
 #Crosstab .field-auto-thin:first-child,
