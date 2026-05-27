@@ -386,7 +386,7 @@ rt-editor button.se-btn-select > svg {
     }
 
 	.grid {
-		border-left: 1px solid var(--cal-border);
+		border-left: 1px solid var(--border-light);
 	}
 
 	.grid .grid-row .comment,
