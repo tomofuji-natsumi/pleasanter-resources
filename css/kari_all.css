@@ -69,7 +69,7 @@ img {
 .material-symbols-outlined:not(.md-btn-icon) {
     position: absolute;
     transform: translateY(-50%);
-    top: 50%;
+    top: 52%;
     left: 0.35rem;
     font-size: 1.16rem;
 	user-select: none;
@@ -116,7 +116,7 @@ button:has(.light-material-icons),
 button:has(.light-material-icons):focus {
     background: var(--surface-base);
     border: 1px solid var(--border-light) !important;
-    color: var(--text-emphasis) !important;
+    color: var(--text-emphasis);
 }
 button:has(.light-material-icons):hover,
 button:has(.light-material-icons):active {
@@ -306,7 +306,53 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   7. Messages
+   7. タブ（色・境界線）
+   ========================================================= */
+.ui-tabs {
+    background-color: var(--bg-editor-sub);
+}
+
+.ui-tabs .ui-tabs-nav {
+    border-bottom: 3px solid var(--thick-line) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) {
+    background: var(--surface-soft) !important;
+    border: 1px solid var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover {
+    background: var(--primary) !important;
+    border: 1px solid var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) a {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover a {
+    color: var(--on-primary)  !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    background: var(--primary) !important;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-small) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+    color: var(--on-primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   8. Messages
    ========================================================= */
 
 #Message .body {
@@ -315,6 +361,7 @@ button:has(.primary-material-icons):active {
     pointer-events: auto;
     color: var(--text-white);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    border: none;
 }
 
 #Message .alert-success {
@@ -329,7 +376,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   8. Fieldset
+   9. Fieldset
    ========================================================= */
 
 .fieldset > .legend {
@@ -353,7 +400,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   9. Footer（フッターコマンド）
+   10. Footer（フッターコマンド）
    ========================================================= */
 
 #MainCommandsContainer {
@@ -362,7 +409,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   10. Crosstab / Kanban（クロス集計・カンバン）
+   11. Crosstab / Kanban（クロス集計・カンバン）
    ========================================================= */
 
 
