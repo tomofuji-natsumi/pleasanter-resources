@@ -37,6 +37,8 @@
 #Guide:not(:empty) {
     padding: 0.6rem 0.8rem !important;
     border-bottom: 1px solid var(--border-light) !important;
+    display: flex;
+    align-items: center;
 }
 
 #Guide .display-material-icons {
@@ -83,7 +85,7 @@
 #ReduceAggregations,
 #ExpandAggregations {
     font-size: 0.9rem;
-	height: 30px;
+	height: 32px;
     align-content: center;
 }
 
@@ -94,20 +96,9 @@
 	display: none;
 }
 
-#ViewFilters select, 
-#ViewFilters input[type="text"] {
-    height: 30px !important;
-    line-height: 30px !important;
-    padding: 0 6px !important;
-}
-
 #ViewFilters label:not(.check-option),
 #ViewFilters span.check-text {
-    line-height: 30px !important;
-}
-
-#ViewFilters span.check-icon {
-    margin: auto 0;
+    align-self: center;
 }
 
 #ViewFilters .ui-multiselect .ui-multiselect-open+span,
@@ -163,7 +154,6 @@
     opacity: 0;
     height: 0 !important;
 }
-
 
 
 /* =========================================================
@@ -226,10 +216,10 @@
    7. フィールド（ラベル・入力欄）
    ========================================================= */
 
-
 #ViewFilters .field-auto-thin {
     display: flex;
     align-items: center;
+    height: 30px;
     gap: 0.5rem;
 }
 
@@ -245,7 +235,7 @@
 }
 
 #ViewFilters .check-option {
-    gap: 8px;
+    gap: 0.7rem;
 }
 
 .data.link:not([data-selector="#ViewFilters__Status"]) {
@@ -258,7 +248,6 @@
     background-color: var(--agg-item-bg-hover);
     border-color: var(--agg-item-border-hover);
 }
-
 
 
 /* =========================================================
