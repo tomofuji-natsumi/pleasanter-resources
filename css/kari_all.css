@@ -69,7 +69,7 @@ img {
 .material-symbols-outlined:not(.md-btn-icon) {
     position: absolute;
     transform: translateY(-50%);
-    top: 52%;
+    top: 50%;
     left: 0.35rem;
     font-size: 1.16rem;
 	user-select: none;
@@ -315,7 +315,6 @@ button:has(.primary-material-icons):active {
     pointer-events: auto;
     color: var(--text-white);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-    border: none;
 }
 
 #Message .alert-success {
