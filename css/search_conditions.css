@@ -1,0 +1,319 @@
+/* =========================================================
+   0. 検索条件（フィルタ / 集計）
+   ========================================================= */
+
+#ViewFilters,
+#Aggregations {
+    position: relative;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    padding: 0.8rem !important;
+    gap: 1.0rem 0.9rem;
+    background-color: var(--bg-filter) !important;
+    border-bottom: 1px solid var(--border-strong) !important;
+    box-shadow: var(--shadow-light);
+}
+
+/* =========================================================
+   1. 開閉トグル
+   ========================================================= */
+
+.display-control {
+    position: relative !important;
+	padding: 0 0.2rem 0 1.75rem !important;
+    font-weight: 600 !important;
+    color: var(--text-main);
+}
+
+/*
+#Guide .display-control {
+
+}
+*/
+
+#ReduceViewFilters,
+#ExpandViewFilters,
+#ReduceAggregations,
+#ExpandAggregations {
+    height: 32px;
+    font-size: 0.9rem;
+}
+
+#ViewFilters .ui-icon-folder-open,
+#ViewFilters .ui-icon-close,
+#Aggregations .ui-icon-folder-open,
+#Aggregations .ui-icon-close {
+	display: none;
+}
+
+#ViewFilters select, 
+#ViewFilters input[type="text"] {
+    height: 30px !important;
+    line-height: 30px !important;
+    padding: 0 6px !important;
+}
+
+#ViewFilters label:not(.check-option),
+#ViewFilters span.check-text {
+    line-height: 30px !important;
+}
+
+#ViewFilters span.check-icon {
+    margin: auto 0;
+}
+
+#ViewFilters .ui-multiselect .ui-multiselect-open+span,
+#ViewFilters [class^="control-"] {
+    font-size: 0.82rem !important;
+}
+
+
+/* =========================================================
+   3. フィルタ
+   ========================================================= */
+
+/* リセット */
+#ViewFilters_Reset {
+    position: relative;
+    margin: 0 0.5rem 0 0;
+    height: 30px;
+    color: var(--btn-reset-text) !important;
+    box-shadow: var(--elevation-2);
+	line-height: 0.2rem;
+}
+
+#ViewFilters_Reset:hover {
+    background: var(--surface-soft) !important;
+}
+
+
+/* =========================================================
+   4. ViewFilters アニメーション
+   ========================================================= */
+
+#ViewFilters {
+    font-size: 0.85rem !important;
+    overflow: hidden;
+    transition: height 0.28s ease, opacity 0.22s ease;
+}
+
+#ViewFilters .filter-fields {
+    opacity: 1;
+    transition: opacity 0.18s ease;
+}
+
+#ViewFilters.open {
+    opacity: 1;
+}
+
+#ViewFilters.closed .filter-fields {
+    opacity: 0;
+}
+
+#ViewFilters.closed {
+    opacity: 0;
+    height: 0 !important;
+}
+
+
+
+/* =========================================================
+   5. Aggregations アニメーション
+   ========================================================= */
+
+#Aggregations {
+    overflow: hidden;
+    height: auto !important;
+    transition: height 0.28s ease, opacity 0.22s ease;
+}
+
+#Aggregations.open {
+    opacity: 1;
+}
+
+#Aggregations.closed {
+    opacity: 0;
+    height: 0 !important;
+}
+
+#Aggregations .label {
+    background: none;
+    border: none;
+    padding: 0 0 3px 0;
+    font-size: 0.86rem;
+    font-weight: 400;
+    color: var(--text-emphasis);
+}
+
+#Aggregations .label:not(:first-of-type) {
+    margin-left: 28px;
+}
+
+#Aggregations .data.link:first-child {
+    padding-left: 5px;
+}
+
+#Aggregations .data.link {
+    position: relative;
+    top: -1px;
+    padding: 3px 6px;
+    border-radius: var(--radius-small);
+    font-weight: 500;
+    display: inline-block;
+}
+
+#Aggregations .data:not(.link) {
+    padding: 0 0 2px 0;
+    color: var(--text-emphasis);
+}
+
+#Aggregations .link .bold {
+    margin-right: 0.5rem;
+    font-weight: 550 !important;
+}
+
+
+/* =========================================================
+   7. フィールド（ラベル・入力欄）
+   ========================================================= */
+
+
+.field-auto-thin {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.field-auto-thin .field-label {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+}
+
+#ViewFilters .check-option {
+    gap: 8px;
+}
+
+.field-auto-thin .field-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.data.link:not([data-selector="#ViewFilters__Status"]) {
+    background-color: var(--agg-item-bg);
+    border: 1px solid var(--agg-item-border);
+    color: var(--agg-item-text);
+}
+
+.data.link:not([data-selector="#ViewFilters__Status"]):hover {
+    background-color: var(--agg-item-bg-hover);
+    border-color: var(--agg-item-border-hover);
+}
+
+
+
+/* =========================================================
+   9. Aggregations ステータス色
+   ========================================================= */
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="100"] {
+    background-color: var(--status-new-bg);
+    border: 1px solid var(--status-new-border);
+    color: var(--status-text);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="150"] {
+    background-color: var(--status-preparation-bg);
+    border: 1px solid var(--status-preparation-border);
+    color: var(--status-text);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="200"] {
+    background-color: var(--status-inprogress-bg);
+    border: 1px solid var(--status-inprogress-border);
+    color: var(--status-text);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="300"] {
+    background-color: var(--status-review-bg);
+    border: 1px solid var(--status-review-border);
+    color: var(--status-text);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="900"] {
+    background-color: var(--status-closed-bg);
+    border: 1px solid var(--status-closed-border);
+    color: var(--status-text);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="910"] {
+    background-color: var(--status-rejected-bg);
+    border: 1px solid var(--status-rejected-border);
+    color: var(--status-text);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="100"]:hover {
+    background-color: var(--status-new-bg-hover);
+    border-color: var(--status-new-border-hover);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="150"]:hover {
+    background-color: var(--status-preparation-bg-hover);
+    border-color: var(--status-preparation-border-hover);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="200"]:hover {
+    background-color: var(--status-inprogress-bg-hover);
+    border-color: var(--status-inprogress-border-hover);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="300"]:hover {
+    background-color: var(--status-review-bg-hover);
+    border-color: var(--status-review-border-hover);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="900"]:hover {
+    background-color: var(--status-closed-bg-hover);
+    border-color: var(--status-closed-border-hover);
+}
+
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="910"]:hover {
+    background-color: var(--status-rejected-bg-hover);
+    border-color: var(--status-rejected-border-hover);
+}
+
+
+/* =========================================================
+   10. レスポンシブ
+   ========================================================= */
+
+@media screen and (max-width: 480px) {
+
+    #ViewFilters .field-auto-thin {
+        width: max-content;
+    }
+
+    #ViewFilters .button {
+        margin: 5px auto 0;
+    }
+
+    #ViewFilters #ViewFilters_Reset {
+        order: 1;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 0) {
+    #ViewSelectorField {
+        background: var(--surface-soft);
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    #ViewFilters .field-auto-thin,
+    #ViewFilters .ui-multiselect .ui-multiselect-open + span {
+        font-size: 0.85rem !important;
+    }
+
+    #ViewFilters .field-control:has(.check-option) {
+        padding: 0;
+    }
+}
