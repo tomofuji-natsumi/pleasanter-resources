@@ -18,6 +18,16 @@ body {
     }
 }
 
+.display-control {
+    position: relative;
+    padding: 0 0.2rem 0 1.75rem !important;
+    height: 32px;
+    font-size: 0.9rem;
+    font-weight: 600 !important;
+    color: var(--text-main);
+    line-height: 28px;
+}
+
 
 /* =========================================================
    1. Typography（フォント・文字）
@@ -308,6 +318,10 @@ button:has(.primary-material-icons):active {
     background-color: var(--bg-guide);
 }
 
+#Guide .with-icon-close {
+    padding: 0;
+}
+
 #Guide:not(:empty) {
     padding: 0.8rem !important;
     border-bottom: 1px solid var(--border-light) !important;
@@ -315,7 +329,7 @@ button:has(.primary-material-icons):active {
 
 #Guide > div {
     position: relative;
-    padding: 0 1.75rem !important;
+    /* padding: 0 1.75rem !important; */
     background-color: transparent;
     font-size: 0.85rem;
     border: none !important;
@@ -325,7 +339,7 @@ button:has(.primary-material-icons):active {
     color: var(--text-main);
     font-size: 0.9rem;
     font-family: auto;
-    line-height: 1;
+    /* line-height: 1; */
 }
 
 
