@@ -83,6 +83,8 @@
 #ReduceAggregations,
 #ExpandAggregations {
     font-size: 0.9rem;
+	height: 28px;
+    align-content: center;
 }
 
 #ViewFilters .ui-icon-folder-open,
