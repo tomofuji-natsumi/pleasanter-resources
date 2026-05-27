@@ -1,5 +1,5 @@
 /* =========================================================
-   0. Reset / Base
+   0. Base
    ========================================================= */
 
 html,
@@ -18,19 +18,9 @@ body {
     }
 }
 
-.display-control {
-    position: relative;
-    padding: 0 0.2rem 0 1.75rem !important;
-    font-size: 0.9rem;
-    font-weight: 600 !important;
-    color: var(--text-main);
-    line-height: 28px;
+#MainForm {
+    background-color: var(--surface-base-soft);
 }
-
-
-/* =========================================================
-   1. Typography（フォント・文字）
-   ========================================================= */
 
 body,
 pre,
@@ -48,6 +38,19 @@ button,
 .dashboard-custom-body {
     font-family: auto !important;
     line-height: 1.36;
+}
+
+img {
+	user-select: none;
+}
+
+
+/* =========================================================
+   1. アナウンス
+   ========================================================= */
+
+#AnnouncementModule div div {
+    padding: 0.5rem 0.8rem !important;
 }
 
 
@@ -76,17 +79,6 @@ button,
 	user-select: none;
 }
 
-.display-material-icons {
-    left: 0.2rem !important;
-    width: 20px;
-    text-align: center;
-    color: var(--icon-color);
-}
-
-#Guide .display-material-icons {
-	font-size: 1.11rem;
-}
-
 .ui-multiselect-open .ui-icon {
     right: 3px;
 }
@@ -105,10 +97,6 @@ button,
     font-weight: 550;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
     box-shadow: var(--elevation-3);
-}
-
-#MainForm {
-    background-color: var(--surface-base-soft);
 }
 
 .ui-button:hover {
@@ -140,7 +128,7 @@ button:has(.light-material-icons):active {
     border: 1px solid var(--border-light) !important;
 }
 
-/* 削除ボタン */
+/* 赤ボタン */
 button:has(.red-material-icons),
 button:has(.red-material-icons):focus {
     background: var(--btn-delete-bg) !important;
@@ -166,7 +154,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   Hamburger Menu（ハンバーガーメニュー）
+   4. Header（ヘッダー）
    ========================================================= */
 
 #Header {
@@ -178,7 +166,20 @@ button:has(.primary-material-icons):active {
     box-shadow: 0 1px 2px var(--shadow-light);
 }
 
-/* ハンバーガー */
+#Header #ViewSelectorField .field-normal .control-dropdown {
+    width: auto;
+    min-width: 100px;
+    max-width: 200px;
+    padding: 2px 4px !important;
+    height: auto;
+    font-size: 0.83rem !important;
+}
+
+
+/* =========================================================
+   5. Hamburger Menu（ハンバーガーメニュー）
+   ========================================================= */
+
 #Header .hamburger-switch {
     background-color: transparent !important;
 }
@@ -240,7 +241,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   5. Breadcrumb（パンくず）
+   6. Breadcrumb（パンくず）
    ========================================================= */
 
 #CopyToClipboards {
@@ -309,40 +310,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   6. Guide（ガイド）
-   ========================================================= */
-
-#Guide {
-    background-color: var(--bg-guide);
-}
-
-#Guide .with-icon-close {
-    padding: 0;
-}
-
-#Guide:not(:empty) {
-    padding: 0.6rem 0.8rem !important;
-    border-bottom: 1px solid var(--border-light) !important;
-}
-
-#Guide > div {
-    position: relative;
-    /* padding: 0 1.75rem !important; */
-    background-color: transparent;
-    font-size: 0.85rem;
-    border: none !important;
-}
-
-#Guide .notes {
-    color: var(--text-main);
-    font-size: 0.9rem;
-    font-family: auto;
-    /* line-height: 1; */
-}
-
-
-/* =========================================================
-   7. Messages / Alerts（メッセージ）
+   7. Messages
    ========================================================= */
 
 #Message .body {
@@ -366,7 +334,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   14. Fieldset / Markdown
+   8. Fieldset
    ========================================================= */
 
 .fieldset > .legend {
@@ -390,53 +358,25 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   17. Footer（フッターコマンド）
+   9. Footer（フッターコマンド）
    ========================================================= */
 
 #MainCommandsContainer {
     background-color: var(--bg-footer) !important;
 }
 
-#AnnouncementModule div div {
-    padding: 0.5rem 0.8rem !important;
-}
-
-
-/* メニュー */
-ul.ui-widget-content {
-    background: var(--surface-base);
-    border: 1px solid var(--border-strong) !important;
-    border-top: none;
-    color: var(--text-emphasis) !important;
-}
-
-.ui-menu-item-wrapper:hover {
-    background: var(--primary) !important;
-    color: var(--on-primary) !important;
-}
-
-.menu-sort .ui-menu-item {
-    border-top: 1px solid var(--border-strong);
-}
-
 
 /* =========================================================
-   21. Crosstab / Kanban（クロス集計・カンバン）
+   10. Crosstab / Kanban（クロス集計・カンバン）
    ========================================================= */
 
-#Crosstab,
-#ViewModeContainer:has(#Kamban) .kamban-container,
-#ViewModeContainer:has(#Kamban),
-.grid-stack-item .kambanbody,
-.grid-stack-item .kambanbody .kamban-container {
-    padding: 0;
-    background-color: var(--surface-base);
-}
 
 #Crosstab .crosstab-row th,
 #ViewModeContainer:has(#Kamban) .kamban-row th,
-.grid-stack-item .kambanbody .kamban-row th {
-    border-top: 1px solid var(--border-light);
+.grid-stack-item .kambanbody .kamban-row th,
+#ViewModeContainer:has(#Kamban) .kamban-row td,
+.grid-stack-item .kambanbody .kamban-row td {
+    border-top: 1px solid var(--border-light) !important;
 }
 
 #ViewModeContainer:has(#Kamban) .kamban-item,
@@ -454,36 +394,9 @@ ul.ui-widget-content {
     border: solid 1px var(--primary) !important;
 }
 
-#ViewModeContainer:has(#Kamban) .kamban-row td,
-.grid-stack-item .kambanbody .kamban-row td {
-    border-top: 1px solid var(--border-light) !important;
-}
-
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
 	color: var(--on-primary);
     text-shadow: 0 1px 2px var(--shadow-strong);
-}
-
-#ReduceGuides {
-	padding-right: 0px !important;
-    user-select: none;
-}
-
-img {
-	user-select: none;
-}
-
-
-/* =========================================================
-   8. ViewModeContainer
-   ========================================================= */
-#ViewSelectorField .field-normal .control-dropdown {
-    width: auto;
-    min-width: 100px;
-    max-width: 200px;
-    padding: 2px 4px !important;
-    height: auto;
-    font-size: 0.83rem !important;
 }
 
 #Crosstab .field-auto-thin:first-child,
@@ -502,6 +415,11 @@ img {
     gap: 0.5rem;
 }
 
+#Crosstab,
+#ViewModeContainer:has(#Kamban) .kamban-container,
+#ViewModeContainer:has(#Kamban),
+.grid-stack-item .kambanbody,
+.grid-stack-item .kambanbody .kamban-container,
 #ViewModeContainer:not(:has(#ImageLib)):not(:has(#AnalyBody)):not(:has(.grid)) {
     padding: 0 !important;
     background-color: var(--surface-base) !important;
