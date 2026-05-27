@@ -2,6 +2,12 @@
    0. ユーザーヘッダー（全体）
    ========================================================= */
 
+#MainForm,
+#ViewFilters,
+#Aggregations {
+	background-color: var(--bg-filter);
+}
+
 .display-control {
     position: relative !important;
 	padding: 0 0.2rem 0 1.75rem !important;
@@ -63,7 +69,6 @@
     width: 100%;
     padding: 0.9rem 0.8rem;
     gap: 1.0rem 0.9rem;
-    background-color: var(--bg-filter);
     border-bottom: 1px solid var(--border-strong);
     box-shadow: var(--shadow-light);
 }
