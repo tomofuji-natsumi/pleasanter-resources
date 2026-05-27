@@ -1,11 +1,65 @@
 /* =========================================================
-   0. 検索条件（フィルタ / 集計）
+   0. ユーザーヘッダー（全体）
    ========================================================= */
+
+.display-control {
+    position: relative !important;
+	padding: 0 0.2rem 0 1.75rem !important;
+    font-weight: 600 !important;
+	font-size: 0.9rem;
+    color: var(--text-main);
+}
+
+.display-material-icons {
+    left: 0.2rem !important;
+    width: 20px;
+    text-align: center;
+    color: var(--icon-color);
+}
+
+/* =========================================================
+   1. ガイド
+   ========================================================= */
+#Guide {
+    background-color: var(--bg-guide);
+}
+
+#Guide .with-icon-close {
+    padding: 0;
+}
+
+#Guide:not(:empty) {
+    padding: 0.6rem 0.8rem !important;
+    border-bottom: 1px solid var(--border-light) !important;
+}
+
 #Guide .display-material-icons {
 	font-size: 1.11rem;
     top: 55%;
 }
 
+#Guide > div {
+    position: relative;
+    background-color: transparent;
+    font-size: 0.85rem;
+    border: none !important;
+}
+
+#Guide .notes {
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-family: auto;
+}
+
+#ReduceGuides {
+	padding-right: 0px !important;
+    user-select: none;
+}
+
+
+/* =========================================================
+   1. 開閉トグル
+   ========================================================= */
 #ViewFilters,
 #Aggregations {
     position: relative;
@@ -17,35 +71,12 @@
     box-shadow: var(--shadow-light);
 }
 
-/* =========================================================
-   1. 開閉トグル
-   ========================================================= */
-
-.display-control {
-    position: relative !important;
-	padding: 0 0.2rem 0 1.75rem !important;
-    font-weight: 600 !important;
-	font-size: 0.9rem;
-    color: var(--text-main);
-}
-
-/*
-#Guide .display-control {
-
-}
-*/
-
 #ReduceViewFilters,
 #ExpandViewFilters,
 #ReduceAggregations,
 #ExpandAggregations {
-    /* height: 32px; */
     font-size: 0.9rem;
 	height: 30px;
-}
-
-#ViewFilters .field-auto-thin {
-	height: 28px;
 }
 
 #ViewFilters .ui-icon-folder-open,
@@ -108,6 +139,7 @@
 
 #ViewFilters .filter-fields {
     opacity: 1;
+    height: 28px;
     transition: opacity 0.18s ease;
 }
 
@@ -187,25 +219,25 @@
    ========================================================= */
 
 
-.field-auto-thin {
+#ViewFilters .field-auto-thin {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.field-auto-thin .field-label {
+#ViewFilters .field-auto-thin .field-label {
     flex: 0 0 auto;
     margin: 0;
     padding: 0;
 }
 
-#ViewFilters .check-option {
-    gap: 8px;
-}
-
-.field-auto-thin .field-control {
+#ViewFilters .field-auto-thin .field-control {
     flex: 1 1 auto;
     min-width: 0;
+}
+
+#ViewFilters .check-option {
+    gap: 8px;
 }
 
 .data.link:not([data-selector="#ViewFilters__Status"]) {
