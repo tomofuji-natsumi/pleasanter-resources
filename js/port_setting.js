@@ -59,7 +59,7 @@ const importWatcher = new MutationObserver(() => {
     const enc = $("#Encoding");
     if (enc.length) {
         enc.val("UTF-8");
-        enc.pprop("disabled", true);
+        enc.prop("disabled", true);
     }
 
     const exp = $("#ExportEncoding");
