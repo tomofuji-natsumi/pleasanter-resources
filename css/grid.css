@@ -46,14 +46,14 @@ tr.crosstab-row th {
 }
 
 .grid th:first-child {
-    border-left: none;
+    border-left: none !important;
 }
 
 /* =========================================================
    データセル
    ========================================================= */
 
-.grid tr > td {
+.grid .grid-row td {
     background-color: var(--surface-base) !important;
     border-left: none !important;
     border-right: 1px solid var(--border-light) !important;
@@ -61,13 +61,6 @@ tr.crosstab-row th {
     box-shadow: 1px 0 0 var(--surface-base) !important;
     vertical-align: middle !important;
     padding: 0.4rem 0.85rem !important;
-    color: var(--text-main) !important;
-}
-
-.grid td {
-    vertical-align: middle !important;
-    padding: 0.4rem 0.85rem !important;
-    border-left: none !important;
     color: var(--text-main) !important;
 }
 
@@ -136,14 +129,20 @@ tr.crosstab-row th {
 }
 
 /* 8. リンク */
-tr td p a {
+.grid td p a {
     text-decoration: none;
     transition: opacity 0.15s ease;
 }
-tr td p a:not([href^="/items/"]) {
+
+.grid td a {
+    color: var(--text-main);
+}
+
+.grid td p a:not([href^="/items/"]) {
     color: var(--text-link);
 }
-tr td p a:not([href^="/items/"]):hover {
+
+.grid td p a:not([href^="/items/"]):hover {
     opacity: 0.85;
 }
 
