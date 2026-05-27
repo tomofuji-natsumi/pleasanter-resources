@@ -60,8 +60,6 @@
 
 #Guide #ExpandGuides {
 	height: 1.65rem;
-    display: flex;
-	align-items: center;
 }
 
 #Guide #ReduceGuides {
@@ -79,7 +77,6 @@
     padding: 0.9rem 0.8rem !important; /* important 必須 */
     gap: 1.0rem 0.9rem;
     border-bottom: 1px solid var(--border-strong) !important; /* important 必須 */
-	color: var(--text-main);
     box-shadow: var(--shadow-light);
 }
 
@@ -181,7 +178,7 @@
 #Aggregations .label {
     background: none;
     border: none;
-	padding: 0;
+    padding: 0 0 3px 0;
     font-size: 0.86rem;
     font-weight: 400;
     color: var(--text-emphasis);
@@ -205,8 +202,7 @@
 }
 
 #Aggregations .data:not(.link) {
-    padding: 0;
-	line-height: initial;
+    padding: 0 0 2px 0;
     color: var(--text-emphasis);
 }
 
@@ -236,10 +232,6 @@
 #ViewFilters .field-auto-thin .field-control {
     flex: 1 1 auto;
     min-width: 0;
-}
-
-#ViewFilters .check-option {
-    gap: 0.7rem;
 }
 
 .data.link:not([data-selector="#ViewFilters__Status"]) {
