@@ -45,8 +45,18 @@ tr.crosstab-row th {
     font-weight: 550;
 }
 
+/* チェックボックス */
 .grid th:first-child {
     border-left: none !important;
+}
+
+.grid th:first-child .check-option {
+    margin: 0 auto !important;
+    width: fit-content;
+}
+
+.grid th:first-child  .check-option .check-icon:has(input:checked) {
+    border: 1px solid var(--on-primary);
 }
 
 /* =========================================================
@@ -77,6 +87,7 @@ tr.crosstab-row th {
 
 .grid td:first-child {
     padding: 0 !important;
+    line-height: initial;
 }
 
 .grid td:first-child .check-option,
@@ -84,18 +95,8 @@ tr.crosstab-row th {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    margin: 0 !important;
-    padding: 0 !important;
 }
 
-.grid th:has(.control-checkbox) .check-option {
-    margin: 0 auto !important;
-    width: fit-content;
-}
-
-.grid th:has(.control-checkbox) .check-option .check-icon:has(input:checked) {
-    border: 1px solid var(--on-primary);
-}
 
 /* =========================================================
    個別
@@ -124,7 +125,7 @@ tr.crosstab-row th {
     padding: 0 !important;
 }
 
-.grid td *:not(input[type="checkbox"]) {
+.grid td * {
     white-space: pre-line;
 }
 
