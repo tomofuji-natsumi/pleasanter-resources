@@ -8,8 +8,8 @@ input,
 .check-option .check-icon:not(:has(input:checked)),
 .ui-widget.ui-state-default.ui-multiselect {
     background: var(--surface-base);
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-medium);
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius-medium) !important;
     color: var(--text-main);
 }
 
