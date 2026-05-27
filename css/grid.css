@@ -14,6 +14,10 @@
     border-bottom: none !important;
 }
 
+#GridObserver {
+    background: var(--bg-main);
+}
+
 
 /* =========================================================
    表見出し
