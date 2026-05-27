@@ -68,10 +68,15 @@ button,
 }
 
 .display-material-icons {
+	top: 48% !important;
     left: 4px !important;
     width: 20px;
     text-align: center;
     color: var(--icon-color);
+}
+
+#Guide .display-material-icons {
+	font-size: 1.11rem
 }
 
 .ui-multiselect-open .ui-icon {
