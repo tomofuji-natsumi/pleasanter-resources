@@ -83,7 +83,7 @@
 #ReduceAggregations,
 #ExpandAggregations {
     font-size: 0.9rem;
-	height: 28px;
+	height: 30px;
     align-content: center;
 }
 
@@ -124,7 +124,7 @@
 #ViewFilters_Reset {
     position: relative;
     margin: 0 0.5rem 0 0;
-    height: 28px;
+    height: 30px;
     color: var(--btn-reset-text) !important;
     box-shadow: var(--elevation-2);
 	line-height: 0.2rem;
@@ -147,7 +147,7 @@
 
 #ViewFilters .filter-fields {
     opacity: 1;
-    height: 28px;
+    height: 30px;
     transition: opacity 0.18s ease;
 }
 
