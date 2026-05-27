@@ -80,11 +80,6 @@
     font-size: 0.9rem;
 }
 
-#ViewFilters span.display-material-icons,
-#Aggregations span.display-material-icons {
-	height: 30px;
-}
-
 #ViewFilters .ui-icon-folder-open,
 #ViewFilters .ui-icon-close,
 #Aggregations .ui-icon-folder-open,
