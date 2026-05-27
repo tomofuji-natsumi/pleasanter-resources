@@ -172,7 +172,6 @@ tr.crosstab-row th {
     padding: 0.13rem 0.37rem !important;
     border-radius: var(--radius-small) !important;
     position: relative;
-    top: -1px;
     border: 1px solid transparent !important;
     transition: background-color 0.22s ease-out, border-color 0.22s ease-out;
 }
