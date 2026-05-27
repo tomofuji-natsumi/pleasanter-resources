@@ -59,13 +59,13 @@ const importWatcher = new MutationObserver(() => {
     const enc = $("#Encoding");
     if (enc.length) {
         enc.val("UTF-8");
-        enc.prop("readonly", true);
+        enc.pprop("disabled", true);
     }
 
     const exp = $("#ExportEncoding");
     if (exp.length) {
         exp.val("UTF-8");
-        exp.prop("readonly", true);
+        exp.prop("disabled", true);
     }
 
     if ($('#ImportUserTemplate_Import').length) {
@@ -74,7 +74,6 @@ const importWatcher = new MutationObserver(() => {
 
     if ($('#Import').length) {
         setupImportInput($('#Import'));
-        
         importWatcher.disconnect();
     }
 });
