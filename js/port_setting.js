@@ -53,7 +53,6 @@ function setupImportInput(input) {
     });
 }
 
-// #Import が出てきた瞬間に 1 回だけ実行
 const importWatcher = new MutationObserver(() => {
 
     const enc = $("#Encoding");
@@ -66,7 +65,7 @@ const importWatcher = new MutationObserver(() => {
         setupImportInput($('#ImportUserTemplate_Import'));
     }
 
-    if ($('#Import').length) {
+    if ($('#Import:not(.control-checkbox)').length) {
         setupImportInput($('#Import'));
         importWatcher.disconnect();
     }
