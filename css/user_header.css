@@ -79,6 +79,7 @@
     padding: 0.9rem 0.8rem !important; /* important 必須 */
     gap: 1.0rem 0.9rem;
     border-bottom: 1px solid var(--border-strong) !important; /* important 必須 */
+	color: var(--text-main);
     box-shadow: var(--shadow-light);
 }
 
