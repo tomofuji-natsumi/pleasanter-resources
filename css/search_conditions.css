@@ -38,6 +38,11 @@
 #ExpandAggregations {
     /* height: 32px; */
     font-size: 0.9rem;
+	height: 30px;
+}
+
+#ViewFilters .field-auto-thin {
+	height: 28px;
 }
 
 #ViewFilters .ui-icon-folder-open,
@@ -77,7 +82,7 @@
 #ViewFilters_Reset {
     position: relative;
     margin: 0 0.5rem 0 0;
-    height: 30px;
+    height: 28px;
     color: var(--btn-reset-text) !important;
     box-shadow: var(--elevation-2);
 	line-height: 0.2rem;
