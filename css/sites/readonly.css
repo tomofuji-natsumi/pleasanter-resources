@@ -31,7 +31,6 @@ body.readonly-mode {
     }
 
     .field-label {
-        min-width: 120px;
         flex-shrink: 0;
         color: var(--readonly-label) !important;
         user-select: none;
@@ -40,29 +39,11 @@ body.readonly-mode {
 
     .field-label label {
         font-weight: 600;
-		vertical-align: -webkit-baseline-middle !important;
     }
 
     /* -----------------------------------------------------
        2. 読取専用の値表示
        ----------------------------------------------------- */
-    /*
-    #Editor .readonly-value,
-    #Editor div:has([id^="Results_Num"]) .readonly-value,
-    #Editor .spinner-field input {
-        flex: 1;
-        padding: 0.35rem 0.7rem;
-        box-sizing: border-box;
-        font-size: 0.85rem;
-        line-height: 1.5;
-        color: var(--readonly-value);
-        white-space: pre-line;
-        user-select: text;
-        background: var(--readonly-bg);
-        border: 1px solid var(--readonly-border);
-        border-radius: var(--radius-medium) !important;
-    }
-    */
 
     .control-attachments-item {
         background: var(--readonly-bg);
@@ -102,48 +83,22 @@ body.readonly-mode {
        ----------------------------------------------------- */
     .check-option,
     .check-icon {
-        pointer-events: none;
         cursor: default;
-    }
-
-    .check-option {
-        margin: 0 !important;
     }
 
     .check-icon {
         background: var(--readonly-bg);
     }
 
-    .check-icon:before {
-        color: transparent;
-    }
 
     /* -----------------------------------------------------
        6. その他 UI 調整
        ----------------------------------------------------- */
-    .input-field:focus {
-        background: var(--readonly-bg);
-    }
-
+    /*
     #Editor input.control-textbox::placeholder {
         color: transparent;
     }
-
-    .control-textbox:not(.has-css):focus,
-    .control-textarea:not(.has-css):focus,
-    .control-dropdown:not(.has-css):focus,
-    .control-spinner:not(.has-css):focus,
-    .control-markdown:not(.has-css):focus,
-    .control-textbox:focus,
-    .control-textarea:focus,
-    .control-dropdown:focus,
-    .control-spinner:focus,
-    .control-markdown:focus,
-    .ui-widget.ui-state-default.ui-multiselect:focus,
-    .ui-widget.ui-state-default.ui-multiselect:not(.has-css):focus {
-        background-color: transparent !important;
-        border: none !important;
-    }
+    */
 
 	.container-normal {
 	    margin-left: 0 !important;
