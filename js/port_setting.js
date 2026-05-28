@@ -53,6 +53,7 @@ function setupImportInput(input) {
     });
 }
 
+// インポート
 const importWatcher = new MutationObserver(() => {
 
     const enc = $("#Encoding");
@@ -76,18 +77,14 @@ importWatcher.observe(document.body, {
     subtree: true
 });
 
+// エクスポート
+const exportWatcher = new MutationObserver(() => {
 
-const exportWatcher = new MutationObserver(mutations => {
-    for (const m of mutations) {
-        for (const node of m.addedNodes) {
-
-            if (node.nodeType === 1 && node.id === "ExportEncoding") {
-
-                const exp = $("#ExportEncoding");
-                exp.val("UTF-8");
-                exp.prop("disabled", true);
-            }
-        }
+    const enc = $("#ExportEncoding");
+    if (enc.length) {
+        enc.val("UTF-8");
+        enc.prop("disabled", true);
+        exportWatcher.disconnect();
     }
 });
 
