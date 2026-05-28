@@ -19,6 +19,7 @@ body.readonly-mode {
     .se-toolbar,
     .se-placeholder,
     .se-resizing-bar,
+    .control-attachments-item .ui-icon-circle-close,
     #EditorComments::before {
 		display: none !important;
     }
@@ -103,6 +104,10 @@ body.readonly-mode {
     .check-icon {
         pointer-events: none;
         cursor: default;
+    }
+
+    .check-option {
+        margin: 0 !important;
     }
 
     .check-icon {
