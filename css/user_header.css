@@ -181,21 +181,15 @@
     border: none;
     padding: 0;
     font-size: 0.86rem;
-    font-weight: 400;
     color: var(--text-emphasis);
 }
 
 #Aggregations .label:not(:first-of-type) {
-    margin-left: 28px;
-}
-
-#Aggregations .data.link:first-child {
-    padding-left: 5px;
+    margin-left: 1.4rem;
 }
 
 #Aggregations .data.link {
     position: relative;
-    top: -1px;
     padding: 3px 6px;
     border-radius: var(--radius-small);
     font-weight: 500;
@@ -209,7 +203,7 @@
 
 #Aggregations .link .bold {
     margin-right: 0.5rem;
-    font-weight: 550 !important;
+    font-weight: 500 !important;
 }
 
 
