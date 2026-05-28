@@ -78,8 +78,8 @@ body.readonly-mode {
     #FieldSetGeneral input {
         background-color: transparent !important;
         border: none !important;
-        padding-left: 0 !important;
-        border-radius: var(--radius-medium) !important;
+        padding: 0 !important;
+        height: fit-content;
     }
 
     .field-markdown .readonly-value {
@@ -124,12 +124,6 @@ body.readonly-mode {
         color: transparent;
     }
 
-    .field-control input {
-        padding: 0 !important;
-        height: fit-content;
-        border: none;
-    }
-
     .control-textbox:not(.has-css):focus,
     .control-textarea:not(.has-css):focus,
     .control-dropdown:not(.has-css):focus,
@@ -155,7 +149,7 @@ body.readonly-mode {
 		margin-left: 120px;
     }
 
-    .container-normal:not(:has(~ .readonly-value)):not(:has(.check-option)):not(:has(.control-attachments-items)),
+    .container-normal:not(:has(~ .readonly-value)):not(:has(.check-option)):not(:has(.control-attachments-item)),
     .readonly-value {
         padding: 0.3rem 0.6rem !important;
         background: var(--readonly-bg) !important;
@@ -168,12 +162,6 @@ body.readonly-mode {
 
     .control-attachments-items {
 		margin: 0;
-	}
-
-	.readonly-value:empty, 
-	.field-control:has(.control-attachments[value="[]"]),
-	.container-normal:has(.control-attachments[value="[]"]) {
-		height: 2.47em;
 	}
 
 	.container-normal:has(.control-attachments[value="[]"]) {
