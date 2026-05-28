@@ -1,5 +1,5 @@
 /* =========================================================
-   8. Inputs（textbox / select / checkbox / spinner）
+   0. 基本レイアウト
    ========================================================= */
 
 textarea,
@@ -27,22 +27,16 @@ input:focus,
     min-height: 2rem !important;
 }
 
-.control-text {
-	color: var(--text-main);
-}
-
 [class^="control-"] {
     font-size: 0.85rem !important;
 }
 
-/* セレクトボックス */
-.select-field:not(:has(div.ui-icon-person)) .control-dropdown {
-    padding: 3px 4px 4px 5px !important;
-}
+/* =========================================================
+   1. テキストボックス
+   ========================================================= */
 
-.control-textbox,
-.control-spinner {
-    padding: 4px 4px 4px 8px;
+.control-text {
+	color: var(--text-main);
 }
 
 .control-text,
@@ -50,145 +44,14 @@ input:focus,
     border-radius: 0;
 }
 
-/* チェックボックス */
-.container-normal:has(.check-option) {
-    align-content: center;;
-}
-
-.check-option {
-    gap: 0.8rem !important;
-    margin: 0;
-    align-items: center;
-}
-
-.check-option .check-icon:before {
-    color: var(--surface-base) !important;
-}
-
-.check-option .check-icon:has(input:checked) {
-    background-color: var(--primary);
-}
-
-.check-option .check-icon:has(input:disabled):has(input:checked) {
-    background-color: var(--text-disabled);
-}
-
-.field-control .control-markdown {
-    min-width: 80px;
-    border: 1px solid var(--border-strong);
-}
-
-/* スピナー */
-.spinner-field .ui-spinner .ui-button {
-    position: absolute !important;
-    background-color: var(--surface-base);
-    border-left: 1px solid var(--border-light);
-}
-
-.spinner-field:has(.with-unit) .unit {
-    padding-left: 5px;
-}
-
-/* 日付アイコン */
-.current-date {
-    right: 2%;
-	user-select: none;
-}
-
-.current-date .material-symbols-sharp {
-    color: var(--icon-color) !important;
-}
-
-/* =========================================================
-   Calendar（flatpickr）
-   ========================================================= */
-
-.flatpickr-current-month .flatpickr-monthDropdown-months,
-.flatpickr-current-month input.cur-year,
-span.flatpickr-weekday {
-    color: var(--on-primary);
-    background: transparent !important;
-}
-
-.flatpickr-months .flatpickr-prev-month,
-.flatpickr-months .flatpickr-next-month {
-    color: var(--on-primary) !important;
-    fill: var(--on-primary) !important;
-    line-height: 1.4;
-}
-
-.flatpickr-day.selected {
-    color: var(--on-primary);
-    background: var(--primary);
-    border-color: var(--primary);
-}
-
-.flatpickr-day.selected:hover,
-.flatpickr-day.selected:focus {
-    background: var(--primary-hover);
-    border-color: var(--primary-hover);
-}
-
-.flatpickr-months .flatpickr-month,
-.flatpickr-weekdays {
-    background: var(--primary);
-    border-color: var(--primary);
-}
-
-.flatpickr-day {
-    color: var(--text-main);
-}
-
-.flatpickr-day.today {
-    border-color: var(--cal-other-bg);
-}
-
-.flatpickr-day.today:hover,
-.flatpickr-day.today:focus {
-    background: var(--cal-other-bg);
-    border-color: var(--cal-other-bg);
-}
-
-.flatpickr-day.flatpickr-disabled,
-.flatpickr-day.flatpickr-disabled:hover,
-.flatpickr-day.prevMonthDay,
-.flatpickr-day.nextMonthDay,
-.flatpickr-day.notAllowed,
-.flatpickr-day.notAllowed.prevMonthDay,
-.flatpickr-day.notAllowed.nextMonthDay {
-    color: var(--text-other-month);
+.control-textbox,
+.control-spinner {
+    padding: 4px 4px 4px 8px;
 }
 
 
 /* =========================================================
-   添付ファイル
-   ========================================================= */
-
-.control-attachments-upload {
-    padding: 1.7rem 0.8rem !important;
-    color: var(--text-main);
-    background: var(--surface-base);
-    border: 2px dotted var(--primary) !important;
-    border-radius: var(--radius-medium);
-}
-
-.control-attachments-upload:hover {
-    cursor: pointer;
-}
-
-.control-attachments-items {
-    padding: 0 !important;
-	margin-top: 0.6rem;
-}
-
-.control-attachments-item {
-	padding: 0.3rem 0.5rem !important;
-	margin: 0;
-}
-
-
-/* =========================================================
-   textarea
+   2. textarea
    ========================================================= */
 
 textarea {
@@ -201,7 +64,7 @@ textarea {
 
 
 /* =========================================================
-   Markdown
+   3. Markdown
    ========================================================= */
 markdown-field .md-viewer:not(.control-text) {
     background-color: var(--surface-base) !important;
@@ -241,7 +104,7 @@ markdown-field .notes {
 
 
 /* =========================================================
-   リッチエディタ
+   4. リッチエディタ
    ========================================================= */
 rt-editor {
     color: var(--text-main);
@@ -311,7 +174,154 @@ rt-editor .se-btn-select > svg {
 
 
 /* =========================================================
-   Readonly
+   5. セレクトボックス
+   ========================================================= */
+.select-field:not(:has(div.ui-icon-person)) .control-dropdown {
+    padding: 3px 4px 4px 5px !important;
+}
+
+/* =========================================================
+   6. チェックボックス
+   ========================================================= */
+.container-normal:has(.check-option) {
+    align-content: center;;
+}
+
+.check-option {
+    gap: 0.8rem !important;
+    margin: 0;
+    align-items: center;
+}
+
+.check-option .check-icon:before {
+    color: var(--surface-base) !important;
+}
+
+.check-option .check-icon:has(input:checked) {
+    background-color: var(--primary);
+}
+
+.check-option .check-icon:has(input:disabled):has(input:checked) {
+    background-color: var(--text-disabled);
+}
+
+.field-control .control-markdown {
+    min-width: 80px;
+    border: 1px solid var(--border-strong);
+}
+
+/* =========================================================
+   7. スピナー
+   ========================================================= */
+
+.spinner-field .ui-spinner .ui-button {
+    position: absolute !important;
+    background-color: var(--surface-base);
+    border-left: 1px solid var(--border-light);
+}
+
+.spinner-field:has(.with-unit) .unit {
+    padding-left: 5px;
+}
+
+/* =========================================================
+   8. カレンダー
+   ========================================================= */
+.current-date {
+    right: 2%;
+	user-select: none;
+}
+
+.current-date .material-symbols-sharp {
+    color: var(--icon-color) !important;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year,
+span.flatpickr-weekday {
+    color: var(--on-primary);
+    background: transparent !important;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: var(--on-primary) !important;
+    fill: var(--on-primary) !important;
+    line-height: 1.4;
+}
+
+.flatpickr-day.selected {
+    color: var(--on-primary);
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day.selected:hover,
+.flatpickr-day.selected:focus {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-weekdays {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day {
+    color: var(--text-main);
+}
+
+.flatpickr-day.today {
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.today:hover,
+.flatpickr-day.today:focus {
+    background: var(--cal-other-bg);
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.notAllowed,
+.flatpickr-day.notAllowed.prevMonthDay,
+.flatpickr-day.notAllowed.nextMonthDay {
+    color: var(--text-other-month);
+}
+
+
+/* =========================================================
+   9. 添付ファイル
+   ========================================================= */
+
+.control-attachments-upload {
+    padding: 1.7rem 0.8rem !important;
+    color: var(--text-main);
+    background: var(--surface-base);
+    border: 2px dotted var(--primary) !important;
+    border-radius: var(--radius-medium);
+}
+
+.control-attachments-upload:hover {
+    cursor: pointer;
+}
+
+.control-attachments-items {
+    padding: 0 !important;
+	margin-top: 0.6rem;
+}
+
+.control-attachments-item {
+	padding: 0.3rem 0.5rem !important;
+	margin: 0;
+}
+
+
+/* =========================================================
+   10. Readonly
    ========================================================= */
 
 .container-normal:has(span[data-readonly="1"]) {
