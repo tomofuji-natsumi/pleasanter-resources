@@ -5,12 +5,18 @@
 body.readonly-mode {
 
     /* -----------------------------------------------------
-       1. 基本レイアウト（ラベル + 値）
+       0. 基本レイアウト
        ----------------------------------------------------- */
+
+    .container-normal:has(.control-text[data-readonly="1"]) ,
+    .readonly-value {
+        min-height: 2rem !important;
+    }
        
     [id^="Results_Attachments"][id$="Field"]:has(.items:empty),
     .ui-icon-circle-close,
     .se-placeholder,
+    .se-toolbar 
     .container-normal:has(date-field),
 	.ui-spinner .ui-spinner-button,
     #EditorComments::before,
@@ -25,7 +31,6 @@ body.readonly-mode {
     .field-markdown {
         display: flex;
         align-items: flex-start;
-        margin-bottom: 18px;
     }
 
     .field-label {
@@ -63,11 +68,6 @@ body.readonly-mode {
         border-radius: var(--radius-medium) !important;
     }
 
-    .container-normal:has(span),
-    .container-normal:has(.control-text[data-readonly="1"]) {
-        min-height: fit-content !important;
-    }
-
     #FieldSetGeneral input {
         background-color: transparent !important;
         border: none !important;
@@ -81,7 +81,7 @@ body.readonly-mode {
     }
 
     /* -----------------------------------------------------
-       43. 添付ファイル
+       3. 添付ファイル
        ----------------------------------------------------- */
 
     [id^="Results_Attachments"][id$="Field"] .field-control {
@@ -177,7 +177,7 @@ body.readonly-mode {
     .container-normal div.readonly-value,
     #Encoding,
     #ExportEncoding {
-        padding: 0.35rem 0.7rem !important;
+        padding: 0.3rem 0.6rem !important;
         background: var(--readonly-bg) !important;
         color: var(--readonly-value) !important;
         border: 1px solid var(--border-strong) !important;
@@ -212,9 +212,5 @@ body.readonly-mode {
 
 	.container-normal:has(.control-attachments[value="[]"]) {
 		width: 100%;
-	}
-
-	.se-toolbar {
-		display: none;
 	}
 }
