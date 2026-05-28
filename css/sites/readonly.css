@@ -64,6 +64,7 @@ body.readonly-mode {
 
     .sun-editor-editable {
         background-color: var(--readonly-bg);
+        padding: 0;
     }
 
     #FieldSetGeneral input {
@@ -78,25 +79,7 @@ body.readonly-mode {
         max-height: none;
     }
 
-    /* -----------------------------------------------------
-       3. 添付ファイル
-       ----------------------------------------------------- */
-
-    [id^="Results_Attachments"][id$="Field"] .field-control {
-        flex: 1;
-        display: flex;
-        gap: 16px;
-    }
-
-    .control-attachments-item {
-        background: var(--readonly-bg);
-        border: 1px solid var(--readonly-border);
-        border-radius: var(--radius-medium) !important;
-        padding: 8px 12px;
-    }
-
-
-
+    
     /* -----------------------------------------------------
        4. SunEditor 読取専用
        ----------------------------------------------------- */
