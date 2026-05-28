@@ -52,7 +52,7 @@ body.readonly-mode {
     #Editor .input-field {
         flex: 1;
         padding: 0.35rem 0.7rem;
-        min-height: fit-content !important;
+        /* min-height: fit-content !important; */
         box-sizing: border-box;
         font-size: 0.85rem;
         line-height: 1.5;
@@ -100,11 +100,6 @@ body.readonly-mode {
        ----------------------------------------------------- */
     .sun-editor {
         border: 0;
-    }
-
-    .sun-editor .se-wrapper-inner {
-        padding: 8px 10px;
-        min-height: 32px;
     }
 
 
@@ -182,15 +177,7 @@ body.readonly-mode {
         user-select: text;
     }
 
-    .container-normal span[data-readonly="1"] {
-        background: transparent !important;
-        border: none !important;
-        min-height: fit-content;
-        height: fit-content;
-        line-height: 1.5;
-    }
-
-	.control-attachments-items {
+    .control-attachments-items {
 		margin: 0;
 	}
 
