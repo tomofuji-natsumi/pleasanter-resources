@@ -12,20 +12,18 @@ body.readonly-mode {
     .readonly-value {
         min-height: 2rem !important;
     }
-       
-    [id^="Results_Attachments"][id$="Field"]:has(.items:empty),
-    .ui-icon-circle-close,
-    .se-placeholder,
-    .se-toolbar 
-    .container-normal:has(date-field),
-	.ui-spinner .ui-spinner-button,
-    #EditorComments::before,
+
+    
     .required::before,
-    .select-field,
-    .se-resizing-bar {
+    .container-normal:has(~ .readonly-value)
+	.ui-spinner .ui-spinner-button,
+    .se-toolbar,
+    .se-placeholder,
+    .se-resizing-bar,
+    #EditorComments::before {
 		display: none !important;
     }
-	
+    
     .field-normal,
     .field-wide,
     .field-markdown {
