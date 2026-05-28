@@ -33,9 +33,7 @@ input:focus,
 }
 
 .control-textbox,
-.control-spinner,
-.control-markdown,
-.control-attachments-upload {
+.control-spinner {
     padding: 4px 4px 4px 8px;
 }
 
@@ -183,7 +181,6 @@ textarea {
     min-height: 4lh !important;
     max-height: 20lh;
     height: auto !important;
-    border: 1px solid var(--border-strong) !important;
 }
 
 
