@@ -138,7 +138,7 @@
 
 
 /* =========================================================
-   5. レイアウト（field / responsive）
+   5. レイアウト
    ========================================================= */
 
 .field {
@@ -179,101 +179,7 @@
 
 
 /* =========================================================
-   6. Markdown
-   ========================================================= */
-
-rt-editor {
-    color: var(--text-main);
-    background-color: var(--surface-base);
-}
-
-rt-editor .se-toolbar {
-    background-color: var(--bg-toolbar) !important;
-    border-bottom: 1px solid var(--border-strong) !important;
-    padding: 4px !important;
-}
-
-rt-editor .toggle:after {
-    background-color: var(--bg-toolbar) !important;
-}
-
-rt-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
-    color: var(--surface-base) !important;
-}
-
-rt-editor .se-btn-tray {
-    gap: 4px !important;
-}
-
-rt-editor button:not([disabled="true"]) {
-	color: var(--text-main) !important;
-	font-weight: 450;
-}
-
-rt-editor .se-btn:enabled:active,
-rt-editor .se-btn:enabled:focus,
-rt-editor .se-btn:enabled:hover {
-	background-color: var(--surface-strong);
-	border: none;
-}
-
-rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
-    flex: 1;
-	width: fit-content;
-    max-width: fit-content;
-    min-width: max-content;
-    background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-normal);
-}
-
-rt-editor .se-btn-list,
-rt-editor .se-btn:not(.se-btn-select):not(.btn-editable-cmd) {
-	width: min-content;
-    padding: 0 0.4rem !important;
-}
-
-rt-editor .se-tooltip .se-tooltip-inner {
-    width: 0;
-}
-
-rt-editor .se-btn-select {
-	margin: 0 !important;
-}
-
-rt-editor button.se-btn-select > svg {
-    margin: 8px 0 3px 10px;
-}
-
-
-/* =========================================================
-   7. 添付ファイル
-   ========================================================= */
-
-.control-attachments-upload {
-    padding: 1.7rem 0.8rem !important;
-    color: var(--text-main);
-    background: var(--surface-base);
-    border: 2px dotted var(--primary) !important;
-    border-radius: var(--radius-medium);
-}
-
-.control-attachments-upload:hover {
-    cursor: pointer;
-}
-
-.control-attachments-items {
-    padding: 0 !important;
-	margin-top: 0.6rem;
-}
-
-.control-attachments-item {
-	padding: 0.3rem 0.5rem !important;
-	margin: 0;
-}
-
-
-/* =========================================================
-   8. コメント（説明文・カード）
+   6. コメント（説明文・カード）
    ========================================================= */
 
 #Editor #EditorComments .comment + .comment {
@@ -346,9 +252,8 @@ rt-editor button.se-btn-select > svg {
 }
 
 
-
 /* =========================================================
-   13. 下部ライン調整
+   7. 下部ライン調整
    ========================================================= */
 
 #Editor #GroupForm:after,
@@ -356,28 +261,9 @@ rt-editor button.se-btn-select > svg {
     width: 60%;
 }
 
-.fieldset > .legend {
-    background-color: var(--bg-main-dark);
-    border: 1px solid var(--border-normal);
-    color: var(--text-emphasis);
-}
-
-.fieldset.enclosed,
-.fieldset.enclosed-half,
-.fieldset.enclosed-thin {
-    background: var(--bg-main);
-}
-
-.fieldset.enclosed:has(.legend),
-.fieldset.enclosed-half:has(.legend),
-.fieldset.enclosed-thin:has(.legend) {
-    border: 1px solid var(--border-normal);
-    box-shadow: 0 0 4px var(--shadow-strong);
-}
-
 
 /* =========================================================
-   14. 変更履歴の一覧
+   8. 変更履歴の一覧
    ========================================================= */
 
 #FieldSetHistories {
@@ -400,8 +286,9 @@ rt-editor button.se-btn-select > svg {
 	}
 }
 
+
 /* =========================================================
-   15. レコードのアクセス制御
+   9. レコードのアクセス制御
    ========================================================= */
 
 #FieldSetRecordAccessControlEditor {
