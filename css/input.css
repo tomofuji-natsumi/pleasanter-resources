@@ -24,7 +24,7 @@ input:focus,
 }
 
 .container-normal {
-    min-height: 2rem;
+    min-height: 2rem !important;
 }
 
 [class^="control-"] {
