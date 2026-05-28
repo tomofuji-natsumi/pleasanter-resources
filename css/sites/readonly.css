@@ -213,4 +213,8 @@ body.readonly-mode {
 	.container-normal:has(.control-attachments[value="[]"]) {
 		width: 100%;
 	}
+
+	.se-toolbar {
+		display: none;
+	}
 }
