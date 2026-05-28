@@ -1,5 +1,5 @@
 /* =========================================================
-   0. ユーザーヘッダー（全体）
+   0. 基本レイアウト
    ========================================================= */
 
 #MainForm,
@@ -22,8 +22,49 @@
     color: var(--icon-color);
 }
 
+
 /* =========================================================
-   1. ガイド
+   1. 開閉トグル
+   ========================================================= */
+#ViewFilters,
+#Aggregations {
+    position: relative;
+    width: 100% !important; /* important 必須 */
+    padding: 0.9rem 0.8rem !important; /* important 必須 */
+    gap: 1.0rem 0.9rem;
+    border-bottom: 1px solid var(--border-strong) !important; /* important 必須 */
+    box-shadow: var(--shadow-light);
+}
+
+#ReduceViewFilters,
+#ExpandViewFilters,
+#ReduceAggregations,
+#ExpandAggregations {
+    font-size: 0.9rem;
+	height: 32px;
+    align-content: center;
+}
+
+#ViewFilters .ui-icon-folder-open,
+#ViewFilters .ui-icon-close,
+#Aggregations .ui-icon-folder-open,
+#Aggregations .ui-icon-close {
+	display: none;
+}
+
+#ViewFilters label:not(.check-option),
+#ViewFilters span.check-text {
+    align-self: center;
+}
+
+#ViewFilters .ui-multiselect .ui-multiselect-open+span,
+#ViewFilters [class^="control-"] {
+    font-size: 0.82rem !important;
+}
+
+
+/* =========================================================
+   2. ガイド
    ===================================$====================== */
 #Guide {
     background-color: var(--bg-guide);
@@ -69,66 +110,7 @@
 
 
 /* =========================================================
-   1. 開閉トグル
-   ========================================================= */
-#ViewFilters,
-#Aggregations {
-    position: relative;
-    width: 100% !important; /* important 必須 */
-    padding: 0.9rem 0.8rem !important; /* important 必須 */
-    gap: 1.0rem 0.9rem;
-    border-bottom: 1px solid var(--border-strong) !important; /* important 必須 */
-    box-shadow: var(--shadow-light);
-}
-
-#ReduceViewFilters,
-#ExpandViewFilters,
-#ReduceAggregations,
-#ExpandAggregations {
-    font-size: 0.9rem;
-	height: 32px;
-    align-content: center;
-}
-
-#ViewFilters .ui-icon-folder-open,
-#ViewFilters .ui-icon-close,
-#Aggregations .ui-icon-folder-open,
-#Aggregations .ui-icon-close {
-	display: none;
-}
-
-#ViewFilters label:not(.check-option),
-#ViewFilters span.check-text {
-    align-self: center;
-}
-
-#ViewFilters .ui-multiselect .ui-multiselect-open+span,
-#ViewFilters [class^="control-"] {
-    font-size: 0.82rem !important;
-}
-
-
-/* =========================================================
    3. フィルタ
-   ========================================================= */
-
-/* リセット */
-#ViewFilters_Reset {
-    position: relative;
-    margin: 0 0.5rem 0 0;
-    height: 30px;
-    color: var(--btn-reset-text) !important;
-    box-shadow: var(--elevation-2);
-	line-height: 0.2rem;
-}
-
-#ViewFilters_Reset:hover {
-    background: var(--surface-soft) !important;
-}
-
-
-/* =========================================================
-   4. ViewFilters アニメーション
    ========================================================= */
 
 #ViewFilters {
@@ -156,9 +138,46 @@
     height: 0 !important;
 }
 
+/* リセット */
+#ViewFilters_Reset {
+    position: relative;
+    margin: 0 0.5rem 0 0;
+    height: 30px;
+    color: var(--btn-reset-text) !important;
+    box-shadow: var(--elevation-2);
+	line-height: 0.2rem;
+}
+
+#ViewFilters_Reset:hover {
+    background: var(--surface-soft) !important;
+}
+
 
 /* =========================================================
-   5. Aggregations アニメーション
+   4. フィールド（ラベル・入力欄）
+   ========================================================= */
+
+#ViewFilters .field-auto-thin {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    gap: 0.5rem;
+}
+
+#ViewFilters .field-auto-thin .field-label {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+}
+
+#ViewFilters .field-auto-thin .field-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   5. 集計
    ========================================================= */
 
 #Aggregations {
@@ -209,42 +228,18 @@
 
 
 /* =========================================================
-   7. フィールド（ラベル・入力欄）
+   6. ステータス色
    ========================================================= */
-
-#ViewFilters .field-auto-thin {
-    display: flex;
-    align-items: center;
-    height: 30px;
-    gap: 0.5rem;
-}
-
-#ViewFilters .field-auto-thin .field-label {
-    flex: 0 0 auto;
-    margin: 0;
-    padding: 0;
-}
-
-#ViewFilters .field-auto-thin .field-control {
-    flex: 1 1 auto;
-    min-width: 0;
-}
-
-.data.link:not([data-selector="#ViewFilters__Status"]) {
+#Aggregations .data.link:not([data-selector="#ViewFilters__Status"]) {
     background-color: var(--agg-item-bg);
     border: 1px solid var(--agg-item-border);
     color: var(--agg-item-text);
 }
 
-.data.link:not([data-selector="#ViewFilters__Status"]):hover {
+#Aggregations .data.link:not([data-selector="#ViewFilters__Status"]):hover {
     background-color: var(--agg-item-bg-hover);
     border-color: var(--agg-item-border-hover);
 }
-
-
-/* =========================================================
-   9. Aggregations ステータス色
-   ========================================================= */
 
 #Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="100"] {
     background-color: var(--status-new-bg);
