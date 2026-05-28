@@ -42,12 +42,14 @@ input:focus,
 }
 
 /* チェックボックス */
-.check-option {
-    gap: 0.8rem !important;
+.container-normal:has(.check-option) {
+    align-content: center;;
 }
 
-.check-option .check-icon {
-    border: 1px solid var(--border-light);
+.check-option {
+    gap: 0.8rem !important;
+    margin: 0;
+    align-items: center;
 }
 
 .check-option .check-icon:before {
