@@ -45,12 +45,12 @@ body.readonly-mode {
     /* -----------------------------------------------------
        2. 読取専用の値表示
        ----------------------------------------------------- */
+    /*
     #Editor .readonly-value,
     #Editor div:has([id^="Results_Num"]) .readonly-value,
     #Editor .spinner-field input {
         flex: 1;
         padding: 0.35rem 0.7rem;
-        /* min-height: fit-content !important; */
         box-sizing: border-box;
         font-size: 0.85rem;
         line-height: 1.5;
@@ -60,6 +60,14 @@ body.readonly-mode {
         background: var(--readonly-bg);
         border: 1px solid var(--readonly-border);
         border-radius: var(--radius-medium) !important;
+    }
+    */
+
+    .control-attachments-item {
+        background: var(--readonly-bg);
+        border: 1px solid var(--readonly-border);
+        border-radius: var(--radius-medium) !important;
+        padding: 8px 12px;
     }
 
     .sun-editor-editable {
@@ -147,7 +155,8 @@ body.readonly-mode {
 		margin-left: 120px;
     }
 
-    .container-normal:not(:has(~ .readonly-value)):not(:has(.check-option)) {
+    .container-normal:not(:has(~ .readonly-value)):not(:has(.check-option)):not(:has(.control-attachments-items)),
+    .readonly-value {
         padding: 0.3rem 0.6rem !important;
         background: var(--readonly-bg) !important;
         color: var(--readonly-value) !important;
