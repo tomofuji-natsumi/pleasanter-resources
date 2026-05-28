@@ -1,36 +1,40 @@
-/* コード元作成者：植盛さん */
 function applyCommentColors() {
+    const map = JSON.parse($('#MyComments').val() || "{}");
 
-    if (!$("#MyComments")[0]) return;
+    $(".comment").each(function () {
+        const id = $(this).data("comment-id");
+        if (!id) return;
 
-    let myData = JSON.parse($('#MyComments').val());    
-    let myKeys = Object.keys(myData);
-    myKeys.forEach(function (myKey) {
-        let $comment = $('[id="Comment' + myKey + '.wrapper"]');
-        if ($comment.length && myData[myKey]) {
-            $comment.css({
-                'color': myData[myKey].color,
-                'background-color': myData[myKey].backgroundColor,
-                'border-left': '8px solid ' + myData[myKey].borderColor
-            });
-        }
+        const info = map[id];
+        if (!info) return;
+
+        // 3 色を反映
+        $(this).css({
+            "color": info.color,
+            "background-color": info.backgroundColor,
+            "border-left": "8px solid" + `${info.borderColor}`
+        });
     });
 }
 
-// コメント DOM の変化を監視
 const commentObserver = new MutationObserver(mutations => {
+    let added = false;
+
     for (const m of mutations) {
         for (const node of m.addedNodes) {
-
-            // コメントが追加された瞬間に色付け
             if (node.nodeType === 1 && node.classList.contains("comment")) {
-                applyCommentColors();
+                added = true;
             }
         }
     }
+
+    if (added) {
+        setTimeout(() => {
+            applyCommentColors();
+        }, 50);
+    }
 });
 
-// コメント一覧を監視
 commentObserver.observe(document.body, {
     childList: true,
     subtree: true
