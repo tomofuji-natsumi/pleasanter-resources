@@ -15,7 +15,7 @@ body.readonly-mode {
 
     
     .required::before,
-    .container-normal:has(~ .readonly-value)
+    .container-normal:has(~ .readonly-value),
 	.ui-spinner .ui-spinner-button,
     .se-toolbar,
     .se-placeholder,
