@@ -301,8 +301,12 @@ rt-editor .se-btn-select {
 	margin: 0 !important;
 }
 
-rt-editor button.se-btn-select > svg {
+rt-editor .se-btn-select > svg {
     margin: 8px 0 3px 10px;
+}
+
+.sun-editor-editable {
+	background-color: var(--surface-base) !important;
 }
 
 
