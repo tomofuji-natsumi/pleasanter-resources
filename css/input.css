@@ -27,6 +27,10 @@ input:focus,
     min-height: 2rem !important;
 }
 
+.control-text {
+	color: var(--text-main);
+}
+
 [class^="control-"] {
     font-size: 0.85rem !important;
 }
