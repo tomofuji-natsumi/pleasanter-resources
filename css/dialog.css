@@ -105,6 +105,30 @@
 
 
 /* =========================================================
+   種類
+   ========================================================= */
+
+.fieldset > .legend {
+    background-color: var(--bg-main-dark);
+    border: 1px solid var(--border-normal);
+    color: var(--text-emphasis);
+}
+
+.fieldset.enclosed,
+.fieldset.enclosed-half,
+.fieldset.enclosed-thin {
+    background: var(--bg-main);
+}
+
+.fieldset.enclosed:has(.legend),
+.fieldset.enclosed-half:has(.legend),
+.fieldset.enclosed-thin:has(.legend) {
+    border: 1px solid var(--border-normal);
+    box-shadow: 0 0 4px var(--shadow-strong);
+}
+
+
+/* =========================================================
    リスト
    ========================================================= */
 
@@ -216,6 +240,7 @@ label.error {
     background: var(--primary-overlay);
     opacity: 0.55;
 }
+
 
 /* =========================================================
    選択肢
