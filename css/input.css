@@ -41,6 +41,11 @@ input:focus,
     padding: 4px 4px 4px 8px;
 }
 
+.control-text,
+.control-basket {
+    border-radius: 0;
+}
+
 /* チェックボックス */
 .container-normal:has(.check-option) {
     align-content: center;;
