@@ -19,20 +19,3 @@
     color: var(--surface-strong);
     font-weight: 550;
 }
-
-label[for="Import"] {
-    white-space: nowrap;
-}
-
-
-:not(td)>div.field-wide .container-normal:has(#Import) {
-    margin-left: 140px;
-}
-
-[aria-describedby="ImportSitePackageDialog"] {
-    width: 50em !important;
-}
-
-#ImportSitePackageDialog #Import {
-    width: fit-content;
-}
