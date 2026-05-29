@@ -319,6 +319,10 @@ span.flatpickr-weekday {
 	margin: 0;
 }
 
+.control-attachments-item.already-attachments {
+    background-color: var(--primary-surface);
+}
+
 
 /* =========================================================
    10. Readonly
