@@ -60,7 +60,6 @@ td[role="presentation"],
    ========================================================= */
 
 .fc-view-harness th.fc-col-header-cell .fc-col-header-cell-cushion {
-    color: var(--text-on-primary) !important;
     text-shadow: 0 0 2px var(--shadow-strong);
     font-size: 1rem !important;
     font-weight: 550 !important;
@@ -73,18 +72,31 @@ td[role="presentation"],
 .fc-col-header-cell.fc-day-thu,
 .fc-col-header-cell.fc-day-fri {
     background-color: var(--cal-weekday-bg) !important;
+}
+
+.fc-col-header-cell.fc-day-mon .fc-col-header-cell-cushion,
+.fc-col-header-cell.fc-day-tue .fc-col-header-cell-cushion,
+.fc-col-header-cell.fc-day-wed .fc-col-header-cell-cushion,
+.fc-col-header-cell.fc-day-thu .fc-col-header-cell-cushion,
+.fc-col-header-cell.fc-day-fri .fc-col-header-cell-cushion, {
     color: var(--text-on-primary) !important;
 }
 
 /* 土曜 */
 .fc-col-header-cell.fc-day-sat {
     background-color: var(--cal-sat-bg) !important;
+}
+
+.fc-col-header-cell.fc-day-sat .fc-col-header-cell-cushion {
     color: var(--text-on-primary) !important;
 }
 
 /* 日曜 */
 .fc-col-header-cell.fc-day-sun {
     background-color: var(--cal-holi-bg) !important;
+}
+
+.fc-col-header-cell.fc-day-sun .fc-col-header-cell-cushion {
     color: var(--text-on-primary) !important;
 }
 
