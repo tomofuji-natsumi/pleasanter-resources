@@ -75,6 +75,13 @@ img {
 	user-select: none;
 }
 
+.display-material-icons {
+    left: 0.2rem !important;
+    width: 20px;
+    text-align: center;
+    color: var(--icon-color);
+}
+
 .ui-multiselect-open .ui-icon {
     right: 3px;
 }
