@@ -181,7 +181,7 @@
     --btn-back-bg: #444;
     --btn-back-hover: #333;
 
-    --btn-delete-bg: var(--semantic-danger);
+    --btn-delete-bg: rgba(210, 60, 60, 0.9);
     --btn-delete-hover: #C0392B;
 
     --btn-reset-text: var(--icon-color);
