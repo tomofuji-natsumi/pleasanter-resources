@@ -29,17 +29,22 @@ function applyCommentColors() {
 }
 
 const commentObserver = new MutationObserver(mutations => {
-    let added = false;
+    let needUpdate = false;
 
     for (const m of mutations) {
+
         for (const node of m.addedNodes) {
             if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
-                added = true;
+                needUpdate = true;
             }
+        }
+
+        if (m.type === "childList" && m.target.id === "CommentList") {
+            needUpdate = true;
         }
     }
 
-    if (added) {
+    if (needUpdate) {
         setTimeout(() => {
             applyCommentColors();
         }, 50);
