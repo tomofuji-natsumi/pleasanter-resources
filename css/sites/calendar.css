@@ -79,7 +79,7 @@ td[role="presentation"],
 .fc-col-header-cell.fc-day-wed .fc-col-header-cell-cushion,
 .fc-col-header-cell.fc-day-thu .fc-col-header-cell-cushion,
 .fc-col-header-cell.fc-day-fri .fc-col-header-cell-cushion, {
-    color: var(--text-on-primary) !important;
+    color: var(--cal-weekday-text) !important;
 }
 
 /* 土曜 */
@@ -88,7 +88,7 @@ td[role="presentation"],
 }
 
 .fc-col-header-cell.fc-day-sat .fc-col-header-cell-cushion {
-    color: var(--text-on-primary) !important;
+    color: var(--cal-sat-text) !important;
 }
 
 /* 日曜 */
@@ -97,7 +97,7 @@ td[role="presentation"],
 }
 
 .fc-col-header-cell.fc-day-sun .fc-col-header-cell-cushion {
-    color: var(--text-on-primary) !important;
+    color: var(--cal-holi-text) !important;
 }
 
 /* ヘッダー境界線 */
