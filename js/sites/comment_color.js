@@ -42,6 +42,10 @@ const commentObserver = new MutationObserver(mutations => {
         if (m.type === "childList" && m.target.id === "CommentList") {
             needUpdate = true;
         }
+
+        if (m.type === "attributes" && m.target.id === "CommentList") {
+            needUpdate = true;
+        }
     }
 
     if (needUpdate) {
@@ -53,5 +57,8 @@ const commentObserver = new MutationObserver(mutations => {
 
 commentObserver.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["class", "data-*"]
 });
+
