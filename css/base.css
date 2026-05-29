@@ -360,7 +360,28 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   8. Messages
+   8. 見出し（セクション）
+   ========================================================= */
+
+.field-section {
+    gap: 10px;
+    font-weight: 550;
+    font-size: 0.95rem;
+    color: var(--on-primary);
+    background-color: var(--bg-toolbar) !important;
+    padding: 8px 12px;
+    border-radius: var(--radius-large);
+    cursor: default;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.field-section .ui-icon {
+    color: var(--on-primary);
+}
+
+
+/* =========================================================
+   9. Messages
    ========================================================= */
 
 #Message .body {
@@ -384,7 +405,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   9. Footer（フッターコマンド）
+   10. Footer（フッターコマンド）
    ========================================================= */
 
 #MainCommandsContainer {
@@ -393,7 +414,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   10. Crosstab / Kanban（クロス集計・カンバン）
+   11. Crosstab / Kanban（クロス集計・カンバン）
    ========================================================= */
 
 
