@@ -1,18 +1,17 @@
 function applyCommentColors() {
     const map = JSON.parse($('#MyComments').val() || "{}");
 
-    $(".comment").each(function () {
-        const id = $(this).data("comment-id");
+    $("#CommentList > div[id^='Comment']").each(function () {
+        const id = $(this).attr("id").replace("Comment", "").replace(".wrapper", "");
         if (!id) return;
 
         const info = map[id];
         if (!info) return;
 
-        // 3 色を反映
         $(this).css({
             "color": info.color,
             "background-color": info.backgroundColor,
-            "border-left": "8px solid" + `${info.borderColor}`
+            "border-left": `8px solid ${info.borderColor}`
         });
     });
 }
@@ -22,7 +21,7 @@ const commentObserver = new MutationObserver(mutations => {
 
     for (const m of mutations) {
         for (const node of m.addedNodes) {
-            if (node.nodeType === 1 && node.classList.contains("comment")) {
+            if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
                 added = true;
             }
         }
