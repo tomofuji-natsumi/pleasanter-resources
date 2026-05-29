@@ -123,12 +123,12 @@
 
     --cal-border: #A9A9A9;
 
-    --cal-weekday-bg: oklch(from var(--primary) calc(l + 0.01) calc(c * 1.02) h);
+    --cal-weekday-bg: color-mix(in oklch, var(--primary) 85%, white 15%);
     --cal-weekday-text: var(--on-primary);
     --cal-weekday-cell-bg: oklch(0.985 0.004 255);
     --cal-weekday-cell-text: var(--text-main);
 
-    --cal-sat-bg: oklch(from var(--primary) calc(l + 0.07) calc(c * 0.80) h);
+    --cal-sat-bg: oklch(0.62 0.12 255);
     --cal-sat-text: var(--on-primary);
     --cal-sat-cell-bg: oklch(0.970 0.015 255);
     --cal-sat-cell-text: #2F4A7A;
@@ -159,8 +159,8 @@
     --cal-event-tag-weekday: oklch(0.47 0.14 255);
     --cal-event-text-weekday: var(--on-primary);
 
-    --cal-event-bg-sat: oklch(0.62 0.15 255);
-  	--cal-event-hover-sat: oklch(0.58 0.15 255);
+    --cal-event-bg-sat: oklch(0.62 0.12 255);
+  	--cal-event-hover-sat: oklch(0.58 0.12 255);
     --cal-event-tag-sat: oklch(0.52 0.15 255);
     --cal-event-text-sat: var(--on-primary);
 
