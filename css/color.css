@@ -134,7 +134,7 @@
     --cal-sat-cell-text: #2F4A7A;
 
 	--cal-holi-bg: oklch(0.72 0.15 25);
-	--cal-holi-text: #5A1F1F;
+	--cal-holi-text: var(--on-primary);
 	--cal-holi-cell-bg: oklch(0.94 0.075 25);
   	--cal-holi-cell-text: #6A2A2A;
 
