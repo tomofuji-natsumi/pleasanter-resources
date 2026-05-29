@@ -231,14 +231,14 @@
    6. ステータス色
    ========================================================= */
 #Aggregations .data.link:not([data-selector="#ViewFilters__Status"]) {
-    background-color: var(--agg-item-bg);
-    border: 1px solid var(--agg-item-border);
-    color: var(--agg-item-text);
+    background-color: var(--status-no-bg);
+    border: 1px solid var(--status-no-border);
+    color: var(--status-no-text);
 }
 
 #Aggregations .data.link:not([data-selector="#ViewFilters__Status"]):hover {
-    background-color: var(--agg-item-bg-hover);
-    border-color: var(--agg-item-border-hover);
+    background-color: var(--status-no-bg-hover);
+    border-color: var(--status-no-border-hover);
 }
 
 #Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="100"] {
