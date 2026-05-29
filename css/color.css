@@ -10,7 +10,7 @@
 
     /* --- Primary（主役） --- */
     --primary: #3371CB;
-    --primary-hover: oklch(from var(--primary) calc(l - 0.08) c h);
+    --primary-hover: color-mix(in oklch, var(--primary) 80%, white 20%);
 
     /* --- Primary Surface（背景レイヤー） --- */
     --primary-border: #5A8EE0;
@@ -23,19 +23,19 @@
     --primary-overlay: rgba(20, 28, 40, 0.55);
 
     /* --- Semantic（成功・警告・エラー） --- */
-    --semantic-danger: rgba(210, 60, 60, 0.9);
-    --semantic-danger-bg: oklch(from var(--semantic-danger) calc(l + 0.35) calc(c * 0.25) h);
-    --semantic-danger-border: #EECFCF;
+    --semantic-danger: oklch(0.45 0.18 30);
+	--semantic-danger-bg: oklch(0.92 0.06 30);
+	--semantic-danger-border: oklch(0.65 0.10 30);
     --semantic-success: oklch(0.48 0.13 160);
     --semantic-success-bg: oklch(0.88 0.03 160);
     --semantic-success-border: oklch(0.62 0.10 160);
     --semantic-warning: rgba(240, 170, 70, 0.9);
     --semantic-warning-bg: #FFF8E5;
 
-    /* --- Surface（白系3レイヤー / もっと白に） --- */
+    /* --- Surface --- */
     --surface-base:   oklch(0.990 0.002 255);
-    --surface-soft:   oklch(0.986 0.0018 255);
-    --surface-strong: oklch(0.975 0.0025 255);
+	--surface-soft:   oklch(0.982 0.002 255);
+	--surface-strong: oklch(0.970 0.003 255);
 
     /* =========================================================
        2. ベース背景（UI全体の背景レイヤー）
@@ -68,10 +68,10 @@
        3. 枠線・影（UIの境界・深度）
        ========================================================= */
 
-    --border-subtle: rgba(0, 0, 0, 0.06);
-    --border-light:  #D7D8DD;
-    --border-normal: #C8CED6;
-    --border-strong: #C3C9D2;
+	--border-subtle: rgba(0, 0, 0, 0.04);
+	--border-light:  #D0D4DA;
+	--border-normal: #C0C7CF;
+	--border-strong: #B6BDC6;
 
     --border-nav: #AFC4E8;
     --border-count: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
@@ -133,10 +133,10 @@
     --cal-sat-cell-bg: oklch(0.970 0.015 255);
     --cal-sat-cell-text: #2F4A7A;
 
-    --cal-holi-bg: oklch(0.72 0.15 25);
-    --cal-holi-text: var(--on-primary);
-    --cal-holi-cell-bg: oklch(0.94 0.075 25);
-    --cal-holi-cell-text: #6A2A2A;
+	--cal-holi-bg: oklch(0.72 0.15 25);
+	--cal-holi-text: #5A1F1F;
+	--cal-holi-cell-bg: oklch(0.94 0.075 25);
+  	--cal-holi-cell-text: #6A2A2A;
 
     --cal-digestion-bg: #EFE3EB;
     --cal-digestion-text: #6A4A5A;
@@ -154,20 +154,20 @@
        7. イベント（平日 / 土曜 / 日曜 / 他月）
        ========================================================= */
 
-    --cal-event-bg-weekday: oklch(0.55 0.14 255);
-    --cal-event-hover-weekday: oklch(0.51 0.14 255);
+    --cal-event-bg-weekday: oklch(0.56 0.14 255);
+  	--cal-event-hover-weekday: oklch(0.52 0.14 255);
     --cal-event-tag-weekday: oklch(0.47 0.14 255);
     --cal-event-text-weekday: var(--on-primary);
 
-    --cal-event-bg-sat: oklch(0.60 0.15 255);
-    --cal-event-hover-sat: oklch(0.56 0.15 255);
+    --cal-event-bg-sat: oklch(0.62 0.15 255);
+  	--cal-event-hover-sat: oklch(0.58 0.15 255);
     --cal-event-tag-sat: oklch(0.52 0.15 255);
     --cal-event-text-sat: var(--on-primary);
 
-    --cal-event-bg-holi: oklch(0.50 0.17 25);
-    --cal-event-hover-holi: oklch(0.46 0.17 25);
-    --cal-event-tag-holi: oklch(0.42 0.17 25);
-    --cal-event-text-holi: var(--on-primary);
+	--cal-event-bg-holi: oklch(0.72 0.15 25);
+  	--cal-event-hover-holi: oklch(0.68 0.15 25);
+  	--cal-event-tag-holi: oklch(0.64 0.15 25);
+  	--cal-event-text-holi: #5A1F1F;
 
     --cal-event-bg-other: #8A8F99;
     --cal-event-hover-other: #7A7F88;
