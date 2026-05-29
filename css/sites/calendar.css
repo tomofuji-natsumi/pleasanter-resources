@@ -412,7 +412,7 @@ button.fc-today-button[disabled] {
 #FullCalendar td,
 .grid-stack-item .fc th,
 .grid-stack-item .fc td {
-    border-color: var(--cal-border);
+	border: 1px solid var(--cal-border);
 }
 
 /* =========================================================
