@@ -1,3 +1,15 @@
+let lastJson = "";
+
+function watchJsonUpdate() {
+    const current = $('#MyComments').val();
+    if (current !== lastJson) {
+        lastJson = current;
+        applyCommentColors();
+    }
+}
+setInterval(watchJsonUpdate, 100);
+
+
 function applyCommentColors() {
     const map = JSON.parse($('#MyComments').val() || "{}");
 
