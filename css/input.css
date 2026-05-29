@@ -321,6 +321,7 @@ span.flatpickr-weekday {
 
 .control-attachments-item.already-attachments {
     background-color: var(--primary-surface);
+	border-color: var(--primary);
 }
 
 
