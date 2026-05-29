@@ -203,6 +203,7 @@ rt-editor .se-btn-select > svg {
 
 .check-option .check-icon:has(input:disabled):has(input:checked) {
     background-color: var(--text-disabled);
+    border: 1px solid var(--border-strong);
 }
 
 .field-control .control-markdown {
