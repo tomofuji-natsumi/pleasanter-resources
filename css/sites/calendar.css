@@ -78,7 +78,7 @@ td[role="presentation"],
 .fc-col-header-cell.fc-day-tue .fc-col-header-cell-cushion,
 .fc-col-header-cell.fc-day-wed .fc-col-header-cell-cushion,
 .fc-col-header-cell.fc-day-thu .fc-col-header-cell-cushion,
-.fc-col-header-cell.fc-day-fri .fc-col-header-cell-cushion, {
+.fc-col-header-cell.fc-day-fri .fc-col-header-cell-cushion {
     color: var(--cal-weekday-text) !important;
 }
 
