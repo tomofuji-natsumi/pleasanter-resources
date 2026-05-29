@@ -11,6 +11,10 @@ body.site-list {
     #SiteMenu {
         padding: calc(40px * .5) 30px;
         width: 100%;
+    }
+
+    #SiteMenu, #SiteMenu * {
+        max-width: 100%;
         box-sizing: border-box;
     }
 
@@ -58,7 +62,7 @@ body.site-list {
         width: min(100%, 200px);
     }
 
-    #SiteMenu .nav-site.to-parent .ui-icon-circle-arrow-n {
+    #SiteMenu nav:first-of-type .ui-icon-circle-arrow-n {
         display: none;
     }
 
@@ -67,10 +71,8 @@ body.site-list {
     }
 
     #SiteMenu nav:first-of-type .nav-sites li.to-parent {
-        display: flex;
         justify-content: center;
         margin: 0;
-        background: var(--primary);
     }
 
     #SiteMenu nav:first-of-type .nav-sites li.to-parent .title {
@@ -96,7 +98,6 @@ body.site-list {
     #SiteMenu nav:nth-of-type(2) .nav-sites.sortable .nav-site,
     #SiteMenu nav:nth-of-type(2) .nav-sites.sortable .nav-site * {
         min-width: 0 !important;
-        box-sizing: border-box;
     }
 
     #MainCommandsContainer {
@@ -106,7 +107,7 @@ body.site-list {
 
 
     /* =========================================================
-       5. レスポンシブ（1250px 以下）
+       5. レスポンシブ
        ========================================================= */
     @media (max-width:1250px) {
 
@@ -114,12 +115,12 @@ body.site-list {
             margin-left: 0 !important;
             width: 100% !important;
         }
+
+        .nav-site.to-parent > a {
+            width: min(100%, 160px);
+        }
     }
 
-
-    /* =========================================================
-       6. レスポンシブ（1000px 以下）
-       ========================================================= */
     @media (max-width:1000px) {
 
         #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
@@ -128,10 +129,6 @@ body.site-list {
         }
     }
 
-
-    /* =========================================================
-       7. レスポンシブ（700px 以下）
-       ========================================================= */
     @media (max-width:700px) {
 
         #SiteMenu {
@@ -148,30 +145,12 @@ body.site-list {
             min-height: 140px;
         }
 
+        .nav-site.to-parent > a {
+            width: min(100%, 100px);
+        }
+
         #Breadcrumb .item:not(:first-child) a {
             padding: 0 15px !important;
-        }
-    }
-
-
-    /* =========================================================
-       8. max-width 暴走防止
-       ========================================================= */
-    #SiteMenu, #SiteMenu * {
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-
-    @media (max-width:1250px) {
-        .nav-site.to-parent > a {
-            width: min(100%, 160px); /* 1250px 以下 */
-        }
-    }
-
-    @media (max-width:700px) {
-        .nav-site.to-parent > a {
-            width: min(100%, 100px); /* 700px 以下 */
         }
     }
 
