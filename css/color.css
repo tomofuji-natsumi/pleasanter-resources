@@ -23,19 +23,16 @@
     --primary-overlay: rgba(20, 28, 40, 0.55);
 
     /* --- Semantic（成功・警告・エラー） --- */
-    --semantic-danger: oklch(0.45 0.18 30);
-	--semantic-danger-bg: oklch(0.92 0.06 30);
-	--semantic-danger-border: oklch(0.65 0.10 30);
-    --semantic-success: oklch(0.48 0.13 160);
-    --semantic-success-bg: oklch(0.88 0.03 160);
-    --semantic-success-border: oklch(0.62 0.10 160);
-    --semantic-warning: rgba(240, 170, 70, 0.9);
-    --semantic-warning-bg: #FFF8E5;
+    --semantic-danger: oklch(0.58 0.19 25 / 0.9);
+    --semantic-danger-border: color-mix(in oklch, var(--semantic-danger) 70%, white 25%);
+    --semantic-success: oklch(0.62 0.12 140 / 0.9);
+    --semantic-success-border: color-mix(in oklch, var(--semantic-success) 70%, white 25%);
+    --semantic-warning: oklch(0.98 0.04 98 / 0.9);
 
     /* --- Surface --- */
     --surface-base:   oklch(0.990 0.002 255);
-	--surface-soft:   oklch(0.982 0.002 255);
-	--surface-strong: oklch(0.970 0.003 255);
+    --surface-soft:   oklch(0.982 0.002 255);
+    --surface-strong: oklch(0.970 0.003 255);
 
     /* =========================================================
        2. ベース背景（UI全体の背景レイヤー）
@@ -68,22 +65,19 @@
        3. 枠線・影（UIの境界・深度）
        ========================================================= */
 
-	--border-subtle: rgba(0, 0, 0, 0.04);
-	--border-light:  #D0D4DA;
-	--border-normal: #C0C7CF;
-	--border-strong: #B6BDC6;
+    --border-subtle: rgba(0, 0, 0, 0.04);
+    --border-light:  #D0D4DA;
+    --border-normal: #C0C7CF;
+    --border-strong: #B6BDC6;
 
     --border-nav: #AFC4E8;
     --border-count: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
 
     --border-focus: color-mix(in oklch, var(--primary) 30%, white 70%);
 
-    --thick-line: oklch(0.915 0.006 255);
-
     --radius-small: 4px;
     --radius-medium: 5px;
     --radius-large: 6px;
-    --radius-round: 9999px;
 
     --shadow-light: rgba(0, 0, 0, 0.05);
     --shadow-medium: rgba(0, 0, 0, 0.10);
@@ -107,7 +101,6 @@
 
     --text-link: var(--primary);
     --text-link-hover: var(--primary-hover);
-    --text-on-primary: var(--on-primary);
     --text-other-month: rgba(57, 57, 57, 0.302);
 
     /* =========================================================
@@ -133,10 +126,10 @@
     --cal-sat-cell-bg: oklch(0.970 0.015 255);
     --cal-sat-cell-text: #2F4A7A;
 
-	--cal-holi-bg: oklch(0.72 0.15 25);
-	--cal-holi-text: var(--on-primary);
-	--cal-holi-cell-bg: oklch(0.94 0.075 25);
-  	--cal-holi-cell-text: #6A2A2A;
+    --cal-holi-bg: oklch(0.72 0.15 25);
+    --cal-holi-text: var(--on-primary);
+    --cal-holi-cell-bg: oklch(0.94 0.075 25);
+    --cal-holi-cell-text: #6A2A2A;
 
     --cal-digestion-bg: #EFE3EB;
     --cal-digestion-text: #6A4A5A;
@@ -155,19 +148,19 @@
        ========================================================= */
 
     --cal-event-bg-weekday: oklch(0.56 0.14 255);
-  	--cal-event-hover-weekday: oklch(0.52 0.14 255);
+    --cal-event-hover-weekday: oklch(0.52 0.14 255);
     --cal-event-tag-weekday: oklch(0.47 0.14 255);
     --cal-event-text-weekday: var(--on-primary);
 
     --cal-event-bg-sat: oklch(0.62 0.12 255);
-  	--cal-event-hover-sat: oklch(0.58 0.12 255);
+    --cal-event-hover-sat: oklch(0.58 0.12 255);
     --cal-event-tag-sat: oklch(0.52 0.15 255);
     --cal-event-text-sat: var(--on-primary);
 
-	--cal-event-bg-holi: oklch(0.72 0.15 25);
-  	--cal-event-hover-holi: oklch(0.68 0.15 25);
-  	--cal-event-tag-holi: oklch(0.64 0.15 25);
-  	--cal-event-text-holi: #5A1F1F;
+    --cal-event-bg-holi: oklch(0.72 0.15 25);
+    --cal-event-hover-holi: oklch(0.68 0.15 25);
+    --cal-event-tag-holi: oklch(0.64 0.15 25);
+    --cal-event-text-holi: #5A1F1F;
 
     --cal-event-bg-other: #8A8F99;
     --cal-event-hover-other: #7A7F88;
@@ -236,14 +229,4 @@
     --status-rejected-border: #E6C7A8;
     --status-rejected-bg-hover: #FFE7D6;
     --status-rejected-border-hover: #DDBA9A;
-
-    /* =========================================================
-       11. 集計アイテム
-       ========================================================= */
-    --agg-item-bg: #E1E4E9;
-    --agg-item-border: #B7BEC7;
-    --agg-item-text: #2F3A45;
-
-    --agg-item-bg-hover: #D3D7DE;
-    --agg-item-border-hover: #AEB5BE;
 }
