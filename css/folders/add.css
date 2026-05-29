@@ -62,7 +62,7 @@ body:not(.site-list) {
     }
   
     #TemplateTabsContainer .samples-displayed {
-        background: var(--semantic-warning);
+        background: var(--semantic-danger-light);
         color: var(--semantic-danger);
         border-bottom: 1px solid var(--border-strong);
     }
