@@ -211,16 +211,13 @@
     margin-bottom: 15px;
 }
 
-#CommentList > div[id^="Comment"] {
-    background-color: transparent !important;
-    border-left: 8px solid transparent !important;
-    color: inherit; /* 文字色はそのまま */
-}
-
 #CommentList .comment {
     margin: 0 0 13px;
     padding: 10px 14px !important;
     box-shadow: 3px 3px 3px var(--shadow-medium);
+    background-color: transparent;
+    border-left: 8px solid transparent;
+    color: inherit;
 }
 
 #CommentList .comment-header {
