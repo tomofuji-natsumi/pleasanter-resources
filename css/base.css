@@ -2,10 +2,6 @@
    0. Base
    ========================================================= */
 
-html.preload body {
-    visibility: hidden;
-}
-
 html,
 body {
     box-sizing: border-box;
