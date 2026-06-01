@@ -3,7 +3,7 @@
    ========================================================= */
 
 textarea,
-select,
+select:not([name="Results_Status"]),
 input,
 .check-option .check-icon:not(:has(input:checked)),
 .ui-widget.ui-state-default.ui-multiselect {
@@ -14,7 +14,7 @@ input,
 }
 
 textarea:focus,
-select:focus,
+select:not([name="Results_Status"]):focus,
 input:focus,
 .check-option .check-icon:not(:has(input:checked)):focus,
 .ui-widget.ui-state-default.ui-multiselect:focus {
