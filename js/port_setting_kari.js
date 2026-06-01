@@ -5,7 +5,6 @@
   function setupImportInput($input) {
     if (!$input.length) return;
 
-    // 既にラップ済みならスキップ
     if ($input.parent().hasClass('file-wrapper')) return;
 
     const $wrapper = $(`
@@ -101,4 +100,6 @@
   });
 
   exportWatcher.observe(document.body, { childList: true, subtree: true });
+
+  if (window.runIconApply) window.runIconApply();
 })();
