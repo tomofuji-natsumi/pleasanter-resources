@@ -12,8 +12,7 @@
 }
 
 .nav-site:hover {
-    transform: translateY(-2px);
-    filter: drop-shadow(0 4px 8px var(--shadow-strong));
+    filter: drop-shadow(0 2px 4px var(--shadow-medium));
 }
 
 .nav-site > a {
@@ -30,6 +29,12 @@
 
 .nav-site .conditions {
     padding: 6px;
+}
+
+.nav-site .conditions span.count {
+    background-color: var(--bg-count);
+    border: 1px solid var(--border-count);
+    color: var(--text-emphasis);
 }
 
 .nav-site .title {
