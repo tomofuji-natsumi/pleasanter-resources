@@ -172,4 +172,5 @@
 
     iconObserver.observe(document.body, { childList: true, subtree: true });
 
+    window.runIconApply = runIconApply;
 })();
