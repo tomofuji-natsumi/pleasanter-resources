@@ -2,7 +2,6 @@
    0. 基本レイアウト
    ========================================================= */
 
-#MainForm,
 #ViewFilters,
 #Aggregations {
 	background-color: var(--bg-filter);
