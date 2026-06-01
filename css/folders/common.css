@@ -73,7 +73,7 @@
 .nav-site.to-parent:has(.primary-material-icons):active,
 .nav-site.to-parent:has(.primary-material-icons):active a span {
     background: var(--primary-hover) !important;
-    color: var(--surface-strong);
+    color: var(--surface-strong) !important;
     font-weight: 550;
 }
 
