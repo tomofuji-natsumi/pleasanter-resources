@@ -81,6 +81,7 @@ tr.crosstab-row th {
     vertical-align: middle !important;
     padding: 0.4rem 0.85rem !important;
     color: var(--text-main) !important;
+	white-space: pre-line;
 }
 
 /* hover */
