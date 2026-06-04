@@ -15,12 +15,16 @@
         setTimeout(replaceBackText, 10);
     });
 
-    // nav-sites が後から描画される場合に備えて監視
+    // nav-sites のみを監視（←ここが重要）
     const mo = new MutationObserver(() => {
-        replaceBackText();
+        const nav = document.querySelector("ul.nav-sites");
+        if (nav) {
+            replaceBackText();
+        }
     });
 
-    mo.observe(document.body, {
+    // nav-sites が入るコンテナだけ監視
+    mo.observe(document.querySelector("#MainContainer") || document.body, {
         childList: true,
         subtree: true
     });
