@@ -2,7 +2,7 @@
 
   const $ = window.jQuery;
 
-  // ★ カレンダー画面でのみ実行
+  // ★ カレンダー画面だけで動かす
   if (!location.pathname.includes("/calendar")) return;
 
   // -----------------------------
@@ -39,6 +39,7 @@
         const $cells = $(".fc-daygrid-day[data-date]");
         if ($cells.length === 0) return;
 
+        // 既存表示をクリア
         $(".holiday-name").remove();
         $cells.removeClass("holiday-100 holiday-200 holiday-300");
 
@@ -62,30 +63,43 @@
       }
 
       // -----------------------------
-      // 3. FullCalendar フック（Pleasanter 専用）
+      // 3. DOM ベースでフック（Pleasanter向け安定版）
       // -----------------------------
-      function hookCalendar() {
-        const calendarEl = document.querySelector(".fc"); // ← ここが重要
-        if (!calendarEl) return;
+      function hookCalendarDom() {
+        // 初回：FullCalendar が描画されるまで少し待つ
+        setTimeout(renderHolidays, 30);
 
-        const calendar = calendarEl._calendar || calendarEl.__calendar;
-        if (!calendar) return;
+        // navlink（内部遷移）
+        $(document).on("click", "[data-navlink]", function () {
+          setTimeout(renderHolidays, 50);
+        });
 
-        calendar.on("datesSet", renderHolidays);
-        calendar.on("viewDidMount", renderHolidays);
+        // 月移動ボタン
+        $(document).on("click", ".fc-prev-button, .fc-next-button, .fc-today-button", function () {
+          setTimeout(renderHolidays, 50);
+        });
 
-        renderHolidays();
+        // カレンダー本体の再描画を監視（最小限）
+        const cal = document.querySelector("#FullCalendar");
+        if (!cal) return;
+
+        const mo = new MutationObserver(() => {
+          setTimeout(renderHolidays, 30);
+        });
+
+        mo.observe(cal, {
+          childList: true,
+          subtree: true
+        });
       }
 
-      // -----------------------------
-      // 4. pjax 後に必ずフック
-      // -----------------------------
+      // pjax 後にも必ずフック
       $(document).on("pjax:end", function () {
-        setTimeout(hookCalendar, 30);
+        hookCalendarDom();
       });
 
       // 初回ロード
-      setTimeout(hookCalendar, 30);
+      hookCalendarDom();
     }
   });
 
