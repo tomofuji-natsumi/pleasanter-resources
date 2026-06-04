@@ -4,12 +4,12 @@ const criticalScripts = [
 
 const dependentScripts = [
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/port_setting_kari2.js",
-  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/readonly.js"
+  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/readonly_kari.js"
 ];
 
 const parallelScripts = [
-  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/comment_color.js",
-  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/holiday_setting.js"
+  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/comment_color_kari.js",
+  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/holiday_setting_kari.js"
 ];
 
 function loadScriptOnce(url) {
