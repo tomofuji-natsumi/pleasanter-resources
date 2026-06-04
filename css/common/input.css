@@ -180,7 +180,9 @@ rt-editor .se-btn-select > svg {
 /* =========================================================
    5. セレクトボックス
    ========================================================= */
-.select-field:not(:has(div.ui-icon-person)) .control-dropdown {
+.select-field:not(:has(div.ui-icon-person)) .control-dropdown,
+.select-field .control-dropdown:has(+.current-user),
+.select-field .control-dropdown:has(+.current-dept) {
     padding: 3px 4px 4px 5px !important;
 }
 
