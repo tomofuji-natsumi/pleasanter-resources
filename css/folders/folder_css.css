@@ -1,0 +1,90 @@
+html, body {
+    background-color: var(--bg-site-list) !important;
+}
+
+body.site-list {
+
+    /* 0. レイアウト基盤 */
+    #SiteMenu {
+        padding: calc(40px * .5) 30px;
+        width: 100%;
+    }
+
+    #SiteMenu, #SiteMenu * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    #Main {
+        margin-left: 52px;
+        width: calc(100% - 52px);
+        box-sizing: border-box;
+    }
+
+    /* 1. nav 初期化 */
+    #SiteMenu .nav-sites {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    /* 3. カード一覧 */
+    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        justify-content: start;
+        width: 100%;
+    }
+
+    #MainCommandsContainer {
+        display: none !important;
+    }
+
+    /* 5. レスポンシブ */
+    @media (max-width:1250px) {
+        #Main {
+            margin-left: 0 !important;
+            width: 100% !important;
+        }
+        .nav-site.to-parent > a {
+            width: min(100%, 160px);
+        }
+    }
+
+    @media (max-width:1000px) {
+        #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+    }
+
+    @media (max-width:700px) {
+        #SiteMenu {
+            padding: calc(40px * .4) 18px;
+        }
+        #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 8px;
+        }
+        #SiteMenu .nav-site {
+            padding: 8px;
+            min-height: 140px;
+        }
+        .nav-site.to-parent > a {
+            width: min(100%, 100px);
+        }
+        #Breadcrumb .item:not(:first-child) a {
+            padding: 0 15px !important;
+        }
+    }
+
+    /* 13. index ページ：コマンド非表示 */
+    .is-site-index #MainCommandsContainer {
+        display: none !important;
+    }
+
+    #Message {
+        bottom: 0;
+    }
+}
