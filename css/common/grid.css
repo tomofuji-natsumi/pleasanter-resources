@@ -70,14 +70,16 @@ tr.crosstab-row th {
 #GridHeaderMenus .ui-widget-content {
     color: var(--text-main);
     background: var(--bg-editor-sub);
-}
-
-#GridHeaderMenus .ui-widget.ui-widget-content {
     border: 1px solid var(--border-light);
 }
 
 #GridHeaderMenus .ui-widget-content .ui-menu-item {
     border-top: 1px solid var(--border-light);
+}
+
+#GridHeaderMenus .ui-widget-content .ui-menu-item-wrapper:hover {
+	color: var(--on-primary);
+    background: var(--primary);
 }
 
 
