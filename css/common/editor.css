@@ -1,0 +1,482 @@
+/* =========================================================
+   0. 基本レイアウト
+   ========================================================= */
+
+#Editor #EditorTabsContainer,
+#Editor #GroupForm,
+#Editor #MainForm {
+    background-color: var(--surface-base);
+    background: var(--surface-base);
+}
+
+#Editor #MainForm {
+    box-shadow: 0 2px 1px var(--shadow-light);
+}
+
+#FieldSetGeneral .field-label {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 0 0.8em 0 0;
+    margin-bottom: 0;
+}
+
+#FieldSetGeneral .field-label label {
+    vertical-align: sub;
+}
+
+#FieldSetGeneral .check-option {
+    margin: 4px 0 !important;
+	gap: 0.8em;
+}
+
+.field-wide,
+.field-markdown {
+    min-height: initial;
+    margin-bottom: 20px;
+    padding: 0 10px 0 0;
+}
+
+.field-normal {
+    height: initial;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 0 20px 0 0;
+}
+
+.field-markdown {
+    padding: 0 10px 0 0;
+}
+
+#SiteImageIconContainer {
+    display: none;
+}
+
+.ui-icon {
+    color: var(--icon-color);
+}
+
+
+/* =========================================================
+   1. テキストエリア
+   ========================================================= */
+
+textarea {
+    field-sizing: content;
+    resize: vertical;
+    min-height: 4lh;
+    max-height: 20lh;
+    height: auto !important;
+}
+
+
+/* =========================================================
+   2. Markdown
+   ========================================================= */
+
+.field-control .control-markdown {
+    min-width: 80px;
+}
+
+#EditorComments::before {
+	content: "";
+    display: block;
+    color: var(--semantic-danger);
+    font-weight: 550;
+    font-size: 0.83rem;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background-color: var(--semantic-warning);
+    border: 1px solid var(--semantic-danger-border);
+    border-radius: var(--radius-large);
+}
+
+#Editor #EditorComments {
+    padding: 16px 23px;
+    background: transparent;
+}
+
+#Editor #EditorComments #Comments {
+    width: 100%;
+    min-width: fit-content;
+    background: var(--surface-base) !important;
+    border: 1px solid var(--border-strong);
+}
+
+rt-editor {
+    color: var(--text-main);
+    background-color: var(--surface-base);
+}
+
+rt-editor .se-toolbar {
+    background-color: var(--bg-toolbar) !important;
+    border-bottom: 1px solid var(--border-strong) !important;
+    padding: 4px !important;
+}
+
+rt-editor .toggle:after {
+    background-color: var(--bg-toolbar) !important;
+}
+
+rt-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
+    color: var(--surface-base) !important;
+}
+
+rt-editor .se-btn-tray {
+    gap: 4px !important;
+}
+
+rt-editor button:not([disabled="true"]) {
+	color: var(--text-main) !important;
+	font-weight: 450;
+}
+
+rt-editor .se-btn:enabled:active,
+rt-editor .se-btn:enabled:focus,
+rt-editor .se-btn:enabled:hover {
+	background-color: var(--surface-strong);
+	border: none;
+}
+
+rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
+    flex: 1;
+	width: fit-content;
+    max-width: fit-content;
+    min-width: max-content;
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-normal);
+}
+
+rt-editor .se-btn-list,
+rt-editor .se-btn:not(.se-btn-select):not(.btn-editable-cmd) {
+	width: min-content;
+    padding: 0 0.4rem !important;
+}
+
+rt-editor .se-tooltip .se-tooltip-inner {
+    width: 0;
+}
+
+rt-editor .se-btn-select {
+	margin: 0 !important;
+}
+
+rt-editor button.se-btn-select > svg {
+    margin: 8px 0 3px 10px;
+}
+
+
+/* =========================================================
+   3. 必須マーク
+   ========================================================= */
+
+.required::before {
+    color: var(--semantic-danger);
+    margin-right: 3px;
+    content: "*";
+}
+
+.required::after {
+    content: none !important;
+}
+
+
+/* =========================================================
+   6. レイアウト（field / responsive）
+   ========================================================= */
+
+.field {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.field-label {
+    flex: 0 0 auto;
+    max-width: 100%;
+}
+
+.field-control {
+    flex: 1 1 0;
+    min-width: 0 !important;
+}
+
+.field-wide .field-control {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+.field-control input,
+.field-control select,
+.field-control textarea,
+.field-control .control-markdown {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+.control-attachments-items {
+    padding: 0 !important;
+   margin-top: 0.2em;
+}
+
+.control-attachments-item {
+   padding: 0.6em;
+}
+
+
+/* =========================================================
+   7. タブ（色・境界線）
+   ========================================================= */
+
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) {
+    background: var(--surface-soft) !important;
+    border: 1px solid var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover {
+    background: var(--primary) !important;
+    border: 1px solid var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) a {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover a {
+    color: var(--on-primary)  !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    background: var(--primary) !important;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-small) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+    color: var(--on-primary);
+}
+
+.ui-tabs .ui-tabs-nav {
+    border-bottom: 3px solid var(--border-normal) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+
+
+/* =========================================================
+   8. レコード情報（メタ情報）
+   ========================================================= */
+
+#RecordInfo div {
+    gap: 12px !important;
+}
+
+
+
+/* =========================================================
+   9. EditorTabs / MainForm 背景
+   ========================================================= */
+
+#EditorTabs,
+#Editor #MainForm:after {
+    background-color: var(--bg-editor-sub);
+}
+
+
+
+/* =========================================================
+   10. レコードヘッダー
+   ========================================================= */
+
+#RecordHeader {
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--bg-data-title) !important;
+    color: var(--text-main) !important;
+    padding: 0 23px 16px 23px !important;
+}
+
+#TitleContainer {
+    padding: 5px;
+    background-color: var(--bg-data-title) !important;
+}
+
+#TitleContainer #HeaderTitle {
+    padding: 18px;
+    color: var(--text-main);
+}
+
+#Editor #RecordSwitchers {
+    gap: 12px;
+}
+
+#Editor #RecordSwitchers button {
+    font-weight: 550;
+}
+
+#EditorTabs {
+    padding: 9px 16px;
+    gap: 7px;
+}
+
+
+
+/* =========================================================
+   11. 添付ファイル
+   ========================================================= */
+
+.control-attachments-upload {
+    padding: 25px 8px !important;
+    color: var(--text-main);
+    background: var(--surface-base);
+    border-color: 2px dotted var(--primary);
+    border-radius: var(--radius-medium);
+}
+
+.control-attachments-upload:hover {
+    cursor: pointer;
+}
+
+
+
+/* =========================================================
+   12. コメント（説明文・カード）
+   ========================================================= */
+
+#Editor #EditorComments .comment + .comment {
+    border: none;
+}
+
+#CommentField markdown-field {
+    margin-bottom: 15px;
+}
+
+.comment {
+    margin: 0 0 13px;
+    padding: 10px 14px !important;
+    box-shadow: 3px 3px 3px var(--shadow-medium);
+}
+
+.comment > .time {
+    margin: 0 10px 8px 0;
+}
+
+#CommentList .md {
+    background-color: transparent;
+}
+
+#CommentList markdown-field {
+    margin: 0 !important;
+}
+
+#CommentList markdown-field .md-btn.is-delete {
+    right: -5px;
+    color: var(--icon-color);
+}
+
+#CommentList markdown-field .notes {
+    font-size: 0.88rem;
+    color: var(--text-main);
+}
+
+.comment-header {
+    flex-direction: row;
+    padding: 2px 0;
+}
+
+.comment-header .user {
+    order: 1;
+    margin-right: 0.5rem;
+}
+
+.comment-header .time {
+    order: 2;
+    font-size: 0.75rem;
+}
+
+
+
+/* =========================================================
+   13. 下部ライン調整
+   ========================================================= */
+
+#Editor #GroupForm:after,
+#Editor #MainForm:after {
+    width: 60%;
+}
+
+#TitleContainer:not(:empty) + #Warnings:empty + #Editor:has(#RecordHeader) {
+    margin-top: 0px;
+}
+
+/* =========================================================
+   14. 変更履歴の一覧
+   ========================================================= */
+
+#FieldSetHistories {
+    .command-left {
+        margin: 0 0 15px;
+    }
+}
+
+/* =========================================================
+   15. レコードのアクセス制御
+   ========================================================= */
+
+#FieldSetRecordAccessControlEditor {
+    .ui-tabs .ui-tabs-panel {
+        padding: 1.2em 1.5em;
+    }
+  
+    .command-left {
+        margin-bottom: 12px;
+    }
+  
+    .command-left:has(#OpenPermissionsDialog) {
+        float: right;
+    }
+
+    .command-left:has(#AddPermissions) {
+        float: left;
+    }
+
+    #SearchPermissionElements {
+        margin: 0;
+    }
+
+   #Notes > .readonly {
+      display: none !important;
+   }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 0) {
+    body:has(#Editor) #TitleContainer #HeaderTitle {
+        color: var(--text-main);
+    }
+
+	.field-normal,
+	.field-wide,
+	.field-auto,
+	.field-textarea,
+	.field-markdown {
+		min-height: auto;
+	}
+
+	#Editor #EditorComments {
+		background: var(--bg-editor-sub);
+	}
+
+	#Editor #EditorComments #CommentField {
+		background-color: transparent;
+		border-bottom: none;
+		padding: 0;
+	}
+}
