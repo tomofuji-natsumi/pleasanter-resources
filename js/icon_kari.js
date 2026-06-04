@@ -17,7 +17,6 @@
       "#DropDownSearchDialogForm [data-icon='ui-icon-cancel']": "close",
       "#ImportSettingsDialog [data-icon='ui-icon-cancel']": "close",
       "#ExportSelectorDialog [data-icon='ui-icon-cancel']": "close",
-      // 修正: クオート閉じ忘れを直す
       "#PermissionsDialog [data-icon='ui-icon-cancel']": "close",
       "#AnalyPartDialog [data-icon='ui-icon-cancel']": "close",
       "#MainCommands [data-action='SiteMenu']": "arrow_circle_left",
