@@ -113,6 +113,23 @@ tr.crosstab-row th {
 
 
 /* =========================================================
+   ソート条件
+   ========================================================= */
+.ui-widget-content {
+    color: var(--text-main);
+    background: var(--bg-editor-sub);
+}
+
+.ui-widget.ui-widget-content {
+    border: 1px solid var(--border-light);
+}
+
+.ui-widget-content .ui-menu-item {
+    border-top: 1px solid var(--border-light);
+}
+
+
+/* =========================================================
    個別
    ========================================================= */
 
