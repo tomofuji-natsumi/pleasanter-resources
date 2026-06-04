@@ -18,7 +18,7 @@ function loadScriptOnce(url) {
 
     const s = document.createElement('script');
     s.src = url;
-    s.async = true; // ← 並列ロードを有効化
+    s.async = true;
     s.onload = resolve;
     s.onerror = reject;
     document.head.appendChild(s);
@@ -33,12 +33,12 @@ async function loadSequential(urls) {
 
 window.runTenantScripts = async function () {
 
-  // ① クリティカル（最初に読み込む）
+  // ① クリティカル
   await loadSequential(criticalScripts);
 
-  // ② 依存関係のあるもの（直列）
+  // ② 依存関係のあるもの
   await loadSequential(dependentScripts);
 
-  // ③ 依存のないもの（並列）
+  // ③ 依存のないもの
   await Promise.all(parallelScripts.map(loadScriptOnce));
 };
