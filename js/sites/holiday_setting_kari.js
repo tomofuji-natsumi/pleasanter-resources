@@ -30,7 +30,7 @@
         });
 
       // -----------------------------
-      // 2. セルに祝日を適用（最小限）
+      // 2. セルに祝日を適用
       // -----------------------------
       function renderHolidays() {
         const $cells = $(".fc-daygrid-day[data-date]");
@@ -59,34 +59,33 @@
       }
 
       // -----------------------------
-      // 3. FullCalendar の正しいイベントをフック
+      // 3. Pleasanter 専用 FullCalendar フック
       // -----------------------------
-      function hookFullCalendar() {
-        const fc = document.querySelector(".fc");
-        if (!fc) return;
+      function hookCalendar() {
+        const calendarEl = document.querySelector("#Calendar .fc");
+        if (!calendarEl) return;
 
-        // FullCalendar インスタンス取得
-        const calendar = fc.__fullCalendar;
+        // FullCalendar v5/v6 は内部に calendar オブジェクトを保持している
+        const calendar = calendarEl._calendar || calendarEl.__calendar;
         if (!calendar) return;
 
-        // 月が変わったとき
+        // 月移動・初回描画
         calendar.on("datesSet", renderHolidays);
-
-        // 初回描画
         calendar.on("viewDidMount", renderHolidays);
 
         // 初回即時
         renderHolidays();
       }
 
-      // FullCalendar が読み込まれるまで待つ
-      const wait = setInterval(() => {
-        const fc = document.querySelector(".fc");
-        if (fc && fc.__fullCalendar) {
-          clearInterval(wait);
-          hookFullCalendar();
-        }
-      }, 50);
+      // -----------------------------
+      // 4. pjax 後に FullCalendar が再生成されるので必ずフック
+      // -----------------------------
+      $(document).on("pjax:end", function () {
+        setTimeout(hookCalendar, 30);
+      });
+
+      // 初回ロード
+      setTimeout(hookCalendar, 30);
     }
   });
 
