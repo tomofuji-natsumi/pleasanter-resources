@@ -49,6 +49,10 @@ input:focus,
     padding: 4px 4px 4px 8px;
 }
 
+.control-dropdown {
+	border: 1px solid var(--border-strong);
+}
+
 
 /* =========================================================
    2. textarea
