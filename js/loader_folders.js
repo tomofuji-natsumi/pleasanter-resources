@@ -2,8 +2,7 @@
 const scripts = [
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/port_setting_kari.js",
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/folders/back_btn_kari.js",
-  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/folders/css_setting_kari.js",
-  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/icon_kari.js",
+  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/common/icon.js",
 ];
 
 function loadScriptSequential(urls) {
