@@ -1,8 +1,9 @@
 // 複数JSをまとめて読み込む
 const scripts = [
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/port_setting_kari.js",
-  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/comment_color.js",
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/readonly.js",
+  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/comment_color.js",
+  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/holiday_setting.js",
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/icon_kari.js",
 ];
 
