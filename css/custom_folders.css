@@ -1,0 +1,299 @@
+/* =========================================================
+    0. 基本
+    ========================================================= */
+html, body {
+    background-color: var(--bg-site-list) !important;
+}
+
+#Main {
+    margin-left: 52px;
+    width: calc(100% - 52px);
+    box-sizing: border-box;
+}
+
+#Message {
+    bottom: 0;
+}
+
+/* =========================================================
+    1. サイトメニュー
+    ========================================================= */
+#SiteMenu {
+    padding: calc(40px * .5) 30px;
+    width: 100%;
+}
+
+#SiteMenu, #SiteMenu * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+#SiteMenu .nav-sites {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#SiteMenu .nav-site.to-parent {
+    display: block !important;
+    min-height: auto !important;
+    padding: 0 !important;
+}
+
+#SiteMenu  .nav-site.to-parent > a {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+
+    border-radius: var(--radius-large);
+    text-decoration: none;
+    font-size: 95%;
+    font-weight: 550;
+    box-sizing: border-box;
+
+    /* PC 幅 */
+    width: min(100%, 200px);
+}
+
+#SiteMenu nav:first-of-type .ui-icon-circle-arrow-n {
+    display: none;
+}
+
+#SiteMenu nav:first-of-type .nav-sites {
+    margin-bottom: 1.5rem;
+}
+
+#SiteMenu nav:first-of-type .nav-sites li.to-parent {
+    justify-content: center;
+    margin: 0;
+}
+
+#SiteMenu nav:first-of-type .nav-sites li.to-parent .title {
+    color: var(--on-primary);
+}
+
+#SiteMenu nav:first-of-type .primary-material-icons {
+    font-size: 1rem;
+}
+
+
+/* =========================================================
+    3. カード
+    ========================================================= */
+#SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: start;
+    width: 100%;
+}
+
+#SiteMenu nav:nth-of-type(2) .nav-sites.sortable .nav-site,
+#SiteMenu nav:nth-of-type(2) .nav-sites.sortable .nav-site * {
+    min-width: 0 !important;
+}
+
+#MainCommandsContainer {
+    display: none !important;
+}
+
+.nav-site {
+    padding: 12px;
+    min-height: 160px;
+    border-radius: 8px;
+    background: var(--surface-base);
+    box-shadow: 0 2px 4px rgba(0,0,0,.01);
+    transition: transform .12s ease, box-shadow .12s ease;
+    filter: drop-shadow(0 2px 4px var(--shadow-strong));
+}
+
+.nav-site:hover {
+    filter: drop-shadow(0 2px 4px var(--shadow-medium));
+}
+
+.nav-site > a {
+    padding: 0;
+}
+
+.nav-site .site-icon {
+    margin-top: 15px;
+}
+
+.nav-site .site-icon img {
+    height: auto;
+}
+
+.nav-site .conditions {
+    padding: 6px;
+}
+
+.nav-site .conditions span.elapsed-time.old {
+    color: var(--text-muted);
+}
+
+.nav-site .conditions span.count {
+    background-color: var(--bg-count);
+    border: 1px solid var(--border-count);
+    color: var(--text-emphasis);
+}
+
+.nav-site .conditions span.overdue {
+    background-color: var(--semantic-danger);
+    border: 1px solid var(--semantic-danger-border);
+    color: var(--text-white);
+}
+
+.nav-site .title {
+    font-size: 0.83rem;
+    font-weight: 550;
+    overflow: hidden;
+    white-space: nowrap !important;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding: 0;
+    color: var(--primary);
+}
+
+.nav-site .elapsed-time {
+    font-size: 0.75rem;
+    color: var(--text-main);
+}
+
+.nav-site .count {
+    font-size: 0.75rem;
+    background-color: var(--bg-count);
+    border: 1px solid var(--border-count);
+    color: var(--text-main);
+}
+
+.nav-site.to-parent:has(.primary-material-icons) a span {
+    left: 0.75rem;
+}
+
+.nav-site.to-parent:has(.primary-material-icons),
+.nav-site.to-parent:has(.primary-material-icons):focus,
+.nav-site.to-parent:has(.primary-material-icons) a span,
+.nav-site.to-parent:has(.primary-material-icons):focus  a span {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+    font-weight: 550;
+}
+
+.nav-site.to-parent:has(.primary-material-icons):hover,
+.nav-site.to-parent:has(.primary-material-icons):hover a span,
+.nav-site.to-parent:has(.primary-material-icons):active,
+.nav-site.to-parent:has(.primary-material-icons):active a span {
+    background: var(--primary-hover) !important;
+    color: var(--surface-strong) !important;
+    font-weight: 550;
+}
+
+
+@media (max-width:1250px) {
+
+    #Main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    .nav-site.to-parent > a {
+        width: min(100%, 160px);
+    }
+
+    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+        gap: 10px !important;
+    }
+}
+
+@media (max-width:1000px) {
+
+    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+}
+
+@media (max-width:700px) {
+
+    #SiteMenu {
+        padding: calc(40px * .4) 18px;
+    }
+
+    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 8px;
+    }
+
+    #SiteMenu .nav-site {
+        padding: 8px;
+        min-height: 140px;
+    }
+
+    .nav-site.to-parent > a {
+        width: min(100%, 100px);
+    }
+}
+
+/* =========================================================
+    4. テンプレート
+    ========================================================= */
+#TemplateTabsContainer {
+    font-size: 0.85rem;
+    margin: 0;
+    width: 100%;
+}
+
+#PreviewTemplate div ol li {
+    padding: 3px 8px 4px 8px;
+    margin-bottom: 5px;
+}
+
+#TemplateTabsContainer .template {
+    background-color: var(--surface-base);
+}
+
+#TemplateTabsContainer .template-viewer {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-strong);
+}
+
+#TemplateTabsContainer .template-viewer .description,
+#TemplateTabsContainer .template-viewer .samples-displayed {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border-strong);
+}
+
+#TemplateTabsContainer .template-viewer .description {
+    color: var(--text-emphasis);
+    background: var(--bg-guide);
+}
+
+#TemplateTabsContainer .template-viewer .description:has(+.viewer:empty) {
+    border-bottom: 1px solid var(--border-strong);
+}
+
+#TemplateTabsContainer .template-viewer .samples-displayed {
+    background: var(--semantic-danger-light);
+    color: var(--semantic-danger);
+}
+
+#TemplateTabsContainer .template-viewer .template-tab-container {
+    padding: 0;
+    min-height: fit-content;
+}
+
+.template-selectable .command-left {
+    height: auto;
+}
+
+[aria-describedby="ImportUserTemplateDialog"] .field-wide > .field-label {
+    white-space: nowrap;
+    width: 9rem;
+    margin-right: -9rem;
+}
+
+[aria-describedby="ImportUserTemplateDialog"] :not(td)>div.field-wide .container-normal {
+    margin-left: 9.2rem;
+}
