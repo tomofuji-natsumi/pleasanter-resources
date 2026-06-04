@@ -31,6 +31,10 @@
     padding: 6px;
 }
 
+.nav-site .conditions span.elapsed-time.old {
+    color: var(--text-muted);
+}
+
 .nav-site .conditions span.count {
     background-color: var(--bg-count);
     border: 1px solid var(--border-count);
