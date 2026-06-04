@@ -198,7 +198,7 @@ button:has(.primary-material-icons):active {
 }
 
 #Header .hamburger-menubox .hamburger-menuwrap {
-    background-color: var(--surface-soft) !important;
+    background-color: var(--surface-base) !important;
     box-shadow: 2px 0 2px var(--shadow-medium);
 }
 
