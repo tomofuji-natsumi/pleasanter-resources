@@ -51,7 +51,7 @@ window.runTenantScripts = async function () {
   if (window.runIconApply) window.runIconApply();
 };
 
-// ★ 追加：PJAX 遷移後にも必ず再実行
+// PJAX 遷移後にも必ず再実行
 $(document).on("pjax:end", () => {
   window.runTenantScripts();
 });
