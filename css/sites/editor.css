@@ -76,7 +76,6 @@ textarea {
 
 .field-control .control-markdown {
     min-width: 80px;
-    border: 1px solid var(--border-strong) !important;
 }
 
 #EditorComments::before {
