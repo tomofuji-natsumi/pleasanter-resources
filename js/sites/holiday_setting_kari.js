@@ -62,10 +62,10 @@
       }
 
       // -----------------------------
-      // 3. Pleasanter 専用 FullCalendar フック
+      // 3. FullCalendar フック（Pleasanter 専用）
       // -----------------------------
       function hookCalendar() {
-        const calendarEl = document.querySelector("#Calendar .fc");
+        const calendarEl = document.querySelector(".fc"); // ← ここが重要
         if (!calendarEl) return;
 
         const calendar = calendarEl._calendar || calendarEl.__calendar;
