@@ -45,7 +45,9 @@ input:focus,
 }
 
 .control-textbox,
-.control-spinner {
+.control-spinner,
+.select-field .control-dropdown:has(+.current-user),
+.select-field .control-dropdown:has(+.current-dept) {
     padding: 4px 4px 4px 8px;
 }
 
@@ -180,9 +182,7 @@ rt-editor .se-btn-select > svg {
 /* =========================================================
    5. セレクトボックス
    ========================================================= */
-.select-field:not(:has(div.ui-icon-person)) .control-dropdown,
-.select-field .control-dropdown:has(+.current-user),
-.select-field .control-dropdown:has(+.current-dept) {
+.select-field:not(:has(div.ui-icon-person)) .control-dropdown {
     padding: 3px 4px 4px 5px !important;
 }
 
