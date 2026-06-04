@@ -1,7 +1,7 @@
 // GitHub Pages に置いた複数 JS をまとめて読み込む
 const scripts = [
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/port_setting_kari.js",
-  "https://xxxxx.github.io/pleasanter-resources/js/icon_kari.js",
+  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/icon_kari.js",
 ];
 
 function loadScriptSequential(urls) {
