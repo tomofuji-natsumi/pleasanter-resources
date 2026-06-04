@@ -32,13 +32,11 @@ async function loadSequential(urls) {
 }
 
 window.runTenantScripts = async function () {
-
-  // ① クリティカル
-  await loadSequential(criticalScripts);
-
-  // ② 依存関係のあるもの
-  await loadSequential(dependentScripts);
-
-  // ③ 依存のないもの
-  await Promise.all(parallelScripts.map(loadScriptOnce));
+  try {
+    await loadSequential(criticalScripts);
+    await loadSequential(dependentScripts);
+    await Promise.all(parallelScripts.map(loadScriptOnce));
+  } catch (e) {
+    console.warn("Script load interrupted:", e);
+  }
 };
