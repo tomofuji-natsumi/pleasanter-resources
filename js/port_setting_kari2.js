@@ -1,6 +1,5 @@
 (function () {
 
-  // jQuery 安全取得
   const $ = window.jQuery;
 
   // ===============================
@@ -10,7 +9,6 @@
     if (!$input || !$input.length) return;
     if ($input.data('file-wrapper-initialized')) return;
 
-    // 既にラップ済みなら終了
     if ($input.parent().hasClass('file-wrapper')) {
       $input.data('file-wrapper-initialized', true);
       return;
@@ -97,7 +95,6 @@
       for (const m of mutations) {
         if (!m.addedNodes || m.addedNodes.length === 0) continue;
 
-        // Import ダイアログが開いた瞬間だけ処理
         if (document.querySelector('#ImportUserTemplate_Import')) {
           setupImportInput($('#ImportUserTemplate_Import'));
         }
@@ -105,11 +102,9 @@
           setupImportInput($('#Import:not(.control-checkbox)'));
         }
 
-        // エンコーディング固定
         fixEncoding('#Encoding');
         fixEncoding('#ExportEncoding');
 
-        // Import ダイアログが完全に初期化されたら監視終了
         if (document.querySelector('#ImportSettingsDialog')) {
           stopDialogObserver();
         }
@@ -130,31 +125,27 @@
   }
 
   // ===============================
-  // 初期化（PJAX 対応）
+  // 初期化（FullCalendar 完了後に動くように変更）
   // ===============================
   function initImportUI() {
-    // 既存要素に対して即時初期化
     setupImportInput($('#ImportUserTemplate_Import'));
     setupImportInput($('#Import:not(.control-checkbox)'));
 
     fixEncoding('#Encoding');
     fixEncoding('#ExportEncoding');
 
-    // ダイアログが開く可能性があるときだけ監視 ON
     startDialogObserver();
 
-    // アイコン適用
     if (window.runIconApply) {
       try { window.runIconApply(); } catch (e) {}
     }
   }
 
-  // PJAX イベント
-  document.addEventListener('pjax:end', initImportUI);
-  $(document).on('pjax:complete pjax:success', initImportUI);
-  $(document).ready(initImportUI);
+  // ===============================
+  // FullCalendar の描画完了後に実行
+  // ===============================
+  window.runImportUIAfterCalendar = initImportUI;
 
-  // ページ離脱時に監視停止
   window.addEventListener('beforeunload', stopDialogObserver);
 
 })();
