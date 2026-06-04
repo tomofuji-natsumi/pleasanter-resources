@@ -1,0 +1,468 @@
+/* =========================================================
+   0. Base
+   ========================================================= */
+
+html,
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    min-width: auto !important;
+    overflow-x: hidden;
+    background-color: var(--bg-main) !important;
+}
+
+@media (max-width: 320px) {
+    body {
+        min-width: 320px !important;
+    }
+}
+
+body,
+pre,
+input,
+select,
+textarea,
+button,
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button,
+.grid .data,
+.grid .label,
+.dashboard-custom-body {
+    font-family: auto !important;
+    line-height: 1.36;
+}
+
+img {
+	user-select: none;
+}
+
+
+/* =========================================================
+   1. アナウンス
+   ========================================================= */
+
+#AnnouncementModule div div {
+    padding: 0.5rem 0.8rem !important;
+}
+
+
+/* =========================================================
+   2. Icons（アイコン）
+   ========================================================= */
+
+/* 不要アイコンの非表示 */
+#Header .ui-icon-person,
+#CopyToClipboards .ui-icon-link,
+#RecordHeader .ui-icon-person,
+#ReduceGuides .ui-icon-minusthick,
+#ExpandGuides .ui-icon-plusthick,
+.grid-row .ui-icon-person,
+.comment-header .ui-icon-person,
+.button-icon .ui-icon {
+    display: none !important;
+}
+
+.material-symbols-outlined:not(.md-btn-icon) {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 52%;
+    left: 0.35rem;
+    font-size: 1.16rem;
+	user-select: none;
+}
+
+.display-material-icons {
+    left: 0.2rem !important;
+    width: 20px;
+    text-align: center;
+    color: var(--icon-color);
+}
+
+.ui-multiselect-open .ui-icon {
+    right: 3px;
+}
+
+
+/* =========================================================
+   3. Buttons（ボタン）
+   ========================================================= */
+
+.ui-button {
+    position: relative;
+    padding: 0.3rem 0.4rem 0.35rem 1.7rem !important;
+    border-radius: var(--radius-small);
+    border: 1px solid transparent !important;
+    font-size: 0.85rem !important;
+    font-weight: 550;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--elevation-3);
+}
+
+.ui-button:hover {
+    font-weight: 550 !important;
+}
+
+/* ダークボタン */
+button:has(.dark-material-icons),
+button:has(.dark-material-icons):focus {
+    background: var(--btn-back-bg) !important;
+    color: var(--on-primary) !important;
+}
+button:has(.dark-material-icons):hover,
+button:has(.dark-material-icons):active {
+    background: var(--btn-back-hover);
+    color: var(--surface-strong);
+}
+
+/* ライトボタン */
+button:has(.light-material-icons),
+button:has(.light-material-icons):focus {
+    background: var(--surface-base);
+    border: 1px solid var(--border-light) !important;
+    color: var(--text-emphasis);
+}
+button:has(.light-material-icons):hover,
+button:has(.light-material-icons):active {
+    background: var(--surface-soft);
+    border: 1px solid var(--border-light) !important;
+}
+
+/* 赤ボタン */
+button:has(.red-material-icons),
+button:has(.red-material-icons):focus {
+    background: var(--btn-delete-bg) !important;
+    color: var(--on-primary) !important;
+}
+button:has(.red-material-icons):hover,
+button:has(.red-material-icons):active {
+    background: var(--btn-delete-hover) !important;
+    color: var(--surface-strong) !important;
+}
+
+/* プライマリーボタン */
+button:has(.primary-material-icons),
+button:has(.primary-material-icons):focus {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+}
+button:has(.primary-material-icons):hover,
+button:has(.primary-material-icons):active {
+    background: var(--primary-hover) !important;
+    color: var(--surface-strong) !important;
+}
+
+
+/* =========================================================
+   4. Header（ヘッダー）
+   ========================================================= */
+
+#Header {
+    padding: 2px 12px;
+    background-color: var(--surface-soft) !important;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.9rem;
+    color: var(--text-main) !important;
+    box-shadow: 0 1px 2px var(--shadow-light);
+}
+
+#Header #ViewSelectorField .field-normal .control-dropdown {
+    width: auto;
+    min-width: 100px;
+    max-width: 200px;
+    padding: 2px 4px !important;
+    height: auto;
+    font-size: 0.83rem !important;
+}
+
+
+/* =========================================================
+   5. Hamburger Menu（ハンバーガーメニュー）
+   ========================================================= */
+
+#Header .hamburger-switch {
+    background-color: transparent !important;
+}
+
+#Header .hamburger-switch .hamburger-switch-line,
+#Header .hamburger-switch .hamburger-switch-line:before,
+#Header .hamburger-switch .hamburger-switch-line:after {
+    background: var(--text-emphasis);
+}
+
+#Header .hamburger-menubox .hamburger-cover {
+    background: var(--bg-hamburger-outer) !important;
+}
+
+#Header .hamburger-menubox .hamburger-menuwrap {
+    background-color: var(--surface-soft) !important;
+    box-shadow: 2px 0 2px var(--shadow-medium);
+}
+
+#Header .hamburger-menubox .accordion a img.new {
+    background-color: var(--primary);
+}
+
+#Header .hamburger-menubox #NewMenuContainer span:has(img) {
+    margin: auto 0;
+    height: 32px;
+}
+
+#Header .hamburger-menubox #NewMenuContainer span:last-child {
+    font-size: 1rem;
+    margin-left: 0.3rem;
+}
+
+#Header .hamburger-menubox .menubox a {
+    color: var(--text-main);
+}
+
+#Header .hamburger-menubox .menubox .menulabel span:last-child {
+    font-size: 0.94rem;
+}
+
+#Header .hamburger-menubox .menubox .menulabel:hover,
+#Header .hamburger-menubox .accordion a:hover {
+    background-color: var(--bg-hover);
+}
+
+#Header .hamburger-menubox .menubox-sub {
+    background-color: var(--surface-strong);
+    font-size: 0.85rem;
+}
+
+#Header .hamburger-menubox .menubox-sub ul a {
+    padding: 0.65rem 0.5rem 0.65rem 3.3rem;
+}
+
+#Header .hamburger-menubox .menubox-sub ul a:hover {
+    background: var(--bg-hover);
+}
+
+
+/* =========================================================
+   6. Breadcrumb（パンくず）
+   ========================================================= */
+
+#CopyToClipboards {
+    top: initial;
+    z-index: 95;
+}
+
+#CopyToClipboards #CopyDirectUrlToClipboard {
+    background-color: transparent !important;
+    border: none !important;
+    height: 40px !important;
+}
+
+#Breadcrumb {
+    background-color: var(--surface-soft) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: none !important;
+}
+
+#Breadcrumb span.label {
+    font-size: 0.8rem;
+    font-weight: 550;
+    white-space: pre;
+    line-height: 1.4;
+    color: var(--text-sub);
+}
+
+#Breadcrumb li:first-child a {
+    padding-left: 42px !important;
+}
+
+#Breadcrumb li:not(:last-child) a:hover {
+    text-decoration-color: var(--icon-color);
+}
+
+#Breadcrumb li:last-child {
+    background-color: var(--primary) !important;
+}
+
+#Breadcrumb li:last-child a span,
+#Breadcrumb .item:last-child:is(.trashbox) span {
+    color: var(--on-primary);
+    text-shadow: 0 1px 2px var(--shadow-strong);
+	font-weight: 550;
+}
+
+/* セパレーター（三角形） */
+#Breadcrumb li:is(.trashbox) span:before,
+#Breadcrumb li .separator:before {
+    border-left: 15px solid var(--border-nav) !important;
+}
+
+#Breadcrumb li:is(.trashbox) span:after,
+#Breadcrumb li .separator:after {
+    border-left: 15px solid var(--surface-soft) !important;
+}
+
+#Breadcrumb li:last-child:is(.trashbox) span:after,
+#Breadcrumb li:last-child .separator:after {
+    border-left: 15px solid var(--primary) !important;
+}
+
+#Breadcrumb .item a {
+    padding: 0 1.1rem !important;
+}
+
+
+/* =========================================================
+   7. タブ（色・境界線）
+   ========================================================= */
+
+.ui-tabs .ui-tabs-nav {
+    border-bottom: 3px solid var(--border-light) !important;
+    background-color: var(--bg-editor-sub);
+	padding: 0.75rem 1rem;
+    gap: 0.4rem;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) {
+    background: var(--surface-soft) !important;
+    border: 1px solid var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover {
+    background: var(--primary) !important;
+    border: 1px solid var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) a {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover a {
+    color: var(--on-primary)  !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    background: var(--primary) !important;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-small) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	color: var(--on-primary);
+    text-shadow: 0 1px 2px var(--shadow-strong);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+
+/* =========================================================
+   8. 見出し（セクション）
+   ========================================================= */
+
+.field-section {
+    gap: 10px;
+    font-weight: 550;
+    font-size: 0.95rem;
+    color: var(--on-primary);
+    background-color: var(--bg-toolbar) !important;
+    padding: 8px 12px;
+    border-radius: var(--radius-large);
+    cursor: default;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.field-section .ui-icon {
+    color: var(--on-primary);
+}
+
+
+/* =========================================================
+   9. Messages
+   ========================================================= */
+
+#Message .body {
+    font-size: 0.9rem;
+    user-select: none;
+    pointer-events: auto;
+    color: var(--text-white);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    border: none;
+}
+
+#Message .alert-success {
+    background-color: var(--semantic-success) !important;
+    border: none;
+}
+
+#Message .alert-error {
+    background-color: var(--semantic-danger) !important;
+    border: none;
+}
+
+
+/* =========================================================
+   10. Footer（フッターコマンド）
+   ========================================================= */
+
+#MainCommandsContainer {
+    background-color: var(--bg-footer) !important;
+}
+
+
+/* =========================================================
+   11. Crosstab / Kanban（クロス集計・カンバン）
+   ========================================================= */
+
+
+#Crosstab .crosstab-row th,
+#ViewModeContainer:has(#Kamban) .kamban-row th,
+.grid-stack-item .kambanbody .kamban-row th,
+#ViewModeContainer:has(#Kamban) .kamban-row td,
+.grid-stack-item .kambanbody .kamban-row td {
+    border-top: 1px solid var(--border-light) !important;
+}
+
+#ViewModeContainer:has(#Kamban) .kamban-item,
+.grid-stack-item .kambanbody .kamban-item {
+    color: var(--text-main);
+    background-color: var(--primary-surface) !important;
+    border: solid 1px var(--primary) !important;
+    font-size: 0.8rem;
+    padding: 0.25rem 1.4rem 0.25rem 0.6rem;
+}
+
+#ViewModeContainer:has(#Kamban) .kamban-item:hover,
+.grid-stack-item .kambanbody .kamban-item:hover {
+    background-color: var(--primary-surface-hover) !important;
+    border: solid 1px var(--primary) !important;
+}
+
+#Crosstab .field-auto-thin:first-child,
+#ViewModeContainer:has(#TimeSeriesBody) .field-auto-thin:first-child,
+#Kamban .field-auto-thin:first-child {
+    margin-left: 1.1rem;
+}
+
+#Crosstab .field-auto-thin,
+#ViewModeContainer:has(#TimeSeriesBody) .field-auto-thin,
+#Kamban .field-auto-thin {
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 1.3rem;
+    gap: 0.5rem;
+}
+
+#Crosstab,
+#ViewModeContainer:has(#Kamban) .kamban-container,
+#ViewModeContainer:has(#Kamban),
+.grid-stack-item .kambanbody,
+.grid-stack-item .kambanbody .kamban-container,
+#ViewModeContainer:not(:has(#ImageLib)):not(:has(#AnalyBody)):not(:has(.grid)) {
+    padding: 0 !important;
+    background-color: var(--surface-base) !important;
+}
