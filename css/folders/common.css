@@ -37,6 +37,12 @@
     color: var(--text-emphasis);
 }
 
+.nav-site .conditions span.overdue {
+    background-color: var(--semantic-danger);
+    border: 1px solid var(--semantic-danger-border);
+    color: var(--text-white);
+}
+
 .nav-site .title {
     font-size: 0.83rem;
     font-weight: 550;
