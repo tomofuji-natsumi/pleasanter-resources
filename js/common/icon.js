@@ -156,9 +156,7 @@
 
   // 5. イベント登録（pjax:end を確実に拾う）
   // jQuery の pjax イベントとネイティブの pjax:end の両方を監視
-  $(document).on("pjax:success pjax:complete pjax:end", runIconApply);
-  document.addEventListener && document.addEventListener("pjax:end", runIconApply);
-  $(document).ready(runIconApply);
+  $(document).on("pjax:end", runIconApply);
 
   // 6. MutationObserver（軽量化）
   let timer = null;
@@ -168,10 +166,11 @@
       clearTimeout(timer);
       timer = setTimeout(runIconApply, 80);
   });
-  iconObserver.observe(document.querySelector("#MainContainer") || document.body, {
+  iconObserver.observe(document.querySelector("#MainContainer"), {
       childList: true,
       subtree: true
- });
+  });
+
 
   // エクスポート
   window.runIconApply = runIconApply;
