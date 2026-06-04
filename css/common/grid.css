@@ -165,7 +165,8 @@ tr.crosstab-row th {
 
 /* 共通 */
 .grid td:has([class^="status-"]) {
-    padding: 0.4rem 0.5rem !important;
+    display: flex;
+	justify-content: center;
 }
 
 [class^="status-"] {
