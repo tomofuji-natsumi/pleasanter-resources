@@ -1,41 +1,6 @@
 body.site-list {
 
     /* =========================================================
-       2. 戻るボタン（1つ目の nav）
-       ========================================================= */
-
-    #SiteMenu nav:first-of-type .ui-icon-circle-arrow-n {
-        display: none;
-    }
-
-    #SiteMenu nav:first-of-type .nav-sites {
-        margin-bottom: 1.5rem;
-    }
-
-    #SiteMenu nav:first-of-type .nav-sites li.to-parent {
-        justify-content: center;
-        margin: 0;
-    }
-
-    #SiteMenu nav:first-of-type .nav-sites li.to-parent .title {
-        color: var(--on-primary);
-    }
-
-    #SiteMenu nav:first-of-type .primary-material-icons {
-        font-size: 1rem;
-    }
-
-
-    /* =========================================================
-       3. カード一覧
-       ========================================================= */
-
-    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable .nav-site,
-    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable .nav-site * {
-        min-width: 0 !important;
-    }
-
-    /* =========================================================
        13. index ページ：コマンド非表示
        ========================================================= */
 
