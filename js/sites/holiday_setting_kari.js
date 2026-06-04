@@ -2,6 +2,9 @@
 
   const $ = window.jQuery;
 
+  // ★ カレンダー画面でのみ実行
+  if (!location.pathname.includes("/calendar")) return;
+
   // -----------------------------
   // 1. 祝日データ取得
   // -----------------------------
@@ -65,20 +68,17 @@
         const calendarEl = document.querySelector("#Calendar .fc");
         if (!calendarEl) return;
 
-        // FullCalendar v5/v6 は内部に calendar オブジェクトを保持している
         const calendar = calendarEl._calendar || calendarEl.__calendar;
         if (!calendar) return;
 
-        // 月移動・初回描画
         calendar.on("datesSet", renderHolidays);
         calendar.on("viewDidMount", renderHolidays);
 
-        // 初回即時
         renderHolidays();
       }
 
       // -----------------------------
-      // 4. pjax 後に FullCalendar が再生成されるので必ずフック
+      // 4. pjax 後に必ずフック
       // -----------------------------
       $(document).on("pjax:end", function () {
         setTimeout(hookCalendar, 30);
