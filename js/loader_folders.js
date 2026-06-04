@@ -37,21 +37,25 @@ function waitDomStable() {
   });
 }
 
-// 外部から呼び出されるエントリポイント
+let __scriptsLoaded = false;
+
 window.runTenantScripts = async function () {
 
-  // ① スクリプトを順番に読み込む
-  await loadScriptSequential(scripts);
+  // ① 初回だけスクリプトを読み込む
+  if (!__scriptsLoaded) {
+    await loadScriptSequential(scripts);
+    __scriptsLoaded = true;
+  }
 
   // ② DOM が安定するのを待つ
   await waitDomStable();
 
-  // ③ back_btn2.js や icon.js の再適用（存在するものだけ実行）
+  // ③ UI の再適用（存在するものだけ実行）
   if (window.replaceBackText) window.replaceBackText();
   if (window.runIconApply) window.runIconApply();
 };
 
-// PJAX 遷移後にも必ず再実行
+// PJAX 遷移後は “再適用だけ”
 $(document).on("pjax:end", () => {
   window.runTenantScripts();
 });
