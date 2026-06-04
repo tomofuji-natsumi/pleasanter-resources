@@ -168,7 +168,10 @@
       clearTimeout(timer);
       timer = setTimeout(runIconApply, 80);
   });
-  iconObserver.observe(document.body, { childList: true, subtree: true });
+  iconObserver.observe(document.querySelector("#MainContainer") || document.body, {
+      childList: true,
+      subtree: true
+ });
 
   // エクスポート
   window.runIconApply = runIconApply;
