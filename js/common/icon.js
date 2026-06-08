@@ -1,6 +1,6 @@
 (function(){
 
-  // 0. カスタム受け皿（そのまま）
+  // 0. カスタム受け皿
   window.__pleasanterCustomIconMap = Object.assign({
       dark: {},
       light: {},
@@ -9,7 +9,7 @@
       display: {}
   }, window.__pleasanterCustomIconMap);
 
-  // 1. アイコンマップ（※セレクタのクオートを必ず正しく）
+  // 1. アイコンマップ
   const darkIconMap = {
       "[aria-describedby='ImportSitePackageDialog'] [data-icon='ui-icon-cancel']": "close",
       "#ExportSitePackageDialog [data-icon='ui-icon-cancel']:not(#ExcludeData)": "close",
@@ -52,7 +52,6 @@
       "#OpenSiteTitleDialog": "add_ad",
       "#CreateCommand": "add_ad",
       "[aria-describedby='ExportSitePackageDialog'] #IncludeData": "add_box",
-      // 修正: クオート閉じ忘れを直す
       "#PermissionsDialog [data-icon='ui-icon-disk']": "update",
       "#UpdateCommand": "update",
       "#OpenCopyDialogCommand": "content_copy",
@@ -93,7 +92,7 @@
       "#CopyDirectUrlToClipboard": "share",
   };
 
-  // 2. カスタムマップのマージ（そのまま）
+  // 2. カスタムマップのマージ
   let __customIconMapMerged = false;
   function mergeCustomMaps() {
       if (__customIconMapMerged) return;
@@ -106,7 +105,7 @@
       __customIconMapMerged = true;
   }
 
-  // 3. アイコン適用（例外耐性・処理済みフラグ）
+  // 3. アイコン適用
   function applyIcons(map, className) {
       for (const selector in map) {
           let $targets;
@@ -114,7 +113,7 @@
               $targets = $(selector);
           } catch (err) {
               console.warn('Invalid selector skipped:', selector, err);
-              continue; // 無効セレクタはスキップ
+              continue;
           }
 
           $targets.each(function () {
@@ -154,23 +153,9 @@
       }
   }
 
-  // 5. イベント登録（pjax:end を確実に拾う）
+  // 5. イベント登録
   // jQuery の pjax イベントとネイティブの pjax:end の両方を監視
   $(document).on("pjax:end", runIconApply);
-
-  // 6. MutationObserver（軽量化）
-  let timer = null;
-  const iconObserver = new MutationObserver(function(mutations){
-      const significant = mutations.some(m => m.addedNodes && m.addedNodes.length > 0);
-      if(!significant) return;
-      clearTimeout(timer);
-      timer = setTimeout(runIconApply, 80);
-  });
-  iconObserver.observe(document.querySelector("#MainContainer"), {
-      childList: true,
-      subtree: true
-  });
-
 
   // エクスポート
   window.runIconApply = runIconApply;
