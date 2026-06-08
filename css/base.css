@@ -287,7 +287,7 @@ button:has(.primary-material-icons):active {
 #Breadcrumb li:last-child a span,
 #Breadcrumb .item:last-child:is(.trashbox) span {
     color: var(--on-primary);
-    text-shadow: 0 1px 2px var(--shadow-strong);
+    text-shadow: 0 1px 2px var(--shadow-light);
 	font-weight: 550;
 }
 
