@@ -29,11 +29,25 @@ function loadScriptSequential(urls) {
   }, Promise.resolve());
 }
 
-function waitDomStable() {
+function waitDomStable(timeout = 200) {
   return new Promise(resolve => {
+    let done = false;
+
     requestAnimationFrame(() => {
-      requestAnimationFrame(resolve);
+      requestAnimationFrame(() => {
+        if (!done) {
+          done = true;
+          resolve();
+        }
+      });
     });
+
+    setTimeout(() => {
+      if (!done) {
+        done = true;
+        resolve();
+      }
+    }, timeout);
   });
 }
 
