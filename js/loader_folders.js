@@ -1,6 +1,6 @@
 // 複数JSをまとめて読み込む
 const scripts = [
-  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/port_setting_kari.js",
+  // "https://tomofuji-natsumi.github.io/pleasanter-resources/js/port_setting_kari.js",
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/folders/back_btn2.js",
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/common/icon.js",
 ];
