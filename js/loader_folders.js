@@ -46,10 +46,7 @@ window.runTenantScripts = async function () {
     await loadScriptSequential(scripts);
     __scriptsLoaded = true;
   }
-
-  // ② DOM が安定するのを待つ
-  await waitDomStable();
-
+  
   // ③ UI の再適用（存在するものだけ実行）
   if (window.replaceBackText) window.replaceBackText();
   if (window.runIconApply) window.runIconApply();
@@ -57,5 +54,6 @@ window.runTenantScripts = async function () {
 
 // PJAX 遷移後は “再適用だけ”
 $(document).on("pjax:end", () => {
-  window.runTenantScripts();
+  if (window.replaceBackText) window.replaceBackText();
+  if (window.runIconApply) window.runIconApply();
 });
