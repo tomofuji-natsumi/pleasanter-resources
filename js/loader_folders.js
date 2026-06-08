@@ -63,11 +63,12 @@ window.runTenantScripts = async function () {
   
   // ③ UI の再適用（存在するものだけ実行）
   if (window.replaceBackText) window.replaceBackText();
-  if (window.runIconApply) window.runIconApply();
 };
 
 // PJAX 遷移後は “再適用だけ”
 $(document).on("pjax:end", () => {
   if (window.replaceBackText) window.replaceBackText();
-  if (window.runIconApply) window.runIconApply();
 });
+
+// UI が完全に描画された後に実行
+$(document).on("pjax:complete", runIconApply);
