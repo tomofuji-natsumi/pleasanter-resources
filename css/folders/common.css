@@ -70,23 +70,23 @@
     color: var(--text-main);
 }
 
-.nav-site.to-parent:has(.primary-material-icons) a span {
+.nav-site.to-parent a span {
     left: 0.75rem;
 }
 
-.nav-site.to-parent:has(.primary-material-icons),
-.nav-site.to-parent:has(.primary-material-icons):focus,
-.nav-site.to-parent:has(.primary-material-icons) a span,
-.nav-site.to-parent:has(.primary-material-icons):focus  a span {
+.nav-site.to-parent,
+.nav-site.to-parent:focus,
+.nav-site.to-parent a span,
+.nav-site.to-parent:focus  a span {
     background: var(--primary) !important;
     color: var(--on-primary) !important;
     font-weight: 550;
 }
 
-.nav-site.to-parent:has(.primary-material-icons):hover,
-.nav-site.to-parent:has(.primary-material-icons):hover a span,
-.nav-site.to-parent:has(.primary-material-icons):active,
-.nav-site.to-parent:has(.primary-material-icons):active a span {
+.nav-site.to-parent:hover,
+.nav-site.to-parent:hover a span,
+.nav-site.to-parent:active,
+.nav-site.to-parent:active a span {
     background: var(--primary-hover) !important;
     color: var(--surface-strong) !important;
     font-weight: 550;
