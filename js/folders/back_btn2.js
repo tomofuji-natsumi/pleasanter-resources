@@ -11,16 +11,26 @@
     return true;
   }
 
+  function applyIcons() {
+    if (window.runIconApply) window.runIconApply();
+  }
+
   // nav-sites の変化を監視し続ける（最強）
   const mo = new MutationObserver(() => {
     replaceBackText();
+    applyIcons();
   });
 
   function startObserver() {
     const nav = document.querySelector("ul.nav-sites");
     if (nav) {
-      mo.observe(nav, { childList: true, subtree: true, characterData: true });
+      mo.observe(nav, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      });
       replaceBackText();
+      applyIcons();
     }
   }
 
