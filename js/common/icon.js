@@ -118,6 +118,7 @@
 
           $targets.each(function () {
               const $el = $(this);
+
               // data 属性で処理済みフラグを付ける（重複防止）
               if ($el.data('icon-' + className)) return;
 
@@ -141,21 +142,37 @@
 
   // 4. 統合実行
   function runIconApply() {
-      try {
-          mergeCustomMaps();
-          applyIcons(darkIconMap, "dark-material-icons");
-          applyIcons(lightIconMap, "light-material-icons");
-          applyIcons(primaryIconMap, "primary-material-icons");
-          applyIcons(redIconMap, "red-material-icons");
-          applyIcons(displayIconMap, "display-material-icons");
-      } catch (err) {
-          console.error('runIconApply error', err);
-      }
-  }
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                try {
+                    mergeCustomMaps();
+                    applyIcons(darkIconMap, "dark-material-icons");
+                    applyIcons(lightIconMap, "light-material-icons");
+                    applyIcons(primaryIconMap, "primary-material-icons");
+                    applyIcons(redIconMap, "red-material-icons");
+                    applyIcons(displayIconMap, "display-material-icons");
+                } catch (err) {
+                    console.error('runIconApply error', err);
+                }
+            });
+        });
+    }
 
   // 5. イベント登録
   // jQuery の pjax イベントとネイティブの pjax:end の両方を監視
-  $(document).on("pjax:end", runIconApply);
+  let __iconApplied = false;
+
+  $(document).on("pjax:complete", () => {
+      __iconApplied = true;
+      runIconApply();
+  });
+
+  $(document).on("pjax:end", () => {
+      if (!__iconApplied) {
+          runIconApply();
+      }
+      __iconApplied = false;
+  });
 
   // エクスポート
   window.runIconApply = runIconApply;
