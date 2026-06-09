@@ -10,7 +10,7 @@
   }
 
   // UI 完成後のフレームで実行（ちらつき防止）
-  function applyBackTextStable() {
+　function applyBackTextStable() {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         replaceBackText();
