@@ -84,7 +84,7 @@ html, body {
 #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 30px 20px;
     justify-content: start;
     width: 100%;
 }
@@ -203,7 +203,7 @@ html, body {
 
     #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
-        gap: 10px !important;
+        gap: 20px 15px !important;
     }
 }
 
@@ -211,7 +211,7 @@ html, body {
 
     #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 10px;
+        gap: 20px 15px !important;
     }
 }
 
@@ -223,7 +223,7 @@ html, body {
 
     #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 8px;
+        gap: 15px 10px;
     }
 
     #SiteMenu .nav-site {
