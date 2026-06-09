@@ -33,46 +33,78 @@ function loadScriptSequential(urls) {
     }, Promise.resolve());
 }
 
+/**
+ * DOM が安定するのを待つ（※現在は未使用）
+ * 必要になったら呼び出す形で残しておく。
+ */
+function waitDomStable(timeout = 200) {
+    return new Promise(resolve => {
+        let done = false;
+
+        // 2フレーム待つことで DOM の再描画完了を待つ
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                if (!done) {
+                    done = true;
+                    resolve();
+                }
+            });
+        });
+
+        // 念のためのタイムアウト
+        setTimeout(() => {
+            if (!done) {
+                done = true;
+                resolve();
+            }
+        }, timeout);
+    });
+}
+
 let __scriptsLoaded = false;
 
 /**
- * 初回ロード時にだけ外部スクリプトを読み込む。
- * ※ UI 再適用は絶対にここで行わない
+ * 初回ロード時にだけ外部スクリプトを読み込み、
+ * その後 UI の再適用処理（戻るボタン・アイコン）を実行する。
  */
 window.runTenantScripts = async function () {
 
+    // 初回のみスクリプトを読み込む
     if (!__scriptsLoaded) {
         await loadScriptSequential(scripts);
         __scriptsLoaded = true;
     }
+
+    // UI 再適用（存在する場合のみ）
+    if (window.replaceBackText) window.replaceBackText();
+    if (window.runIconApply) window.runIconApply();
 };
 
 /**
- * UI 完成後に実行する処理（安定フレーム）
+ * UI 完成後に実行する処理
  */
 function applyUIFixes() {
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            if (window.replaceBackText) window.replaceBackText();
-            if (window.runIconApply) window.runIconApply();
-        });
-    });
+    if (window.replaceBackText) window.replaceBackText();
+    if (window.runIconApply) window.runIconApply();
 }
 
-$(document).on("pjax:success", () => {
+let __iconApplied = false;
+
+/**
+ * pjax:complete → 最優先（UI が完全に描画された後）
+ */
+$(document).on("pjax:complete", () => {
+    __iconApplied = true;
     applyUIFixes();
 });
 
 /**
- * pjax:end → success が来ない画面のフォールバック
+ * pjax:end → complete が来なかった画面のフォールバック
+ * （Pleasanter は画面によって complete が発火しないため）
  */
 $(document).on("pjax:end", () => {
-    applyUIFixes();
-});
-
-/**
- * 初回ロード
- */
-document.addEventListener("DOMContentLoaded", () => {
-    applyUIFixes();
+    if (!__iconApplied) {
+        applyUIFixes();
+    }
+    __iconApplied = false; // 次の遷移に備えてリセット
 });
