@@ -59,22 +59,20 @@ function applyUIFixes() {
     });
 }
 
-let __iconApplied = false;
-
-/**
- * pjax:complete → 最優先
- */
-$(document).on("pjax:complete", () => {
-    __iconApplied = true;
+$(document).on("pjax:success", () => {
     applyUIFixes();
 });
 
 /**
- * pjax:end → complete が来なかった画面のフォールバック
+ * pjax:end → success が来ない画面のフォールバック
  */
 $(document).on("pjax:end", () => {
-    if (!__iconApplied) {
-        applyUIFixes();
-    }
-    __iconApplied = false;
+    applyUIFixes();
+});
+
+/**
+ * 初回ロード
+ */
+document.addEventListener("DOMContentLoaded", () => {
+    applyUIFixes();
 });
