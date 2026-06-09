@@ -9,28 +9,34 @@
     return false;
   }
 
-  // 初回ロード
-  replaceBackText();
-
-  // PJAX 後（画面描画が終わった直後）
-  $(document).on("pjax:end", function () {
-    setTimeout(replaceBackText, 10);
-  });
-
-  // nav-sites のみを監視
-  const mo = new MutationObserver(() => {
-    if (replaceBackText()) {
-      // 一度反映できたら監視を止める（保守的に）
-      mo.disconnect();
-    }
-  });
-
-  const target = document.querySelector("#MainContainer") || document.body;
-  if (target) {
-    mo.observe(target, {
-      childList: true,
-      subtree: true
+  // UI 完成後のフレームで実行（ちらつき防止）
+  function applyBackTextStable() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        replaceBackText();
+      });
     });
   }
+
+  let applied = false;
+
+  // pjax:complete → 最優先（UI が完全に描画された後）
+  $(document).on("pjax:complete", () => {
+    applied = true;
+    applyBackTextStable();
+  });
+
+  // pjax:end → complete が来なかった画面のフォールバック
+  $(document).on("pjax:end", () => {
+    if (!applied) {
+      applyBackTextStable();
+    }
+    applied = false;
+  });
+
+  // 初回ロードも pjax と同じ扱いにする
+  document.addEventListener("DOMContentLoaded", () => {
+    applyBackTextStable();
+  });
 
 })();
