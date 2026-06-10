@@ -5,6 +5,10 @@ html, body {
     background-color: var(--bg-site-list) !important;
 }
 
+#MainCommandsContainer {
+    display: none !important;
+}
+
 /*
 #Main {
     margin-left: 52px;
@@ -31,11 +35,13 @@ html, body {
     box-sizing: border-box;
 }
 
+/*
 #SiteMenu .nav-sites {
     margin: 0;
     padding: 0;
     list-style: none;
 }
+*/
 
 
 /* =========================================================
@@ -64,24 +70,24 @@ html, body {
     width: min(100%, 200px);
 }
 
-#SiteMenu nav:first-of-type .ui-icon-circle-arrow-n {
+.nav-site.to-parent .ui-icon-circle-arrow-n {
     display: none;
 }
 
-#SiteMenu nav:first-of-type .nav-sites {
+.nav-site.to-parent .nav-sites {
     margin-bottom: 1.5rem;
 }
 
-#SiteMenu nav:first-of-type .nav-sites li.to-parent {
+.nav-site.to-parent {
     justify-content: center;
     margin: 0;
 }
 
-#SiteMenu nav:first-of-type .nav-sites li.to-parent .title {
+.nav-site.to-parent .title {
     display: none !important;
 }
 
-#SiteMenu nav:first-of-type .nav-sites li.to-parent a::before {
+.nav-site.to-parent a::before {
     content: "戻る";
     display: inline-block;
     font-size: 0.83rem;
@@ -89,13 +95,13 @@ html, body {
     vertical-align: middle;
 }
 
-#SiteMenu nav:first-of-type .nav-sites li.to-parent a {
+.nav-site.to-parent a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
 }
 
-#SiteMenu nav:first-of-type .primary-material-icons {
+.nav-site.to-parent .primary-material-icons {
     font-size: 1rem;
     top: 50%;
     left: 0.8rem;
@@ -127,22 +133,25 @@ html, body {
 /* =========================================================
     3. カード
     ========================================================= */
+
+/* .nav-sites.sortable */
 .nav-sites.sortable {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 30px 20px;
     justify-content: start;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
+/*
 .nav-sites.sortable .nav-site,
 .nav-sites.sortable .nav-site * {
     min-width: 0 !important;
 }
-
-#MainCommandsContainer {
-    display: none !important;
-}
+*/
 
 .nav-site {
     padding: 12px 12px 8px 12px;
