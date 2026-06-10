@@ -1,41 +1,31 @@
 (function () {
 
-  function replaceBackText() {
-    const parent = document.querySelector("ul.nav-sites li.to-parent a");
-    if (!parent) return;
+  function applyBackButton() {
+    const li = document.querySelector("ul.nav-sites li.to-parent");
+    if (!li) return;
 
-    // 既に追加済みなら何もしない
-    if (parent.querySelector(".back-text-fixed")) return;
+    // すでに追加済みなら何もしない
+    if (li.querySelector(".back-text-fixed")) return;
 
-    // 元の title は Pleasanter が上書きするので非表示にする
-    const title = parent.querySelector(".title");
-    if (title) {
-      title.style.display = "none";
-    }
-
-    // Pleasanter が上書きできない独自要素を追加
+    // Pleasanter が上書きしない「li の直下」に追加する
     const span = document.createElement("span");
     span.className = "back-text-fixed";
     span.textContent = "戻る";
 
-    // アイコンの後ろ、title の前に挿入
-    parent.insertBefore(span, title || null);
+    // a の外に置く（Pleasanter はここを上書きしない）
+    li.appendChild(span);
   }
 
-  // nav-sites の変化を監視し続ける
+  // nav-sites の変化を監視
   const mo = new MutationObserver(() => {
-    replaceBackText();
+    applyBackButton();
   });
 
   function startObserver() {
     const nav = document.querySelector("ul.nav-sites");
     if (nav) {
-      mo.observe(nav, {
-        childList: true,
-        subtree: true,
-        characterData: true
-      });
-      replaceBackText();
+      mo.observe(nav, { childList: true, subtree: true });
+      applyBackButton();
     }
   }
 
