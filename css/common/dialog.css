@@ -99,6 +99,10 @@
     margin: 0 0 30px;
 }
 
+#ExportSitePackageDialog #SitePackageForm .field-control {
+    align-content: end;
+}
+
 #ExportSitePackageDialog #SitePackageForm .field-wide {
     margin-bottom: 5px;
 }
