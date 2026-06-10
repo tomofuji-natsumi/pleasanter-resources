@@ -3,7 +3,6 @@ const criticalScripts = [
 ];
 
 const dependentScripts = [
-  "https://tomofuji-natsumi.github.io/pleasanter-resources/js/port_setting_kari2.js",
   "https://tomofuji-natsumi.github.io/pleasanter-resources/js/sites/readonly_kari.js"
 ];
 
