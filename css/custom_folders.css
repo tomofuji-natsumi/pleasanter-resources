@@ -180,8 +180,8 @@ html, body {
 
 .nav-site.to-parent,
 .nav-site.to-parent:focus,
-.nav-site.to-parent.primary-material-icons,
-.nav-site.to-parent.primary-material-icons:focus,
+.nav-site.to-parent .primary-material-icons,
+.nav-site.to-parent:focus .primary-material-icons,
 .nav-site.to-parent a::before,
 .nav-site.to-parent:focus  a::before {
     background: var(--primary) !important;
@@ -190,10 +190,10 @@ html, body {
 }
 
 .nav-site.to-parent:hover,
-.nav-site.to-parent.primary-material-icons:hover,
-.nav-site.to-parent:hover a::before,
 .nav-site.to-parent:active,
-.nav-site.to-parent.primary-material-icons:active,
+.nav-site.to-parent:hover .primary-material-icons,
+.nav-site.to-parent:active .primary-material-icons,
+.nav-site.to-parent:hover a::before,
 .nav-site.to-parent:active a::before {
     background: var(--primary-hover) !important;
     color: var(--surface-strong) !important;
