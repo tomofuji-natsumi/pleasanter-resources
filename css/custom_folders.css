@@ -1,6 +1,7 @@
 /* =========================================================
     0. 基本
     ========================================================= */
+
 html, body {
     background-color: var(--bg-site-list) !important;
 }
@@ -9,14 +10,6 @@ html, body {
     display: none !important;
 }
 
-/*
-#Main {
-    margin-left: 52px;
-    width: calc(100% - 52px);
-    box-sizing: border-box;
-}
-*/
-
 #Message {
     bottom: 0;
 }
@@ -24,6 +17,7 @@ html, body {
 /* =========================================================
     1. サイトメニュー
     ========================================================= */
+
 #SiteMenu:not(:has(#TemplateTabsContainer)),
 .template-tab-container .ui-tabs-panel {
     padding: calc(40px * .5) 30px;
@@ -34,14 +28,6 @@ html, body {
     max-width: 100%;
     box-sizing: border-box;
 }
-
-/*
-#SiteMenu .nav-sites {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-*/
 
 
 /* =========================================================
@@ -221,6 +207,7 @@ html, body {
 /* =========================================================
     4. テンプレート
     ========================================================= */
+
 #TemplateTabsContainer {
     font-size: 0.85rem;
     margin: 0;
