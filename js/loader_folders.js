@@ -13,16 +13,13 @@ function loadScriptSequential(urls) {
     return urls.reduce((p, url) => {
         return p.then(() => new Promise((resolve) => {
 
-            // すでに読み込み済みなら次へ
             if (document.querySelector(`script[src="${url}"]`)) return resolve();
 
             const s = document.createElement('script');
             s.src = url;
-            s.async = false; // 順序を保証するため async を無効化
+            s.async = false;
 
             s.onload = resolve;
-
-            // 読み込み失敗しても処理を止めない
             s.onerror = (e) => {
                 console.warn("Script load failed:", url, e);
                 resolve();
@@ -33,55 +30,11 @@ function loadScriptSequential(urls) {
     }, Promise.resolve());
 }
 
-/**
- * DOM が安定するのを待つ（※現在は未使用）
- * 必要になったら呼び出す形で残しておく。
- */
-function waitDomStable(timeout = 200) {
-    return new Promise(resolve => {
-        let done = false;
-
-        // 2フレーム待つことで DOM の再描画完了を待つ
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                if (!done) {
-                    done = true;
-                    resolve();
-                }
-            });
-        });
-
-        // 念のためのタイムアウト
-        setTimeout(() => {
-            if (!done) {
-                done = true;
-                resolve();
-            }
-        }, timeout);
-    });
-}
-
 let __scriptsLoaded = false;
 
-/**
- * 初回ロード時にだけ外部スクリプトを読み込み、
- * その後 UI の再適用処理（戻るボタン・アイコン）を実行する。
- */
 window.runTenantScripts = async function () {
     if (!__scriptsLoaded && Array.isArray(window.scripts)) {
         await loadScriptSequential(window.scripts);
         __scriptsLoaded = true;
     }
 };
-
-/**
- * UI 完成後に実行する処理
- */
-function applyUIFixes() {
-    if (window.applyBackButton) window.applyBackButton();
-    if (window.runIconApply) window.runIconApply();
-}
-
-$(document).on("pjax:complete pjax:end", () => {
-    applyUIFixes();
-});
