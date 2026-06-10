@@ -78,7 +78,7 @@ window.runTenantScripts = async function () {
  * UI 完成後に実行する処理
  */
 function applyUIFixes() {
-    if (window.replaceBackText) window.replaceBackText();
+    if (window.applyBackButton) window.applyBackButton();
     if (window.runIconApply) window.runIconApply();
 }
 
