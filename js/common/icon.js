@@ -105,7 +105,6 @@
       __customIconMapMerged = true;
   }
 
-  // 3. アイコン適用
   function applyIcons(map, className) {
       for (const selector in map) {
           let $targets;
@@ -119,10 +118,7 @@
           $targets.each(function () {
               const $el = $(this);
 
-              // data 属性で処理済みフラグを付ける（重複防止）
               if ($el.data('icon-' + className)) return;
-
-              // 既に同クラスの子があればスキップ（保険）
               if ($el.children("." + className).length > 0) {
                   $el.data('icon-' + className, true);
                   return;
@@ -140,7 +136,6 @@
       }
   }
 
-  // 4. 統合実行
   function runIconApply() {
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
@@ -158,8 +153,6 @@
         });
     }
 
-  // 5. イベント登録
-  // jQuery の pjax イベントとネイティブの pjax:end の両方を監視
   let __iconApplied = false;
 
   $(document).on("pjax:complete", () => {
@@ -174,7 +167,5 @@
       __iconApplied = false;
   });
 
-  // エクスポート
   window.runIconApply = runIconApply;
-
 })();
