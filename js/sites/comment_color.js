@@ -1,9 +1,23 @@
+let lastHtml = "";
+
+function watchCommentList() {
+    const html = $("#CommentList").html();
+    if (html !== lastHtml) {
+        lastHtml = html;
+
+        setTimeout(() => {
+            applyCommentColors();
+        }, 30);
+    }
+}
+
+setInterval(watchCommentList, 100);
+
 function applyCommentColors() {
     const map = JSON.parse($('#MyComments').val() || "{}");
 
     $("#CommentList > div[id^='Comment']").each(function () {
-        const rawId = $(this).attr("id"); // 例: "Comment1.wrapper"
-        const id = rawId.replace("Comment", "").replace(".wrapper", "");
+        const id = $(this).attr("id").replace("Comment", "").replace(".wrapper", "");
         if (!id) return;
 
         const info = map[id];
@@ -17,41 +31,36 @@ function applyCommentColors() {
     });
 }
 
-const commentList = document.getElementById("CommentList");
+const commentObserver = new MutationObserver(mutations => {
+    let needUpdate = false;
 
-if (commentList) {
-    const commentObserver = new MutationObserver(mutations => {
-        let needUpdate = false;
+    for (const m of mutations) {
 
-        for (const m of mutations) {
-
-            // コメント本体が追加された
-            for (const node of m.addedNodes) {
-                if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
-                    needUpdate = true;
-                }
-            }
-
-            // コメント内部が描画されて class="comment" が付いた
-            if (m.type === "attributes" && m.target.classList.contains("comment")) {
+        for (const node of m.addedNodes) {
+            if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
                 needUpdate = true;
             }
         }
 
-        if (needUpdate) {
-            // Pleasanter の後描画が終わるまで 1 フレーム待つ
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    applyCommentColors();
-                });
-            });
+        if (m.type === "childList" && m.target.id === "CommentList") {
+            needUpdate = true;
         }
-    });
 
-    commentObserver.observe(commentList, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ["class"]
-    });
-}
+        if (m.type === "attributes" && m.target.id === "CommentList") {
+            needUpdate = true;
+        }
+    }
+
+    if (needUpdate) {
+        setTimeout(() => {
+            applyCommentColors();
+        }, 50);
+    }
+});
+
+commentObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["class", "data-*"]
+});
