@@ -70,7 +70,11 @@ html, body {
 }
 
 #SiteMenu nav:first-of-type .nav-sites li.to-parent .title {
-    color: var(--on-primary);
+    display: none;
+}
+
+#SiteMenu nav:first-of-type .nav-sites li.to-parent .title::before {
+    content: "戻る";
 }
 
 #SiteMenu nav:first-of-type .primary-material-icons {
