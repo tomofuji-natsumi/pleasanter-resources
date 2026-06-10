@@ -38,7 +38,7 @@ let __scriptsLoaded = false;
 window.runTenantScripts = async function () {
 
     if (!__scriptsLoaded) {
-        await loadScriptSequential(__tenantScripts);
+        await loadScriptSequential(scripts);
         __scriptsLoaded = true;
     }
 };
