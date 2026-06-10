@@ -1,18 +1,3 @@
-let lastHtml = "";
-
-function watchCommentList() {
-    const html = $("#CommentList").html();
-    if (html !== lastHtml) {
-        lastHtml = html;
-
-        setTimeout(() => {
-            applyCommentColors();
-        }, 30);
-    }
-}
-
-setInterval(watchCommentList, 100);
-
 function applyCommentColors() {
     const map = JSON.parse($('#MyComments').val() || "{}");
 
@@ -31,37 +16,28 @@ function applyCommentColors() {
     });
 }
 
+// コメント追加を監視（最速で反応）
 const commentObserver = new MutationObserver(mutations => {
     let needUpdate = false;
 
     for (const m of mutations) {
-
         for (const node of m.addedNodes) {
             if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
                 needUpdate = true;
             }
         }
-
-        if (m.type === "childList" && m.target.id === "CommentList") {
-            needUpdate = true;
-        }
-
-        if (m.type === "attributes" && m.target.id === "CommentList") {
-            needUpdate = true;
-        }
     }
 
     if (needUpdate) {
-        setTimeout(() => {
-            applyCommentColors();
-        }, 50);
+        applyCommentColors(); // ← 遅延なしで即実行
     }
 });
 
-commentObserver.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ["class", "data-*"]
-});
-
+// CommentList のみ監視すれば十分
+const commentList = document.getElementById("CommentList");
+if (commentList) {
+    commentObserver.observe(commentList, {
+        childList: true,
+        subtree: true
+    });
+}
