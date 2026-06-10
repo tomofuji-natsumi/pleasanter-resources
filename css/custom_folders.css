@@ -128,6 +128,7 @@ html, body {
 
 .nav-site > a {
     padding: 0;
+    color: var(--link-text);
 }
 
 .nav-site .site-icon {
@@ -139,7 +140,14 @@ html, body {
 }
 
 .nav-site .conditions {
-    padding: 6px;
+    padding: 10px;
+}
+
+.nav-site .conditions span.elapsed-time {
+    font-size: 0.75rem;
+    color: var(--text-main) !important;
+    padding: 0 !important;
+    margin-left: 4px !important;
 }
 
 .nav-site .conditions span.elapsed-time.old {
@@ -158,33 +166,6 @@ html, body {
     color: var(--text-white);
 }
 
-.nav-site .title {
-    font-size: 0.83rem;
-    font-weight: 550;
-    overflow: hidden;
-    white-space: nowrap !important;
-    text-overflow: ellipsis;
-    margin: 0;
-    padding: 0;
-    color: var(--primary);
-}
-
-.nav-site .elapsed-time {
-    font-size: 0.75rem;
-    color: var(--text-main);
-}
-
-.nav-site .count {
-    font-size: 0.75rem;
-    background-color: var(--bg-count);
-    border: 1px solid var(--border-count);
-    color: var(--text-main);
-}
-
-.nav-site.to-parent a span {
-    left: 0.75rem;
-}
-
 .nav-site.to-parent,
 .nav-site.to-parent:focus,
 .nav-site.to-parent a::before,
@@ -193,8 +174,6 @@ html, body {
     color: var(--on-primary) !important;
     font-weight: 550;
 }
-
-
 
 .nav-site.to-parent:hover,
 .nav-site.to-parent:hover a::before,
