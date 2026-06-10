@@ -1,7 +1,6 @@
 // 複数JSをまとめて読み込む
 const scripts = [
     "https://tomofuji-natsumi.github.io/pleasanter-resources/js/common/port_setting.js",
-    "https://tomofuji-natsumi.github.io/pleasanter-resources/js/folders/back_btn2.js",
     "https://tomofuji-natsumi.github.io/pleasanter-resources/js/common/icon.js",
 ];
 
@@ -40,7 +39,6 @@ window.runTenantScripts = async function () {
 };
 
 function applyUIFixes() {
-    if (window.applyBackButton) window.applyBackButton();
     if (window.runIconApply) window.runIconApply();
 }
 
