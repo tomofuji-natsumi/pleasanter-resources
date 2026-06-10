@@ -70,17 +70,21 @@ html, body {
 }
 
 #SiteMenu nav:first-of-type .nav-sites li.to-parent .title {
-  display: inline-block;
-  overflow: hidden;
-  width: 0;
-  height: 0;
+    display: none !important;
 }
 
-#SiteMenu nav:first-of-type .nav-sites li.to-parent .title::after {
-  content: "戻る";
-  display: inline-block;
-  width: auto;
-  height: auto;
+#SiteMenu nav:first-of-type .nav-sites li.to-parent a::before {
+    content: "戻る";
+    display: inline-block;
+    font-size: 0.83rem;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+#SiteMenu nav:first-of-type .nav-sites li.to-parent a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 #SiteMenu nav:first-of-type .primary-material-icons {
