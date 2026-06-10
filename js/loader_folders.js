@@ -69,16 +69,12 @@ let __scriptsLoaded = false;
  */
 window.runTenantScripts = async function () {
 
-    // 初回のみスクリプトを読み込む
     if (!__scriptsLoaded) {
         await loadScriptSequential(scripts);
         __scriptsLoaded = true;
     }
-
-    // UI 再適用（存在する場合のみ）
-    if (window.replaceBackText) window.replaceBackText();
-    if (window.runIconApply) window.runIconApply();
 };
+
 
 /**
  * UI 完成後に実行する処理
@@ -88,23 +84,6 @@ function applyUIFixes() {
     if (window.runIconApply) window.runIconApply();
 }
 
-let __iconApplied = false;
-
-/**
- * pjax:complete → 最優先（UI が完全に描画された後）
- */
-$(document).on("pjax:complete", () => {
-    __iconApplied = true;
+$(document).on("pjax:complete pjax:end Common.Refresh", () => {
     applyUIFixes();
-});
-
-/**
- * pjax:end → complete が来なかった画面のフォールバック
- * （Pleasanter は画面によって complete が発火しないため）
- */
-$(document).on("pjax:end", () => {
-    if (!__iconApplied) {
-        applyUIFixes();
-    }
-    __iconApplied = false; // 次の遷移に備えてリセット
 });
