@@ -36,7 +36,7 @@
     --surface-strong: oklch(0.970 0.003 255);
 
     /* =========================================================
-       2. ベース背景（UI全体の背景レイヤー）
+       2. 背景
        ========================================================= */
 
     --bg-main: #EEF1F5;
@@ -112,64 +112,7 @@
     --icon-hover: #4F545A;
 
     /* =========================================================
-       6. カレンダー
-       ========================================================= */
-
-    --cal-border: #A9A9A9;
-
-    --cal-weekday-bg: color-mix(in oklch, var(--primary) 85%, white 15%);
-    --cal-weekday-text: var(--on-primary);
-    --cal-weekday-cell-bg: oklch(0.985 0.004 255);
-    --cal-weekday-cell-text: var(--text-main);
-
-    --cal-sat-bg: oklch(0.62 0.12 255);
-    --cal-sat-text: var(--on-primary);
-    --cal-sat-cell-bg: oklch(0.970 0.015 255);
-    --cal-sat-cell-text: #2F4A7A;
-
-    --cal-holi-bg: oklch(0.72 0.15 25);
-    --cal-holi-text: var(--on-primary);
-    --cal-holi-cell-bg: oklch(0.94 0.075 25);
-    --cal-holi-cell-text: #6A2A2A;
-
-    --cal-digestion-bg: #EFE3EB;
-    --cal-digestion-text: #6A4A5A;
-
-    --cal-today-bg: #DCE6F7;
-    --cal-today-border: color-mix(in srgb, var(--primary-hover) 80%, var(--surface-base) 20%);
-    --cal-today-text: var(--text-main);
-
-    --cal-other-bg: oklch(0.90 0.01 255);
-    --cal-other-text: var(--text-muted);
-
-    --cal-highlight-bg: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.45) h / 0.40);
-
-    /* =========================================================
-       7. イベント（平日 / 土曜 / 日曜 / 他月）
-       ========================================================= */
-
-    --cal-event-bg-weekday: oklch(0.56 0.14 255);
-    --cal-event-hover-weekday: oklch(0.52 0.14 255);
-    --cal-event-tag-weekday: oklch(0.47 0.14 255);
-    --cal-event-text-weekday: var(--on-primary);
-
-    --cal-event-bg-sat: oklch(0.62 0.12 255);
-    --cal-event-hover-sat: oklch(0.58 0.12 255);
-    --cal-event-tag-sat: oklch(0.52 0.15 255);
-    --cal-event-text-sat: var(--on-primary);
-
-    --cal-event-bg-holi: oklch(0.72 0.15 25);
-    --cal-event-hover-holi: oklch(0.68 0.15 25);
-    --cal-event-tag-holi: oklch(0.64 0.15 25);
-    --cal-event-text-holi: #5A1F1F;
-
-    --cal-event-bg-other: #8A8F99;
-    --cal-event-hover-other: #7A7F88;
-    --cal-event-tag-other: #6A6F78;
-    --cal-event-text-other: var(--on-primary);
-
-    /* =========================================================
-       8. ボタン
+       6. ボタン
        ========================================================= */
 
     --btn-back-bg: #444;
@@ -181,7 +124,7 @@
     --btn-reset-text: var(--icon-color);
 
     /* =========================================================
-       9. ReadOnly
+       7. ReadOnly
        ========================================================= */
 
     --readonly-bg: #EEF1F4;
@@ -190,7 +133,7 @@
     --readonly-value: var(--text-main);
 
     /* =========================================================
-       10. ステータス
+       8. ステータス
        ========================================================= */
 
     --status-text: var(--text-main);
@@ -230,4 +173,61 @@
     --status-rejected-border: #E6C7A8;
     --status-rejected-bg-hover: #FFE7D6;
     --status-rejected-border-hover: #DDBA9A;
+
+    /* =========================================================
+       9. カレンダー
+       ========================================================= */
+
+    --cal-border: #A9A9A9;
+
+    --cal-weekday-bg: color-mix(in oklch, var(--primary) 85%, white 15%);
+    --cal-weekday-text: var(--on-primary);
+    --cal-weekday-cell-bg: oklch(0.985 0.004 255);
+    --cal-weekday-cell-text: var(--text-main);
+
+    --cal-sat-bg: oklch(0.62 0.12 255);
+    --cal-sat-text: var(--on-primary);
+    --cal-sat-cell-bg: oklch(0.970 0.015 255);
+    --cal-sat-cell-text: #2F4A7A;
+
+    --cal-holi-bg: oklch(0.72 0.15 25);
+    --cal-holi-text: var(--on-primary);
+    --cal-holi-cell-bg: oklch(0.94 0.075 25);
+    --cal-holi-cell-text: #6A2A2A;
+
+    --cal-digestion-bg: #EFE3EB;
+    --cal-digestion-text: #6A4A5A;
+
+    --cal-today-bg: #DCE6F7;
+    --cal-today-border: color-mix(in srgb, var(--primary-hover) 80%, var(--surface-base) 20%);
+    --cal-today-text: var(--text-main);
+
+    --cal-other-bg: oklch(0.90 0.01 255);
+    --cal-other-text: var(--text-muted);
+
+    --cal-highlight-bg: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.45) h / 0.40);
+
+    /* =========================================================
+       10. イベント（平日 / 土曜 / 日曜 / 他月）
+       ========================================================= */
+
+    --cal-event-bg-weekday: oklch(0.56 0.14 255);
+    --cal-event-hover-weekday: oklch(0.52 0.14 255);
+    --cal-event-tag-weekday: oklch(0.47 0.14 255);
+    --cal-event-text-weekday: var(--on-primary);
+
+    --cal-event-bg-sat: oklch(0.62 0.12 255);
+    --cal-event-hover-sat: oklch(0.58 0.12 255);
+    --cal-event-tag-sat: oklch(0.52 0.15 255);
+    --cal-event-text-sat: var(--on-primary);
+
+    --cal-event-bg-holi: oklch(0.72 0.15 25);
+    --cal-event-hover-holi: oklch(0.68 0.15 25);
+    --cal-event-tag-holi: oklch(0.64 0.15 25);
+    --cal-event-text-holi: #5A1F1F;
+
+    --cal-event-bg-other: #8A8F99;
+    --cal-event-hover-other: #7A7F88;
+    --cal-event-tag-other: #6A6F78;
+    --cal-event-text-other: var(--on-primary);
 }
