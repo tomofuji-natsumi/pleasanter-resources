@@ -142,7 +142,7 @@ html, body {
 }
 
 .nav-site {
-    padding: 12px;
+    padding: 12px 12px 8px 12px;
     min-height: 160px;
     border-radius: 8px;
     background: var(--surface-base);
@@ -160,15 +160,15 @@ html, body {
 }
 
 .nav-site .site-icon {
-    margin-top: 15px;
+    margin-top: 18px;
 }
 
 .nav-site .site-icon img {
-    height: auto;
+    height: 105%;
 }
 
 .nav-site .title {
-    font-size: 0.83rem;
+    font-size: 0.86rem;
     font-weight: 550;
     overflow: hidden;
     white-space: nowrap !important;
@@ -180,11 +180,13 @@ html, body {
 
 .nav-site .conditions {
     padding: 10px;
+    font-size: 0.75rem;
 }
 
 .nav-site .conditions span.elapsed-time {
     font-size: 0.75rem;
-    color: var(--text-main) !important;
+    color: var(--text-disabled) !important;
+    font-weight: 500;
     padding: 0 !important;
     margin-left: 4px !important;
 }
