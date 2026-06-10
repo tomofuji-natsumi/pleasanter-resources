@@ -1,35 +1,33 @@
 (function () {
 
-  function applyBackButton() {
-    const li = document.querySelector("ul.nav-sites li.to-parent");
-    if (!li) return;
+  function replaceBackText() {
+    const title = document.querySelector("ul.nav-sites li.to-parent .title");
+    if (!title) return false;
 
-    // すでに追加済みなら何もしない
-    if (li.querySelector(".back-text-fixed")) return;
-
-    // Pleasanter が上書きしない「li の直下」に追加する
-    const span = document.createElement("span");
-    span.className = "back-text-fixed";
-    span.textContent = "戻る";
-
-    // a の外に置く（Pleasanter はここを上書きしない）
-    li.appendChild(span);
+    // Pleasanter が描画し終えた後の最終値が「上へ」
+    if (title.textContent.trim() !== "戻る") {
+      title.textContent = "戻る";
+    }
+    return true;
   }
 
-  // nav-sites の変化を監視
+  // nav-sites の変化を監視し続ける（最強）
   const mo = new MutationObserver(() => {
-    applyBackButton();
+    replaceBackText();
   });
 
   function startObserver() {
     const nav = document.querySelector("ul.nav-sites");
     if (nav) {
-      mo.observe(nav, { childList: true, subtree: true });
-      applyBackButton();
+      mo.observe(nav, { childList: true, subtree: true, characterData: true });
+      replaceBackText();
     }
   }
 
+  // 初回ロード
   document.addEventListener("DOMContentLoaded", startObserver);
+
+  // pjax 後
   $(document).on("pjax:end pjax:success Common.Refresh", startObserver);
 
 })();
