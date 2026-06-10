@@ -34,6 +34,11 @@ html, body {
     list-style: none;
 }
 
+
+/* =========================================================
+    2. 戻るボタン
+    ========================================================= */
+
 #SiteMenu .nav-site.to-parent {
     display: block !important;
     min-height: auto !important;
@@ -91,6 +96,28 @@ html, body {
     font-size: 1rem;
     top: 50%;
     left: 0.8rem;
+}
+
+.nav-site.to-parent,
+.nav-site.to-parent:focus,
+.nav-site.to-parent .primary-material-icons,
+.nav-site.to-parent:focus .primary-material-icons,
+.nav-site.to-parent a::before,
+.nav-site.to-parent:focus  a::before {
+    background: var(--primary) !important;
+    color: var(--on-primary) !important;
+    font-weight: 550;
+}
+
+.nav-site.to-parent:hover,
+.nav-site.to-parent:active,
+.nav-site.to-parent:hover .primary-material-icons,
+.nav-site.to-parent:active .primary-material-icons,
+.nav-site.to-parent:hover a::before,
+.nav-site.to-parent:active a::before {
+    background: var(--primary-hover) !important;
+    color: var(--surface-strong) !important;
+    font-weight: 550;
 }
 
 
@@ -178,73 +205,6 @@ html, body {
     color: var(--text-white);
 }
 
-.nav-site.to-parent,
-.nav-site.to-parent:focus,
-.nav-site.to-parent .primary-material-icons,
-.nav-site.to-parent:focus .primary-material-icons,
-.nav-site.to-parent a::before,
-.nav-site.to-parent:focus  a::before {
-    background: var(--primary) !important;
-    color: var(--on-primary) !important;
-    font-weight: 550;
-}
-
-.nav-site.to-parent:hover,
-.nav-site.to-parent:active,
-.nav-site.to-parent:hover .primary-material-icons,
-.nav-site.to-parent:active .primary-material-icons,
-.nav-site.to-parent:hover a::before,
-.nav-site.to-parent:active a::before {
-    background: var(--primary-hover) !important;
-    color: var(--surface-strong) !important;
-    font-weight: 550;
-}
-
-@media (max-width:1250px) {
-
-    #Main {
-        margin-left: 0 !important;
-        width: 100% !important;
-    }
-
-    .nav-site.to-parent > a {
-        width: min(100%, 160px);
-    }
-
-    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
-        gap: 20px 15px !important;
-    }
-}
-
-@media (max-width:1000px) {
-
-    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 20px 15px !important;
-    }
-}
-
-@media (max-width:700px) {
-
-    #SiteMenu {
-        padding: calc(40px * .4) 18px;
-    }
-
-    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 15px 10px;
-    }
-
-    #SiteMenu .nav-site {
-        padding: 8px;
-        min-height: 140px;
-    }
-
-    .nav-site.to-parent > a {
-        width: min(100%, 100px);
-    }
-}
 
 /* =========================================================
     4. テンプレート
@@ -306,4 +266,54 @@ html, body {
 
 [aria-describedby="ImportUserTemplateDialog"] :not(td)>div.field-wide .container-normal {
     margin-left: 9.2rem;
+}
+
+
+/* =========================================================
+    5. レスポンシブ
+    ========================================================= */
+@media (max-width:1250px) {
+
+    #Main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    .nav-site.to-parent > a {
+        width: min(100%, 160px);
+    }
+
+    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+        gap: 20px 15px !important;
+    }
+}
+
+@media (max-width:1000px) {
+
+    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 20px 15px !important;
+    }
+}
+
+@media (max-width:700px) {
+
+    #SiteMenu {
+        padding: calc(40px * .4) 18px;
+    }
+
+    #SiteMenu .nav-site {
+        padding: 8px;
+        min-height: 140px;
+    }
+
+    .nav-site.to-parent > a {
+        width: min(100%, 100px);
+    }
+
+    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 15px 10px;
+    }
 }
