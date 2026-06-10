@@ -4,19 +4,17 @@
     const nav = document.querySelector("ul.nav-sites");
     if (!nav) return;
 
-    // すでに追加済みなら何もしない
     if (document.querySelector(".back-text-fixed")) return;
 
-    // nav-sites の外側に追加（Pleasanter はここを上書きしない）
     const span = document.createElement("span");
     span.className = "back-text-fixed";
     span.textContent = "戻る";
 
-    // nav-sites の直前に挿入
     nav.parentNode.insertBefore(span, nav);
   }
 
-  // nav-sites の変化を監視
+  window.applyBackButton = applyBackButton;
+
   const mo = new MutationObserver(() => {
     applyBackButton();
   });
