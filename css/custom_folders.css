@@ -127,7 +127,7 @@ html, body {
 /* =========================================================
     3. カード
     ========================================================= */
-#SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+.nav-sites.sortable {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 30px 20px;
@@ -135,8 +135,8 @@ html, body {
     width: 100%;
 }
 
-#SiteMenu nav:nth-of-type(2) .nav-sites.sortable .nav-site,
-#SiteMenu nav:nth-of-type(2) .nav-sites.sortable .nav-site * {
+.nav-sites.sortable .nav-site,
+.nav-sites.sortable .nav-site * {
     min-width: 0 !important;
 }
 
@@ -289,7 +289,7 @@ html, body {
         width: min(100%, 160px);
     }
 
-    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+    .nav-sites.sortable {
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
         gap: 20px 15px !important;
     }
@@ -297,7 +297,7 @@ html, body {
 
 @media (max-width:1000px) {
 
-    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+    .nav-sites.sortable {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 20px 15px !important;
     }
@@ -318,7 +318,7 @@ html, body {
         width: min(100%, 100px);
     }
 
-    #SiteMenu nav:nth-of-type(2) .nav-sites.sortable {
+    .nav-sites.sortable {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         gap: 15px 10px;
     }
