@@ -96,6 +96,7 @@ markdown-field .md-btn.is-editor {
 
 markdown-field.is-comment .md-viewer {
     border: none !important;
+	background-color: transparent !important;
 }
 
 markdown-field .md-viewer {
