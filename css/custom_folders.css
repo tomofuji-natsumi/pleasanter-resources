@@ -164,11 +164,11 @@ html, body {
 }
 
 .nav-site .site-icon img {
-    height: 105%;
+    height: 100%;
 }
 
 .nav-site .title {
-    font-size: 0.86rem;
+    font-size: 0.85rem;
     font-weight: 550;
     overflow: hidden;
     white-space: nowrap !important;
@@ -180,7 +180,7 @@ html, body {
 
 .nav-site .conditions {
     padding: 10px;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
 }
 
 .nav-site .conditions span.elapsed-time {
@@ -199,12 +199,14 @@ html, body {
     background-color: var(--bg-count);
     border: 1px solid var(--border-count);
     color: var(--text-emphasis);
+    align-content: center;
 }
 
 .nav-site .conditions span.overdue {
     background-color: var(--semantic-danger);
     border: 1px solid var(--semantic-danger-border);
     color: var(--text-white);
+    align-content: center;
 }
 
 
