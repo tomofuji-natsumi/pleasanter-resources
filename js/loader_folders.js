@@ -38,3 +38,13 @@ window.runTenantScripts = async function () {
         __scriptsLoaded = true;
     }
 };
+
+function applyUIFixes() {
+    if (window.applyBackButton) window.applyBackButton();
+    if (window.runIconApply) window.runIconApply();
+}
+
+$(document).on("pjax:complete pjax:end", () => {
+    applyUIFixes();
+});
+
