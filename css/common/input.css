@@ -302,39 +302,7 @@ span.flatpickr-weekday {
 
 
 /* =========================================================
-   9. 添付ファイル
-   ========================================================= */
-
-.control-attachments-upload {
-    padding: 1.7rem 0.8rem !important;
-    color: var(--text-main);
-    background: var(--surface-base);
-    border: 2px dotted var(--primary) !important;
-    border-radius: var(--radius-medium);
-}
-
-.control-attachments-upload:hover {
-    cursor: pointer;
-}
-
-.control-attachments-items {
-    padding: 0 !important;
-	margin-top: 0.6rem;
-}
-
-.control-attachments-item {
-	padding: 0.3rem 0.5rem !important;
-	margin: 0;
-}
-
-.control-attachments-item.already-attachments {
-    background-color: var(--primary-surface);
-	border-color: var(--primary);
-}
-
-
-/* =========================================================
-   10. Readonly
+   9. Readonly
    ========================================================= */
 
 .container-normal:has(span[data-readonly="1"]) {
