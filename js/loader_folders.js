@@ -70,7 +70,11 @@ let __scriptsLoaded = false;
 window.runTenantScripts = async function () {
 
     if (!__scriptsLoaded) {
-        await loadScriptSequential(scripts);
+        if (Array.isArray(window.scripts)) {
+            await loadScriptSequential(window.scripts);
+        } else {
+            console.warn("scripts が存在しないため、外部スクリプト読み込みをスキップ");
+        }
         __scriptsLoaded = true;
     }
 };
