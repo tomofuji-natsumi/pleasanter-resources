@@ -68,17 +68,11 @@ let __scriptsLoaded = false;
  * その後 UI の再適用処理（戻るボタン・アイコン）を実行する。
  */
 window.runTenantScripts = async function () {
-
-    if (!__scriptsLoaded) {
-        if (Array.isArray(window.scripts)) {
-            await loadScriptSequential(window.scripts);
-        } else {
-            console.warn("scripts が存在しないため、外部スクリプト読み込みをスキップ");
-        }
+    if (!__scriptsLoaded && Array.isArray(window.scripts)) {
+        await loadScriptSequential(window.scripts);
         __scriptsLoaded = true;
     }
 };
-
 
 /**
  * UI 完成後に実行する処理
@@ -88,6 +82,6 @@ function applyUIFixes() {
     if (window.runIconApply) window.runIconApply();
 }
 
-$(document).on("pjax:complete pjax:end Common.Refresh", () => {
+$(document).on("pjax:complete pjax:end", () => {
     applyUIFixes();
 });
