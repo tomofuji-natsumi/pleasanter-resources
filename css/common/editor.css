@@ -363,6 +363,7 @@ rt-editor button.se-btn-select > svg {
     margin: 0 0 13px;
     padding: 10px 14px !important;
     box-shadow: 3px 3px 3px var(--shadow-medium);
+	border-left: 8px solid transparent;
 }
 
 .comment > .time {
