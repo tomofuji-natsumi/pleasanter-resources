@@ -18,7 +18,8 @@ html, body {
 /* =========================================================
     1. サイトメニュー
     ========================================================= */
-#SiteMenu:has(.cf) {
+#SiteMenu:not(:has(#TemplateTabsContainer)),
+.template-tab-container .ui-tabs-panel {
     padding: calc(40px * .5) 30px;
     width: 100%;
 }
