@@ -2,7 +2,8 @@ function applyCommentColors() {
     const map = JSON.parse($('#MyComments').val() || "{}");
 
     $("#CommentList > div[id^='Comment']").each(function () {
-        const id = $(this).attr("id").replace("Comment", "").replace(".wrapper", "");
+        const rawId = $(this).attr("id"); // 例: "Comment1.wrapper"
+        const id = rawId.replace("Comment", "").replace(".wrapper", "");
         if (!id) return;
 
         const info = map[id];
@@ -16,28 +17,36 @@ function applyCommentColors() {
     });
 }
 
-// コメント追加を監視（最速で反応）
-const commentObserver = new MutationObserver(mutations => {
-    let needUpdate = false;
+// コメントリストを監視
+const commentList = document.getElementById("CommentList");
 
-    for (const m of mutations) {
-        for (const node of m.addedNodes) {
-            if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
+if (commentList) {
+    const commentObserver = new MutationObserver(mutations => {
+        let needUpdate = false;
+
+        for (const m of mutations) {
+            for (const node of m.addedNodes) {
+                // コメント本体が追加された
+                if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
+                    needUpdate = true;
+                }
+            }
+
+            // コメント内部が描画されて class="comment" が付いた
+            if (m.type === "attributes" && m.target.classList.contains("comment")) {
                 needUpdate = true;
             }
         }
-    }
 
-    if (needUpdate) {
-        applyCommentColors(); // ← 遅延なしで即実行
-    }
-});
+        if (needUpdate) {
+            applyCommentColors();
+        }
+    });
 
-// CommentList のみ監視すれば十分
-const commentList = document.getElementById("CommentList");
-if (commentList) {
     commentObserver.observe(commentList, {
         childList: true,
-        subtree: true
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["class"]
     });
 }
