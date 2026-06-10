@@ -5,11 +5,13 @@ html, body {
     background-color: var(--bg-site-list) !important;
 }
 
+/*
 #Main {
     margin-left: 52px;
     width: calc(100% - 52px);
     box-sizing: border-box;
 }
+*/
 
 #Message {
     bottom: 0;
@@ -220,11 +222,6 @@ html, body {
     width: 100%;
 }
 
-#PreviewTemplate div ol li {
-    padding: 3px 8px 4px 8px;
-    margin-bottom: 5px;
-}
-
 #TemplateTabsContainer .template {
     background-color: var(--surface-base);
 }
@@ -257,6 +254,10 @@ html, body {
 #TemplateTabsContainer .template-viewer .template-tab-container {
     padding: 0;
     min-height: fit-content;
+}
+
+#TemplateTabsContainer .template-viewer .template-tab-container .ui-tabs-panel {
+    background-color: var(--surface-base);
 }
 
 .template-selectable .command-left {
