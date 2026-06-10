@@ -128,7 +128,6 @@ html, body {
 
 .nav-site > a {
     padding: 0;
-    color: var(--link-text);
 }
 
 .nav-site .site-icon {
@@ -137,6 +136,17 @@ html, body {
 
 .nav-site .site-icon img {
     height: auto;
+}
+
+.nav-site .title {
+    font-size: 0.83rem;
+    font-weight: 550;
+    overflow: hidden;
+    white-space: nowrap !important;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding: 0;
+    color: var(--primary);
 }
 
 .nav-site .conditions {
