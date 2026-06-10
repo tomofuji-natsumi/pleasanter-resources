@@ -48,13 +48,17 @@ html, body {
     2. 戻るボタン
     ========================================================= */
 
-#SiteMenu .nav-site.to-parent {
+.nav-sites:has(.nav-site.to-parent) {
+    margin-bottom: 25px;
+}
+
+.nav-site.to-parent {
     display: block !important;
     min-height: auto !important;
     padding: 0 !important;
 }
 
-#SiteMenu  .nav-site.to-parent > a {
+.nav-site.to-parent > a {
     display: flex !important;
     align-items: center;
     gap: 8px;
@@ -134,8 +138,7 @@ html, body {
     3. カード
     ========================================================= */
 
-/* .nav-sites.sortable */
-.nav-sites.sortable {
+.nav-sites {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 30px 20px;
@@ -145,13 +148,6 @@ html, body {
     padding: 0;
     list-style: none;
 }
-
-/*
-.nav-sites.sortable .nav-site,
-.nav-sites.sortable .nav-site * {
-    min-width: 0 !important;
-}
-*/
 
 .nav-site {
     padding: 12px 12px 8px 12px;
