@@ -17,7 +17,6 @@ function applyCommentColors() {
     });
 }
 
-// コメントリストを監視
 const commentList = document.getElementById("CommentList");
 
 if (commentList) {
@@ -25,8 +24,9 @@ if (commentList) {
         let needUpdate = false;
 
         for (const m of mutations) {
+
+            // コメント本体が追加された
             for (const node of m.addedNodes) {
-                // コメント本体が追加された
                 if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
                     needUpdate = true;
                 }
@@ -39,7 +39,12 @@ if (commentList) {
         }
 
         if (needUpdate) {
-            applyCommentColors();
+            // Pleasanter の後描画が終わるまで 1 フレーム待つ
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    applyCommentColors();
+                });
+            });
         }
     });
 
