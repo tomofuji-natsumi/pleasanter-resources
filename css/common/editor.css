@@ -3,14 +3,14 @@
    ========================================================= */
 
 #Editor #EditorTabsContainer,
-#Editor #GroupForm,
-#Editor #MainForm {
+#Editor #GroupForm {
     background-color: var(--surface-base);
     background: var(--surface-base);
 }
 
 #Editor #MainForm {
     box-shadow: 0 2px 1px var(--shadow-light);
+	background: var(--bg-editor-sub);
 }
 
 #FieldSetGeneral .field-label {
