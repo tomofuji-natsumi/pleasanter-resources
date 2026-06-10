@@ -114,13 +114,13 @@ tr.crosstab-row th {
    チェックボックス列
    ========================================================= */
 
-.grid td:first-child {
+.grid .grid-row td:first-child {
     padding: 0 !important;
     line-height: initial;
 }
 
-.grid td:first-child .check-option,
-.grid td .check-option .check-icon {
+.grid .grid-row td:first-child .check-option,
+.grid .grid-row td .check-option .check-icon {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
@@ -131,7 +131,7 @@ tr.crosstab-row th {
    ========================================================= */
 
 /* ユーザー名 */
-.grid td .user span {
+.grid .grid-row td .user span {
 	font-weight: 400;
 }
 
@@ -178,11 +178,12 @@ tr.crosstab-row th {
    ========================================================= */
 
 /* 共通 */
+/*
 .grid td:has([class^="status-"]) {
     display: flex;
 	justify-content: center;
 }
-
+*/
 [class^="status-"] {
     font-size: 0.85rem !important;
     font-weight: 500 !important;
