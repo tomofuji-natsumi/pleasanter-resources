@@ -26,7 +26,7 @@
     margin-top: 0px;
 }
 
-#FieldSetGeneral .field-label {
+.ui-tabs-panel .field-label {
     font-size: 0.85rem;
     color: var(--text-main);
     line-height: 1.5;
@@ -34,11 +34,11 @@
     margin-bottom: 0;
 }
 
-#FieldSetGeneral .field-label label {
+.ui-tabs-panel .field-label label {
     vertical-align: sub;
 }
 
-#FieldSetGeneral .check-option {
+.ui-tabs-panel .check-option {
     margin: 4px 0 !important;
 	gap: 0.8em;
 }
