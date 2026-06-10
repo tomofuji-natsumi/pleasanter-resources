@@ -26,7 +26,7 @@ function applyCommentColors() {
         $(this).css({
             "color": info.color,
             "background-color": info.backgroundColor,
-            "border-left": `8px solid ${info.borderColor}`
+            "border-color": info.borderColor
         });
     });
 }
