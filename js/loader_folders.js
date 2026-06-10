@@ -1,13 +1,14 @@
-// 複数JSをまとめて読み込む
+// ===============================
+// 読み込む外部スクリプト一覧
+// ===============================
 const scripts = [
     "https://tomofuji-natsumi.github.io/pleasanter-resources/js/common/port_setting.js",
     "https://tomofuji-natsumi.github.io/pleasanter-resources/js/common/icon.js",
 ];
 
-/**
- * 指定した複数のスクリプトを「順番に」読み込む。
- * すでに読み込み済みの URL はスキップする。
- */
+// ===============================
+// 順番に読み込む
+// ===============================
 function loadScriptSequential(urls) {
     return urls.reduce((p, url) => {
         return p.then(() => new Promise((resolve) => {
@@ -31,18 +32,27 @@ function loadScriptSequential(urls) {
 
 let __scriptsLoaded = false;
 
+// ===============================
+// Pleasanter の runAll から呼ばれる
+// ===============================
 window.runTenantScripts = async function () {
-    if (!__scriptsLoaded && Array.isArray(window.scripts)) {
-        await loadScriptSequential(window.scripts);
+
+    if (!__scriptsLoaded) {
+        await loadScriptSequential(__tenantScripts);
         __scriptsLoaded = true;
     }
 };
 
+// ===============================
+// UI 再適用（アイコンのみ）
+// ===============================
 function applyUIFixes() {
     if (window.runIconApply) window.runIconApply();
 }
 
+// ===============================
+// PJAX 後に UI 再適用
+// ===============================
 $(document).on("pjax:complete pjax:end", () => {
     applyUIFixes();
 });
-
