@@ -54,7 +54,7 @@ const primaryIconMap = {
     "#OpenAnalyPartDialog": "add",
     "#AnalyPartDialog [data-icon='ui-icon-disk']": "add",
     "#OpenSiteTitleDialog": "add_ad",
-    "CreateByTemplate": "add_ad",
+    "#CreateByTemplate": "add_ad",
     "#CreateCommand": "add_ad",
     "[aria-describedby='ExportSitePackageDialog'] #IncludeData": "add_box",
     "#PermissionsDialog [data-icon='ui-icon-disk']": "update",
