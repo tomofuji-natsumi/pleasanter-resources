@@ -154,21 +154,19 @@ html, body {
 }
 
 .nav-site .site-icon {
-    margin-top: 18px;
+    margin-top: 20px;
 }
 
 .nav-site .site-icon img {
-    height: 100%;
+    height: 98%;
 }
 
 .nav-site .title {
-    font-size: 0.85rem;
     font-weight: 550;
     overflow: hidden;
     white-space: nowrap !important;
     text-overflow: ellipsis;
     margin: 0;
-    padding: 0;
     color: var(--primary);
 }
 
