@@ -1258,7 +1258,7 @@ html, body {
     background-color: var(--bg-site-list) !important;
 }
 
-#Message {
+body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
     bottom: 0;
 }
 
