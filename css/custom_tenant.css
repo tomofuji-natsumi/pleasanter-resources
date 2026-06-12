@@ -623,6 +623,12 @@ button:has(.primary-material-icons):active {
     align-items: center;
 }
 
+.check-option .check-icon {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius-medium) !important;
+}
+
 .check-option .check-icon:before {
     color: var(--surface-base) !important;
 }
@@ -987,8 +993,8 @@ rt-editor button.se-btn-select > svg {
     padding: 0.6rem 1.1rem;
 }
 
-.ui-dialog-title {
-    font-family: 游ゴシック体, YuGothic, 游ゴシック Medium, Yu Gothic Medium, 游ゴシック, Yu Gothic, sans-serif;
+.ui-dialog .ui-dialog-title {
+    font-family: sans-serif;
     font-weight: 600;
     line-height: 1.5;
     font-size: 0.85rem;
