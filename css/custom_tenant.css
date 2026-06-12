@@ -125,7 +125,6 @@
 }
 
 
-
 /* =========================================================
    0. Base
    ========================================================= */
@@ -184,10 +183,7 @@ img {
 
 /* 不要アイコンの非表示 */
 #Header .ui-icon-person,
-#CopyToClipboards .ui-icon-link,
 #RecordHeader .ui-icon-person,
-#ReduceGuides .ui-icon-minusthick,
-#ExpandGuides .ui-icon-plusthick,
 .grid-row .ui-icon-person,
 .comment-header .ui-icon-person,
 .button-icon .ui-icon {
@@ -615,38 +611,54 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   11. Attachments
+   11. チェックボックス
+   ========================================================= */
+.container-normal:has(.check-option) {
+    align-content: center;;
+}
+
+.check-option {
+    gap: 0.8rem !important;
+    margin: 0;
+    align-items: center;
+}
+
+.check-option .check-icon:before {
+    color: var(--surface-base) !important;
+}
+
+.check-option .check-icon:has(input:checked) {
+    background-color: var(--primary);
+}
+
+.check-option .check-icon:has(input:disabled):has(input:checked) {
+    background-color: var(--text-disabled);
+    border: 1px solid var(--border-strong);
+}
+
+.field-control .control-markdown {
+    min-width: 80px;
+    border: 1px solid var(--border-strong);
+}
+
+/* =========================================================
+   12. スピナー
    ========================================================= */
 
-.control-attachments-upload {
-    padding: 1.7rem 0.8rem !important;
-    color: var(--text-main);
-    background: var(--surface-base);
-    border: 2px dotted var(--primary) !important;
-    border-radius: var(--radius-medium);
+.spinner-field .ui-spinner .ui-button {
+    position: absolute !important;
+    background-color: var(--surface-base);
+    border-left: 1px solid var(--border-light);
 }
 
-.control-attachments-upload:hover {
-    cursor: pointer;
+.spinner-field:has(.with-unit) .unit {
+    padding-left: 5px;
 }
 
-.control-attachments-items {
-    padding: 0 !important;
-    margin-top: 0.2rem;
-}
-
-.control-attachments-item {
-   padding: 0.6em;
-}
-
-.control-attachments-item.already-attachments {
-    background-color: var(--primary-surface);
-	border-color: var(--primary);
-}
 
 
 /* =========================================================
-   12. テキストエリア
+   13. テキストエリア
    ========================================================= */
 
 textarea {
@@ -659,7 +671,7 @@ textarea {
 
 
 /* =========================================================
-   13. リッチエディタ
+   14. リッチエディタ
    ========================================================= */
 
 rt-editor {
@@ -726,7 +738,7 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   14. コメント
+   15. コメント
    ========================================================= */
 
 #EditorComments::before {
@@ -808,7 +820,7 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   14. Record Header
+   16. Record Header
    ========================================================= */
 
 #RecordHeader {
@@ -842,14 +854,14 @@ rt-editor button.se-btn-select > svg {
 }
 
 /* =========================================================
-   15. Attachments（添付ファイル）
+   17. Attachments（添付ファイル）
    ========================================================= */
 
 .control-attachments-upload {
-    padding: 25px 8px !important;
+    padding: 1.7rem 0.8rem !important;
     color: var(--text-main);
     background: var(--surface-base);
-    border: 2px dotted var(--primary);
+    border: 2px dotted var(--primary) !important;
     border-radius: var(--radius-medium);
 }
 
@@ -859,72 +871,21 @@ rt-editor button.se-btn-select > svg {
 
 .control-attachments-items {
     padding: 0 !important;
-    margin-top: 0.2em;
+    margin-top: 0.2rem;
 }
 
 .control-attachments-item {
-    padding: 0.6em;
+   padding: 0.6em;
+}
+
+.control-attachments-item.already-attachments {
+    background-color: var(--primary-surface);
+	border-color: var(--primary);
 }
 
 
 /* =========================================================
-   16. コメント（説明文・カード）
-   ========================================================= */
-
-#Editor #EditorComments .comment + .comment {
-    border: none;
-}
-
-#CommentField markdown-field {
-    margin-bottom: 15px;
-}
-
-.comment {
-    margin: 0 0 13px;
-    padding: 10px 14px !important;
-    box-shadow: 3px 3px 3px var(--shadow-medium);
-}
-
-.comment > .time {
-    margin: 0 10px 8px 0;
-}
-
-#CommentList .md {
-    background-color: transparent;
-}
-
-#CommentList markdown-field {
-    margin: 0 !important;
-}
-
-#CommentList markdown-field .md-btn.is-delete {
-    right: -5px;
-    color: var(--icon-color);
-}
-
-#CommentList markdown-field .notes {
-    font-size: 0.88rem;
-    color: var(--text-main);
-}
-
-.comment-header {
-    flex-direction: row;
-    padding: 2px 0;
-}
-
-.comment-header .user {
-    order: 1;
-    margin-right: 0.5rem;
-}
-
-.comment-header .time {
-    order: 2;
-    font-size: 0.75rem;
-}
-
-
-/* =========================================================
-   17. 変更履歴の一覧
+   18. 変更履歴の一覧
    ========================================================= */
 
 #FieldSetHistories {
@@ -933,8 +894,9 @@ rt-editor button.se-btn-select > svg {
     }
 }
 
+
 /* =========================================================
-   18. レコードのアクセス制御
+   19. レコードのアクセス制御
    ========================================================= */
 
 #FieldSetRecordAccessControlEditor {
@@ -965,7 +927,7 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   19. ダイアログ
+   20. ダイアログ
    ========================================================= */
 
 .dialog {
@@ -1004,7 +966,7 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   20. UIダイアログ
+   21. UIダイアログ
    ========================================================= */
 
 .ui-dialog {
@@ -1077,7 +1039,7 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   21. Fieldset（種類）
+   22. Fieldset（種類）
    ========================================================= */
 
 .fieldset > .legend {
@@ -1101,12 +1063,8 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   22. リスト
+   23. リスト
    ========================================================= */
-
-.container-selectable:has(.wrapper) {
-    margin-top: 1.2rem;
-}
 
 .wrapper {
     background-color: var(--surface-base) !important;
@@ -1118,32 +1076,29 @@ rt-editor button.se-btn-select > svg {
     padding: 5px 10px 5px 5px !important;
 }
 
-.wrapper .ui-selectable .ui-selectee:hover {
-    box-shadow: 0 1px 4px var(--shadow-strong);
-}
-
 .wrapper .ui-selectable li {
-    padding: 1px 7px 3px;
-    margin: 4px 3px;
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-small);
+    color: var(--text-main);
+    padding: 0.2rem 0.5rem 0.28rem;
+    margin: 4px 3px;
     width: auto;
 }
 
-.wrapper .ui-selectable .ui-selectee {
-    background-color: var(--surface-strong);
-    border: 1px solid var(--border-strong);
-    color: var(--text-main);
+.wrapper .ui-selectable li:hover {
+    box-shadow: 0 1px 4px var(--shadow-strong);
 }
 
-.wrapper .ui-selectable .ui-selectee.ui-selecting,
-.wrapper .ui-selectable .ui-selectee.ui-selected {
+.wrapper .ui-selectable li.ui-selecting,
+.wrapper .ui-selectable li.ui-selected {
     background: var(--primary);
     color: var(--surface-base);
 }
 
 
 /* =========================================================
-   23. ファイルアップロード
+   24. ファイルアップロード
    ========================================================= */
 
 .file-wrapper {
@@ -1200,13 +1155,11 @@ label.error {
     font-size: 0.75rem;
 }
 
-
 .ui-dialog-content a,
 .ui-dialog-content .check-text {
     color: var(--text-main);
     font-size: 0.85rem;
 }
-
 
 .ui-dialog-overlay {
     background: var(--primary-overlay);
@@ -1215,7 +1168,7 @@ label.error {
 
 
 /* =========================================================
-   24. 選択肢（multiselect）
+   25. 選択肢（multiselect）
    ========================================================= */
 
 .ui-multiselect-menu {
@@ -1256,6 +1209,10 @@ label.error {
 
 html, body {
     background-color: var(--bg-site-list) !important;
+}
+
+#MainCommandsContainer {
+    background-color: var(--bg-footer) !important;
 }
 
 body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
@@ -1365,10 +1322,6 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
     align-content: center;
 }
 
-
-/* =========================================================
-   4. テンプレート
-   ========================================================= */
 
 /* =========================================================
     4. テンプレート
