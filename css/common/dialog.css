@@ -35,6 +35,7 @@
     border: solid 1px var(--semantic-danger);
 }
 
+
 /* =========================================================
    2. UIダイアログ
    ========================================================= */
@@ -57,8 +58,8 @@
     padding: 0.6rem 1.1rem;
 }
 
-.ui-dialog-title {
-    font-family: 游ゴシック体, YuGothic, 游ゴシック Medium, Yu Gothic Medium, 游ゴシック, Yu Gothic, sans-serif;
+.ui-dialog .ui-dialog-title {
+    font-family: sans-serif;
     font-weight: 600;
     line-height: 1.5;
     font-size: 0.85rem;
@@ -150,25 +151,22 @@
     padding: 5px 10px 5px 5px !important;
 }
 
-.wrapper .ui-selectable .ui-selectee:hover {
-    box-shadow: 0 1px 4px var(--shadow-strong);
-}
-
 .wrapper .ui-selectable li {
-    padding: 1px 7px 3px;
-    margin: 4px 3px;
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius-small);
+    color: var(--text-main);
+    padding: 0.2rem 0.5rem 0.28rem;
+    margin: 4px 3px;
     width: auto;
 }
 
-.wrapper .ui-selectable .ui-selectee {
-    background-color: var(--surface-strong);
-    border: 1px solid var(--border-strong);
-    color: var(--text-main);
+.wrapper .ui-selectable li:hover {
+    box-shadow: 0 1px 4px var(--shadow-strong);
 }
 
-.wrapper .ui-selectable .ui-selectee.ui-selecting,
-.wrapper .ui-selectable .ui-selectee.ui-selected {
+.wrapper .ui-selectable li.ui-selecting,
+.wrapper .ui-selectable li.ui-selected {
     background: var(--primary);
     color: var(--surface-base);
 }
@@ -232,13 +230,11 @@ label.error {
     font-size: 0.75rem;
 }
 
-
 .ui-dialog-content a,
 .ui-dialog-content .check-text {
     color: var(--text-main);
     font-size: 0.85rem;
 }
-
 
 .ui-dialog-overlay {
     background: var(--primary-overlay);
