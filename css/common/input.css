@@ -5,7 +5,6 @@
 textarea,
 select:not([name="Results_Status"]),
 input,
-.check-option .check-icon:not(:has(input:checked)),
 .ui-widget.ui-state-default.ui-multiselect {
     background: var(--surface-base) !important;
     border: 1px solid var(--border-strong) !important;
@@ -16,7 +15,6 @@ input,
 textarea:focus,
 select:not([name="Results_Status"]):focus,
 input:focus,
-.check-option .check-icon:not(:has(input:checked)):focus,
 .ui-widget.ui-state-default.ui-multiselect:focus {
     border: 1px solid var(--primary-border) !important;
     background-color: var(--surface-base) !important;
@@ -198,6 +196,12 @@ rt-editor .se-btn-select > svg {
     gap: 0.8rem !important;
     margin: 0;
     align-items: center;
+}
+
+.check-option .check-icon {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-radius: var(--radius-medium) !important;
 }
 
 .check-option .check-icon:before {
