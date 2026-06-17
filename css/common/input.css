@@ -309,7 +309,8 @@ span.flatpickr-weekday {
    9. Readonly
    ========================================================= */
 
-.container-normal:has(span[data-readonly="1"]) {
+.container-normal:has(span[data-readonly="1"]),
+.readonly-style {
     padding: 0.3rem 0.55rem !important;
     background: var(--readonly-bg) !important;
     color: var(--readonly-value) !important;
