@@ -57,7 +57,7 @@
     --bg-data-title: var(--bg-filter);
 
     --bg-dashboard: #E7E7E7;
-	--bg-dashboard-card: #FCFCFD;
+	--bg-dashboard-card: #FDFDFE;
 
     --bg-dialog-header: #E3E7EE;
     --bg-count: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.18) h);
@@ -78,7 +78,6 @@
     --border-count: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
 
     --border-focus: color-mix(in oklch, var(--primary) 30%, white 70%);
-	--border-dashboard-card: #E5E7EB;
 
     --radius-small: 4px;
     --radius-medium: 5px;
