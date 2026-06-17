@@ -26,6 +26,10 @@
     margin-top: 0px;
 }
 
+.ui-tabs-panel {
+	background: var(--surface-base);
+}
+
 .ui-tabs-panel .field-label {
     font-size: 0.85rem;
     color: var(--text-main);
@@ -354,7 +358,15 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   8. 変更履歴の一覧
+   8. メールダイアログ
+   ========================================================= */
+#OutgoingMails_DestinationSearchRange {
+    vertical-align: unset;
+}
+
+
+/* =========================================================
+   9. 変更履歴の一覧
    ========================================================= */
 
 #FieldSetHistories {
@@ -364,7 +376,7 @@ rt-editor button.se-btn-select > svg {
 }
 
 /* =========================================================
-   8. レコードのアクセス制御
+   10. レコードのアクセス制御
    ========================================================= */
 
 #FieldSetRecordAccessControlEditor {
