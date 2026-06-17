@@ -275,3 +275,12 @@ label.error {
     vertical-align: text-top;
 	line-height: 1.37;
 }
+
+.container-selectable:not(:has(#OutgoingMails_MailAddressesWrapper)) {
+	margin-top: 0;
+}
+
+.field-vertical {
+	width: fit-content !important;
+	margin-bottom: 1rem;
+}
