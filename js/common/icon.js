@@ -23,6 +23,7 @@ const darkIconMap = {
     "#PermissionsDialog [data-icon='ui-icon-cancel']": "close",
     "#SiteTitleDialog [data-icon='ui-icon-cancel']": "close",
     "#AnalyPartDialog [data-icon='ui-icon-cancel']": "close",
+    "#OutgoingMails_Cancel": "close",
     "#MainCommands [data-action='SiteMenu']": "arrow_circle_left",
     "#GoBack": "arrow_circle_left",
     "#ExcludeData": "indeterminate_check_box",
@@ -48,6 +49,9 @@ const lightIconMap = {
     "#ToDisableExportSites": "keyboard_arrow_right",
     "#DeletePermissions": "keyboard_arrow_right",
     "#Next": "arrow_right",
+    "#OutgoingMails_AddTo": "user",
+    "#OutgoingMails_AddCc": "user",
+    "#OutgoingMails_AddBcc": "user"
 };
 
 const primaryIconMap = {
@@ -60,6 +64,7 @@ const primaryIconMap = {
     "#PermissionsDialog [data-icon='ui-icon-disk']": "update",
     "#UpdateCommand": "update",
     "#OpenCopyDialogCommand": "content_copy",
+    "OutgoingMails_Send": "mail",
     "#EditOutgoingMail": "mail",
     "#ImportUserTemplateDialog [data-icon='ui-icon-arrowreturnthick-1-e']": "file_open",
     "#ImportSitePackageDialog [data-icon='ui-icon-arrowreturnthick-1-e']": "file_open",
