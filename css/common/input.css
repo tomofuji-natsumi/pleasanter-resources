@@ -199,7 +199,7 @@ rt-editor .se-btn-select > svg {
 }
 
 .check-option .check-icon {
-    background-color: var(--surface-base) !important;
+    background-color: var(--surface-base);
     border: 1px solid var(--border-strong) !important;
     border-radius: var(--radius-medium) !important;
 }
