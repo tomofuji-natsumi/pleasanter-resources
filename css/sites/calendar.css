@@ -198,6 +198,11 @@ td[role="presentation"],
    4. イベント（視認性 × 柔らかい × 上品）
    ========================================================= */
 
+.fc-h-event {
+	background-color: transparent;
+	border: none;
+}
+
 .fc-daygrid-event-dot,
 .fc-event-time {
     display: none !important;
