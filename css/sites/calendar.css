@@ -211,7 +211,7 @@ td[role="presentation"],
 
 .fc-daygrid-day-events {
     width: fit-content;
-    margin-left: auto;
+	justify-self: end;
     margin-right: 0.4rem !important;
 }
 
