@@ -287,7 +287,7 @@ button:has(.primary-material-icons):active {
 #Breadcrumb li:last-child a span,
 #Breadcrumb .item:last-child:is(.trashbox) span {
     color: var(--on-primary);
-    text-shadow: 0 1px 2px var(--shadow-strong);
+    text-shadow: 0 1px 2px var(--shadow-light);
 	font-weight: 550;
 }
 
@@ -350,7 +350,8 @@ button:has(.primary-material-icons):active {
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
 	color: var(--on-primary);
-    text-shadow: 0 1px 2px var(--shadow-strong);
+    text-shadow: 0 1px 2px var(--shadow-light);
+	font-weight: 550;
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
@@ -389,7 +390,7 @@ button:has(.primary-material-icons):active {
     user-select: none;
     pointer-events: auto;
     color: var(--text-white);
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 1px 2px var(--shadow-light);
     border: none;
 }
 
