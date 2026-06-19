@@ -62,6 +62,7 @@ const primaryIconMap = {
     "#CreateCommand": "add_ad",
     "[aria-describedby='ExportSitePackageDialog'] #IncludeData": "add_box",
     "#PermissionsDialog [data-icon='ui-icon-disk']": "update",
+    "#UpdateDashboardPartLayouts"]: "update",
     "#UpdateCommand": "update",
     "#OpenCopyDialogCommand": "content_copy",
     "OutgoingMails_Send": "mail",
