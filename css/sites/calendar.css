@@ -190,6 +190,7 @@ td[role="presentation"],
 .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
     min-height: 3em;
     margin-bottom: 0.2rem;
+	justify-self: end;
 }
 
 
