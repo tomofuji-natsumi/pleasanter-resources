@@ -211,6 +211,7 @@
 
 #Aggregations .data:not(.link) {
     padding: 0;
+	font-size: 0.86rem;
     color: var(--text-emphasis);
 }
 
