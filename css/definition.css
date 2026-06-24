@@ -102,6 +102,7 @@
     --text-disabled:  #9CA3AF;
 
     --text-white: #F5F5F5;
+   --text-white-hover: #E8E8E8;
 
     --text-link: var(--primary);
     --text-link-hover: var(--primary-hover);
