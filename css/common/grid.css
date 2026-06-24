@@ -101,7 +101,7 @@ tr.crosstab-row th {
 
 /* hover */
 .grid .grid-row:hover td {
-    background-color: var(--bg-hover) !important;
+    background-color: var(--surface-base-hover) !important;
     transition: background-color 0.25s ease-out;
 }
 
