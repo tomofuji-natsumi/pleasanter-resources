@@ -238,37 +238,37 @@
 #Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="100"] {
     background-color: var(--status-new-bg);
     border: 1px solid var(--status-new-border);
-    color: var(--status-text);
+    color: var(--status-new-text);
 }
 
 #Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="150"] {
     background-color: var(--status-preparation-bg);
     border: 1px solid var(--status-preparation-border);
-    color: var(--status-text);
+    color: var(--status-preparation-text);
 }
 
 #Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="200"] {
     background-color: var(--status-inprogress-bg);
     border: 1px solid var(--status-inprogress-border);
-    color: var(--status-text);
+    color: var(--status-inprogress-text);
 }
 
 #Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="300"] {
     background-color: var(--status-review-bg);
     border: 1px solid var(--status-review-border);
-    color: var(--status-text);
+    color: var(--status-review-text);
 }
 
 #Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="900"] {
     background-color: var(--status-closed-bg);
     border: 1px solid var(--status-closed-border);
-    color: var(--status-text);
+    color: var(--status-closed-text);
 }
 
 #Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="910"] {
     background-color: var(--status-rejected-bg);
     border: 1px solid var(--status-rejected-border);
-    color: var(--status-text);
+    color: var(--status-rejected-text);
 }
 
 #Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value="100"]:hover {
