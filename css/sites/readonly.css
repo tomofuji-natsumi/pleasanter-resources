@@ -20,7 +20,7 @@ body.readonly-mode {
     .container-normal:not(:has(~ .readonly-value)):not(:has(.check-option)):not(:has(.control-attachments-item)),
     .readonly-value {
         padding: 0.3rem 0.6rem !important;
-        background: var(--bg-main) !important;
+        background: var(--bg-main-dark) !important;
         color: var(--text-sub) !important;
         border: 1px solid var(--border-strong) !important;
         border-radius: var(--radius-medium) !important;
