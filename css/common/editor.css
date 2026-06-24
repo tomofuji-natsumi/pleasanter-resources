@@ -10,11 +10,11 @@
 
 #Editor #MainForm {
     box-shadow: 0 2px 1px var(--shadow-light);
-	background: var(--bg-editor-sub);
+	background: var(--surface-strong);
 }
 
 #Editor #MainForm:after {
-    background-color: var(--bg-editor-sub);
+    background-color: var(--surface-strong);
 }
 
 #Editor #GroupForm:after,
@@ -419,7 +419,7 @@ rt-editor button.se-btn-select > svg {
 	}
 
 	#Editor #EditorComments {
-		background: var(--bg-editor-sub);
+		background: var(--surface-strong);
 	}
 
 	#Editor #EditorComments #CommentField {
