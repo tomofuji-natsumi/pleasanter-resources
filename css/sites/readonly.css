@@ -52,7 +52,7 @@ body.readonly-mode {
 
     .field-label {
         flex-shrink: 0;
-        color: var(--readonly-label) !important;
+        color: var(--text-sub) !important;
         user-select: none;
         pointer-events: none;
     }
