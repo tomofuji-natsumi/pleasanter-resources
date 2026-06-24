@@ -39,8 +39,8 @@
 
 	--bg-toolbar:        oklch(from var(--primary) calc(l + 0.06) calc(c * 0.80) h);
 	--bg-dialog-header:  oklch(from var(--primary) calc(l - 0.54) calc(c * 0.09) h);
-	--bg-main-dark:      oklch(from var(--primary) calc(l - 0.53) calc(c * 0.08) h);
-	--bg-main:           oklch(from var(--primary) calc(l - 0.51) calc(c * 0.06) h);
+	--bg-main:      oklch(from var(--primary) calc(l + 0.44) calc(c * 0.06) h);
+	--bg-main-dark: oklch(from var(--primary) calc(l + 0.42) calc(c * 0.08) h);
 	--bg-hover:          oklch(from var(--primary) calc(l - 0.50) calc(c * 0.04) h);
 	--bg-accent:         oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
 	
