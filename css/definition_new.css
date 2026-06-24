@@ -54,12 +54,12 @@
        ========================================================= */
 
     --border-subtle: rgba(0, 0, 0, 0.04);
-    --border-light:  #D0D4DA;
-    --border-normal: #C0C7CF;
-    --border-strong: #B6BDC6;
+	--border-light:  oklch(from var(--primary) calc(l + 0.33) calc(c * 0.05) h);
+	--border-normal: oklch(from var(--primary) calc(l + 0.28) calc(c * 0.06) h);
+	--border-strong: oklch(from var(--primary) calc(l + 0.23) calc(c * 0.07) h);
 
-    --border-nav: #AFC4E8;
-    --border-count: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
+    --border-nav: oklch(from var(--primary) calc(l + 0.30) calc(c * 0.28) h);
+    --border-accent: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
 
     --border-focus: color-mix(in oklch, var(--primary) 30%, white 70%);
 
@@ -96,7 +96,7 @@
        ========================================================= */
 
     --icon-color: #5A5F66;
-    --icon-hover: #4F545A;
+	--icon-hover: #383D44;
 
     /* =========================================================
        6. ボタン
@@ -106,9 +106,7 @@
     --btn-back-hover: #333;
 
     --btn-delete-bg: var(--semantic-danger);
-    --btn-delete-hover: #C0392B;
-
-    --btn-reset-text: var(--icon-color);
+    --btn-delete-hover: color-mix(in oklch, var(--semantic-danger) 85%, black);
 
     /* =========================================================
        7. ReadOnly
