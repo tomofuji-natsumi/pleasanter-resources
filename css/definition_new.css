@@ -30,8 +30,10 @@
 
     /* --- Surface --- */
     --surface-base:   oklch(0.996 0.001 255);
+	--surface-base-hover: oklch(0.956 0.001 255);
     --surface-soft:   oklch(0.986 0.002 255);
     --surface-strong: oklch(0.974 0.003 255);
+	--surface-strong-hover: oklch(0.934 0.003 255);
 
     /* =========================================================
        2. 背景
@@ -41,7 +43,6 @@
 	--bg-dialog-header: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.04) h);
 	--bg-main:          oklch(from var(--primary) calc(l + 0.44) calc(c * 0.02) h);
 	--bg-main-dark:     oklch(from var(--primary) calc(l + 0.42) calc(c * 0.02) h);
-	--bg-hover:         oklch(from var(--primary) calc(l + 0.44) calc(c * 0.01) h);
 	--bg-accent:         oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
 	
 	--bg-dashboard:    	  #E7E7E7;
