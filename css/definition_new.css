@@ -18,6 +18,7 @@
 
     /* --- On Primary（文字色） --- */
     --on-primary: #F9FAFB;
+    --on-primary-hover: oklch(0.945 0.001 255);
 
     /* --- Semantic（成功・警告・エラー） --- */
     --semantic-danger: oklch(0.58 0.19 25 / 0.9);
@@ -87,6 +88,7 @@
     --text-disabled:  #9CA3AF;
 
     --text-white: #F5F5F5;
+    --text-white-hover: #E8E8E8;
 
     --text-link: var(--primary);
     --text-link-hover: var(--primary-hover);
@@ -205,7 +207,7 @@
 	--cal-event-bg-holi:    oklch(0.58 0.17 25);
 	--cal-event-hover-holi: oklch(0.54 0.17 25);
 	--cal-event-tag-holi:   oklch(0.48 0.17 25);
-	--cal-event-text-holi:  var(--text-white);
+   --cal-event-text-holi:  var(--text-white);
 
     --cal-event-bg-other: #8A8F99;
     --cal-event-hover-other: #7A7F88;
