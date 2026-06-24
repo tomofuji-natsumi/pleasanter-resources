@@ -36,11 +36,13 @@
 
     // ===============================
     // 3. エンコーディング固定ヘルパー
+    //    完了後に encoding-ready を付与して表示
     // ===============================
     function fixEncoding($el) {
         if (!$el.length || setupDone.has($el[0])) return;
         setupDone.add($el[0]);
         $el.val("UTF-8").prop("disabled", true);
+        $el.addClass("encoding-ready");
     }
 
     // ===============================
@@ -64,6 +66,7 @@
 
     // ===============================
     // 5. input セットアップ
+    //    完了後に import-ready を付与して表示
     // ===============================
     function setupImportInput(input) {
         if (!input.length) return;
@@ -113,6 +116,9 @@
 
             $fileName.text(file.name);
         });
+
+        // セットアップ完了 → 表示
+        input.addClass("import-ready");
     }
 
     // ===============================
