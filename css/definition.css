@@ -55,6 +55,7 @@
 
     --bg-dashboard: #E7E7E7;
   	--bg-dashboard-card: #FDFDFE;
+   --bg-accent: oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
 
     --bg-dialog-header: #E3E7EE;
     --bg-count: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.18) h);
