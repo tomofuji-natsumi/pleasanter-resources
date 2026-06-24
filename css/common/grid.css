@@ -69,7 +69,7 @@ tr.crosstab-row th {
 
 #GridHeaderMenus .ui-widget-content {
     color: var(--text-main);
-    background: var(--bg-editor-sub);
+    background: var(--surface-strong);
     border: 1px solid var(--border-light);
 }
 
