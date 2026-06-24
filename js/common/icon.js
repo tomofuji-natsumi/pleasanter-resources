@@ -45,9 +45,9 @@
         { s: "#ToDisableExportSites",                                                   c: "light", i: "keyboard_arrow_right" },
         { s: "#DeletePermissions",                                                      c: "light", i: "keyboard_arrow_right" },
         { s: "#Next",                                                                   c: "light", i: "arrow_right" },
-        { s: "#OutgoingMails_AddTo",                                                    c: "light", i: "user" },
-        { s: "#OutgoingMails_AddCc",                                                    c: "light", i: "user" },
-        { s: "#OutgoingMails_AddBcc",                                                   c: "light", i: "user" },
+        { s: "#OutgoingMails_AddTo",  c: "light", i: "person" },
+        { s: "#OutgoingMails_AddCc",  c: "light", i: "person" },
+        { s: "#OutgoingMails_AddBcc", c: "light", i: "person" },
 
         // --- primary ---
         { s: "#OpenAnalyPartDialog",                                                    c: "primary", i: "add" },
