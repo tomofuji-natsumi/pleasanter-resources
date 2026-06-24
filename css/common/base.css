@@ -40,19 +40,6 @@ img {
 	user-select: none;
 }
 
-#Import:not(.control-checkbox),
-#ImportUserTemplate_Import,
-#SitePackageForm #Import,
-#Encoding,
-#ExportEncoding {
-    visibility: hidden;
-}
- 
-.import-ready,
-.encoding-ready {
-    visibility: visible;
-}
-
 
 /* =========================================================
    1. アナウンス
