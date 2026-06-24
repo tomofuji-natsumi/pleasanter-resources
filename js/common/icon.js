@@ -6,7 +6,7 @@
 
     // ===============================
     // 1. アイコンマップ定義
-    //    各エントリは { selector, color, icon } の形式
+    //    各エントリは { s: selector, c: color, i: icon } の形式
     //    color: "dark" | "light" | "primary" | "red" | "display"
     // ===============================
     const ICON_DEFS = [
@@ -189,13 +189,13 @@
     $(document).ready(runIconApply);
 
     // ===============================
-    // 9. MutationObserver（debounce付き）
+    // 9. MutationObserver（debounce 25ms）
     // ===============================
     let debounceTimer = null;
 
     const observer = new MutationObserver(function () {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(runIconApply, 50);
+        debounceTimer = setTimeout(runIconApply, 25);
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
