@@ -123,12 +123,12 @@ img {
 button:has(.dark-material-icons),
 button:has(.dark-material-icons):focus {
     background: var(--btn-back-bg) !important;
-    color: var(--on-primary) !important;
+    color: var(--text-white) !important;
 }
 button:has(.dark-material-icons):hover,
 button:has(.dark-material-icons):active {
     background: var(--btn-back-hover);
-    color: var(--surface-strong);
+    color: var(--text-white-hover);
 }
 
 /* ライトボタン */
@@ -140,7 +140,7 @@ button:has(.light-material-icons):focus {
 }
 button:has(.light-material-icons):hover,
 button:has(.light-material-icons):active {
-    background: var(--surface-soft);
+    background: var(--surface-base-hover);
     border: 1px solid var(--border-light) !important;
 }
 
@@ -148,12 +148,12 @@ button:has(.light-material-icons):active {
 button:has(.red-material-icons),
 button:has(.red-material-icons):focus {
     background: var(--btn-delete-bg) !important;
-    color: var(--on-primary) !important;
+    color: var(--text-white) !important;
 }
 button:has(.red-material-icons):hover,
 button:has(.red-material-icons):active {
     background: var(--btn-delete-hover) !important;
-    color: var(--surface-strong) !important;
+    color: var(--text-white-hover) !important;
 }
 
 /* プライマリーボタン */
@@ -165,7 +165,7 @@ button:has(.primary-material-icons):focus {
 button:has(.primary-material-icons):hover,
 button:has(.primary-material-icons):active {
     background: var(--primary-hover) !important;
-    color: var(--surface-strong) !important;
+    color: var(--on-primary-hover) !important;
 }
 
 
