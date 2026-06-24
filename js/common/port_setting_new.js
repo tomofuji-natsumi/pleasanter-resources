@@ -28,12 +28,23 @@
     }
 
     // ===============================
-    // 2. wrapper 二重生成ガード（WeakSet）
+    // 2. 処理済み要素の管理（WeakSet）
+    //    ダイアログ再描画時は新しいDOMノードが
+    //    生成されるため、自動的にガードをすり抜ける
     // ===============================
     const setupDone = new WeakSet();
 
     // ===============================
-    // 3. エラーメッセージのクリア・表示
+    // 3. エンコーディング固定ヘルパー
+    // ===============================
+    function fixEncoding($el) {
+        if (!$el.length || setupDone.has($el[0])) return;
+        setupDone.add($el[0]);
+        $el.val("UTF-8").prop("disabled", true);
+    }
+
+    // ===============================
+    // 4. エラーメッセージのクリア・表示
     //    closest() で表示中ダイアログのみを対象にする
     // ===============================
     function clearError(input) {
@@ -52,7 +63,7 @@
     }
 
     // ===============================
-    // 4. input セットアップ
+    // 5. input セットアップ
     // ===============================
     function setupImportInput(input) {
         if (!input.length) return;
@@ -105,62 +116,27 @@
     }
 
     // ===============================
-    // 5. import / export を1本の Observer で監視
-    //    条件がすべて揃ったら disconnect
+    // 6. 常時監視 Observer
+    //    disconnect しない — ダイアログは開くたびに
+    //    新しいDOMノードを生成するため、
+    //    WeakSet のガードで二重処理を防ぐ
     // ===============================
-    let csvReady      = false;
-    let templateReady = false;
-    let exportReady   = false;
-
-    function checkAndDisconnect() {
-        if (csvReady && templateReady && exportReady) {
-            watcher.disconnect();
-        }
-    }
-
     const watcher = new MutationObserver(function () {
-        // --- CSV インポート ---
-        if (!csvReady) {
-            const $enc = $("#Encoding");
-            if ($enc.length) {
-                $enc.val("UTF-8").prop("disabled", true);
-            }
-            // #Import:not(.control-checkbox) = CSVインポート用
-            // #Import in #SitePackageForm    = サイトパッケージ用
-            const $csvImport  = $("#Import:not(.control-checkbox)");
-            const $siteImport = $("#SitePackageForm #Import");
-
-            if ($csvImport.length) {
-                setupImportInput($csvImport);
-                csvReady = true;
-                checkAndDisconnect();
-            }
-            if ($siteImport.length) {
-                setupImportInput($siteImport);
-                csvReady = true;
-                checkAndDisconnect();
-            }
-        }
-
-        // --- ユーザーテンプレート インポート ---
-        if (!templateReady) {
-            const $tmpl = $("#ImportUserTemplate_Import");
-            if ($tmpl.length) {
-                setupImportInput($tmpl);
-                templateReady = true;
-                checkAndDisconnect();
-            }
-        }
+        // --- インポート エンコーディング固定 ---
+        fixEncoding($("#Encoding"));
 
         // --- エクスポート エンコーディング固定 ---
-        if (!exportReady) {
-            const $expEnc = $("#ExportEncoding");
-            if ($expEnc.length) {
-                $expEnc.val("UTF-8").prop("disabled", true);
-                exportReady = true;
-                checkAndDisconnect();
-            }
-        }
+        fixEncoding($("#ExportEncoding"));
+
+        // --- CSV / サイトパッケージ インポート ---
+        const $csvImport  = $("#Import:not(.control-checkbox)");
+        const $siteImport = $("#SitePackageForm #Import");
+        if ($csvImport.length)  setupImportInput($csvImport);
+        if ($siteImport.length) setupImportInput($siteImport);
+
+        // --- ユーザーテンプレート インポート ---
+        const $tmpl = $("#ImportUserTemplate_Import");
+        if ($tmpl.length) setupImportInput($tmpl);
     });
 
     watcher.observe(document.body, {
