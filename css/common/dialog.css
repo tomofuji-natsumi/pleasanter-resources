@@ -248,7 +248,6 @@ label.error {
 .ui-multiselect-menu {
     font-size: 0.9rem;
 	background: var(--surface-base);
-    background-color: var(--surface-base);
     border: 1px solid var(--border-strong) !important;
     color: var(--text-main);
     padding: 5px;
@@ -261,7 +260,7 @@ label.error {
 }
 
 .ui-multiselect-menu .ui-multiselect-checkboxes .ui-state-hover {
-    background: var(--bg-hover);
+    background: var(--surface-base-hover);
     border: 1px solid var(--border-strong);
     color: var(--text-main);
 }
