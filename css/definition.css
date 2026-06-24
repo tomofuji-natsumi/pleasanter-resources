@@ -28,9 +28,11 @@
     --semantic-warning: oklch(0.98 0.04 98 / 0.9);
 
     /* --- Surface --- */
-    --surface-base:   oklch(0.990 0.002 255);
-    --surface-soft:   oklch(0.982 0.002 255);
-    --surface-strong: oklch(0.970 0.003 255);
+    --surface-base:   oklch(0.996 0.001 255);
+    --surface-base-hover: oklch(0.956 0.001 255);
+    --surface-soft:   oklch(0.986 0.002 255);
+    --surface-strong: oklch(0.974 0.003 255);
+    --surface-strong-hover: oklch(0.934 0.003 255);
 
     /* =========================================================
        2. 背景
