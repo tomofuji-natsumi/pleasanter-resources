@@ -329,7 +329,7 @@ rt-editor button.se-btn-select > svg {
 
 #RecordHeader {
     border-bottom: 1px solid var(--border-light);
-    background-color: var(--bg-data-title) !important;
+    background-color: var(--bg-accent) !important;
     color: var(--text-main) !important;
     padding: 0 23px 16px 23px !important;
 }
@@ -340,7 +340,7 @@ rt-editor button.se-btn-select > svg {
 
 #TitleContainer {
     padding: 5px;
-    background-color: var(--bg-data-title) !important;
+    background-color: var(--bg-accent) !important;
 }
 
 #TitleContainer #HeaderTitle {
