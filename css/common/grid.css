@@ -46,6 +46,7 @@ tr.crosstab-row th {
 .grid th.sortable:hover,
 .grid th.sortable.active {
     background-color: var(--primary-hover) !important;
+    color: var(--on-primary-hover);
     transition: background-color 0.2s ease-out;
 }
 
