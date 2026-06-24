@@ -4,7 +4,6 @@
 
 #Editor #EditorTabsContainer,
 #Editor #GroupForm {
-    background-color: var(--surface-base);
     background: var(--surface-base);
 }
 
@@ -59,10 +58,6 @@
     max-width: 100%;
     margin-bottom: 20px;
     padding: 0 20px 0 0;
-}
-
-.field-markdown {
-    padding: 0 10px 0 0;
 }
 
 #SiteImageIconContainer {
