@@ -136,7 +136,7 @@
     position: relative;
     margin: 0 0.5rem 0 0;
     height: 30px;
-    color: var(--btn-reset-text) !important;
+    color: var(--text-sub) !important;
     box-shadow: var(--elevation-2);
 	line-height: 0.2rem;
 }
