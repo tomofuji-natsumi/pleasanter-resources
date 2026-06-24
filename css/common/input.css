@@ -315,7 +315,7 @@ span.flatpickr-weekday {
 .container-normal:has(span[data-readonly="1"]),
 .readonly-style {
     padding: 0.3rem 0.55rem !important;
-    background: var(--bg-main) !important;
+    background: var(--bg-main-dark) !important;
     color: var(--text-sub) !important;
     border: 1px solid var(--border-strong) !important;
     border-radius: var(--radius-medium) !important;
