@@ -1,167 +1,203 @@
 // ===============================
-// 0. サイト側追加マップの受け皿
+// Pleasanter アイコン適用スクリプト
 // ===============================
-window.__pleasanterCustomIconMap = Object.assign({
-    dark: {},
-    light: {},
-    primary: {},
-    red: {},
-    display: {}
-}, window.__pleasanterCustomIconMap);
+(function () {
+    "use strict";
 
+    // ===============================
+    // 1. アイコンマップ定義
+    //    各エントリは { selector, color, icon } の形式
+    //    color: "dark" | "light" | "primary" | "red" | "display"
+    // ===============================
+    const ICON_DEFS = [
+        // --- dark ---
+        { s: "[aria-describedby='ImportSitePackageDialog'] [data-icon='ui-icon-cancel']", c: "dark", i: "close" },
+        { s: "#ExportSitePackageDialog [data-icon='ui-icon-cancel']:not(#ExcludeData)", c: "dark", i: "close" },
+        { s: "#ImportUserTemplateDialog [data-icon='ui-icon-cancel']",                  c: "dark", i: "close" },
+        { s: "#DropDownSearchDialogForm [data-icon='ui-icon-cancel']",                  c: "dark", i: "close" },
+        { s: "#ImportSettingsDialog [data-icon='ui-icon-cancel']",                      c: "dark", i: "close" },
+        { s: "#ExportSelectorDialog [data-icon='ui-icon-cancel']",                      c: "dark", i: "close" },
+        { s: "#PermissionsDialog [data-icon='ui-icon-cancel']",                         c: "dark", i: "close" },
+        { s: "#SiteTitleDialog [data-icon='ui-icon-cancel']",                           c: "dark", i: "close" },
+        { s: "#AnalyPartDialog [data-icon='ui-icon-cancel']",                           c: "dark", i: "close" },
+        { s: "#OutgoingMails_Cancel",                                                   c: "dark", i: "close" },
+        { s: "#MainCommands [data-action='SiteMenu']",                                  c: "dark", i: "arrow_circle_left" },
+        { s: "#GoBack",                                                                 c: "dark", i: "arrow_circle_left" },
+        { s: "#ExcludeData",                                                            c: "dark", i: "indeterminate_check_box" },
 
-// ===============================
-// 1. アイコンマップ（共通）
-// ===============================
-const darkIconMap = {
-    "[aria-describedby='ImportSitePackageDialog'] [data-icon='ui-icon-cancel']": "close",
-    "#ExportSitePackageDialog [data-icon='ui-icon-cancel']:not(#ExcludeData)": "close",
-    "#ImportUserTemplateDialog [data-icon='ui-icon-cancel']": "close",
-    "#DropDownSearchDialogForm [data-icon='ui-icon-cancel']": "close",
-    "#ImportSettingsDialog [data-icon='ui-icon-cancel']": "close",
-    "#ExportSelectorDialog [data-icon='ui-icon-cancel']": "close",
-    "#PermissionsDialog [data-icon='ui-icon-cancel']": "close",
-    "#SiteTitleDialog [data-icon='ui-icon-cancel']": "close",
-    "#AnalyPartDialog [data-icon='ui-icon-cancel']": "close",
-    "#OutgoingMails_Cancel": "close",
-    "#MainCommands [data-action='SiteMenu']": "arrow_circle_left",
-    "#GoBack": "arrow_circle_left",
-    "#ExcludeData": "indeterminate_check_box",
-};
+        // --- light ---
+        { s: "#OpenPermissionsDialog",                                                  c: "light", i: "settings" },
+        { s: "#EditTemplateButton",                                                     c: "light", i: "settings" },
+        { s: "#FieldSetRecordAccessControlEditor [data-icon='ui-icon-search']",         c: "light", i: "search" },
+        { s: "#DropDownSearchDialogForm [data-icon='ui-icon-search']",                  c: "light", i: "search" },
+        { s: ".template-selectable [data-icon='ui-icon-search']",                       c: "light", i: "search" },
+        { s: "#AddTemplateButton",                                                      c: "light", i: "file_open" },
+        { s: "#ViewFilters_Reset",                                                      c: "light", i: "refresh" },
+        { s: "#Reload",                                                                 c: "light", i: "refresh" },
+        { s: "#DeleteTemplateButton",                                                   c: "light", i: "delete" },
+        { s: "#ToEnableAllDropDownSearchResults",                                       c: "light", i: "keyboard_double_arrow_left" },
+        { s: "#ToEnableDropDownSearchResults",                                          c: "light", i: "keyboard_arrow_left" },
+        { s: "#ToEnableExportSites",                                                    c: "light", i: "keyboard_arrow_left" },
+        { s: "#AddPermissions",                                                         c: "light", i: "keyboard_arrow_left" },
+        { s: "#Previous",                                                               c: "light", i: "arrow_left" },
+        { s: "#ToDisableAllDropDownSearchResults",                                      c: "light", i: "keyboard_double_arrow_right" },
+        { s: "#ToDisableDropDownSearchResults",                                         c: "light", i: "keyboard_arrow_right" },
+        { s: "#ToDisableExportSites",                                                   c: "light", i: "keyboard_arrow_right" },
+        { s: "#DeletePermissions",                                                      c: "light", i: "keyboard_arrow_right" },
+        { s: "#Next",                                                                   c: "light", i: "arrow_right" },
+        { s: "#OutgoingMails_AddTo",                                                    c: "light", i: "user" },
+        { s: "#OutgoingMails_AddCc",                                                    c: "light", i: "user" },
+        { s: "#OutgoingMails_AddBcc",                                                   c: "light", i: "user" },
 
-const lightIconMap = {
-    "#OpenPermissionsDialog": "settings",
-    "#EditTemplateButton": "settings",
-    "#FieldSetRecordAccessControlEditor [data-icon='ui-icon-search']": "search",
-    "#DropDownSearchDialogForm [data-icon='ui-icon-search']": "search",
-    ".template-selectable [data-icon='ui-icon-search']": "search",
-    "#AddTemplateButton": "file_open",
-    "#ViewFilters_Reset": "refresh",
-    "#Reload": "refresh",
-    "#DeleteTemplateButton": "delete",
-    "#ToEnableAllDropDownSearchResults": "keyboard_double_arrow_left",
-    "#ToEnableDropDownSearchResults": "keyboard_arrow_left",
-    "#ToEnableExportSites": "keyboard_arrow_left",
-    "#AddPermissions": "keyboard_arrow_left",
-    "#Previous": "arrow_left",
-    "#ToDisableAllDropDownSearchResults": "keyboard_double_arrow_right",
-    "#ToDisableDropDownSearchResults": "keyboard_arrow_right",
-    "#ToDisableExportSites": "keyboard_arrow_right",
-    "#DeletePermissions": "keyboard_arrow_right",
-    "#Next": "arrow_right",
-    "#OutgoingMails_AddTo": "user",
-    "#OutgoingMails_AddCc": "user",
-    "#OutgoingMails_AddBcc": "user"
-};
+        // --- primary ---
+        { s: "#OpenAnalyPartDialog",                                                    c: "primary", i: "add" },
+        { s: "#AnalyPartDialog [data-icon='ui-icon-disk']",                             c: "primary", i: "add" },
+        { s: "#OpenSiteTitleDialog",                                                    c: "primary", i: "add_ad" },
+        { s: "#CreateByTemplate",                                                       c: "primary", i: "add_ad" },
+        { s: "#CreateCommand",                                                          c: "primary", i: "add_ad" },
+        { s: "[aria-describedby='ExportSitePackageDialog'] #IncludeData",               c: "primary", i: "add_box" },
+        { s: "#PermissionsDialog [data-icon='ui-icon-disk']",                           c: "primary", i: "update" },
+        { s: "#UpdateDashboardPartLayouts",                                             c: "primary", i: "update" },
+        { s: "#UpdateCommand",                                                          c: "primary", i: "update" },
+        { s: "#OpenCopyDialogCommand",                                                  c: "primary", i: "content_copy" },
+        { s: "#OutgoingMails_Send",                                                     c: "primary", i: "mail" },
+        { s: "#EditOutgoingMail",                                                       c: "primary", i: "mail" },
+        { s: "#ImportUserTemplateDialog [data-icon='ui-icon-arrowreturnthick-1-e']",    c: "primary", i: "file_open" },
+        { s: "#ImportSitePackageDialog [data-icon='ui-icon-arrowreturnthick-1-e']",     c: "primary", i: "file_open" },
+        { s: "#EditImportSettings",                                                     c: "primary", i: "file_open" },
+        { s: "#DoImport",                                                               c: "primary", i: "file_open" },
+        { s: "#ReferenceCopyCommand",                                                   c: "primary", i: "file_copy" },
+        { s: "#SitePackageForm [data-icon='ui-icon-arrowreturnthick-1-w']",             c: "primary", i: "file_export" },
+        { s: "#OpenExportSelectorDialogCommand",                                        c: "primary", i: "file_export" },
+        { s: "#ExportCrosstabCommand",                                                  c: "primary", i: "file_export" },
+        { s: "#DoExport",                                                               c: "primary", i: "file_export" },
+        { s: "#DropDownSearchDialogForm [data-icon='ui-icon-disk']",                    c: "primary", i: "check" },
+        { s: ".nav-site.to-parent a",                                                   c: "primary", i: "arrow_left" },
+        { s: "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmRestore']",      c: "primary", i: "restore_page" },
+        { s: "#FieldSetHistories [data-action='RestoreFromHistory']",                   c: "primary", i: "restore_page" },
+        { s: "#ViewModeContainer [data-confirm='ConfirmRestore']",                      c: "primary", i: "restore_page" },
 
-const primaryIconMap = {
-    "#OpenAnalyPartDialog": "add",
-    "#AnalyPartDialog [data-icon='ui-icon-disk']": "add",
-    "#OpenSiteTitleDialog": "add_ad",
-    "#CreateByTemplate": "add_ad",
-    "#CreateCommand": "add_ad",
-    "[aria-describedby='ExportSitePackageDialog'] #IncludeData": "add_box",
-    "#PermissionsDialog [data-icon='ui-icon-disk']": "update",
-    "#UpdateDashboardPartLayouts": "update",
-    "#UpdateCommand": "update",
-    "#OpenCopyDialogCommand": "content_copy",
-    "OutgoingMails_Send": "mail",
-    "#EditOutgoingMail": "mail",
-    "#ImportUserTemplateDialog [data-icon='ui-icon-arrowreturnthick-1-e']": "file_open",
-    "#ImportSitePackageDialog [data-icon='ui-icon-arrowreturnthick-1-e']": "file_open",
-    "#EditImportSettings": "file_open",
-    "#DoImport": "file_open",
-    "#ReferenceCopyCommand": "file_copy",
-    "#SitePackageForm [data-icon='ui-icon-arrowreturnthick-1-w']": "file_export",
-    "#OpenExportSelectorDialogCommand": "file_export",
-    "#ExportCrosstabCommand": "file_export",
-    "#DoExport": "file_export",
-    "#DropDownSearchDialogForm [data-icon='ui-icon-disk']": "check",
-    ".nav-site.to-parent a": "arrow_left",
-    "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmRestore']": "restore_page",
-    "#FieldSetHistories [data-action='RestoreFromHistory']": "restore_page",
-    "#ViewModeContainer [data-confirm='ConfirmRestore']": "restore_page",
-};
+        // --- red ---
+        { s: "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']", c: "red", i: "delete" },
+        { s: "#ViewModeContainer [data-confirm='ConfirmPhysicalDelete']",               c: "red", i: "delete" },
+        { s: "#FieldSetHistories [data-confirm='ConfirmPhysicalDelete']",               c: "red", i: "delete" },
+        { s: "#ImageLibBody [data-confirm='ConfirmDelete']",                            c: "red", i: "delete" },
+        { s: "#BulkDeleteCommand",                                                      c: "red", i: "delete" },
+        { s: "#DeleteCommand",                                                          c: "red", i: "delete" },
+        { s: "#OpenDeleteSiteDialogCommand",                                            c: "red", i: "globe_2_cancel" },
 
-const redIconMap = {
-    "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']": "delete",
-    "#ViewModeContainer [data-confirm='ConfirmPhysicalDelete']": "delete",    
-    "#FieldSetHistories [data-confirm='ConfirmPhysicalDelete']": "delete",
-    "#ImageLibBody [data-confirm='ConfirmDelete']": "delete",
-    "#BulkDeleteCommand": "delete",
-    "#DeleteCommand": "delete",
-    "#OpenDeleteSiteDialogCommand": "globe_2_cancel",
-};
+        // --- display ---
+        { s: "#ReduceGuides",                                                           c: "display", i: "expand_more" },
+        { s: "#ReduceAggregations",                                                     c: "display", i: "expand_more" },
+        { s: "#ReduceViewFilters",                                                      c: "display", i: "expand_more" },
+        { s: "#ExpandGuides",                                                           c: "display", i: "chevron_right" },
+        { s: "#ExpandAggregations",                                                     c: "display", i: "chevron_right" },
+        { s: "#ExpandViewFilters",                                                      c: "display", i: "chevron_right" },
+        { s: "#CopyDirectUrlToClipboard",                                               c: "display", i: "share" },
+    ];
 
-const displayIconMap = {
-    "#ReduceGuides": "expand_more",
-    "#ReduceAggregations": "expand_more",
-    "#ReduceViewFilters": "expand_more",
-    "#ExpandGuides": "chevron_right",
-    "#ExpandAggregations": "chevron_right",
-    "#ExpandViewFilters": "chevron_right",
-    "#CopyDirectUrlToClipboard": "share",
-};
+    // color → CSSクラス名の対応
+    const CLASS_MAP = {
+        dark:    "dark-material-icons",
+        light:   "light-material-icons",
+        primary: "primary-material-icons",
+        red:     "red-material-icons",
+        display: "display-material-icons",
+    };
 
+    // ===============================
+    // 2. 適用済み要素の管理（WeakSet）
+    // ===============================
+    const applied = new WeakSet();
 
-// ===============================
-// 1.5 サイト側追加マップをマージ
-// ===============================
-let __customIconMapMerged = false;
-
-function mergeCustomMaps() {
-    if (__customIconMapMerged) return;
-
-    const custom = window.__pleasanterCustomIconMap;
-
-    if (custom.dark) Object.assign(darkIconMap, custom.dark);
-    if (custom.light) Object.assign(lightIconMap, custom.light);
-    if (custom.primary) Object.assign(primaryIconMap, custom.primary);
-    if (custom.red) Object.assign(redIconMap, custom.red);
-    if (custom.display) Object.assign(displayIconMap, custom.display);
-
-    __customIconMapMerged = true;
-}
-
-
-// ===============================
-// 2. アイコン適用関数
-// ===============================
-function applyIcons(map, className) {
-    for (const selector in map) {
-        const $targets = $(selector);
-
-        $targets.each(function () {
-            const $el = $(this);
-
-            if ($el.children("." + className).length > 0) return;
-
-            $el.prepend(
-                `<span class="material-symbols-outlined ${className}">${map[selector]}</span>`
-            );
-        });
+    // ===============================
+    // 3. span 生成ヘルパー
+    // ===============================
+    function createIconSpan(cssClass, iconName) {
+        const span = document.createElement("span");
+        span.className = "material-symbols-outlined " + cssClass;
+        span.textContent = iconName;
+        return span;
     }
-}
 
-// ===============================
-// 初回ロード & PJAX 完了後に必ず実行
-// ===============================
-function runIconApply() {
-    mergeCustomMaps();
-    applyIcons(darkIconMap, "dark-material-icons");
-    applyIcons(lightIconMap, "light-material-icons");
-    applyIcons(primaryIconMap, "primary-material-icons");
-    applyIcons(redIconMap, "red-material-icons");
-    applyIcons(displayIconMap, "display-material-icons");
-}
+    // ===============================
+    // 4. セレクタ種別判定 & 要素取得
+    //    #ID 形式は getElementById で高速化
+    // ===============================
+    const ID_SELECTOR = /^#([\w-]+)$/;
 
-// ★ Pleasanter の UI が完全に描画された後に発火するイベント
-$(document).on("pjax:success", runIconApply);
-$(document).on("pjax:complete", runIconApply);  // ← これが決定打
+    function queryElements(selector) {
+        const m = selector.match(ID_SELECTOR);
+        if (m) {
+            const el = document.getElementById(m[1]);
+            return el ? [el] : [];
+        }
+        return Array.from(document.querySelectorAll(selector));
+    }
 
-// ★ 初回ロードでも UI 完成後に発火する
-$(document).ready(runIconApply);
+    // ===============================
+    // 5. アイコン適用（全マップを1ループ）
+    // ===============================
+    function applyIcons(defs) {
+        for (const { s, c, i } of defs) {
+            const cssClass = CLASS_MAP[c];
+            for (const el of queryElements(s)) {
+                if (applied.has(el)) continue;
+                applied.add(el);
+                el.insertBefore(createIconSpan(cssClass, i), el.firstChild);
+            }
+        }
+    }
 
-// ★ DOM 変化にも追従
-const iconObserver = new MutationObserver(runIconApply);
-iconObserver.observe(document.body, { childList: true, subtree: true });
+    // ===============================
+    // 6. カスタムマップのマージ（初回のみ）
+    //    サイト側が先に定義していなくてもクラッシュしない
+    // ===============================
+    let merged = false;
+    let allDefs = ICON_DEFS;
+
+    function mergeCustomDefs() {
+        if (merged) return;
+        merged = true;
+
+        const custom = window.__pleasanterCustomIconMap;
+        if (!custom) return;
+
+        const extra = [];
+        for (const [color, map] of Object.entries(custom)) {
+            if (!CLASS_MAP[color]) continue;
+            for (const [selector, icon] of Object.entries(map)) {
+                extra.push({ s: selector, c: color, i: icon });
+            }
+        }
+        if (extra.length) allDefs = [...ICON_DEFS, ...extra];
+    }
+
+    // ===============================
+    // 7. メイン実行
+    // ===============================
+    function runIconApply() {
+        mergeCustomDefs();
+        applyIcons(allDefs);
+    }
+
+    // ===============================
+    // 8. イベント登録
+    //    pjax:complete のみ（success との重複を排除）
+    // ===============================
+    $(document).on("pjax:complete", runIconApply);
+    $(document).ready(runIconApply);
+
+    // ===============================
+    // 9. MutationObserver（debounce付き）
+    // ===============================
+    let debounceTimer = null;
+
+    const observer = new MutationObserver(function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(runIconApply, 50);
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+})();
