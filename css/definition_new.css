@@ -37,28 +37,17 @@
        2. 背景
        ========================================================= */
 
-    --bg-main:          oklch(from var(--primary) calc(l - 0.51) calc(c * 0.06) h);
-    --bg-main-dark:     oklch(from var(--primary) calc(l - 0.53) calc(c * 0.08) h);
-    --bg-surface-hover: oklch(0.950 0.002 255);
-
-    --bg-hover: oklch(from var(--primary) calc(l - 0.50) calc(c * 0.04) h);
-
-    --bg-hamburger-outer: rgba(3, 3, 3, 0.2);
-    --bg-tinted: oklch(from var(--primary) calc(l - 0.52) calc(c * 0.06) h);
-
-    --bg-filter: oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
-    --bg-guide: #FFF9E3;
-   
-    --bg-toolbar: oklch(from var(--primary) calc(l + 0.06) calc(c * 0.8) h);
-
-    --bg-data-title: var(--bg-filter);
-
-    --bg-dashboard: #E7E7E7;
-
-    --bg-dialog-header: oklch(from var(--primary) calc(l - 0.54) calc(c * 0.09) h);
-    --bg-count: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.18) h);
-
-    --bg-footer: rgba(0, 0, 0, 0.45);
+	--bg-toolbar:        oklch(from var(--primary) calc(l + 0.06) calc(c * 0.80) h);
+	--bg-dialog-header:  oklch(from var(--primary) calc(l - 0.54) calc(c * 0.09) h);
+	--bg-main-dark:      oklch(from var(--primary) calc(l - 0.53) calc(c * 0.08) h);
+	--bg-main:           oklch(from var(--primary) calc(l - 0.51) calc(c * 0.06) h);
+	--bg-hover:          oklch(from var(--primary) calc(l - 0.50) calc(c * 0.04) h);
+	--bg-accent:         oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
+	
+	--bg-dashboard:      #E7E7E7;
+	--bg-guide:          #FFF9E3;
+	--bg-hamburger-outer: rgba(3, 3, 3, 0.2);
+	--bg-footer:         rgba(0, 0, 0, 0.45);
 
     /* =========================================================
        3. 枠線・影（UIの境界・深度）
