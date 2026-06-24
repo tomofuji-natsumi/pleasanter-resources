@@ -90,7 +90,7 @@
 
 
 /* =========================================================
-   2. レイアウト（field / responsive）
+   2. Field
    ========================================================= */
 
 .field {
@@ -162,87 +162,7 @@
 
 
 /* =========================================================
-   4. テキストエリア
-   ========================================================= */
-
-textarea {
-    field-sizing: content;
-    resize: vertical;
-    min-height: 4lh;
-    max-height: 20lh;
-    height: auto !important;
-}
-
-
-/* =========================================================
-   5. リッチエディタ
-   ========================================================= */
-
-rt-editor {
-    color: var(--text-main);
-    background-color: var(--surface-base);
-}
-
-rt-editor .se-toolbar {
-    background-color: var(--bg-toolbar) !important;
-    border-bottom: 1px solid var(--border-strong) !important;
-    padding: 4px !important;
-}
-
-rt-editor .toggle:after {
-    background-color: var(--bg-toolbar) !important;
-}
-
-rt-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
-    color: var(--surface-base) !important;
-}
-
-rt-editor .se-btn-tray {
-    gap: 4px !important;
-}
-
-rt-editor button:not([disabled="true"]) {
-	color: var(--text-main) !important;
-	font-weight: 450;
-}
-
-rt-editor .se-btn:enabled:active,
-rt-editor .se-btn:enabled:focus,
-rt-editor .se-btn:enabled:hover {
-	background-color: var(--surface-strong);
-	border: none;
-}
-
-rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
-    flex: 1;
-	width: fit-content;
-    max-width: fit-content;
-    min-width: max-content;
-    background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-normal);
-}
-
-rt-editor .se-btn-list,
-rt-editor .se-btn:not(.se-btn-select):not(.btn-editable-cmd) {
-	width: min-content;
-    padding: 0 0.4rem !important;
-}
-
-rt-editor .se-tooltip .se-tooltip-inner {
-    width: 0;
-}
-
-rt-editor .se-btn-select {
-	margin: 0 !important;
-}
-
-rt-editor button.se-btn-select > svg {
-    margin: 8px 0 3px 10px;
-}
-
-
-/* =========================================================
-   6. コメント（説明文・カード）
+   4. コメント（説明文・カード）
    ========================================================= */
 
 #EditorComments::before {
@@ -324,7 +244,7 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   7. レコードヘッダー
+   5. レコードヘッダー
    ========================================================= */
 
 #RecordHeader {
@@ -358,7 +278,7 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   8. メールダイアログ
+   6. メールダイアログ
    ========================================================= */
 #OutgoingMails_DestinationSearchRange {
     vertical-align: unset;
@@ -366,7 +286,7 @@ rt-editor button.se-btn-select > svg {
 
 
 /* =========================================================
-   9. 変更履歴の一覧
+   7. 変更履歴の一覧
    ========================================================= */
 
 #FieldSetHistories {
@@ -376,7 +296,7 @@ rt-editor button.se-btn-select > svg {
 }
 
 /* =========================================================
-   10. レコードのアクセス制御
+   8. レコードのアクセス制御
    ========================================================= */
 
 #FieldSetRecordAccessControlEditor {
