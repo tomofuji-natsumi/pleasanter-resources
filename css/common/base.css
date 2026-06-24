@@ -331,7 +331,7 @@ button:has(.primary-material-icons):active {
 
 .ui-tabs .ui-tabs-nav {
     border-bottom: 3px solid var(--border-light) !important;
-    background-color: var(--bg-editor-sub);
+    background-color: var(--surface-strong);
     padding: 9px 16px;
     gap: 7px;
 }
