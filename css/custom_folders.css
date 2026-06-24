@@ -195,7 +195,7 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
 
 .nav-site .conditions span.count {
     background-color: var(--bg-accent);
-    border: 1px solid var(--border-count);
+    border: 1px solid var(--border-accent);
     color: var(--text-emphasis);
     align-content: center;
 }
