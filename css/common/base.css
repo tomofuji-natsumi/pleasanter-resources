@@ -40,9 +40,22 @@ img {
 	user-select: none;
 }
 
+#Import:not(.control-checkbox),
+#ImportUserTemplate_Import,
+#SitePackageForm #Import,
+#Encoding,
+#ExportEncoding {
+    visibility: hidden;
+}
+ 
+.import-ready,
+.encoding-ready {
+    visibility: visible;
+}
+
 
 /* =========================================================
-   1. アナウンス
+   1. Announcement
    ========================================================= */
 
 #AnnouncementModule div div {
@@ -51,7 +64,7 @@ img {
 
 
 /* =========================================================
-   2. Icons（アイコン）
+   2. Icons
    ========================================================= */
 
 /* 不要アイコンの非表示 */
@@ -88,7 +101,7 @@ img {
 
 
 /* =========================================================
-   3. Buttons（ボタン）
+   3. Buttons
    ========================================================= */
 
 .ui-button {
@@ -157,7 +170,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   4. Header（ヘッダー）
+   4. Header
    ========================================================= */
 
 #Header {
@@ -226,7 +239,7 @@ button:has(.primary-material-icons):active {
 
 #Header .hamburger-menubox .menubox .menulabel:hover,
 #Header .hamburger-menubox .accordion a:hover {
-    background-color: var(--bg-hover);
+    background-color: var(--surface-base-hover);
 }
 
 #Header .hamburger-menubox .menubox-sub {
@@ -239,12 +252,12 @@ button:has(.primary-material-icons):active {
 }
 
 #Header .hamburger-menubox .menubox-sub ul a:hover {
-    background: var(--bg-hover);
+    background: var(--surface-strong-hover);
 }
 
 
 /* =========================================================
-   6. Breadcrumb（パンくず）
+   6. Breadcrumb
    ========================================================= */
 
 #CopyToClipboards {
@@ -313,7 +326,7 @@ button:has(.primary-material-icons):active {
 
 
 /* =========================================================
-   7. タブ（色・境界線）
+   7. Tabs
    ========================================================= */
 
 .ui-tabs .ui-tabs-nav {
