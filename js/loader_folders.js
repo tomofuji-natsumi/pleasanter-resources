@@ -1,9 +1,14 @@
 // ===============================
+// ベースURL
+// ===============================
+const BASE_URL = "https://tomofuji-natsumi.github.io/pleasanter-resources";
+
+// ===============================
 // 読み込む外部スクリプト一覧
 // ===============================
 const scripts = [
-    "https://tomofuji-natsumi.github.io/pleasanter-resources/js/common/port_setting.js",
-    "https://tomofuji-natsumi.github.io/pleasanter-resources/js/common/icon.js",
+    BASE_URL + "/js/common/port_setting.js",
+    BASE_URL + "/js/common/icon.js",
 ];
 
 // ===============================
@@ -53,6 +58,6 @@ function applyUIFixes() {
 // ===============================
 // PJAX 後に UI 再適用
 // ===============================
-$(document).on("pjax:complete pjax:end", () => {
+$(document).on("pjax:complete", () => {
     applyUIFixes();
 });
