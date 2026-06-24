@@ -179,7 +179,7 @@ button:has(.primary-material-icons):active {
     border-bottom: 1px solid var(--border-light);
     font-size: 0.9rem;
     color: var(--text-main) !important;
-    box-shadow: 0 1px 2px var(--shadow-light);
+    box-shadow: var(--elevation-1);
 }
 
 #Header #ViewSelectorField .field-normal .control-dropdown {
@@ -300,7 +300,7 @@ button:has(.primary-material-icons):active {
 #Breadcrumb li:last-child a span,
 #Breadcrumb .item:last-child:is(.trashbox) span {
     color: var(--on-primary);
-    text-shadow: 0 1px 2px var(--shadow-light);
+    text-shadow: var(--elevation-1);
 	font-weight: 550;
 }
 
@@ -363,7 +363,7 @@ button:has(.primary-material-icons):active {
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
 	color: var(--on-primary);
-    text-shadow: 0 1px 2px var(--shadow-light);
+    text-shadow: var(--elevation-1);
 	font-weight: 550;
 }
 
@@ -403,7 +403,7 @@ button:has(.primary-material-icons):active {
     user-select: none;
     pointer-events: auto;
     color: var(--text-white);
-    text-shadow: 0 1px 2px var(--shadow-light);
+    text-shadow: var(--elevation-1);
     border: none;
 }
 
