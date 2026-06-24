@@ -1,93 +1,153 @@
-function setupImportInput(input) {
-    if (!input.length) return;
+// ===============================
+// Pleasanter インポート/エクスポート制御スクリプト
+// ===============================
+(function () {
+    "use strict";
 
-    if (!input.parent().hasClass('file-wrapper')) {
-        const wrapper = $(`
-            <div class="file-wrapper">
-                <div class="file-button">選択</div>
-                <span class="file-name">選択されていません</span>
-            </div>
-        `);
-        input.after(wrapper);
-        wrapper.append(input);
+    // ===============================
+    // 1. ファイル種別の定義
+    //    親フォームのIDで種別を判定し、
+    //    accept・エラーメッセージを切り替える
+    // ===============================
+    const FILE_TYPE_MAP = {
+        SitePackageForm: {
+            accept:    ".json",
+            pattern:   /\.json$/i,
+            errorText: "JSONファイルを選択してください。",
+        },
+        _default: {
+            accept:    ".csv",
+            pattern:   /\.csv$/i,
+            errorText: "CSVファイルを選択してください。",
+        },
+    };
+
+    function getFileType(input) {
+        const formId = input.closest("form").attr("id");
+        return FILE_TYPE_MAP[formId] || FILE_TYPE_MAP._default;
     }
 
-    const wrapper = input.parent();
-    const fileButton = wrapper.find('.file-button');
-    const fileName = wrapper.find('.file-name');
+    // ===============================
+    // 2. 処理済み要素の管理（WeakSet）
+    //    ダイアログ再描画時は新しいDOMノードが
+    //    生成されるため、自動的にガードをすり抜ける
+    // ===============================
+    const setupDone = new WeakSet();
 
-    fileButton.off('click').on('click', () => input.click());
-    input.attr('accept', '.csv');
+    // ===============================
+    // 3. エンコーディング固定ヘルパー
+    //    完了後に encoding-ready を付与して表示
+    // ===============================
+    function fixEncoding($el) {
+        if (!$el.length || setupDone.has($el[0])) return;
+        setupDone.add($el[0]);
+        $el.val("UTF-8").prop("disabled", true);
+        $el.addClass("encoding-ready");
+    }
 
-    input.off('change.import').on('change.import', function () {
-        const file = this.files[0];
+    // ===============================
+    // 4. エラーメッセージのクリア・表示
+    //    closest() で表示中ダイアログのみを対象にする
+    // ===============================
+    function clearError(input) {
+        input.closest("[id$='Dialog'], form")
+            .find("p.message-dialog")
+            .remove();
+    }
 
-        $('#ImportSettingsDialog > p.message-dialog').remove();
-        $('#ImportSitePackageDialog > p.message-dialog').remove();
-        $('#ImportUserTemplateDialog > p.message-dialog').remove();
+    function showError(input, text) {
+        clearError(input);
+        const $container = input.closest("[id$='Dialog'], form");
+        const $anchor    = $container.find(".command-center");
+        const $error     = $("<p>", { class: "message-dialog" })
+            .append($("<span>", { class: "body alert-error", text }));
+        $anchor.before($error);
+    }
 
-        if (!file) {
-            fileName.text('選択されていません');
-            return;
+    // ===============================
+    // 5. input セットアップ
+    //    完了後に import-ready を付与して表示
+    // ===============================
+    function setupImportInput(input) {
+        if (!input.length) return;
+
+        const el = input[0];
+        if (setupDone.has(el)) return;
+        setupDone.add(el);
+
+        // wrapper がなければ生成
+        if (!input.parent().hasClass("file-wrapper")) {
+            const $wrapper = $('<div class="file-wrapper">')
+                .append('<div class="file-button">選択</div>')
+                .append('<span class="file-name">選択されていません</span>');
+            input.after($wrapper);
+            $wrapper.append(input);
         }
 
-        const isCsv = /\.csv$/i.test(file.name);
+        const $wrapper    = input.parent();
+        const $fileButton = $wrapper.find(".file-button");
+        const $fileName   = $wrapper.find(".file-name");
+        const fileType    = getFileType(input);
 
-        if (!isCsv) {
-            const errorHtml = `
-                <p class="message-dialog">
-                    <span class="body alert-error">CSVファイルを選択してください。</span>
-                </p>
-            `;
-            $('#ImportSettingsDialog .command-center').before(errorHtml);
-            $('#ImportSitePackageDialog > p.message-dialog').before(errorHtml);
-            $('#ImportUserTemplateDialog > p.message-dialog').before(errorHtml);
+        // accept 属性を種別に応じてセット
+        input.attr("accept", fileType.accept);
 
-            fileName.text('選択されていません');
-            $(this).val(null);
-            return;
-        }
+        // ボタンクリックで input を起動
+        $fileButton.off("click").on("click", function () {
+            input.trigger("click");
+        });
 
-        fileName.text(file.name);
+        // ファイル選択時の処理
+        input.off("change.import").on("change.import", function () {
+            const file = this.files[0];
+            clearError(input);
+
+            if (!file) {
+                $fileName.text("選択されていません");
+                return;
+            }
+
+            if (!fileType.pattern.test(file.name)) {
+                showError(input, fileType.errorText);
+                $fileName.text("選択されていません");
+                $(this).val(null);
+                return;
+            }
+
+            $fileName.text(file.name);
+        });
+
+        // セットアップ完了 → 表示
+        input.addClass("import-ready");
+    }
+
+    // ===============================
+    // 6. 常時監視 Observer
+    //    disconnect しない — ダイアログは開くたびに
+    //    新しいDOMノードを生成するため、
+    //    WeakSet のガードで二重処理を防ぐ
+    // ===============================
+    const watcher = new MutationObserver(function () {
+        // --- インポート エンコーディング固定 ---
+        fixEncoding($("#Encoding"));
+
+        // --- エクスポート エンコーディング固定 ---
+        fixEncoding($("#ExportEncoding"));
+
+        // --- CSV / サイトパッケージ インポート ---
+        const $csvImport  = $("#Import:not(.control-checkbox)");
+        const $siteImport = $("#SitePackageForm #Import");
+        if ($csvImport.length)  setupImportInput($csvImport);
+        if ($siteImport.length) setupImportInput($siteImport);
+
+        // --- ユーザーテンプレート インポート ---
+        const $tmpl = $("#ImportUserTemplate_Import");
+        if ($tmpl.length) setupImportInput($tmpl);
     });
-}
 
-// インポート
-const importWatcher = new MutationObserver(() => {
+    watcher.observe(document.body, {
+        childList: true,
+        subtree:   true,
+    });
 
-    const enc = $("#Encoding");
-    if (enc.length) {
-        enc.val("UTF-8");
-        enc.prop("disabled", true);
-    }
-
-    if ($('#ImportUserTemplate_Import').length) {
-        setupImportInput($('#ImportUserTemplate_Import'));
-    }
-
-    if ($('#Import:not(.control-checkbox)').length) {
-        setupImportInput($('#Import'));
-        importWatcher.disconnect();
-    }
-});
-
-importWatcher.observe(document.body, {
-    childList: true,
-    subtree: true
-});
-
-// エクスポート
-const exportWatcher = new MutationObserver(() => {
-
-    const enc = $("#ExportEncoding");
-    if (enc.length) {
-        enc.val("UTF-8");
-        enc.prop("disabled", true);
-        exportWatcher.disconnect();
-    }
-});
-
-exportWatcher.observe(document.body, {
-    childList: true,
-    subtree: true
-});
+})();
