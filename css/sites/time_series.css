@@ -1,22 +1,345 @@
-#TimeSeries .index {
-    fill: var(--text-main);
+/* =========================================================
+   0. 基本レイアウト
+   ========================================================= */
+
+#Editor #EditorTabsContainer,
+#Editor #GroupForm {
+    background: var(--surface-base);
 }
 
-.tick text {
-    font-weight: 200;
-    font-size: 0.7rem;
-    fill: var(--text-main);
+#Editor #MainForm {
+    box-shadow: 0 2px 1px var(--shadow-light);
+	background: var(--surface-strong);
 }
 
-path {
-    stroke: var(--text-main);
+#Editor #MainForm:after {
+    background-color: var(--surface-strong);
 }
 
-#TimeSeries {
-    border-radius: 0;
+#Editor #GroupForm:after,
+#Editor #MainForm:after {
+    width: 60%;
+}
+
+#TitleContainer:not(:empty) + #Warnings:empty + #Editor:has(#RecordHeader) {
+    margin-top: 0px;
+}
+
+.ui-tabs-panel {
+	background: var(--surface-base);
+}
+
+.ui-tabs-panel .field-label {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 0 0.8em 0 0;
+    margin-bottom: 0;
+}
+
+.ui-tabs-panel .field-label label {
+    vertical-align: sub;
+}
+
+.ui-tabs-panel .check-option {
+    margin: 4px 0 !important;
+	gap: 0.8em;
+}
+
+.field-wide,
+.field-markdown {
+    min-height: initial;
+    margin-bottom: 20px;
+    padding: 0 10px 0 0;
+}
+
+.field-normal {
+    height: initial;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 0 20px 0 0;
+}
+
+#SiteImageIconContainer {
+    display: none;
+}
+
+.ui-icon {
+    color: var(--icon-color);
+}
+
+
+/* =========================================================
+   1. 必須マーク
+   ========================================================= */
+
+.required::before {
+    color: var(--semantic-danger);
+    margin-right: 3px;
+    content: "*";
+}
+
+.required::after {
+    content: none !important;
+}
+
+
+/* =========================================================
+   2. Field
+   ========================================================= */
+
+.field {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.field-label {
+    flex: 0 0 auto;
+    max-width: 100%;
+}
+
+.field-control {
+    flex: 1 1 0;
+    min-width: 0 !important;
+}
+
+.field-wide .field-control {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+.field-control input,
+.field-control select,
+.field-control textarea,
+.field-control .control-markdown {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+.field-control .control-markdown {
+    min-width: 80px;
+}
+
+
+/* =========================================================
+   3. 添付ファイル
+   ========================================================= */
+
+.control-attachments-upload {
+    padding: 1.7rem 0.8rem !important;
+    color: var(--text-main);
+    background: var(--surface-base);
+    border: 2px dotted var(--primary) !important;
+    border-radius: var(--radius-medium);
+}
+
+.control-attachments-upload:hover {
+    cursor: pointer;
+}
+
+.control-attachments-items {
+    padding: 0 !important;
+    margin-top: 0.2rem;
+}
+
+.control-attachments-item {
+   padding: 0.6em;
+}
+
+.control-attachments-item.already-attachments {
+    background-color: var(--primary-surface);
+	border-color: var(--primary);
+}
+
+
+/* =========================================================
+   4. コメント（説明文・カード）
+   ========================================================= */
+
+#EditorComments::before {
+	content: "";
+    display: block;
+    color: var(--semantic-danger);
+    font-weight: 550;
+    font-size: 0.83rem;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background-color: var(--semantic-warning);
+    border: 1px solid var(--semantic-danger-border);
+    border-radius: var(--radius-large);
+}
+
+#Editor #EditorComments {
+    padding: 16px 23px;
+    background: transparent;
+}
+
+#Editor #EditorComments #Comments {
+    width: 100%;
+    min-width: fit-content;
+    background: var(--surface-base) !important;
+    border: 1px solid var(--border-strong);
+}
+
+#Editor #EditorComments .comment + .comment {
+    border: none;
+}
+
+#CommentField markdown-field {
+    margin-bottom: 15px;
+}
+
+.comment {
+    margin: 0 0 13px;
+    padding: 10px 14px !important;
+    box-shadow: 3px 3px 3px var(--shadow-medium);
+	border-left: 8px solid transparent;
+}
+
+.comment > .time {
+    margin: 0 10px 8px 0;
+}
+
+#CommentList .md {
     background-color: transparent;
 }
 
-#TimeSeriesBody {
-    background-color: var( --bg-main);
+#CommentList markdown-field {
+    margin: 0 !important;
+}
+
+#CommentList markdown-field .md-btn.is-delete {
+    right: -5px;
+    color: var(--icon-color);
+}
+
+#CommentList markdown-field .notes {
+    font-size: 0.88rem;
+    color: var(--text-main);
+}
+
+.comment-header {
+    flex-direction: row;
+    padding: 2px 0;
+}
+
+.comment-header .user {
+    order: 1;
+    margin-right: 0.5rem;
+}
+
+.comment-header .time {
+    order: 2;
+    font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   5. レコードヘッダー
+   ========================================================= */
+
+#RecordHeader {
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--bg-accent) !important;
+    color: var(--text-main) !important;
+    padding: 0 23px 16px 23px !important;
+}
+
+#RecordInfo div {
+    gap: 12px !important;
+}
+
+#TitleContainer {
+    padding: 5px;
+    background-color: var(--bg-accent) !important;
+}
+
+#TitleContainer #HeaderTitle {
+    padding: 18px;
+    color: var(--text-main);
+}
+
+#Editor #RecordSwitchers {
+    gap: 12px;
+}
+
+#Editor #RecordSwitchers button {
+    font-weight: 550;
+}
+
+
+/* =========================================================
+   6. メールダイアログ
+   ========================================================= */
+#OutgoingMails_DestinationSearchRange {
+    vertical-align: unset;
+}
+
+
+/* =========================================================
+   7. 変更履歴の一覧
+   ========================================================= */
+
+#FieldSetHistories {
+    .command-left {
+        margin: 0 0 15px;
+    }
+}
+
+/* =========================================================
+   8. レコードのアクセス制御
+   ========================================================= */
+
+#FieldSetRecordAccessControlEditor {
+    .ui-tabs .ui-tabs-panel {
+        padding: 1.2em 1.5em;
+    }
+  
+    .command-left {
+        margin-bottom: 12px;
+    }
+  
+    .command-left:has(#OpenPermissionsDialog) {
+        float: right;
+    }
+
+    .command-left:has(#AddPermissions) {
+        float: left;
+    }
+
+    #SearchPermissionElements {
+        margin: 0;
+    }
+
+   #Notes > .readonly {
+      display: none !important;
+   }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 0) {
+    body:has(#Editor) #TitleContainer #HeaderTitle {
+        color: var(--text-main);
+    }
+
+	.field-normal,
+	.field-wide,
+	.field-auto,
+	.field-textarea,
+	.field-markdown {
+		min-height: auto;
+	}
+
+	#Editor #EditorComments {
+		background: var(--surface-strong);
+	}
+
+	#Editor #EditorComments #CommentField {
+		background-color: transparent;
+		border-bottom: none;
+		padding: 0;
+	}
 }
