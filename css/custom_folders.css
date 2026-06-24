@@ -3,7 +3,7 @@
     ========================================================= */
 
 html, body {
-    background-color: var(--bg-tinted) !important;
+    background-color: var(--bg-main) !important;
 }
 
 #MainCommandsContainer {
