@@ -18,5 +18,5 @@ path {
 }
 
 #TimeSeriesBody {
-    background-color: var( --bg-tinted);
+    background-color: var( --bg-main);
 }
