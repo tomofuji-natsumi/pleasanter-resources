@@ -57,7 +57,7 @@
     --bg-data-title: var(--bg-filter);
 
     --bg-dashboard: #E7E7E7;
-	--bg-dashboard-card: #FDFDFE;
+  	--bg-dashboard-card: #FDFDFE;
 
     --bg-dialog-header: #E3E7EE;
     --bg-count: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.18) h);
@@ -139,43 +139,47 @@
        8. ステータス
        ========================================================= */
 
-    --status-text: var(--text-main);
+      --status-no-bg: #F0F1F3;
+      --status-no-border: #C8CDD4;
+      --status-no-bg-hover: #E4E6EA;
+      --status-no-border-hover: #BCC1C9;
+      --status-no-text: #4A5260;
 
-    --status-no-bg: #E1E4E9;
-    --status-no-border: #B7BEC7;
-    --status-no-bg-hover: #D3D7DE;
-    --status-no-border-hover: #AEB5BE;
-    --status-no-text: #2F3A45;
+      --status-new-bg: #E8F0FE;
+      --status-new-border: #AABFE8;
+      --status-new-bg-hover: #DAE5FC;
+      --status-new-border-hover: #9AB2DE;
+      --status-new-text: #1A3A7A;
 
-    --status-new-bg: #F1F4FB;
-    --status-new-border: #C8D3E6;
-    --status-new-bg-hover: #E7ECF6;
-    --status-new-border-hover: #BCC8DD;
+      --status-preparation-bg: #FFF8E1;
+      --status-preparation-border: #F0D080;
+      --status-preparation-bg-hover: #FFF0C0;
+      --status-preparation-border-hover: #E8C060;
+      --status-preparation-text: #7A5500;
 
-    --status-preparation-bg: #E4EDFF;
-    --status-preparation-border: #B8C7E0;
-    --status-preparation-bg-hover: #D9E4FA;
-    --status-preparation-border-hover: #AEBBD5;
+      --status-inprogress-bg: #E0F4FF;
+      --status-inprogress-border: #7ABCDC;
+      --status-inprogress-bg-hover: #CCEcFA;
+      --status-inprogress-border-hover: #6AAECE;
+      --status-inprogress-text: #0A4A6A;
 
-    --status-inprogress-bg: #D6E4FF;
-    --status-inprogress-border: #A7BCE5;
-    --status-inprogress-bg-hover: #C9D9F7;
-    --status-inprogress-border-hover: #9CB1DA;
+      --status-review-bg: #F3EEFF;
+      --status-review-border: #C4A8F0;
+      --status-review-bg-hover: #EAE0FC;
+      --status-review-border-hover: #B89AE4;
+      --status-review-text: #4A1A8A;
 
-    --status-review-bg: #E8E4FF;
-    --status-review-border: #C4BEEA;
-    --status-review-bg-hover: #DDD8F7;
-    --status-review-border-hover: #B7B1DD;
+      --status-closed-bg: #E8F5EC;
+      --status-closed-border: #90CC9E;
+      --status-closed-bg-hover: #D8EEDE;
+      --status-closed-border-hover: #80BE8E;
+      --status-closed-text: #1A5830;
 
-    --status-closed-bg: #E6F5EA;
-    --status-closed-border: #B6D8C0;
-    --status-closed-bg-hover: #D9EBDD;
-    --status-closed-border-hover: #A9CCB3;
-
-    --status-rejected-bg: #FFF1E5;
-    --status-rejected-border: #E6C7A8;
-    --status-rejected-bg-hover: #FFE7D6;
-    --status-rejected-border-hover: #DDBA9A;
+      --status-rejected-bg: #FFEBEE;
+      --status-rejected-border: #F0A0A8;
+      --status-rejected-bg-hover: #FFD8DC;
+      --status-rejected-border-hover: #E49098;
+      --status-rejected-text: #8A1A20;
 
     /* =========================================================
        9. カレンダー
