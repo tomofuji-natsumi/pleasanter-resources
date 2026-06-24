@@ -21,7 +21,7 @@ body.readonly-mode {
     .readonly-value {
         padding: 0.3rem 0.6rem !important;
         background: var(--bg-main) !important;
-        color: var(--readonly-value) !important;
+        color: var(--text-sub) !important;
         border: 1px solid var(--border-strong) !important;
         border-radius: var(--radius-medium) !important;
         pointer-events: none;
@@ -110,7 +110,7 @@ body.readonly-mode {
 
     .control-attachments-item {
         background: var(--bg-main);
-        border: 1px solid var(--readonly-border);
+        border: 1px solid var(--border-strong);
         border-radius: var(--radius-medium) !important;
         padding: 8px 12px;
     }
