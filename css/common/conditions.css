@@ -24,7 +24,7 @@
     width: 100% !important; /* important 必須 */
     padding: 0.9rem 0.8rem !important; /* important 必須 */
     gap: 1.0rem 0.9rem;
-	background-color: var(--bg-filter);
+	background-color: var(--bg-accent);
     border-bottom: 1px solid var(--border-strong) !important; /* important 必須 */
     box-shadow: var(--shadow-light);
 }
