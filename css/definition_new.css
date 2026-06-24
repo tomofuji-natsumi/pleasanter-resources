@@ -172,7 +172,7 @@
 
     --cal-holi-bg: oklch(0.72 0.15 25);
     --cal-holi-text: var(--on-primary);
-    --cal-holi-cell-bg: oklch(0.94 0.075 25);
+    --cal-holi-cell-bg: oklch(0.96 0.030 25);
     --cal-holi-cell-text: #6A2A2A;
 
     --cal-digestion-bg: #F2E8EF;
