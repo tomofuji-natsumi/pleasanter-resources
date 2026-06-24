@@ -152,7 +152,7 @@ tr.crosstab-row th {
 .grid markdown-field,
 .grid markdown-field .md-viewer,
 .grid markdown-field .notes {
-    display: inline-flex !important;
+    display: block !important;
     align-items: center !important;
     padding: 0 !important;
 }
