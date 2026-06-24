@@ -1,5 +1,5 @@
 /* =========================================================
-   色定義
+   定義
    ========================================================= */
 
 :root {
@@ -38,9 +38,9 @@
        ========================================================= */
 
 	--bg-toolbar:        oklch(from var(--primary) calc(l + 0.06) calc(c * 0.80) h);
-	--bg-dialog-header: oklch(from var(--primary) calc(l + 0.41) calc(c * 0.04) h);
-	--bg-main:          oklch(from var(--primary) calc(l + 0.44) calc(c * 0.03) h);
-	--bg-main-dark:     oklch(from var(--primary) calc(l + 0.42) calc(c * 0.03) h);
+	--bg-dialog-header: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.04) h);
+	--bg-main:          oklch(from var(--primary) calc(l + 0.44) calc(c * 0.02) h);
+	--bg-main-dark:     oklch(from var(--primary) calc(l + 0.42) calc(c * 0.02) h);
 	--bg-hover:         oklch(from var(--primary) calc(l + 0.44) calc(c * 0.01) h);
 	--bg-accent:         oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
 	
