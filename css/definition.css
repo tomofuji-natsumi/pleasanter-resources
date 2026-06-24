@@ -11,16 +11,13 @@
     /* --- Primary（主役） --- */
     --primary: #3371CB;
     --primary-hover: color-mix(in oklch, var(--primary) 90%, black 5%);
-
-    /* --- Primary Surface（背景レイヤー） --- */
-    --primary-border: #5A8EE0;
+    --primary-border: oklch(from var(--primary) calc(l + 0.12) calc(c - 0.02) h);
     --primary-surface: oklch(from var(--primary) calc(l + 0.42) calc(c - 0.14) h);
     --primary-surface-hover: oklch(from var(--primary) calc(l + 0.45) calc(c - 0.15) h);
+    --primary-overlay: rgba(20, 28, 40, 0.55);
 
     /* --- On Primary（文字色） --- */
     --on-primary: #F9FAFB;
-
-    --primary-overlay: rgba(20, 28, 40, 0.55);
 
     /* --- Semantic（成功・警告・エラー） --- */
     --semantic-danger: oklch(0.58 0.19 25 / 0.9);
@@ -145,10 +142,10 @@
       --status-no-border-hover: #BCC1C9;
       --status-no-text: #4A5260;
 
-      --status-new-bg: #E8F0FE;
-      --status-new-border: #AABFE8;
-      --status-new-bg-hover: #DAE5FC;
-      --status-new-border-hover: #9AB2DE;
+      --status-new-bg: #F0F4FE;
+      --status-new-border: #C0CFEE;
+      --status-new-bg-hover: #E4ECFC;
+      --status-new-border-hover: #B0C2E6;
       --status-new-text: #1A3A7A;
 
       --status-preparation-bg: #FFF8E1;
@@ -157,11 +154,11 @@
       --status-preparation-border-hover: #E8C060;
       --status-preparation-text: #7A5500;
 
-      --status-inprogress-bg: #E0F4FF;
-      --status-inprogress-border: #7ABCDC;
-      --status-inprogress-bg-hover: #CCEcFA;
-      --status-inprogress-border-hover: #6AAECE;
-      --status-inprogress-text: #0A4A6A;
+      --status-inprogress-bg: #E0F8F4;
+      --status-inprogress-border: #6ACABA;
+      --status-inprogress-bg-hover: #CCF0EA;
+      --status-inprogress-border-hover: #58BCAC;
+      --status-inprogress-text: #0A5048;
 
       --status-review-bg: #F3EEFF;
       --status-review-border: #C4A8F0;
