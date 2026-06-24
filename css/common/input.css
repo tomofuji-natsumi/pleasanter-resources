@@ -60,8 +60,8 @@ input:focus,
 
 textarea {
     field-sizing: content;
-    resize: none !important;
-    min-height: 4lh !important;
+    resize: vertical;
+    min-height: 4lh;
     max-height: 20lh;
     height: auto !important;
 }
@@ -70,6 +70,7 @@ textarea {
 /* =========================================================
    3. Markdown
    ========================================================= */
+
 markdown-field .md-viewer:not(.control-text) {
     background-color: var(--surface-base) !important;
 }
@@ -111,6 +112,7 @@ markdown-field .notes {
 /* =========================================================
    4. リッチエディタ
    ========================================================= */
+
 rt-editor {
     color: var(--text-main);
     background-color: var(--surface-base);
@@ -239,6 +241,7 @@ rt-editor .se-btn-select > svg {
 /* =========================================================
    8. カレンダー
    ========================================================= */
+
 .current-date {
     right: 2%;
 	user-select: none;
