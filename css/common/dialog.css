@@ -168,7 +168,7 @@
 .wrapper .ui-selectable li.ui-selecting,
 .wrapper .ui-selectable li.ui-selected {
     background: var(--primary);
-    color: var(--surface-base);
+    color: var(--on-primary);
 }
 
 
@@ -190,7 +190,7 @@
     display: flex;
     align-items: center;
     background: var(--primary);
-    color: var(--surface-base) !important;
+    color: var(--text-white) !important;
     padding: 6px 15px 7px;
     border-radius: var(--radius-small);
     z-index: 999;
