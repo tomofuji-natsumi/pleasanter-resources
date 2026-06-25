@@ -10,7 +10,7 @@
 
     /* --- Primary（主役） --- */
     --primary: #3371CB;
-    --primary-hover: color-mix(in oklch, var(--primary) 90%, black 5%);
+    --primary-hover: color-mix(in oklch, var(--primary) 85%, black);
     --primary-border: oklch(from var(--primary) calc(l - 0.05) calc(c - 0.02) h);
     --primary-surface: oklch(from var(--primary) calc(l + 0.42) calc(c - 0.14) h);
     --primary-surface-hover: oklch(from var(--primary) calc(l + 0.38) calc(c - 0.12) h);
@@ -56,9 +56,9 @@
        ========================================================= */
 
     --border-subtle: rgba(0, 0, 0, 0.04);
-	--border-light:  oklch(from var(--primary) calc(l + 0.33) calc(c * 0.05) h);
-	--border-normal: oklch(from var(--primary) calc(l + 0.28) calc(c * 0.06) h);
-	--border-strong: oklch(from var(--primary) calc(l + 0.23) calc(c * 0.07) h);
+    --border-light:  oklch(from var(--primary) calc(l + 0.33) calc(c * 0.05) h);
+    --border-normal: oklch(from var(--primary) calc(l + 0.28) calc(c * 0.06) h);
+    --border-strong: oklch(from var(--primary) calc(l + 0.23) calc(c * 0.07) h);
 
     --border-nav: oklch(from var(--primary) calc(l + 0.30) calc(c * 0.28) h);
     --border-accent: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
@@ -99,7 +99,7 @@
        ========================================================= */
 
     --icon-color: #5A5F66;
-	--icon-hover: #383D44;
+    --icon-hover: #383D44;
 
     /* =========================================================
        6. ボタン
@@ -195,19 +195,19 @@
        ========================================================= */
 
     --cal-event-bg-weekday:    oklch(0.54 0.15 255);
-	--cal-event-hover-weekday: oklch(0.50 0.15 255);
-	--cal-event-tag-weekday:   oklch(0.46 0.15 255);
+    --cal-event-hover-weekday: oklch(0.50 0.15 255);
+    --cal-event-tag-weekday:   oklch(0.46 0.15 255);
     --cal-event-text-weekday: var(--text-white);
 
     --cal-event-bg-sat:    oklch(0.68 0.09 255);
-	--cal-event-hover-sat: oklch(0.64 0.09 255);
-	--cal-event-tag-sat:   oklch(0.58 0.10 255);
+    --cal-event-hover-sat: oklch(0.64 0.09 255);
+    --cal-event-tag-sat:   oklch(0.58 0.10 255);
     --cal-event-text-sat: var(--text-white);
 
-	--cal-event-bg-holi:    oklch(0.58 0.17 25);
-	--cal-event-hover-holi: oklch(0.54 0.17 25);
-	--cal-event-tag-holi:   oklch(0.48 0.17 25);
-   --cal-event-text-holi:  var(--text-white);
+    --cal-event-bg-holi:    oklch(0.58 0.17 25);
+    --cal-event-hover-holi: oklch(0.54 0.17 25);
+    --cal-event-tag-holi:   oklch(0.48 0.17 25);
+    --cal-event-text-holi:  var(--text-white);
 
     --cal-event-bg-other: #8A8F99;
     --cal-event-hover-other: #7A7F88;
