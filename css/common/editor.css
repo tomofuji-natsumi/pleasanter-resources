@@ -164,13 +164,13 @@
 #EditorComments::before {
 	content: "";
     display: block;
-    color: var(--semantic-danger);
+    color: var(--text-comment);
     font-weight: 550;
     font-size: 0.83rem;
     margin-bottom: 10px;
     padding: 6px 12px;
-    background-color: var(--semantic-warning);
-    border: 1px solid var(--semantic-danger-border);
+    background-color: var(--bg-comment);
+    border: 1px solid var(--border-comment);
     border-radius: var(--radius-large);
 }
 
@@ -256,7 +256,8 @@
 
 #TitleContainer {
     padding: 5px;
-    background-color: var(--bg-accent) !important;
+    background-color: var(--bg-title) !important;
+    border-bottom: 1px solid var(--border-title);
 }
 
 #TitleContainer #HeaderTitle {
