@@ -482,3 +482,8 @@ button:has(.red-material-icons):active {
     padding: 0 !important;
     background-color: var(--surface-base) !important;
 }
+
+#Encoding.encoding-ready,
+#ExportEncoding.encoding-ready {
+    visibility: visible;
+}
