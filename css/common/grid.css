@@ -34,9 +34,6 @@ tr.crosstab-row th {
     color: var(--text-on-primary) !important;
 	border-right: 1px solid var(--border-light) !important;
 	border-bottom: 1px solid var(--border-light) !important;
-    box-shadow:
-        inset 0 -1px 0 rgba(253, 254, 255, 0.18),
-        0 1px 2px var(--border-subtle) !important;
 }
 
 .grid th.sortable {
@@ -185,7 +182,8 @@ tr.crosstab-row th {
 
 /* 共通 */
 
-[class^="status-"] {
+[class^="status-"],
+[style^="status-"] {
     font-size: 0.85rem !important;
     font-weight: 500 !important;
     line-height: 1.3 !important;
@@ -198,7 +196,7 @@ tr.crosstab-row th {
     transition: background-color 0.22s ease-out, border-color 0.22s ease-out;
 }
 
-/* 100 未着手 */
+/* 未着手 */
 p.status-new {
     background: var(--status-new-bg) !important;
     border-color: var(--status-new-border) !important;
@@ -209,7 +207,7 @@ p.status-new:hover {
     border-color: var(--status-new-border-hover) !important;
 }
 
-/* 150 準備 */
+/* 準備 */
 p.status-preparation {
     background: var(--status-preparation-bg) !important;
     border-color: var(--status-preparation-border) !important;
@@ -220,7 +218,7 @@ p.status-preparation:hover {
     border-color: var(--status-preparation-border-hover) !important;
 }
 
-/* 200 実施中 */
+/* 実施中 */
 p.status-inprogress {
     background: var(--status-inprogress-bg) !important;
     border-color: var(--status-inprogress-border) !important;
@@ -231,7 +229,7 @@ p.status-inprogress:hover {
     border-color: var(--status-inprogress-border-hover) !important;
 }
 
-/* 300 レビュー */
+/* レビュー */
 p.status-review {
     background: var(--status-review-bg) !important;
     border-color: var(--status-review-border) !important;
@@ -242,7 +240,7 @@ p.status-review:hover {
     border-color: var(--status-review-border-hover) !important;
 }
 
-/* 900 完了 */
+/* 完了 */
 p.status-closed {
     background: var(--status-closed-bg) !important;
     border-color: var(--status-closed-border) !important;
@@ -253,13 +251,13 @@ p.status-closed:hover {
     border-color: var(--status-closed-border-hover) !important;
 }
 
-/* 910 保留（却下） */
-p.status-rejected {
+/* 保留（却下） */
+p[style="status-rejected"] {
     background: var(--status-rejected-bg) !important;
     border-color: var(--status-rejected-border) !important;
 	color: var(--status-rejected-text) !important;
 }
-p.status-rejected:hover {
+p[style="status-rejected"]  {
     background: var(--status-rejected-bg-hover) !important;
     border-color: var(--status-rejected-border-hover) !important;
 }
