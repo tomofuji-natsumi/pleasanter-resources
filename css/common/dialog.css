@@ -49,7 +49,7 @@
 
 .ui-dialog .ui-dialog-titlebar {
     background: var(--bg-dialog-header);
-    border: 1px solid var(--border-normal);
+    border: 1px solid var(--border-light);
     border-bottom: none;
     border-radius: 10px 10px 0 0;
     color: var(--text-main);
@@ -60,14 +60,14 @@
 
 .ui-dialog .ui-dialog-title {
     font-family: sans-serif;
-    font-weight: 600;
+    font-weight: 550;
     line-height: 1.5;
     font-size: 0.85rem;
 }
 
 .ui-dialog .ui-dialog-content {
-    background: var(--surface-strong);
-    border: 1px solid var(--border-normal);
+    background: var(--surface-base);
+    border: 1px solid var(--border-light);
     border-radius: 0 0 10px 10px;
     margin: 0;
     padding: 15px 24px !important;
