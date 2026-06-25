@@ -117,6 +117,7 @@ img {
 
 .ui-button:hover {
     font-weight: 550 !important;
+    background: transparent;
 }
 
 /* プライマリーボタン */

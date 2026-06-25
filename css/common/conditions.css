@@ -133,19 +133,9 @@
 
 /* リセット */
 #ViewFilters_Reset {
-    position: relative;
     margin: 0 0.5rem 0 0;
     height: 30px;
-    background: var(--surface-soft) !important;
-    color: var(--text-emphasis) !important;
-    border: 1px solid var(--border-normal);
 	line-height: 0.2rem;
-}
-
-#ViewFilters_Reset:hover {
-    background: var(--surface-strong) !important;
-    color: var(--text-main) !important;
-    border: 1px solid var(--border-strong);
 }
 
 

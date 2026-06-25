@@ -5,10 +5,6 @@
     color: var(--text-main);
 }
 
-.dialog .field-control .check-text {
-    margin-left: 5px !important;
-}
-
 .dialog .field-wide .container-normal:has(.check-option) {
     margin: 0;
     place-self: center;
