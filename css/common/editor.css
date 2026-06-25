@@ -39,6 +39,7 @@
 
 .ui-tabs-panel .field-label label {
     vertical-align: sub;
+    font-weight: 500;
 }
 
 .ui-tabs-panel .check-option {
@@ -131,9 +132,9 @@
 
 .control-attachments-upload {
     padding: 1.7rem 0.8rem !important;
-    color: var(--text-main);
-    background: var(--surface-base);
-    border: 2px dotted var(--primary) !important;
+    color: var(--primary);
+    background: transparent;
+    border: 2px dotted var(--border-interactive) !important;
     border-radius: var(--radius-medium);
 }
 
@@ -182,7 +183,7 @@
     width: 100%;
     min-width: fit-content;
     background: var(--surface-base) !important;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-normal);
 }
 
 #Editor #EditorComments .comment + .comment {

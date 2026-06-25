@@ -7,7 +7,7 @@ select:not([name="Results_Status"]),
 input,
 .ui-widget.ui-state-default.ui-multiselect {
     background: var(--surface-base) !important;
-    border: 1px solid var(--border-light) !important;
+    border: 1px solid var(--border-normal) !important;
     border-radius: var(--radius-medium) !important;
     color: var(--text-main);
 }
@@ -50,7 +50,7 @@ input:focus,
 }
 
 .control-dropdown {
-	border: 1px solid var(--border-light);
+	border: 1px solid var(--border-normal);
 }
 
 
@@ -77,7 +77,7 @@ markdown-field .md-viewer:not(.control-text) {
 
 markdown-field:not(.is-comment) .md-viewer:not(.not-send) {
     background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-light) !important;
+    border: 1px solid var(--border-normal) !important;
     padding: 8px 32px 8px 8px;
 }
 
@@ -154,7 +154,7 @@ rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
     max-width: fit-content;
     min-width: max-content;
     background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-normal);
 }
 
 rt-editor .se-btn-list,
@@ -202,7 +202,7 @@ rt-editor .se-btn-select > svg {
 
 .check-option .check-icon {
     background-color: var(--surface-base);
-    border: 1px solid var(--border-light) !important;
+    border: 1px solid var(--border-normal) !important;
     border-radius: var(--radius-medium) !important;
 }
 
@@ -216,12 +216,12 @@ rt-editor .se-btn-select > svg {
 
 .check-option .check-icon:has(input:disabled):has(input:checked) {
     background-color: var(--bg-disabled);
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-normal);
 }
 
 .field-control .control-markdown {
     min-width: 80px;
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-normal);
 }
 
 /* =========================================================
@@ -231,7 +231,7 @@ rt-editor .se-btn-select > svg {
 .spinner-field .ui-spinner .ui-button {
     position: absolute !important;
     background-color: var(--surface-base);
-    border-left: 1px solid var(--border-light);
+    border-left: 1px solid var(--border-normal);
 }
 
 .spinner-field:has(.with-unit) .unit {
@@ -317,7 +317,7 @@ span.flatpickr-weekday {
     padding: 0.3rem 0.55rem !important;
     background: var(--bg-disabled) !important;
     color: var(--text-disabled) !important;
-    border: 1px solid var(--border-light) !important;
+    border: 1px solid var(--border-normal) !important;
     border-radius: var(--radius-medium) !important;
     pointer-events: none;
     user-select: text;
@@ -333,4 +333,5 @@ span.flatpickr-weekday {
 
 .container-normal span[data-readonly="1"]:not(:empty) {
     padding: 0 !important;
+    color: var(--text-disabled) !important;
 }

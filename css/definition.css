@@ -44,7 +44,7 @@
 	--bg-main-dark:     oklch(from var(--primary) calc(l + 0.42) calc(c * 0.02) h);
 	--bg-accent:         oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
 
-   --bg-disabled:    oklch(0.990 0.001 255);
+   --bg-disabled:    var(--surface-strong);
 	
 	--bg-dashboard:    	  #E7E7E7;
 	--bg-guide:        	  #FFF9E3;
@@ -62,6 +62,7 @@
 
     --border-nav: oklch(from var(--primary) calc(l + 0.30) calc(c * 0.28) h);
     --border-accent: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
+    --border-interactive: oklch(0.72 0.09 255);
 
     --border-focus: color-mix(in oklch, var(--primary) 30%, white 70%);
 
