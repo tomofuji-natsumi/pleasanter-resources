@@ -120,7 +120,7 @@ img {
     background: transparent;
 }
 
-/* プライマリーボタン */
+/* primary */
 button:has(.primary-material-icons),
 button:has(.primary-material-icons):focus {
     background: var(--primary) !important;
@@ -131,7 +131,7 @@ button:has(.primary-material-icons):active {
     background: var(--primary-hover) !important;
 }
 
-/* 黒ボタン */
+/* dark */
 button:has(.dark-material-icons),
 button:has(.dark-material-icons):focus {
     background: var(--btn-dark-bg) !important;
@@ -142,7 +142,7 @@ button:has(.dark-material-icons):active {
     background: var(--btn-dark-bg-hover);
 }
 
-/* 白ボタン */
+/* light */
 button:has(.light-material-icons),
 button:has(.light-material-icons):focus {
     background: var(--surface-soft);
@@ -156,15 +156,59 @@ button:has(.light-material-icons):active {
     color: var(--text-main);
 }
 
-/* 赤ボタン */
-button:has(.red-material-icons),
-button:has(.red-material-icons):focus {
+/* danger */
+button:has(.danger-material-icons),
+button:has(.danger-material-icons):focus {
     background: var(--btn-danger-bg) !important;
     color: var(--text-white) !important;
 }
-button:has(.red-material-icons):hover,
-button:has(.red-material-icons):active {
+button:has(.danger-material-icons):hover,
+button:has(.danger-material-icons):active {
     background: var(--btn-danger-bg-hover) !important;
+}
+
+/* execute */
+button:has(.execute-material-icons),
+button:has(.execute-material-icons):focus {
+    background: var(--btn-execute-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.execute-material-icons):hover,
+button:has(.execute-material-icons):active {
+    background: var(--btn-execute-bg-hover) !important;
+}
+
+/* approve */
+button:has(.approve-material-icons),
+button:has(.approve-material-icons):focus {
+    background: var(--btn-approve-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.approve-material-icons):hover,
+button:has(.approve-material-icons):active {
+    background: var(--btn-approve-bg-hover) !important;
+}
+
+/* notify */
+button:has(.notify-material-icons),
+button:has(.notify-material-icons):focus {
+    background: var(--btn-notify-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.notify-material-icons):hover,
+button:has(.notify-material-icons):active {
+    background: var(--btn-notify-bg-hover) !important;
+}
+
+/* extra */
+button:has(.extra-material-icons),
+button:has(.extra-material-icons):focus {
+    background: var(--btn-extra-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.extra-material-icons):hover,
+button:has(.extra-material-icons):active {
+    background: var(--btn-extra-bg-hover) !important;
 }
 
 

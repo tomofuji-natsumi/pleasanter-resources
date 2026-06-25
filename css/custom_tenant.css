@@ -256,13 +256,13 @@ button:has(.light-material-icons):active {
 }
 
 /* 赤ボタン */
-button:has(.red-material-icons),
-button:has(.red-material-icons):focus {
+button:has(.danger-material-icons),
+button:has(.danger-material-icons):focus {
     background: var(--btn-danger-bg) !important;
     color: var(--text-on-primary) !important;
 }
-button:has(.red-material-icons):hover,
-button:has(.red-material-icons):active {
+button:has(.danger-material-icons):hover,
+button:has(.danger-material-icons):active {
     background: var(--btn-danger-bg-hover) !important;
     color: var(--surface-strong) !important;
 }

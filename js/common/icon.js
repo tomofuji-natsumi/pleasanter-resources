@@ -7,9 +7,47 @@
     // ===============================
     // 1. アイコンマップ定義
     //    各エントリは { s: selector, c: color, i: icon } の形式
-    //    color: "dark" | "light" | "primary" | "red" | "display"
+    //    color: "display" | "primary" | "dark" | "light" | "danger" | 
     // ===============================
     const ICON_DEFS = [
+
+        // --- display ---
+        { s: "#ReduceGuides",                                                           c: "display", i: "expand_more" },
+        { s: "#ReduceAggregations",                                                     c: "display", i: "expand_more" },
+        { s: "#ReduceViewFilters",                                                      c: "display", i: "expand_more" },
+        { s: "#ExpandGuides",                                                           c: "display", i: "chevron_right" },
+        { s: "#ExpandAggregations",                                                     c: "display", i: "chevron_right" },
+        { s: "#ExpandViewFilters",                                                      c: "display", i: "chevron_right" },
+        { s: "#CopyDirectUrlToClipboard",                                               c: "display", i: "share" },
+
+        // --- primary ---
+        { s: "#OpenAnalyPartDialog",                                                    c: "primary", i: "add" },
+        { s: "#AnalyPartDialog [data-icon='ui-icon-disk']",                             c: "primary", i: "add" },
+        { s: "#OpenSiteTitleDialog",                                                    c: "primary", i: "add_ad" },
+        { s: "#CreateByTemplate",                                                       c: "primary", i: "add_ad" },
+        { s: "#CreateCommand",                                                          c: "primary", i: "add_ad" },
+        { s: "[aria-describedby='ExportSitePackageDialog'] #IncludeData",               c: "primary", i: "add_box" },
+        { s: "#PermissionsDialog [data-icon='ui-icon-disk']",                           c: "primary", i: "update" },
+        { s: "#UpdateDashboardPartLayouts",                                             c: "primary", i: "update" },
+        { s: "#UpdateCommand",                                                          c: "primary", i: "update" },
+        { s: "#OpenCopyDialogCommand",                                                  c: "primary", i: "content_copy" },
+        { s: "#OutgoingMails_Send",                                                     c: "primary", i: "mail" },
+        { s: "#EditOutgoingMail",                                                       c: "primary", i: "mail" },
+        { s: "#ImportUserTemplateDialog [data-icon='ui-icon-arrowreturnthick-1-e']",    c: "primary", i: "file_open" },
+        { s: "#ImportSitePackageDialog [data-icon='ui-icon-arrowreturnthick-1-e']",     c: "primary", i: "file_open" },
+        { s: "#EditImportSettings",                                                     c: "primary", i: "file_open" },
+        { s: "#DoImport",                                                               c: "primary", i: "file_open" },
+        { s: "#ReferenceCopyCommand",                                                   c: "primary", i: "file_copy" },
+        { s: "#SitePackageForm [data-icon='ui-icon-arrowreturnthick-1-w']",             c: "primary", i: "file_export" },
+        { s: "#OpenExportSelectorDialogCommand",                                        c: "primary", i: "file_export" },
+        { s: "#ExportCrosstabCommand",                                                  c: "primary", i: "file_export" },
+        { s: "#DoExport",                                                               c: "primary", i: "file_export" },
+        { s: "#DropDownSearchDialogForm [data-icon='ui-icon-disk']",                    c: "primary", i: "check" },
+        { s: ".nav-site.to-parent a",                                                   c: "primary", i: "arrow_left" },
+        { s: "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmRestore']",      c: "primary", i: "restore_page" },
+        { s: "#FieldSetHistories [data-action='RestoreFromHistory']",                   c: "primary", i: "restore_page" },
+        { s: "#ViewModeContainer [data-confirm='ConfirmRestore']",                      c: "primary", i: "restore_page" },
+
         // --- dark ---
         { s: "[aria-describedby='ImportSitePackageDialog'] [data-icon='ui-icon-cancel']", c: "dark", i: "close" },
         { s: "#ExportSitePackageDialog [data-icon='ui-icon-cancel']:not(#ExcludeData)", c: "dark", i: "close" },
@@ -49,60 +87,38 @@
         { s: "#OutgoingMails_AddCc",  c: "light", i: "person" },
         { s: "#OutgoingMails_AddBcc", c: "light", i: "person" },
 
-        // --- primary ---
-        { s: "#OpenAnalyPartDialog",                                                    c: "primary", i: "add" },
-        { s: "#AnalyPartDialog [data-icon='ui-icon-disk']",                             c: "primary", i: "add" },
-        { s: "#OpenSiteTitleDialog",                                                    c: "primary", i: "add_ad" },
-        { s: "#CreateByTemplate",                                                       c: "primary", i: "add_ad" },
-        { s: "#CreateCommand",                                                          c: "primary", i: "add_ad" },
-        { s: "[aria-describedby='ExportSitePackageDialog'] #IncludeData",               c: "primary", i: "add_box" },
-        { s: "#PermissionsDialog [data-icon='ui-icon-disk']",                           c: "primary", i: "update" },
-        { s: "#UpdateDashboardPartLayouts",                                             c: "primary", i: "update" },
-        { s: "#UpdateCommand",                                                          c: "primary", i: "update" },
-        { s: "#OpenCopyDialogCommand",                                                  c: "primary", i: "content_copy" },
-        { s: "#OutgoingMails_Send",                                                     c: "primary", i: "mail" },
-        { s: "#EditOutgoingMail",                                                       c: "primary", i: "mail" },
-        { s: "#ImportUserTemplateDialog [data-icon='ui-icon-arrowreturnthick-1-e']",    c: "primary", i: "file_open" },
-        { s: "#ImportSitePackageDialog [data-icon='ui-icon-arrowreturnthick-1-e']",     c: "primary", i: "file_open" },
-        { s: "#EditImportSettings",                                                     c: "primary", i: "file_open" },
-        { s: "#DoImport",                                                               c: "primary", i: "file_open" },
-        { s: "#ReferenceCopyCommand",                                                   c: "primary", i: "file_copy" },
-        { s: "#SitePackageForm [data-icon='ui-icon-arrowreturnthick-1-w']",             c: "primary", i: "file_export" },
-        { s: "#OpenExportSelectorDialogCommand",                                        c: "primary", i: "file_export" },
-        { s: "#ExportCrosstabCommand",                                                  c: "primary", i: "file_export" },
-        { s: "#DoExport",                                                               c: "primary", i: "file_export" },
-        { s: "#DropDownSearchDialogForm [data-icon='ui-icon-disk']",                    c: "primary", i: "check" },
-        { s: ".nav-site.to-parent a",                                                   c: "primary", i: "arrow_left" },
-        { s: "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmRestore']",      c: "primary", i: "restore_page" },
-        { s: "#FieldSetHistories [data-action='RestoreFromHistory']",                   c: "primary", i: "restore_page" },
-        { s: "#ViewModeContainer [data-confirm='ConfirmRestore']",                      c: "primary", i: "restore_page" },
+        // --- danger ---
+        { s: "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']", c: "danger", i: "delete" },
+        { s: "#ViewModeContainer [data-confirm='ConfirmPhysicalDelete']",               c: "danger", i: "delete" },
+        { s: "#FieldSetHistories [data-confirm='ConfirmPhysicalDelete']",               c: "danger", i: "delete" },
+        { s: "#ImageLibBody [data-confirm='ConfirmDelete']",                            c: "danger", i: "delete" },
+        { s: "#BulkDeleteCommand",                                                      c: "danger", i: "delete" },
+        { s: "#DeleteCommand",                                                          c: "danger", i: "delete" },
+        { s: "#OpenDeleteSiteDialogCommand",                                            c: "danger", i: "globe_2_cancel" },
 
-        // --- red ---
-        { s: "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']", c: "red", i: "delete" },
-        { s: "#ViewModeContainer [data-confirm='ConfirmPhysicalDelete']",               c: "red", i: "delete" },
-        { s: "#FieldSetHistories [data-confirm='ConfirmPhysicalDelete']",               c: "red", i: "delete" },
-        { s: "#ImageLibBody [data-confirm='ConfirmDelete']",                            c: "red", i: "delete" },
-        { s: "#BulkDeleteCommand",                                                      c: "red", i: "delete" },
-        { s: "#DeleteCommand",                                                          c: "red", i: "delete" },
-        { s: "#OpenDeleteSiteDialogCommand",                                            c: "red", i: "globe_2_cancel" },
+        
+        // --- execute ---
 
-        // --- display ---
-        { s: "#ReduceGuides",                                                           c: "display", i: "expand_more" },
-        { s: "#ReduceAggregations",                                                     c: "display", i: "expand_more" },
-        { s: "#ReduceViewFilters",                                                      c: "display", i: "expand_more" },
-        { s: "#ExpandGuides",                                                           c: "display", i: "chevron_right" },
-        { s: "#ExpandAggregations",                                                     c: "display", i: "chevron_right" },
-        { s: "#ExpandViewFilters",                                                      c: "display", i: "chevron_right" },
-        { s: "#CopyDirectUrlToClipboard",                                               c: "display", i: "share" },
+        // --- approve ---
+
+        // --- notify ---
+
+        // --- extra ---
+
     ];
 
     // color → CSSクラス名の対応
     const CLASS_MAP = {
+        display: "display-material-icons",
+        primary: "primary-material-icons",
         dark:    "dark-material-icons",
         light:   "light-material-icons",
-        primary: "primary-material-icons",
-        red:     "red-material-icons",
-        display: "display-material-icons",
+        danger:  "danger-material-icons",
+
+        execute: "execute-material-icons",
+        approve: "approve-material-icons",
+        notify:  "notify-material-icons",
+        extra:   "extra-material-icons",
     };
 
     // ===============================
