@@ -329,7 +329,7 @@ button:has(.red-material-icons):active {
 
 .ui-tabs .ui-tabs-nav {
     border-bottom: 2px solid var(--border-light) !important;
-    background-color: var(--surface-strong);
+    background-color: var(--surface-base);
     padding: 9px 16px;
     gap: 7px;
 }

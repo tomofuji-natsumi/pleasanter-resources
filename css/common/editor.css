@@ -8,8 +8,8 @@
 }
 
 #Editor #MainForm {
-    box-shadow: 0 2px 1px var(--shadow-light);
-	background: var(--surface-strong);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--elevation-1);
 }
 
 #Editor #MainForm:after {

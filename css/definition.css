@@ -39,17 +39,17 @@
        2. 背景
        ========================================================= */
 
-	--bg-dialog-header: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.04) h);
-	--bg-main:          oklch(from var(--primary) calc(l + 0.44) calc(c * 0.02) h);
-	--bg-main-dark:     oklch(from var(--primary) calc(l + 0.42) calc(c * 0.02) h);
-	--bg-accent:         oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
+    --bg-dialog-header: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.04) h);
+    --bg-accent:         oklch(from var(--primary) calc(l + 0.36) calc(c * 0.18) h);
+    --bg-main:          oklch(0.962 0.004 255);
+    --bg-main-dark:     oklch(0.938 0.008 255);
 
-   --bg-disabled:    var(--surface-strong);
+    --bg-disabled:    var(--surface-strong);
 	
-	--bg-dashboard:    	  #E7E7E7;
-	--bg-guide:        	  #FFF9E3;
-	--bg-hamburger-outer: rgba(3, 3, 3, 0.2);
-	--bg-footer:       	  rgba(0, 0, 0, 0.45);
+    --bg-dashboard:    	  #E7E7E7;
+    --bg-guide:        	  #FFF9E3;
+    --bg-hamburger-outer: rgba(3, 3, 3, 0.2);
+    --bg-footer:       	  rgba(0, 0, 0, 0.45);
 
     /* =========================================================
        3. 枠線・影（UIの境界・深度）
