@@ -110,7 +110,7 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
 .nav-site.to-parent a::before,
 .nav-site.to-parent:focus  a::before {
     background: var(--primary) !important;
-    color: var(--on-primary) !important;
+    color: var(--text-on-primary) !important;
     font-weight: 550;
 }
 

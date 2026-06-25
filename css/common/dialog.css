@@ -168,7 +168,7 @@
 .wrapper .ui-selectable li.ui-selecting,
 .wrapper .ui-selectable li.ui-selected {
     background: var(--primary);
-    color: var(--on-primary);
+    color: var(--text-on-primary);
 }
 
 

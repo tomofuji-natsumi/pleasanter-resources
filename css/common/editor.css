@@ -31,7 +31,7 @@
 
 .ui-tabs-panel .field-label {
     font-size: 0.85rem;
-    color: var(--text-main);
+    color: var(--text-sub);
     line-height: 1.5;
     padding: 0 0.8em 0 0;
     margin-bottom: 0;
@@ -182,7 +182,7 @@
     width: 100%;
     min-width: fit-content;
     background: var(--surface-base) !important;
-    border: 1px solid var(--border-strong);
+    border: 1px solid var(--border-light);
 }
 
 #Editor #EditorComments .comment + .comment {

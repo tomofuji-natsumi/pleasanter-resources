@@ -119,53 +119,51 @@ img {
     font-weight: 550 !important;
 }
 
-/* ダークボタン */
+/* プライマリーボタン */
+button:has(.primary-material-icons),
+button:has(.primary-material-icons):focus {
+    background: var(--primary) !important;
+    color: var(--text-on-primary) !important;
+}
+button:has(.primary-material-icons):hover,
+button:has(.primary-material-icons):active {
+    background: var(--primary-hover) !important;
+}
+
+/* 黒ボタン */
 button:has(.dark-material-icons),
 button:has(.dark-material-icons):focus {
-    background: var(--btn-back-bg) !important;
+    background: var(--btn-dark-bg) !important;
     color: var(--text-white) !important;
 }
 button:has(.dark-material-icons):hover,
 button:has(.dark-material-icons):active {
-    background: var(--btn-back-hover);
-    color: var(--text-white-hover);
+    background: var(--btn-dark-bg-hover);
 }
 
-/* ライトボタン */
+/* 白ボタン */
 button:has(.light-material-icons),
 button:has(.light-material-icons):focus {
-    background: var(--surface-base);
-    border: 1px solid var(--border-light) !important;
+    background: var(--surface-soft);
+    border: 1px solid var(--border-normal) !important;
     color: var(--text-emphasis);
 }
 button:has(.light-material-icons):hover,
 button:has(.light-material-icons):active {
-    background: var(--surface-base-hover);
-    border: 1px solid var(--border-light) !important;
+    background: var(--surface-strong);
+    border: 1px solid var(--border-strong) !important;
+    color: var(--text-main);
 }
 
 /* 赤ボタン */
 button:has(.red-material-icons),
 button:has(.red-material-icons):focus {
-    background: var(--btn-delete-bg) !important;
+    background: var(--btn-danger-bg) !important;
     color: var(--text-white) !important;
 }
 button:has(.red-material-icons):hover,
 button:has(.red-material-icons):active {
-    background: var(--btn-delete-hover) !important;
-    color: var(--text-white-hover) !important;
-}
-
-/* プライマリーボタン */
-button:has(.primary-material-icons),
-button:has(.primary-material-icons):focus {
-    background: var(--primary) !important;
-    color: var(--on-primary) !important;
-}
-button:has(.primary-material-icons):hover,
-button:has(.primary-material-icons):active {
-    background: var(--primary-hover) !important;
-    color: var(--on-primary-hover) !important;
+    background: var(--btn-danger-bg-hover) !important;
 }
 
 
@@ -299,7 +297,7 @@ button:has(.primary-material-icons):active {
 
 #Breadcrumb li:last-child a span,
 #Breadcrumb .item:last-child:is(.trashbox) span {
-    color: var(--on-primary);
+    color: var(--text-on-primary);
     text-shadow: var(--elevation-1);
 	font-weight: 550;
 }
@@ -352,17 +350,17 @@ button:has(.primary-material-icons):active {
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover a {
-    color: var(--on-primary)  !important;
+    color: var(--text-on-primary)  !important;
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
     background: var(--primary) !important;
-    border: 1px solid var(--border-focus);
+    border: 1px solid var(--border-accent);
     border-radius: var(--radius-small) !important;
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
-	color: var(--on-primary);
+	color: var(--text-on-primary);
     text-shadow: var(--elevation-1);
 	font-weight: 550;
 }
@@ -381,8 +379,8 @@ button:has(.primary-material-icons):active {
     gap: 10px;
     font-weight: 550;
     font-size: 0.95rem;
-    color: var(--on-primary);
-    background-color: var(--bg-toolbar) !important;
+    color: var(--text-on-primary);
+    background-color: var(--primary-dark) !important;
     padding: 8px 12px;
     border-radius: var(--radius-large);
     cursor: default;
@@ -390,7 +388,7 @@ button:has(.primary-material-icons):active {
 }
 
 .field-section .ui-icon {
-    color: var(--on-primary);
+    color: var(--text-on-primary);
 }
 
 

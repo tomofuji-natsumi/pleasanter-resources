@@ -7,7 +7,7 @@ select:not([name="Results_Status"]),
 input,
 .ui-widget.ui-state-default.ui-multiselect {
     background: var(--surface-base) !important;
-    border: 1px solid var(--border-strong) !important;
+    border: 1px solid var(--border-light) !important;
     border-radius: var(--radius-medium) !important;
     color: var(--text-main);
 }
@@ -16,7 +16,7 @@ textarea:focus,
 select:not([name="Results_Status"]):focus,
 input:focus,
 .ui-widget.ui-state-default.ui-multiselect:focus {
-    border: 1px solid var(--primary-border) !important;
+    border: 1px solid var(--primary) !important;
     background-color: var(--surface-base) !important;
     color: var(--text-main) !important;
 }
@@ -50,7 +50,7 @@ input:focus,
 }
 
 .control-dropdown {
-	border: 1px solid var(--border-strong);
+	border: 1px solid var(--border-light);
 }
 
 
@@ -77,7 +77,7 @@ markdown-field .md-viewer:not(.control-text) {
 
 markdown-field:not(.is-comment) .md-viewer:not(.not-send) {
     background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-strong) !important;
+    border: 1px solid var(--border-light) !important;
     padding: 8px 32px 8px 8px;
 }
 
@@ -119,13 +119,13 @@ rt-editor {
 }
 
 rt-editor .se-toolbar {
-    background-color: var(--bg-toolbar) !important;
-    border-bottom: 1px solid var(--border-strong) !important;
+    background-color: var(--primary-dark) !important;
+    border-bottom: 1px solid var(--border-light) !important;
     padding: 4px !important;
 }
 
 rt-editor .toggle:after {
-    background-color: var(--bg-toolbar) !important;
+    background-color: var(--primary-dark) !important;
 }
 
 rt-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
@@ -144,7 +144,7 @@ rt-editor button:not([disabled="true"]) {
 rt-editor .se-btn:enabled:active,
 rt-editor .se-btn:enabled:focus,
 rt-editor .se-btn:enabled:hover {
-	background-color: var(--surface-strong);
+	background-color: var(--surface-light);
 	border: none;
 }
 
@@ -154,7 +154,7 @@ rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
     max-width: fit-content;
     min-width: max-content;
     background-color: var(--surface-base) !important;
-    border: 1px solid var(--border-normal);
+    border: 1px solid var(--border-light);
 }
 
 rt-editor .se-btn-list,
@@ -202,7 +202,7 @@ rt-editor .se-btn-select > svg {
 
 .check-option .check-icon {
     background-color: var(--surface-base);
-    border: 1px solid var(--border-strong) !important;
+    border: 1px solid var(--border-light) !important;
     border-radius: var(--radius-medium) !important;
 }
 
@@ -215,13 +215,13 @@ rt-editor .se-btn-select > svg {
 }
 
 .check-option .check-icon:has(input:disabled):has(input:checked) {
-    background-color: var(--text-disabled);
-    border: 1px solid var(--border-strong);
+    background-color: var(--bg-disabled);
+    border: 1px solid var(--border-light);
 }
 
 .field-control .control-markdown {
     min-width: 80px;
-    border: 1px solid var(--border-strong);
+    border: 1px solid var(--border-light);
 }
 
 /* =========================================================
@@ -254,19 +254,19 @@ rt-editor .se-btn-select > svg {
 .flatpickr-current-month .flatpickr-monthDropdown-months,
 .flatpickr-current-month input.cur-year,
 span.flatpickr-weekday {
-    color: var(--on-primary);
+    color: var(--text-on-primary);
     background: transparent !important;
 }
 
 .flatpickr-months .flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month {
-    color: var(--on-primary) !important;
-    fill: var(--on-primary) !important;
+    color: var(--text-on-primary) !important;
+    fill: var(--text-on-primary) !important;
     line-height: 1.4;
 }
 
 .flatpickr-day.selected {
-    color: var(--on-primary);
+    color: var(--text-on-primary);
     background: var(--primary);
     border-color: var(--primary);
 }
@@ -315,9 +315,9 @@ span.flatpickr-weekday {
 .container-normal:has(span[data-readonly="1"]),
 .readonly-style {
     padding: 0.3rem 0.55rem !important;
-    background: var(--surface-strong) !important;
+    background: var(--bg-disabled) !important;
     color: var(--text-disabled) !important;
-    border: 1px solid var(--border-normal) !important;
+    border: 1px solid var(--border-light) !important;
     border-radius: var(--radius-medium) !important;
     pointer-events: none;
     user-select: text;

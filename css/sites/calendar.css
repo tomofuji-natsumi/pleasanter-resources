@@ -336,8 +336,7 @@ td[role="presentation"],
 .fc .fc-button-primary,
 .fc .fc-button-group .fc-button {
     background-color: var(--primary) !important;
-    border: 1px solid var(--primary-border) !important;
-    color: var(--on-primary) !important;
+    color: var(--text-on-primary) !important;
     border-radius: var(--radius-small);
 }
 
