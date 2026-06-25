@@ -3,8 +3,8 @@
    ========================================================= */
 
 textarea,
-select:not([name="Results_Status"]),
 input,
+select:not([name="Results_Status"]),
 .ui-widget.ui-state-default.ui-multiselect {
     background: var(--surface-base) !important;
     border: 1px solid var(--border-normal) !important;
@@ -13,8 +13,9 @@ input,
 }
 
 textarea:focus,
-select:not([name="Results_Status"]):focus,
 input:focus,
+select:not([name="Results_Status"]):focus,
+.control-dropdown:focus
 .ui-widget.ui-state-default.ui-multiselect:focus {
     border: 1px solid var(--primary) !important;
     background-color: var(--surface-base) !important;
