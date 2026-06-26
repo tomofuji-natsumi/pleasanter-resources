@@ -192,8 +192,16 @@ tr.crosstab-row th {
     padding: 0.13rem 0.37rem !important;
     border-radius: var(--radius-small) !important;
     position: relative;
-    border: 1px solid transparent !important;
+    background-color: var(--status-no-bg);
+    border: 1px solid var(--status-no-border) !important;
+    color: var(--status-no-text);
     transition: background-color 0.22s ease-out, border-color 0.22s ease-out;
+}
+
+[class^="status-"]:hover,
+[style^="status-"]:hover {
+    background-color: var(--status-no-bg-hover);
+    border-color: var(--status-no-border-hover);
 }
 
 /* 未着手 */
