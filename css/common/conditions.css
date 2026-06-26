@@ -136,6 +136,7 @@
     margin: 0 0.5rem 0 0;
     height: 30px;
 	line-height: 0.2rem;
+    box-shadow: var(--elevation-2);
 }
 
 
