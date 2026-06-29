@@ -9,7 +9,7 @@ body {
     padding: 0;
     min-width: auto !important;
     overflow-x: hidden;
-    background-color: var(--bg-main) !important;
+    background-color: var(--bg-dashboard) !important;
 }
 
 body,
@@ -1385,7 +1385,7 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
         padding: calc(40px * .4) 18px;
     }
 
-    #SiteMenu .nav-site {
+    #SiteMenu .nav-site:not(.to-parent)  {
         padding: 8px;
         min-height: 140px;
     }
