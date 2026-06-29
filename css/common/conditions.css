@@ -21,12 +21,13 @@
 #ViewFilters:not(:empty),
 #Aggregations:not(:empty) {
     position: relative;
-    width: 100% !important; /* important 必須 */
-    padding: 0.9rem 0.8rem !important; /* important 必須 */
+    width: 100% !important;
+    padding: 0.9rem 0.8rem !important;
     gap: 1.0rem 0.9rem;
 	background-color: var(--bg-accent);
-    border-bottom: 1px solid var(--border-strong) !important; /* important 必須 */
+    border-bottom: 1px solid var(--border-strong) !important;
     box-shadow: var(--shadow-light);
+    color: var(--text-main);
 }
 
 #ReduceViewFilters,
@@ -59,6 +60,7 @@
 /* =========================================================
    2. ガイド
    ===================================$====================== */
+   
 #Guide {
     background-color: var(--bg-guide);
 }

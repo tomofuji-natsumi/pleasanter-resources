@@ -30,6 +30,10 @@ textarea,
     line-height: 1.36;
 }
 
+a {
+    color: var(--text-link);
+}
+
 img {
 	user-select: none;
 }
@@ -215,7 +219,7 @@ button:has(.extra-material-icons):active {
     background-color: var(--surface-soft) !important;
     border-bottom: 1px solid var(--border-light);
     font-size: 0.9rem;
-    color: var(--text-main) !important;
+    color: var(--text-emphasis) !important;
     box-shadow: var(--elevation-1);
 }
 
@@ -682,7 +686,7 @@ markdown-field.is-comment .md-viewer {
 }
 
 markdown-field .md-viewer {
-    color: var(--text-main);
+    color: var(--text-main) !important;
     line-height: 1.55;
     letter-spacing: 0.2px;
 }
