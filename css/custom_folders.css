@@ -1,3 +1,12 @@
+#Message {
+    bottom: 0;
+}
+
+/* TemplateTabsContainer が存在しない or 空の場合 → 非表示 */
+body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
+    display: none !important;
+}
+
 /* =========================================================
     2. 戻るボタン
     ========================================================= */
