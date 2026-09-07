@@ -53,6 +53,9 @@
     --bg-hamburger-outer: rgba(3, 3, 3, 0.2);
     --bg-footer:       	  rgba(0, 0, 0, 0.45);
 
+    --dashboard-part-nav-hover-bg: #F7FAFF;
+    --dashboard-part-nav-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 0 0 2px rgba(59, 130, 246, 0.18);
+
     /* =========================================================
        3. 枠線・影（UIの境界・深度）
        ========================================================= */

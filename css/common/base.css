@@ -38,6 +38,11 @@ img {
 	user-select: none;
 }
 
+.grid-stack-item-content .dashboard-part-nav-item:hover {
+    background: var(--dashboard-part-nav-hover-bg);
+    box-shadow: var(--dashboard-part-nav-hover-shadow);
+}
+
 #Import:not(.control-checkbox),
 #ImportUserTemplate_Import,
 #SitePackageForm #Import,

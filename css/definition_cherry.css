@@ -53,20 +53,23 @@
     --bg-hamburger-outer: rgba(3, 3, 3, 0.2);
     --bg-footer:       	  rgba(0, 0, 0, 0.45);
 
+    --dashboard-part-nav-hover-bg: oklch(from var(--primary) calc(l + 0.42) calc(c * 0.20) h);
+    --dashboard-part-nav-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.12), 0 0 0 2px oklch(from var(--primary) l c h / 0.22);
+
     /* =========================================================
        3. 枠線・影（UIの境界・深度）
        ========================================================= */
 
     --border-subtle: rgba(0, 0, 0, 0.04);
-    --border-light:  oklch(from var(--primary) calc(l + 0.33) calc(c * 0.05) h);
-    --border-normal: oklch(from var(--primary) calc(l + 0.28) calc(c * 0.06) h);
-    --border-strong: oklch(from var(--primary) calc(l + 0.23) calc(c * 0.07) h);
+    --border-light:  #E2E2E2;
+    --border-normal: #CCCCCC;
+    --border-strong: #ADADAD;
 
-    --border-nav: oklch(from var(--primary) calc(l + 0.30) calc(c * 0.28) h);
-    --border-accent: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
-    --border-title: oklch(from var(--primary) calc(l + 0.30) calc(c * 0.27) h);
+    --border-nav: #999999;
+    --border-accent: #C4C4C4;
+    --border-title: #999999;
     --border-interactive: oklch(0.72 0.09 255);
-    --border-comment: 1px solid oklch(from var(--primary) calc(l + 0.29) calc(c * 0.22) h);
+    --border-comment: 1px solid #C4C4C4;
 
     --radius-small: 4px;
     --radius-medium: 5px;
@@ -90,7 +93,7 @@
     --text-muted:     #6A7280;
     --text-disabled:  #9CA3AF;
 
-    --text-comment: oklch(from var(--primary) calc(l - 0.10) calc(c * 0.70) h);;
+    --text-comment: #444444;
     --text-white: #F5F5F5;
 
     --text-link: var(--primary);
@@ -213,9 +216,9 @@
        10. イベント（平日 / 土曜 / 日曜 / 他月）
        ========================================================= */
 
-    --cal-event-bg-weekday:    oklch(0.54 0.15 255);
-    --cal-event-hover-weekday: oklch(0.50 0.15 255);
-    --cal-event-tag-weekday:   oklch(0.46 0.15 255);
+    --cal-event-bg-weekday:    oklch(from var(--primary) calc(l - 0.05) calc(c * 1.05) h);
+    --cal-event-hover-weekday: oklch(from var(--primary) calc(l - 0.11) calc(c * 1.05) h);
+    --cal-event-tag-weekday:   oklch(from var(--primary) calc(l - 0.17) calc(c * 1.05) h);
     --cal-event-text-weekday: var(--text-white);
 
     --cal-event-bg-sat:    oklch(0.68 0.09 255);
