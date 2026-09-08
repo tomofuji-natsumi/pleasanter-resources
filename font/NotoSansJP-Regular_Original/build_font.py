@@ -1,15 +1,19 @@
 """
-PDF出力用フォント (font/NotoSansJP-Regular.woff2) のビルドスクリプト。
+PDF出力用フォント (font/NotoSansJP-Regular_LightVer.ttf) のビルドスクリプト。
 
 このディレクトリ (font/NotoSansJP-Regular_Original/) にある
 - NotoSansJP-Regular.ttf : Google Fonts配布のNoto Sans JP フルセット原本
 - joyo_jinmeiyo.txt      : 常用漢字+人名用漢字リスト(vaiorabbit/everyday_use_kanji)
 - old_forms.txt          : 常用漢字表 公式旧字体364字(ikawaha/kanjiより抽出)
 を元に、業務で使う文字種のみを抜き出したサブセットフォントを
-一つ上の階層 (font/NotoSansJP-Regular.woff2) に生成する。
+一つ上の階層 (font/NotoSansJP-Regular_LightVer.ttf) に生成する。
 
-要 fonttools, brotli:
-    pip install fonttools brotli
+出力はTTF形式（woff2は使わない）。pdfme/fontkitでPDFに埋め込む際、
+woff2コンテナのままだと埋め込みフォントとして不正になり、Acrobatで
+「埋め込みフォントを抽出できません」という警告が出ることが確認されているため。
+
+要 fonttools:
+    pip install fonttools
 
 実行:
     python build_font.py
@@ -20,7 +24,7 @@ import sys
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SRC_FONT = os.path.join(BASE_DIR, "NotoSansJP-Regular.ttf")
-OUTPUT_FONT = os.path.join(BASE_DIR, "..", "NotoSansJP-Regular.woff2")
+OUTPUT_FONT = os.path.join(BASE_DIR, "..", "NotoSansJP-Regular_LightVer.ttf")
 
 # 個別に追加した文字（人名・地名等でよく使われる旧字体・異体字）
 # ※ NotoSansJP-Regular.ttf自体にグリフが存在しない文字は含めても無視される。
@@ -110,9 +114,7 @@ def main():
             f"--output-file={OUTPUT_FONT}",
             f"--unicodes-file={unicodes_file}",
             "--layout-features=*",
-            "--flavor=woff2",
             "--no-hinting",
-            "--desubroutinize",
         ],
         check=True,
     )

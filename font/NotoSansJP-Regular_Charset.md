@@ -1,6 +1,8 @@
 # PDF生成用フォント 対応文字種
 
-`font/NotoSansJP-Regular.woff2` は、Google Fonts配布の[Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP)（フルセット）から、`fonttools`の`pyftsubset`で必要な文字種のみを抜き出して軽量化したものです。
+`font/NotoSansJP-Regular_LightVer.ttf` は、Google Fonts配布の[Noto Sans JP](https://fonts.google.com/noto/specimen/Noto+Sans+JP)（フルセット）から、`fonttools`の`pyftsubset`で必要な文字種のみを抜き出して軽量化したものです。
+
+出力形式はTTF（無圧縮）。当初woff2で生成していたが、pdfme/fontkitでPDFに埋め込む際、woff2コンテナのままだと埋め込みフォントとして不正になり、Adobe Acrobatで「埋め込みフォント...を抽出できません」という警告が発生することが確認されたため、TTF形式に変更した。
 
 ## 生成元
 
@@ -11,7 +13,7 @@
 
 ```
 font/
-├── NotoSansJP-Regular.woff2          # PDF出力用サブセットフォント（本体）
+├── NotoSansJP-Regular_LightVer.ttf   # PDF出力用サブセットフォント（本体）
 ├── NotoSansJP-Regular_Charset.md     # このドキュメント
 └── NotoSansJP-Regular_Original/      # 再生成用の原本データ一式
     ├── NotoSansJP-Regular.ttf        # Noto Sans JP フルセット原本
@@ -40,16 +42,17 @@ font/
   - 数学記号：±、×、÷、≠、≦、≧、∞、∴、√ 等
   - 図形・マーク：■、▲、▼、◆、○、◎、★、☆、♀、♂ 等
 
-グリフ総数: 4,768 / ファイルサイズ: 約633KB
+グリフ総数: 4,768 / ファイルサイズ: 約1.5MB（TTF）
 
 ### ファイルサイズの推移
 
 | 段階 | サイズ | グリフ数 |
 |---|---|---|
 | 当初のminoryorg配布版（丸数字等を含まず問題の原因だったもの） | 709KB | 3,596 |
-| JIS第3・4水準を含めてフルセットから再構築した版 | 約2.06MB | 14,678 |
-| JIS第3・4水準を除外した版 | 約1.19MB | 8,410 |
-| **現行版（常用漢字+人名用漢字+旧字体+個別追加分）** | **約633KB** | **4,768** |
+| JIS第3・4水準を含めてフルセットから再構築した版（woff2） | 約2.06MB | 14,678 |
+| JIS第3・4水準を除外した版（woff2） | 約1.19MB | 8,410 |
+| 常用漢字+人名用漢字+旧字体+個別追加分（woff2） | 約633KB | 4,768 |
+| **現行版：同上をTTF形式で出力**（woff2はpdfme埋め込み時にAcrobatエラーが発生したため変更） | **約1.5MB** | **4,768** |
 | （参考）元のフルセットNoto Sans JP（ttf） | 約5.2MB | 16,732 |
 
 現行版は、フルセットのNoto Sans JPと比べて約88%、丸数字等を含めた直後の版と比べても約69%のファイルサイズ削減となっている。
@@ -111,7 +114,7 @@ U+FF00-FFEF   全角英数字等
 
 ## 再生成方法
 
-要 fonttools, brotli（`pip install fonttools brotli`）。
+要 fonttools（`pip install fonttools`）。
 
 ```bash
 cd font/NotoSansJP-Regular_Original
