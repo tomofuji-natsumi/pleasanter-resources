@@ -49,6 +49,7 @@ tr.crosstab-row th {
 
 .grid th.sortable span {
     font-weight: 550;
+    user-select: none;
 }
 
 /* チェックボックス */

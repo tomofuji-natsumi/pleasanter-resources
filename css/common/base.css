@@ -140,7 +140,7 @@ button:has(.dark-material-icons):focus {
 }
 button:has(.dark-material-icons):hover,
 button:has(.dark-material-icons):active {
-    background: var(--btn-dark-bg-hover);
+    background: var(--btn-dark-bg-hover) !important;
 }
 
 /* light */
@@ -226,6 +226,10 @@ button:has(.extra-material-icons):active {
     box-shadow: var(--elevation-1);
 }
 
+#Header #ViewSelector {
+    user-select: none;
+}
+
 #Header #ViewSelectorField .field-normal .control-dropdown {
     width: auto;
     min-width: 100px;
@@ -275,10 +279,12 @@ button:has(.extra-material-icons):active {
 
 #Header .hamburger-menubox .menubox a {
     color: var(--text-main);
+    user-select: none;
 }
 
 #Header .hamburger-menubox .menubox .menulabel span:last-child {
     font-size: 0.94rem;
+    user-select: none;
 }
 
 #Header .hamburger-menubox .menubox .menulabel:hover,
@@ -366,6 +372,7 @@ button:has(.extra-material-icons):active {
 
 #Breadcrumb .item a {
     padding: 0 1.1rem !important;
+    user-select: none;
 }
 
 
@@ -431,6 +438,7 @@ button:has(.extra-material-icons):active {
 .ui-tabs-panel .field-label label {
     vertical-align: sub;
     font-weight: 500;
+    user-select: none;
 }
 
 .ui-tabs-panel .check-option {
@@ -677,6 +685,7 @@ markdown-field .bottom-tools {
 
 markdown-field .md-btn-icon {
     color: var(--icon-color);
+    user-select: none;
 }
 
 markdown-field .md-btn.is-editor {

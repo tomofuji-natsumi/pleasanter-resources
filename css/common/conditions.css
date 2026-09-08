@@ -37,6 +37,7 @@
     font-size: 0.9rem;
 	height: 32px;
     align-content: center;
+    user-select: none;
 }
 
 #ViewFilters .ui-icon-folder-open,
@@ -49,6 +50,7 @@
 #ViewFilters label:not(.check-option),
 #ViewFilters span.check-text {
     align-self: center;
+    user-select: none;
 }
 
 #ViewFilters .ui-multiselect .ui-multiselect-open+span,
@@ -190,19 +192,11 @@
     padding: 0;
     font-size: 0.86rem;
     color: var(--text-emphasis);
+    user-select: none;
 }
 
 #Aggregations .label:not(:first-of-type) {
     margin-left: 1.4rem;
-}
-
-#Aggregations .data.link {
-    position: relative;
-    padding: 3px 6px;
-    border-radius: var(--radius-small);
-    font-weight: 500;
-    display: inline-block;
-	cursor: pointer;
 }
 
 #Aggregations .data:not(.link) {
@@ -220,6 +214,17 @@
 /* =========================================================
    6. ステータス色
    ========================================================= */
+#Aggregations .data.link {
+    position: relative;
+    padding: 3px 6px;
+    border-radius: var(--radius-small);
+    font-weight: 500;
+    display: inline-block;
+	cursor: pointer;
+    line-height: 1.53;
+    user-select: none;
+}
+
 #Aggregations .data.link:not([data-selector="#ViewFilters__Status"]) {
     background-color: var(--status-no-bg);
     border: 1px solid var(--status-no-border);
