@@ -1264,6 +1264,11 @@ label.error {
     text-overflow: ellipsis;
     margin: 0;
     color: var(--primary);
+    user-select: none;
+}
+
+.nav-site .conditions span {
+    user-select: none;
 }
 
 .nav-site .conditions {

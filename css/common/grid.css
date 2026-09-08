@@ -315,3 +315,15 @@ td .notes {
     display: block;
     opacity: 1;
 }
+
+#Grid .limit-warning3 {
+    background-color: var(--semantic-danger);
+    color: var(--surface-base);
+    padding: 0 0.5rem;
+}
+
+#Grid .limit-normal {
+    color: var(--semantic-danger);
+    font-weight: bold;
+    margin-left: 1rem;
+}
