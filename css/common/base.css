@@ -420,6 +420,7 @@ button:has(.extra-material-icons):active {
 	color: var(--text-on-primary);
     text-shadow: var(--elevation-1);
 	font-weight: 550;
+    user-select: none;
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
@@ -790,11 +791,12 @@ rt-editor .se-btn-select > svg {
 	background-color: var(--surface-base) !important;
 }
 
-.current-date {
+.field-control .current-date {
     right: 2%;
+    user-select: none;
 }
 
-.current-date .material-symbols-sharp {
+.field-control .current-date .material-symbols-sharp {
     color: var(--icon-color) !important;
 }
 
@@ -1378,13 +1380,13 @@ label.error {
 
 .field-section {
     background-color: var(--primary);
-    color: var(--text-on-primary);
+    color: var(--text-white);
     user-select: none;
     font-size: 0.94rem;
 }
 
 .field-section .ui-icon {
-    color: var(--text-on-primary);
+    color: var(--text-white);
 }
 
 

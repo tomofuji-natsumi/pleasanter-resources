@@ -199,6 +199,10 @@
     margin-left: 1.4rem;
 }
 
+#Aggregations .data {
+    user-select: none;
+}
+
 #Aggregations .data:not(.link) {
     padding: 0;
 	font-size: 0.86rem;
