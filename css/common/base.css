@@ -38,6 +38,10 @@ img {
 	user-select: none;
 }
 
+.material-symbols-sharp {
+    user-select: none;
+}
+
 .grid-stack-item-content .dashboard-part-nav-item:hover {
     background: var(--dashboard-part-nav-hover-bg);
     box-shadow: var(--dashboard-part-nav-hover-shadow);
@@ -423,6 +427,10 @@ button:has(.extra-material-icons):active {
     font-size: 0.85rem;
 }
 
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor label {
+    user-select: none;
+}
+
 .ui-tabs-panel {
 	background: var(--surface-base);
 }
@@ -637,6 +645,10 @@ select:not([name="Results_Status"]):focus,
     border: 1px solid var(--border-normal);
 }
 
+.check-option .check-text {
+    user-select: none;
+}
+
 .field-control .control-markdown {
     min-width: 80px;
     border: 1px solid var(--border-normal);
@@ -778,10 +790,8 @@ rt-editor .se-btn-select > svg {
 	background-color: var(--surface-base) !important;
 }
 
-
 .current-date {
     right: 2%;
-	user-select: none;
 }
 
 .current-date .material-symbols-sharp {
@@ -855,6 +865,7 @@ span.flatpickr-weekday {
     background: transparent;
     border: 2px dotted var(--border-interactive) !important;
     border-radius: var(--radius-medium);
+    user-select: none;
 }
 
 .control-attachments-upload:hover {
@@ -1363,6 +1374,17 @@ label.error {
 
 [aria-describedby="ImportUserTemplateDialog"] :not(td)>div.field-wide .container-normal {
     margin-left: 9.2rem;
+}
+
+.field-section {
+    background-color: var(--primary);
+    color: var(--text-on-primary);
+    user-select: none;
+    font-size: 0.94rem;
+}
+
+.field-section .ui-icon {
+    color: var(--text-on-primary);
 }
 
 
