@@ -163,23 +163,66 @@
       --status-inprogress-border-hover: #58BCAC;
       --status-inprogress-text: #0A5048;
 
-      --status-review-bg: #F3EEFF;
-      --status-review-border: #C4A8F0;
-      --status-review-bg-hover: #EAE0FC;
-      --status-review-border-hover: #B89AE4;
-      --status-review-text: #4A1A8A;
+      --status-approval-bg: #F3EEFF;
+      --status-approval-border: #C4A8F0;
+      --status-approval-bg-hover: #EAE0FC;
+      --status-approval-border-hover: #B89AE4;
+      --status-approval-text: #4A1A8A;
 
-      --status-closed-bg: #E8F5EC;
-      --status-closed-border: #90CC9E;
-      --status-closed-bg-hover: #D8EEDE;
-      --status-closed-border-hover: #80BE8E;
-      --status-closed-text: #1A5830;
+      --status-completed-bg: #E8F5EC;
+      --status-completed-border: #90CC9E;
+      --status-completed-bg-hover: #D8EEDE;
+      --status-completed-border-hover: #80BE8E;
+      --status-completed-text: #1A5830;
 
-      --status-rejected-bg: #FFEBEE;
-      --status-rejected-border: #F0A0A8;
-      --status-rejected-bg-hover: #FFD8DC;
-      --status-rejected-border-hover: #E49098;
-      --status-rejected-text: #8A1A20;
+      --status-declined-bg: #FFEBEE;
+      --status-declined-border: #F0A0A8;
+      --status-declined-bg-hover: #FFD8DC;
+      --status-declined-border-hover: #E49098;
+      --status-declined-text: #8A1A20;
+
+      /* ランク評価専用(統一ルールの対象外) */
+      --status-rank-e-bg: #F0F1F3;
+      --status-rank-e-border: #C8CDD4;
+      --status-rank-e-bg-hover: #E4E6EA;
+      --status-rank-e-border-hover: #BCC1C9;
+      --status-rank-e-text: #4A5260;
+
+      --status-rank-d-bg: #F0F4FE;
+      --status-rank-d-border: #C0CFEE;
+      --status-rank-d-bg-hover: #E4ECFC;
+      --status-rank-d-border-hover: #B0C2E6;
+      --status-rank-d-text: #1A3A7A;
+
+      --status-rank-c-bg: #E0F8F4;
+      --status-rank-c-border: #6ACABA;
+      --status-rank-c-bg-hover: #CCF0EA;
+      --status-rank-c-border-hover: #58BCAC;
+      --status-rank-c-text: #0A5048;
+
+      --status-rank-b-bg: #FFF8E1;
+      --status-rank-b-border: #F0D080;
+      --status-rank-b-bg-hover: #FFF0C0;
+      --status-rank-b-border-hover: #E8C060;
+      --status-rank-b-text: #7A5500;
+
+      --status-rank-a-bg: #F3EEFF;
+      --status-rank-a-border: #C4A8F0;
+      --status-rank-a-bg-hover: #EAE0FC;
+      --status-rank-a-border-hover: #B89AE4;
+      --status-rank-a-text: #4A1A8A;
+
+      --status-rank-s-bg: #E8F5EC;
+      --status-rank-s-border: #90CC9E;
+      --status-rank-s-bg-hover: #D8EEDE;
+      --status-rank-s-border-hover: #80BE8E;
+      --status-rank-s-text: #1A5830;
+
+      --status-rank-x-bg: #FFEBEE;
+      --status-rank-x-border: #F0A0A8;
+      --status-rank-x-bg-hover: #FFD8DC;
+      --status-rank-x-border-hover: #E49098;
+      --status-rank-x-text: #8A1A20;
 
     /* =========================================================
        9. カレンダー

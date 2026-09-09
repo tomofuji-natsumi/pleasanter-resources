@@ -238,37 +238,108 @@ p.status-inprogress:hover {
     border-color: var(--status-inprogress-border-hover) !important;
 }
 
-/* レビュー */
-p.status-review {
-    background: var(--status-review-bg) !important;
-    border-color: var(--status-review-border) !important;
-	color: var(--status-review-text) !important;
+/* 承認待ち・レビュー中 */
+p.status-approval {
+    background: var(--status-approval-bg) !important;
+    border-color: var(--status-approval-border) !important;
+	color: var(--status-approval-text) !important;
 }
-p.status-review:hover {
-    background: var(--status-review-bg-hover) !important;
-    border-color: var(--status-review-border-hover) !important;
-}
-
-/* 完了 */
-p.status-closed {
-    background: var(--status-closed-bg) !important;
-    border-color: var(--status-closed-border) !important;
-	color: var(--status-closed-text) !important;
-}
-p.status-closed:hover {
-    background: var(--status-closed-bg-hover) !important;
-    border-color: var(--status-closed-border-hover) !important;
+p.status-approval:hover {
+    background: var(--status-approval-bg-hover) !important;
+    border-color: var(--status-approval-border-hover) !important;
 }
 
-/* 保留（却下） */
-p[style="status-rejected"] {
-    background: var(--status-rejected-bg) !important;
-    border-color: var(--status-rejected-border) !important;
-	color: var(--status-rejected-text) !important;
+/* 完了（成立） */
+p.status-completed {
+    background: var(--status-completed-bg) !important;
+    border-color: var(--status-completed-border) !important;
+	color: var(--status-completed-text) !important;
 }
-p[style="status-rejected"]  {
-    background: var(--status-rejected-bg-hover) !important;
-    border-color: var(--status-rejected-border-hover) !important;
+p.status-completed:hover {
+    background: var(--status-completed-bg-hover) !important;
+    border-color: var(--status-completed-border-hover) !important;
+}
+
+/* 完了（不成立） */
+p[style="status-declined"] {
+    background: var(--status-declined-bg) !important;
+    border-color: var(--status-declined-border) !important;
+	color: var(--status-declined-text) !important;
+}
+p[style="status-declined"]:hover {
+    background: var(--status-declined-bg-hover) !important;
+    border-color: var(--status-declined-border-hover) !important;
+}
+
+/* ランク評価（統一ルールの対象外・専用配色） */
+p.status-rank-e {
+    background: var(--status-rank-e-bg) !important;
+    border-color: var(--status-rank-e-border) !important;
+	color: var(--status-rank-e-text) !important;
+}
+p.status-rank-e:hover {
+    background: var(--status-rank-e-bg-hover) !important;
+    border-color: var(--status-rank-e-border-hover) !important;
+}
+
+p.status-rank-d {
+    background: var(--status-rank-d-bg) !important;
+    border-color: var(--status-rank-d-border) !important;
+	color: var(--status-rank-d-text) !important;
+}
+p.status-rank-d:hover {
+    background: var(--status-rank-d-bg-hover) !important;
+    border-color: var(--status-rank-d-border-hover) !important;
+}
+
+p.status-rank-c {
+    background: var(--status-rank-c-bg) !important;
+    border-color: var(--status-rank-c-border) !important;
+	color: var(--status-rank-c-text) !important;
+}
+p.status-rank-c:hover {
+    background: var(--status-rank-c-bg-hover) !important;
+    border-color: var(--status-rank-c-border-hover) !important;
+}
+
+p.status-rank-b {
+    background: var(--status-rank-b-bg) !important;
+    border-color: var(--status-rank-b-border) !important;
+	color: var(--status-rank-b-text) !important;
+}
+p.status-rank-b:hover {
+    background: var(--status-rank-b-bg-hover) !important;
+    border-color: var(--status-rank-b-border-hover) !important;
+}
+
+p.status-rank-a {
+    background: var(--status-rank-a-bg) !important;
+    border-color: var(--status-rank-a-border) !important;
+	color: var(--status-rank-a-text) !important;
+}
+p.status-rank-a:hover {
+    background: var(--status-rank-a-bg-hover) !important;
+    border-color: var(--status-rank-a-border-hover) !important;
+}
+
+p.status-rank-s {
+    background: var(--status-rank-s-bg) !important;
+    border-color: var(--status-rank-s-border) !important;
+	color: var(--status-rank-s-text) !important;
+}
+p.status-rank-s:hover {
+    background: var(--status-rank-s-bg-hover) !important;
+    border-color: var(--status-rank-s-border-hover) !important;
+}
+
+p.status-rank-x {
+    background: var(--status-rank-x-bg) !important;
+    border-color: var(--status-rank-x-border) !important;
+	color: var(--status-rank-x-text) !important;
+}
+p.status-rank-x:hover {
+    background: var(--status-rank-x-bg-hover) !important;
+    border-color: var(--status-rank-x-border-hover) !important;
 }
 
 
