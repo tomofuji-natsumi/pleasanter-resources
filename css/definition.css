@@ -117,7 +117,7 @@
     --btn-dark-bg-hover: #333;
 
     --btn-danger-bg: var(--semantic-danger);
-    --btn-danger-bg-hover: color-mix(in oklch, var(--semantic-danger) 85%, black);
+    --btn-danger-bg-hover: oklch(from var(--semantic-danger) calc(l - 0.08) c h);
 
     /* Green → execute */
     --btn-execute-bg:       oklch(from var(--primary) calc(l + 0.01) calc(c + 0.00) 175);
