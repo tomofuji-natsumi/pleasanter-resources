@@ -27,6 +27,8 @@
     --semantic-success-border: color-mix(in oklch, var(--semantic-success) 70%, white);
     --semantic-warning: oklch(0.98 0.04 98 / 0.9);
     /* --semantic-warning: oklch(0.88 0.12 98 / 0.9); */
+    --semantic-warning-border: #F2B90A;
+    --semantic-warning-text: #B8860B;
 
     /* --- Surface --- */
     --surface-base:   oklch(0.996 0.001 255);
