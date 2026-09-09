@@ -195,6 +195,14 @@
     user-select: none;
 }
 
+#Aggregations .label.overdue {
+    color: var(--text-white);
+    background: var(--semantic-danger);
+    border: 1px solid var(--semantic-danger);
+    padding: 0.2rem 0.5rem;
+    font-weight: 600;
+}
+
 #Aggregations .label:not(:first-of-type) {
     margin-left: 1.4rem;
 }

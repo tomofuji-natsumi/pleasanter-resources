@@ -391,6 +391,7 @@ td .notes {
     background-color: var(--semantic-danger);
     color: var(--surface-base);
     padding: 0 0.5rem;
+    user-select: none;
 }
 
 #Grid .limit-normal {
