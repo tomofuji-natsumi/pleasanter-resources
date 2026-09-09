@@ -87,9 +87,10 @@
 
 #RecordHeader {
     border-bottom: 1px solid var(--border-light);
-    background-color: var(--bg-accent) !important;
+    background-color: var(--bg-title) !important;
     color: var(--text-main) !important;
     padding: 0 23px 16px 23px !important;
+    user-select: none;
 }
 
 #RecordInfo div {
@@ -99,7 +100,7 @@
 #TitleContainer {
     padding: 5px;
     background-color: var(--bg-title) !important;
-    border-bottom: 1px solid var(--border-title);
+    border-bottom: 1px solid var(--border-title) !important;
 }
 
 #TitleContainer #HeaderTitle {

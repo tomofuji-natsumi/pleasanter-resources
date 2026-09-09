@@ -87,7 +87,7 @@ img {
 .material-symbols-outlined:not(.md-btn-icon) {
     position: absolute;
     transform: translateY(-50%);
-    top: 52%;
+    top: 50%;
     left: 0.35rem;
     font-size: 1.16rem;
 	user-select: none;
@@ -401,12 +401,13 @@ button:has(.extra-material-icons):active {
     border: 1px solid var(--primary-hover);
 }
 
-.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) a {
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) a label {
     font-weight: 500;
     color: var(--primary);
+    user-select: none;
 }
 
-.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover a {
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover a label {
     color: var(--text-on-primary)  !important;
 }
 
@@ -551,6 +552,10 @@ button:has(.extra-material-icons):active {
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box;
+}
+
+.field-control select {
+    user-select: none;
 }
 
 .field-control .control-markdown {
@@ -787,13 +792,9 @@ rt-editor .se-btn-select > svg {
 	background-color: var(--surface-base) !important;
 }
 
-.field-control .current-date {
-    right: 2%;
+date-field {
+    --base-text: var(--icon-color);
     user-select: none;
-}
-
-.field-control .current-date .material-symbols-sharp {
-    color: var(--icon-color) !important;
 }
 
 .flatpickr-current-month .flatpickr-monthDropdown-months,

@@ -363,7 +363,7 @@ td .notes {
     white-space: pre-wrap !important;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 115px;
+    max-height: 115px !important;
 }
 
 #custom-tooltip {
