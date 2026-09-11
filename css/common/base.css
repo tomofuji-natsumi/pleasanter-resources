@@ -84,6 +84,23 @@ img {
     display: none !important;
 }
 
+.button-negative {
+    background-color: var(--semantic-danger) !important;
+    color: var(--text-on-primary) !important;
+    border-color: var(--semantic-danger-border) !important;
+}
+
+.button-positive {
+    background-color: var(--primary) !important;
+    color: var(--text-on-primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.button-positive:hover {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
 .material-symbols-outlined:not(.md-btn-icon) {
     position: absolute;
     transform: translateY(-50%);
@@ -230,7 +247,7 @@ button:has(.extra-material-icons):active {
     box-shadow: var(--elevation-1);
 }
 
-#Header #ViewSelector {
+#Header #ViewSelector label {
     user-select: none;
 }
 
@@ -356,6 +373,7 @@ button:has(.extra-material-icons):active {
     color: var(--text-on-primary);
     text-shadow: var(--elevation-1);
 	font-weight: 550;
+    user-select: none;
 }
 
 /* セパレーター（三角形） */

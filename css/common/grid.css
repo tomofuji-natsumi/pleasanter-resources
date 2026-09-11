@@ -198,6 +198,7 @@ tr.crosstab-row th {
     border: 1px solid var(--status-no-border) !important;
     color: var(--status-no-text);
     transition: background-color 0.22s ease-out, border-color 0.22s ease-out;
+    user-select: none;
 }
 
 [class^="status-"]:hover,
