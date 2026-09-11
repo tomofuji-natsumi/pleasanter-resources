@@ -8,7 +8,6 @@ body {
     margin: 0;
     padding: 0;
     min-width: auto !important;
-    overflow-x: hidden;
     background-color: var(--bg-dashboard) !important;
 }
 
@@ -99,6 +98,17 @@ img {
 .button-positive:hover {
     background-color: var(--primary-hover) !important;
     border-color: var(--primary-hover) !important;
+}
+
+.button-neutral {
+    background-color: var(--btn-dark-bg) !important;
+    color: var(--text-white) !important;
+    border-color: var(--btn-dark-bg) !important;
+}
+
+.button-neutral:hover {
+    background-color: var(--btn-dark-bg-hover) !important;
+    border-color: var(--btn-dark-bg-hover) !important;
 }
 
 .material-symbols-outlined:not(.md-btn-icon) {

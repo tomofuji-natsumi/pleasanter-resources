@@ -43,6 +43,7 @@
         { s: "#ExportCrosstabCommand",                                                  c: "primary", i: "file_export" },
         { s: "#DoExport",                                                               c: "primary", i: "file_export" },
         { s: "#DropDownSearchDialogForm [data-icon='ui-icon-disk']",                    c: "primary", i: "check" },
+        { s: "#DateRangeOK",                                                            c: "primary", i: "check" },
         { s: ".nav-site.to-parent a",                                                   c: "primary", i: "arrow_left" },
         { s: "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmRestore']",      c: "primary", i: "restore_page" },
         { s: "#FieldSetHistories [data-action='RestoreFromHistory']",                   c: "primary", i: "restore_page" },
@@ -59,6 +60,7 @@
         { s: "#SiteTitleDialog [data-icon='ui-icon-cancel']",                           c: "dark", i: "close" },
         { s: "#AnalyPartDialog [data-icon='ui-icon-cancel']",                           c: "dark", i: "close" },
         { s: "#OutgoingMails_Cancel",                                                   c: "dark", i: "close" },
+        { s: "#DateRangeCancel",                                                        c: "dark", i: "close" },
         { s: "#MainCommands [data-action='SiteMenu']",                                  c: "dark", i: "arrow_circle_left" },
         { s: "#GoBack",                                                                 c: "dark", i: "arrow_circle_left" },
         { s: "#ExcludeData",                                                            c: "dark", i: "indeterminate_check_box" },
@@ -86,6 +88,10 @@
         { s: "#OutgoingMails_AddTo",  c: "light", i: "person" },
         { s: "#OutgoingMails_AddCc",  c: "light", i: "person" },
         { s: "#OutgoingMails_AddBcc", c: "light", i: "person" },
+        { s: "#DateRangeClear",       c: "light", i: "backspace" },
+        { s: "#DateRangeToday",       c: "light", i: "today" },
+        { s: "#DateRangeThisMonth",   c: "light", i: "calendar_month" },
+        { s: "#DateRangeThisYear",    c: "light", i: "event" },
 
         // --- danger ---
         { s: "#FieldSetRecordAccessControlEditor [data-confirm='ConfirmPhysicalDelete']", c: "danger", i: "delete" },
