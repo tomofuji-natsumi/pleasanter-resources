@@ -35,6 +35,10 @@ function applyCommentColors() {
 // 編集画面（#UpdateCommandが存在する）以外では、コメント色データ自体が
 // サーバー側で計算されないため、Observerを起動しても意味がない
 if (document.getElementById('UpdateCommand')) {
+    // 初回表示時点で既にDOMにある既存コメントには、以降のMutationObserverは
+    // 反応しない（新規追加されたノードにしか反応しないため）ため、ここで一度実行する
+    applyCommentColors();
+
     const commentObserver = new MutationObserver(mutations => {
         let needUpdate = false;
 
