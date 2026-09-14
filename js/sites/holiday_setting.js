@@ -120,7 +120,7 @@ $.ajax({
 
         const calendarObserver = new MutationObserver(() => {
             clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(rerender, 50);
+            debounceTimer = setTimeout(rerender, 10);
         });
 
         calendarObserver.observe(document.body, observeOptions);

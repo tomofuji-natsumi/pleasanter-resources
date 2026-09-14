@@ -70,6 +70,12 @@
     cursor: pointer;
 }
 
+/* Pleasanter標準の.delete-fileに付いている余白（右寄せ用のmargin）を
+   打ち消し、ダウンロードボタンとの距離を詰める */
+.control-attachments-item .delete-file {
+    margin-left: 4px !important;
+}
+
 /* ファイル名リンクのクリック領域を少しだけ広げる（ダウンロード/削除ボタン
    の手前まで伸ばす程度。項目全体はクリック対象にしない） */
 .control-attachments-item a.file-name:not([target]) {
