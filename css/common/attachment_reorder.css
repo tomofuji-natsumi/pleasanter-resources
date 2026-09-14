@@ -1,0 +1,12 @@
+/* =========================================================
+   添付ファイルのドラッグ&ドロップ並べ替え
+   ========================================================= */
+
+.control-attachments-item {
+    cursor: grab;
+}
+
+.control-attachments-item.is-dragging {
+    cursor: grabbing;
+    opacity: 0.4;
+}

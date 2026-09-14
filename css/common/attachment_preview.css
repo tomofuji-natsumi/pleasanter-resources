@@ -1,0 +1,42 @@
+/* =========================================================
+   添付ファイルのインライン表示
+   ========================================================= */
+
+#attachment-preview-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+#attachment-preview-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.attachment-preview-frame {
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    background: var(--bg-main);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--elevation-3);
+}
+
+.attachment-preview-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.6rem;
+    color: #fff;
+    font-size: 2.4rem;
+    line-height: 1;
+    cursor: pointer;
+    user-select: none;
+}
