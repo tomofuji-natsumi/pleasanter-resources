@@ -363,11 +363,10 @@ td .grid-title-body,
 td .notes {
     white-space: pre-wrap !important;
     overflow: hidden;
-    text-overflow: ellipsis;
     max-height: 115px !important;
 }
 
-#custom-tooltip {
+#list-tooltip {
     display: none;
     position: absolute;
     z-index: 9999;
@@ -382,11 +381,6 @@ td .notes {
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.2s ease;
-}
-
-#custom-tooltip.visible {
-    display: block;
-    opacity: 1;
 }
 
 #Grid .limit-warning3 {

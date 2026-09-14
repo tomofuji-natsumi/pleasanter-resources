@@ -336,6 +336,7 @@ td[role="presentation"],
 .fc .fc-button-primary,
 .fc .fc-button-group .fc-button {
     background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
     color: var(--text-on-primary) !important;
     border-radius: var(--radius-small);
 }
@@ -343,6 +344,7 @@ td[role="presentation"],
 .fc .fc-button:hover,
 .fc .fc-button-primary:hover {
     background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
 }
 
 .fc .fc-button {
