@@ -81,13 +81,14 @@
                         '</div>' +
                         '<div class="attachment-preview-close" title="閉じる">&times;</div>' +
                     '</div>' +
+                    '<div class="attachment-preview-spinner"></div>' +
                     '<iframe class="attachment-preview-frame" frameborder="0"></iframe>' +
                 '</div>' +
             '</div>'
         ).appendTo('body');
 
         function close() {
-            $overlay.removeClass('is-visible');
+            $overlay.removeClass('is-visible is-loading');
             $overlay.find('.attachment-preview-frame').attr('src', 'about:blank');
             $overlay.removeData('download-url');
         }
@@ -99,6 +100,9 @@
         $overlay.on('click', '.attachment-preview-download', function (e) {
             e.preventDefault();
             triggerDownload($overlay.data('download-url'));
+        });
+        $overlay.find('.attachment-preview-frame').on('load', function () {
+            $overlay.removeClass('is-loading');
         });
 
         return $overlay;
@@ -117,6 +121,11 @@
     }
 
     $(document).on('click', LINK_SELECTOR, function (e) {
+        // ファイル名部分のクリックでは、対応形式のプレビュー表示以外
+        // 何も起こさない（ダウンロードや別タブでの表示は行わない）。
+        // ダウンロードは一覧側／プレビュー内のダウンロードボタンからのみ行う。
+        e.preventDefault();
+
         var $item = $(this).closest(ITEM_SELECTOR);
         var links = getLinks($item);
         var text = links.$download.text() || '';
@@ -124,13 +133,11 @@
 
         if (!PREVIEWABLE_PATTERN.test(fileName)) { return; }
 
-        e.preventDefault();
-
         var $overlay = ensureOverlay();
 
         $overlay.data('download-url', links.$download.attr('href'));
+        $overlay.addClass('is-visible is-loading');
         $overlay.find('.attachment-preview-frame').attr('src', links.$show.attr('href'));
-        $overlay.addClass('is-visible');
     });
 
     $(document).on('keydown', function (e) {

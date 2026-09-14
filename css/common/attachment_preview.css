@@ -64,16 +64,41 @@
     box-shadow: var(--elevation-3);
 }
 
+.attachment-preview-spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: -1.2rem 0 0 -1.2rem;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: attachment-preview-spin 0.8s linear infinite;
+}
+
+#attachment-preview-overlay.is-loading .attachment-preview-spinner {
+    display: block;
+}
+
+@keyframes attachment-preview-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .attachment-download-button {
     display: inline-block;
     margin-right: 4px;
     cursor: pointer;
 }
 
-/* Pleasanter標準の.delete-fileに付いている余白（右寄せ用のmargin）を
-   打ち消し、ダウンロードボタンとの距離を詰める */
+/* Pleasanter標準の.delete-fileには margin: 0 0 0 auto が付いており、
+   flexコンテナ内で右端まで押し出されてダウンロードボタンと距離が空く。
+   marginショートハンド全体を上書きして詰める（floatは効果が無いため使わない） */
 .control-attachments-item .delete-file {
-    margin-left: 4px !important;
+    margin: 0 0 0 4px !important;
 }
 
 /* ファイル名リンクのクリック領域を少しだけ広げる（ダウンロード/削除ボタン
