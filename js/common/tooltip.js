@@ -31,7 +31,8 @@ $(function () {
     var hideTimer;
 
     function tooltipText($td) {
-        var $source = $td.find('.grid-title-body, .notes').first();
+        var $source = $td.find('.grid-title-body.is-clamped, .notes.is-clamped').first();
+        if (!$source.length) return '';
         return $source.text().trim();
     }
 
