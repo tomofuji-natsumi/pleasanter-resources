@@ -23,7 +23,7 @@
           clearTimeout(timeout);
           resolve(window.jQuery || window.$p);
         }
-      }, 20);
+      }, 50);
       const timeout = setTimeout(() => {
         clearInterval(timer);
         reject(new Error('jQuery の読み込みがタイムアウトしました'));

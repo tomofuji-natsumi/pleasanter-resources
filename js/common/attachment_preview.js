@@ -31,19 +31,28 @@
     if (window.__attachmentPreviewBound) { return; }
     window.__attachmentPreviewBound = true;
 
+    // 同一アイテム内で複数回 a.file-name を探し直さずに済むよう、
+    // ダウンロード用リンク・プレビュー用リンクをまとめて1回のlookupで取得する
+    function getLinks($item) {
+        var $links = $item.find('a.file-name');
+        return {
+            $download: $links.not('[target]').first(),
+            $show: $links.filter('[target="_blank"]').first()
+        };
+    }
+
     function getFileName($item) {
-        var $downloadLink = $item.find('a.file-name').not('[target]').first();
-        var text = $downloadLink.text() || '';
+        var text = getLinks($item).$download.text() || '';
         // 「ファイル名　(サイズ)」の全角スペース区切りからファイル名部分のみ取り出す
         return text.split('　')[0].trim();
     }
 
     function getShowUrl($item) {
-        return $item.find('a.file-name[target="_blank"]').first().attr('href');
+        return getLinks($item).$show.attr('href');
     }
 
     function getDownloadUrl($item) {
-        return $item.find('a.file-name').not('[target]').first().attr('href');
+        return getLinks($item).$download.attr('href');
     }
 
     function ensureDownloadButtons() {
@@ -109,17 +118,18 @@
 
     $(document).on('click', LINK_SELECTOR, function (e) {
         var $item = $(this).closest(ITEM_SELECTOR);
-        var fileName = getFileName($item);
+        var links = getLinks($item);
+        var text = links.$download.text() || '';
+        var fileName = text.split('　')[0].trim();
 
         if (!PREVIEWABLE_PATTERN.test(fileName)) { return; }
 
         e.preventDefault();
 
-        var showUrl = getShowUrl($item);
         var $overlay = ensureOverlay();
 
-        $overlay.data('download-url', getDownloadUrl($item));
-        $overlay.find('.attachment-preview-frame').attr('src', showUrl);
+        $overlay.data('download-url', links.$download.attr('href'));
+        $overlay.find('.attachment-preview-frame').attr('src', links.$show.attr('href'));
         $overlay.addClass('is-visible');
     });
 
@@ -141,6 +151,10 @@
 
     $(document).on('pjax:complete', ensureDownloadButtons);
 
+    // コンテナ要素だけを監視する方式も検討したが、pjax遷移でコンテナ自体が
+    // 丸ごと再生成され監視対象への参照が古くなるケースがある
+    // （holiday_setting.jsのcalendarObserverで踏んだのと同種の問題）ため、
+    // 常に存在し続けるdocument.bodyを監視する
     var debounceTimer = null;
     var observer = new MutationObserver(function () {
         clearTimeout(debounceTimer);

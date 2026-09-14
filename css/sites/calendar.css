@@ -3,7 +3,7 @@
    ========================================================= */
 
 #MainContainer {
-    background-color: var(--surface-base) !important;
+    background-color: var(--surface-base);
 }
 
 .fc-col-header,
@@ -407,13 +407,12 @@ button.fc-today-button[disabled] {
 }
 
 .fc-toolbar-title {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    margin: 0 !important;
-    text-align: center !important;
-    white-space: nowrap !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    white-space: nowrap;
     pointer-events: none;
     font-weight: 600;
     color: var(--text-main) !important;

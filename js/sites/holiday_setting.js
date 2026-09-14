@@ -68,7 +68,7 @@ $.ajax({
             const $cells = $(".fc-daygrid-day[data-date]");
             if ($cells.length === 0) return;
 
-            $(".holiday-name").remove();
+            $cells.find(".holiday-name").remove();
             // ⚠️ 休日区分(ClassD)は 100/150/200 の3種類（休日カレンダーマスタのChoicesText参照）。
             // 以前は holiday-300 という存在しない値を含み、実在する holiday-150 が
             // 抜けていたため、月移動時にクラスが正しく除去されないバグがあった。
