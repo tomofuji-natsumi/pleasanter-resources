@@ -157,6 +157,15 @@ td[role="presentation"],
     color: var(--cal-holi-cell-text) !important;
 }
 
+/* 所定休日（会社休日） */
+.fc-day.holiday-150 {
+    background-color: var(--cal-digestion-bg) !important;
+}
+
+.fc-day.holiday-150 .fc-daygrid-day-number {
+    color: var(--cal-digestion-text) !important;
+}
+
 .holiday-name {
     font-weight: 500;
     font-size: 0.90em;
@@ -166,7 +175,10 @@ td[role="presentation"],
     top: -1px;
     letter-spacing: 0.02em;
     margin: 0 0.25em;
-    white-space: pre-wrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 /* 今日 */
@@ -381,6 +393,42 @@ button.fc-today-button[disabled] {
 }
 
 
+
+/* =========================================================
+   凡例（祝日・所定休日）
+   ========================================================= */
+
+#calendar-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 0.3rem 0 0.6rem;
+    font-size: 0.82rem;
+    color: var(--text-sub);
+}
+
+.calendar-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.calendar-legend-swatch {
+    display: inline-block;
+    width: 0.85em;
+    height: 0.85em;
+    border-radius: var(--radius-small);
+}
+
+.calendar-legend-swatch.is-holiday {
+    background-color: var(--cal-holi-cell-bg);
+    border: 1px solid var(--cal-holi-cell-text);
+}
+
+.calendar-legend-swatch.is-company-holiday {
+    background-color: var(--cal-digestion-bg);
+    border: 1px solid var(--cal-digestion-text);
+}
 
 /* =========================================================
    7. レイアウト調整（タイトル中央配置）

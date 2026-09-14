@@ -1,8 +1,17 @@
 $(function () {
-    // 省略されているかを判定
+    // 省略されているかを判定（縦方向：一覧画面のセル内容）
     function updateClamped() {
         $('td .grid-title-body, td .notes').each(function () {
             if (this.scrollHeight > this.clientHeight) {
+                $(this).addClass('is-clamped');
+            } else {
+                $(this).removeClass('is-clamped');
+            }
+        });
+
+        // 省略されているかを判定（横方向：カレンダー画面の祝日名）
+        $('td .holiday-name').each(function () {
+            if (this.scrollWidth > this.clientWidth) {
                 $(this).addClass('is-clamped');
             } else {
                 $(this).removeClass('is-clamped');
@@ -31,7 +40,7 @@ $(function () {
     var hideTimer;
 
     function tooltipText($td) {
-        var $source = $td.find('.grid-title-body.is-clamped, .notes.is-clamped').first();
+        var $source = $td.find('.grid-title-body.is-clamped, .notes.is-clamped, .holiday-name.is-clamped').first();
         if (!$source.length) return '';
         return $source.text().trim();
     }

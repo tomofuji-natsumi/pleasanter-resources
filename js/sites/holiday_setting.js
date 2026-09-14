@@ -2,6 +2,35 @@
 // 休日カレンダーマスタのSiteIdはJSONの再エクスポートのたびに変わる（休日カレンダーマスタ_検討メモ.md参照）。
 const HOLIDAY_CALENDAR_SITE_ID = 24082;
 
+// 月移動・今日へジャンプのキーボードショートカット（左右矢印キー・Tキー）
+// 祝日データの取得成否とは無関係に効かせたいため、$.ajaxの外側で一度だけ登録する。
+if (!window.__calendarArrowShortcutBound) {
+    window.__calendarArrowShortcutBound = true;
+
+    $(document).on("keydown", function (e) {
+        // 入力欄でのカーソル移動・タイピングを妨げないようにする
+        var tag = (e.target.tagName || "").toLowerCase();
+        if (tag === "input" || tag === "textarea" || tag === "select" || e.target.isContentEditable) {
+            return;
+        }
+        // 他の修飾キーとの組み合わせ（ブラウザ標準操作等）には反応しない
+        if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) {
+            return;
+        }
+
+        if (e.key === "ArrowLeft") {
+            var $prev = $(".fc-prev-button");
+            if ($prev.length) { $prev.trigger("click"); }
+        } else if (e.key === "ArrowRight") {
+            var $next = $(".fc-next-button");
+            if ($next.length) { $next.trigger("click"); }
+        } else if (e.key === "t" || e.key === "T") {
+            var $today = $(".fc-today-button:not([disabled])");
+            if ($today.length) { $today.trigger("click"); }
+        }
+    });
+}
+
 $.ajax({
     url: `/api/items/${HOLIDAY_CALENDAR_SITE_ID}/get`,
     type: "POST",
@@ -35,12 +64,30 @@ $.ajax({
                 };
             });
 
+        // 凡例（初回だけ生成し、ツールバー付近に挿入する）
+        const renderLegend = () => {
+            if ($("#calendar-legend").length > 0) return;
+
+            const $toolbar = $(".fc-header-toolbar");
+            if ($toolbar.length === 0) return;
+
+            $(
+                '<div id="calendar-legend">' +
+                    '<span class="calendar-legend-item"><span class="calendar-legend-swatch is-holiday"></span>祝日</span>' +
+                    '<span class="calendar-legend-item"><span class="calendar-legend-swatch is-company-holiday"></span>所定休日（会社休日）</span>' +
+                '</div>'
+            ).insertAfter($toolbar);
+        };
+
         const renderHolidays = () => {
             const $cells = $(".fc-daygrid-day[data-date]");
             if ($cells.length === 0) return;
 
             $(".holiday-name").remove();
-            $cells.removeClass("holiday-100 holiday-200 holiday-300");
+            // ⚠️ 休日区分(ClassD)は 100/150/200 の3種類（休日カレンダーマスタのChoicesText参照）。
+            // 以前は holiday-300 という存在しない値を含み、実在する holiday-150 が
+            // 抜けていたため、月移動時にクラスが正しく除去されないバグがあった。
+            $cells.removeClass("holiday-100 holiday-150 holiday-200");
 
             $cells.each(function () {
                 const date = $(this).attr("data-date");
@@ -59,21 +106,36 @@ $.ajax({
         };
 
         // 初回
+        renderLegend();
         renderHolidays();
 
-        // ★ navlink（内部遷移）をフック
-        $(document).on("click", "[data-navlink]", function () {
-            // FullCalendar が描画し終わるまで少し待つ
-            setTimeout(() => {
-                renderHolidays();
-            }, 50);
-        });
+        // ⚠️ 以前は月移動ボタン・navlinkのクリックだけをフックしていたが、
+        // FullCalendarの表示切り替え（月/週/日表示等）ボタンは拾えておらず、
+        // 切り替えるとFullCalendarがDOMを再構築して祝日表示・凡例が消えたまま
+        // 再描画されないバグがあった。個別のボタンを追加で拾うのではなく、
+        // カレンダー本体のDOM変化を監視し、変化のたびに再描画する方式にする。
+        const $calendarRoot = $("#FullCalendar, .fc").first();
+        if ($calendarRoot.length > 0) {
+            const observeOptions = { childList: true, subtree: true };
+            let debounceTimer = null;
 
-        // ★ 月移動ボタンも一応フック
-        $(document).on("click", ".fc-prev-button, .fc-next-button, .fc-today-button", function () {
-            setTimeout(() => {
+            // renderLegend()/renderHolidays() 自体が .holiday-name の
+            // 削除・追加等のDOM変更を行うため、そのままでは自分自身の変更を
+            // 検知して再度発火し、無限ループになってしまう。
+            // 再描画中だけobserverを一時停止することでこれを防ぐ。
+            const rerender = () => {
+                calendarObserver.disconnect();
+                renderLegend();
                 renderHolidays();
-            }, 50);
-        });
+                calendarObserver.observe($calendarRoot[0], observeOptions);
+            };
+
+            const calendarObserver = new MutationObserver(() => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(rerender, 50);
+            });
+
+            calendarObserver.observe($calendarRoot[0], observeOptions);
+        }
     }
 });
