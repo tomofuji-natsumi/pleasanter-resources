@@ -999,6 +999,7 @@ span.flatpickr-weekday {
     height: 42px !important;
     margin: 0;
     padding: 0.6rem 1.1rem;
+    user-select: none;
 }
 
 .ui-dialog .ui-dialog-title {
@@ -1141,6 +1142,7 @@ span.flatpickr-weekday {
     cursor: pointer !important;
     user-select: none;
     font-size: 0.85rem;
+    white-space: nowrap;
 }
 
 .file-button:hover {
@@ -1167,6 +1169,7 @@ span.flatpickr-weekday {
 
 label[for="Import"] {
     cursor: default;
+    user-select: none;
 }
 
 label.error {

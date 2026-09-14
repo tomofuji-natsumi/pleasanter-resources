@@ -1349,6 +1349,7 @@ span.flatpickr-weekday {
 
 label[for="Import"] {
     cursor: default;
+    user-select: none;
 }
 
 label.error {
