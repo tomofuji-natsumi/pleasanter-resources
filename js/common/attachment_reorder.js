@@ -50,10 +50,11 @@
             if (this.getAttribute('draggable') !== 'true') {
                 this.setAttribute('draggable', 'true');
             }
-            // ファイル名リンク（プレビュー/ダウンロード）や削除アイコン上から
-            // ドラッグが始まると、クリック操作（attachment_preview.js等）と
-            // 干渉するため、これらの子要素は明示的にドラッグ対象から外す
-            $(this).find('a.file-name, .delete-file').each(function () {
+            // ファイル名リンク（プレビュー/ダウンロード）や削除アイコン、
+            // ダウンロードボタン上からドラッグが始まると、クリック操作
+            // （attachment_preview.js等）と干渉するため、これらの子要素は
+            // 明示的にドラッグ対象から外す
+            $(this).find('a.file-name, .delete-file, .attachment-download-button').each(function () {
                 if (this.getAttribute('draggable') !== 'false') {
                     this.setAttribute('draggable', 'false');
                 }

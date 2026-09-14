@@ -112,30 +112,34 @@ $.ajax({
         // ⚠️ 以前は月移動ボタン・navlinkのクリックだけをフックしていたが、
         // FullCalendarの表示切り替え（月/週/日表示等）ボタンは拾えておらず、
         // 切り替えるとFullCalendarがDOMを再構築して祝日表示・凡例が消えたまま
-        // 再描画されないバグがあった。個別のボタンを追加で拾うのではなく、
-        // カレンダー本体のDOM変化を監視し、変化のたびに再描画する方式にする。
-        const $calendarRoot = $("#FullCalendar, .fc").first();
-        if ($calendarRoot.length > 0) {
-            const observeOptions = { childList: true, subtree: true };
-            let debounceTimer = null;
+        // 再描画されないバグがあった。
+        //
+        // ⚠️ 一度 #FullCalendar/.fc の要素参照を取得してそれだけを監視する
+        // 方式も試したが、月移動・表示切替時にFullCalendarがその要素自体を
+        // 作り直す（古い要素が丸ごと入れ替わる）ケースがあり、監視対象が
+        // 存在しなくなった古い要素のままになって以降の変化を検知できなくなる
+        // バグがあった（初回は表示されるが切替後は消えたままになる症状と一致）。
+        // 他のスクリプト（tooltip.js等）と同様、常に存在し続ける document.body
+        // を監視することで、この参照切れを避ける。
+        const observeOptions = { childList: true, subtree: true };
+        let debounceTimer = null;
 
-            // renderLegend()/renderHolidays() 自体が .holiday-name の
-            // 削除・追加等のDOM変更を行うため、そのままでは自分自身の変更を
-            // 検知して再度発火し、無限ループになってしまう。
-            // 再描画中だけobserverを一時停止することでこれを防ぐ。
-            const rerender = () => {
-                calendarObserver.disconnect();
-                renderLegend();
-                renderHolidays();
-                calendarObserver.observe($calendarRoot[0], observeOptions);
-            };
+        // renderLegend()/renderHolidays() 自体が .holiday-name の
+        // 削除・追加等のDOM変更を行うため、そのままでは自分自身の変更を
+        // 検知して再度発火し、無限ループになってしまう。
+        // 再描画中だけobserverを一時停止することでこれを防ぐ。
+        const rerender = () => {
+            calendarObserver.disconnect();
+            renderLegend();
+            renderHolidays();
+            calendarObserver.observe(document.body, observeOptions);
+        };
 
-            const calendarObserver = new MutationObserver(() => {
-                clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(rerender, 50);
-            });
+        const calendarObserver = new MutationObserver(() => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(rerender, 50);
+        });
 
-            calendarObserver.observe($calendarRoot[0], observeOptions);
-        }
+        calendarObserver.observe(document.body, observeOptions);
     }
 });
