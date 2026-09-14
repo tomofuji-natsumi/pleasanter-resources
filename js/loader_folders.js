@@ -15,6 +15,7 @@ const scripts = [
 // 順番に読み込む
 // ===============================
 function loadScriptSequential(urls) {
+    let allSucceeded = true;
     return urls.reduce((p, url) => {
         return p.then(() => new Promise((resolve) => {
 
@@ -27,12 +28,14 @@ function loadScriptSequential(urls) {
             s.onload = resolve;
             s.onerror = (e) => {
                 console.warn("Script load failed:", url, e);
+                allSucceeded = false;
+                s.remove();
                 resolve();
             };
 
             document.head.appendChild(s);
         }));
-    }, Promise.resolve());
+    }, Promise.resolve()).then(() => allSucceeded);
 }
 
 let __scriptsLoaded = false;
@@ -43,8 +46,7 @@ let __scriptsLoaded = false;
 window.runTenantScripts = async function () {
 
     if (!__scriptsLoaded) {
-        await loadScriptSequential(scripts);
-        __scriptsLoaded = true;
+        __scriptsLoaded = await loadScriptSequential(scripts);
     }
 };
 

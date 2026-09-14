@@ -127,7 +127,9 @@
     //    新しいDOMノードを生成するため、
     //    WeakSet のガードで二重処理を防ぐ
     // ===============================
-    const watcher = new MutationObserver(function () {
+    let debounceTimer = null;
+
+    function runChecks() {
         // --- インポート エンコーディング固定 ---
         fixEncoding($("#Encoding"));
 
@@ -143,6 +145,11 @@
         // --- ユーザーテンプレート インポート ---
         const $tmpl = $("#ImportUserTemplate_Import");
         if ($tmpl.length) setupImportInput($tmpl);
+    }
+
+    const watcher = new MutationObserver(function () {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(runChecks, 25);
     });
 
     watcher.observe(document.body, {

@@ -1,5 +1,9 @@
+// ⚠️ 要設定: 開発環境ごとに実際のSiteIdへ差し替えること。
+// 休日カレンダーマスタのSiteIdはJSONの再エクスポートのたびに変わる（休日カレンダーマスタ_検討メモ.md参照）。
+const HOLIDAY_CALENDAR_SITE_ID = 24082;
+
 $.ajax({
-    url: "/api/items/24082/get",
+    url: `/api/items/${HOLIDAY_CALENDAR_SITE_ID}/get`,
     type: "POST",
     contentType: "application/json",
     success: function (res) {
@@ -10,6 +14,15 @@ $.ajax({
             res?.Data ??
             res?.Items ??
             [];
+
+        const escapeHtml = (str) =>
+            String(str ?? "").replace(/[&<>"']/g, s => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[s]);
 
         const holidayMap = {};
         rows
@@ -39,7 +52,7 @@ $.ajax({
                 if (holiday.name) {
                     const top = $(this).find(".fc-daygrid-day-top");
                     if (top.find(".holiday-name").length === 0) {
-                        top.append(`<div class="holiday-name">${holiday.name}</div>`);
+                        top.append(`<div class="holiday-name">${escapeHtml(holiday.name)}</div>`);
                     }
                 }
             });
