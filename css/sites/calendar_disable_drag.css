@@ -1,9 +1,0 @@
-/* =========================================================
-   カレンダー予定のドラッグ操作無効化
-   （js/sites/calendar_disable_drag.js が付与する
-    .calendar-drag-disabled クラスに対応）
-   ========================================================= */
-
-.fc-event-draggable.calendar-drag-disabled {
-    cursor: default !important;
-}

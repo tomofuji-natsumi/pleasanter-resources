@@ -64,21 +64,6 @@ $.ajax({
                 };
             });
 
-        // 凡例（初回だけ生成し、ツールバー付近に挿入する）
-        const renderLegend = () => {
-            if ($("#calendar-legend").length > 0) return;
-
-            const $toolbar = $(".fc-header-toolbar");
-            if ($toolbar.length === 0) return;
-
-            $(
-                '<div id="calendar-legend">' +
-                    '<span class="calendar-legend-item"><span class="calendar-legend-swatch is-holiday"></span>祝日</span>' +
-                    '<span class="calendar-legend-item"><span class="calendar-legend-swatch is-company-holiday"></span>所定休日（会社休日）</span>' +
-                '</div>'
-            ).insertAfter($toolbar);
-        };
-
         const renderHolidays = () => {
             const $cells = $(".fc-daygrid-day[data-date]");
             if ($cells.length === 0) return;
@@ -106,12 +91,11 @@ $.ajax({
         };
 
         // 初回
-        renderLegend();
         renderHolidays();
 
         // ⚠️ 以前は月移動ボタン・navlinkのクリックだけをフックしていたが、
         // FullCalendarの表示切り替え（月/週/日表示等）ボタンは拾えておらず、
-        // 切り替えるとFullCalendarがDOMを再構築して祝日表示・凡例が消えたまま
+        // 切り替えるとFullCalendarがDOMを再構築して祝日表示が消えたまま
         // 再描画されないバグがあった。
         //
         // ⚠️ 一度 #FullCalendar/.fc の要素参照を取得してそれだけを監視する
@@ -124,13 +108,12 @@ $.ajax({
         const observeOptions = { childList: true, subtree: true };
         let debounceTimer = null;
 
-        // renderLegend()/renderHolidays() 自体が .holiday-name の
-        // 削除・追加等のDOM変更を行うため、そのままでは自分自身の変更を
-        // 検知して再度発火し、無限ループになってしまう。
-        // 再描画中だけobserverを一時停止することでこれを防ぐ。
+        // renderHolidays() 自体が .holiday-name の削除・追加等のDOM変更を
+        // 行うため、そのままでは自分自身の変更を検知して再度発火し、
+        // 無限ループになってしまう。再描画中だけobserverを一時停止することで
+        // これを防ぐ。
         const rerender = () => {
             calendarObserver.disconnect();
-            renderLegend();
             renderHolidays();
             calendarObserver.observe(document.body, observeOptions);
         };

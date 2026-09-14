@@ -15,6 +15,7 @@
     'use strict';
 
     var ITEM_SELECTOR = '.control-attachments-item';
+    var LINK_SELECTOR = ITEM_SELECTOR + ' a.file-name';
     var DOWNLOAD_BUTTON_SELECTOR = '.attachment-download-button';
 
     // ブラウザが追加アプリなしでそのまま表示できる拡張子
@@ -65,8 +66,10 @@
         $overlay = $(
             '<div id="attachment-preview-overlay">' +
                 '<div class="attachment-preview-panel">' +
-                    '<div class="attachment-preview-header">' +
-                        '<span class="attachment-preview-title"></span>' +
+                    '<div class="attachment-preview-controls">' +
+                        '<div class="attachment-preview-download" title="ダウンロード">' +
+                            '<span class="ui-icon ui-icon-circle-arrow-s"></span>' +
+                        '</div>' +
                         '<div class="attachment-preview-close" title="閉じる">&times;</div>' +
                     '</div>' +
                     '<iframe class="attachment-preview-frame" frameborder="0"></iframe>' +
@@ -77,52 +80,22 @@
         function close() {
             $overlay.removeClass('is-visible');
             $overlay.find('.attachment-preview-frame').attr('src', 'about:blank');
+            $overlay.removeData('download-url');
         }
 
         $overlay.on('click', '.attachment-preview-close', close);
         $overlay.on('click', function (e) {
             if (e.target === this) { close(); }
         });
+        $overlay.on('click', '.attachment-preview-download', function (e) {
+            e.preventDefault();
+            triggerDownload($overlay.data('download-url'));
+        });
 
         return $overlay;
     }
 
-    // タッチ領域をファイル名リンクだけでなく、項目全体（ダウンロード/削除
-    // ボタンを除く）に広げる。これらのボタンは独自のクリック処理を持つため、
-    // ここでは素通しする
-    $(document).on('click', ITEM_SELECTOR, function (e) {
-        if (e.target.closest('.attachment-download-button, .delete-file')) {
-            return;
-        }
-
-        var $item = $(this);
-        var fileName = getFileName($item);
-
-        if (!PREVIEWABLE_PATTERN.test(fileName)) { return; }
-
-        e.preventDefault();
-
-        var showUrl = getShowUrl($item);
-        var $overlay = ensureOverlay();
-
-        $overlay.find('.attachment-preview-title').text(fileName);
-        $overlay.find('.attachment-preview-frame').attr('src', showUrl);
-        $overlay.addClass('is-visible');
-    });
-
-    $(document).on('keydown', function (e) {
-        if (e.key === 'Escape') {
-            var $overlay = $('#attachment-preview-overlay');
-            $overlay.removeClass('is-visible');
-            $overlay.find('.attachment-preview-frame').attr('src', 'about:blank');
-        }
-    });
-
-    $(document).on('click', DOWNLOAD_BUTTON_SELECTOR, function (e) {
-        e.preventDefault();
-
-        var $item = $(this).closest(ITEM_SELECTOR);
-        var downloadUrl = getDownloadUrl($item);
+    function triggerDownload(downloadUrl) {
         if (!downloadUrl) { return; }
 
         var $tempLink = $('<a></a>', {
@@ -132,6 +105,38 @@
         }).appendTo('body');
         $tempLink[0].click();
         $tempLink.remove();
+    }
+
+    $(document).on('click', LINK_SELECTOR, function (e) {
+        var $item = $(this).closest(ITEM_SELECTOR);
+        var fileName = getFileName($item);
+
+        if (!PREVIEWABLE_PATTERN.test(fileName)) { return; }
+
+        e.preventDefault();
+
+        var showUrl = getShowUrl($item);
+        var $overlay = ensureOverlay();
+
+        $overlay.data('download-url', getDownloadUrl($item));
+        $overlay.find('.attachment-preview-frame').attr('src', showUrl);
+        $overlay.addClass('is-visible');
+    });
+
+    $(document).on('keydown', function (e) {
+        if (e.key === 'Escape') {
+            var $overlay = $('#attachment-preview-overlay');
+            $overlay.removeClass('is-visible');
+            $overlay.find('.attachment-preview-frame').attr('src', 'about:blank');
+            $overlay.removeData('download-url');
+        }
+    });
+
+    $(document).on('click', DOWNLOAD_BUTTON_SELECTOR, function (e) {
+        e.preventDefault();
+
+        var $item = $(this).closest(ITEM_SELECTOR);
+        triggerDownload(getDownloadUrl($item));
     });
 
     $(document).on('pjax:complete', ensureDownloadButtons);
