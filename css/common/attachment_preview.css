@@ -88,17 +88,20 @@
     }
 }
 
+/* ダウンロードボタン側にmargin-left: autoを付けて、削除ボタンと
+   セットで項目の右端まで押し出す（Pleasanter標準の.delete-fileが
+   個別に持つmargin: 0 0 0 autoは打ち消し、隙間だけ4pxに詰める）。
+   縦位置はalign-selfで削除ボタンに揃える */
 .attachment-download-button {
     display: inline-block;
-    margin-right: 4px;
+    align-self: center;
+    margin-left: auto;
     cursor: pointer;
 }
 
-/* Pleasanter標準の.delete-fileには margin: 0 0 0 auto が付いており、
-   flexコンテナ内で右端まで押し出されてダウンロードボタンと距離が空く。
-   marginショートハンド全体を上書きして詰める（floatは効果が無いため使わない） */
 .control-attachments-item .delete-file {
     margin: 0 0 0 4px !important;
+    align-self: center;
 }
 
 /* ファイル名リンクのクリック領域を少しだけ広げる（ダウンロード/削除ボタン
