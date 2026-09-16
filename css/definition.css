@@ -10,7 +10,7 @@
 
     /* --- Primary（主役） --- */
     --primary: #3371CB;
-    --primary-hover: color-mix(in oklch, var(--primary) 85%, black);
+    --primary-hover: color-mix(in oklch, var(--primary) 90%, black);
     --primary-dark:   oklch(from var(--primary) calc(l + 0.06) calc(c * 0.80) h);
     --primary-surface: oklch(from var(--primary) calc(l + 0.42) calc(c - 0.14) h);
     --primary-surface-hover: oklch(from var(--primary) calc(l + 0.38) calc(c - 0.12) h);

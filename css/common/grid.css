@@ -53,6 +53,10 @@ tr.crosstab-row th {
     user-select: none;
 }
 
+.grid th[data-name="Owner"] {
+    min-width: 7rem;
+}
+
 /* チェックボックス */
 .grid th:first-child {
     border-left: none !important;
