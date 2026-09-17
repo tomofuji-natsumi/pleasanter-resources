@@ -3,7 +3,7 @@
    ========================================================= */
 
 #MainContainer {
-    background-color: var(--surface-base) !important;
+    background-color: var(--surface-base);
 }
 
 .fc-col-header,
@@ -157,6 +157,15 @@ td[role="presentation"],
     color: var(--cal-holi-cell-text) !important;
 }
 
+/* 所定休日（会社休日） */
+.fc-day.holiday-150 {
+    background-color: var(--cal-digestion-bg) !important;
+}
+
+.fc-day.holiday-150 .fc-daygrid-day-number {
+    color: var(--cal-digestion-text) !important;
+}
+
 .holiday-name {
     font-weight: 500;
     font-size: 0.90em;
@@ -166,7 +175,10 @@ td[role="presentation"],
     top: -1px;
     letter-spacing: 0.02em;
     margin: 0 0.25em;
-    white-space: pre-wrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 /* 今日 */
@@ -336,6 +348,7 @@ td[role="presentation"],
 .fc .fc-button-primary,
 .fc .fc-button-group .fc-button {
     background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
     color: var(--text-on-primary) !important;
     border-radius: var(--radius-small);
 }
@@ -343,6 +356,7 @@ td[role="presentation"],
 .fc .fc-button:hover,
 .fc .fc-button-primary:hover {
     background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
 }
 
 .fc .fc-button {
@@ -393,13 +407,12 @@ button.fc-today-button[disabled] {
 }
 
 .fc-toolbar-title {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    margin: 0 !important;
-    text-align: center !important;
-    white-space: nowrap !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    white-space: nowrap;
     pointer-events: none;
     font-weight: 600;
     color: var(--text-main) !important;

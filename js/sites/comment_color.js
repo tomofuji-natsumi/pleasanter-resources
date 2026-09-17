@@ -1,27 +1,28 @@
-let lastHtml = "";
-
-function watchCommentList() {
-    const html = $("#CommentList").html();
-    if (html !== lastHtml) {
-        lastHtml = html;
-
-        setTimeout(() => {
-            applyCommentColors();
-        }, 30);
-    }
-}
-
-setInterval(watchCommentList, 100);
+// その他（デフォルト）の色設定
+// サーバー側の特定グループ設定に該当しない表示名に適用する
+const DEFAULT_COMMENT_COLOR = {
+    color: '#1A2A3A',
+    backgroundColor: '#E7F1FF',
+    borderColor: '#AFCBFF'
+};
 
 function applyCommentColors() {
-    const map = JSON.parse($('#MyComments').val() || "{}");
+    let map;
+    try {
+        map = JSON.parse($('#UserColorMap').val() || "{}");
+    } catch (e) {
+        console.error('[コメント色] UserColorMapのJSON解析に失敗', e);
+        return;
+    }
 
     $("#CommentList > div[id^='Comment']").each(function () {
         const id = $(this).attr("id").replace("Comment", "").replace(".wrapper", "");
         if (!id) return;
 
-        const info = map[id];
-        if (!info) return;
+        const name = $(this).find(".comment-header .user span").last().text().trim();
+        if (!name) return;
+
+        const info = map[name] || DEFAULT_COMMENT_COLOR;
 
         $(this).css({
             "color": info.color,
@@ -31,36 +32,44 @@ function applyCommentColors() {
     });
 }
 
-const commentObserver = new MutationObserver(mutations => {
-    let needUpdate = false;
+// 編集画面（#UpdateCommandが存在する）以外では、コメント色データ自体が
+// サーバー側で計算されないため、Observerを起動しても意味がない
+if (document.getElementById('UpdateCommand')) {
+    // 初回表示時点で既にDOMにある既存コメントには、以降のMutationObserverは
+    // 反応しない（新規追加されたノードにしか反応しないため）ため、ここで一度実行する
+    applyCommentColors();
 
-    for (const m of mutations) {
+    const commentObserver = new MutationObserver(mutations => {
+        let needUpdate = false;
 
-        for (const node of m.addedNodes) {
-            if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
+        for (const m of mutations) {
+
+            for (const node of m.addedNodes) {
+                if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
+                    needUpdate = true;
+                }
+            }
+
+            if (m.type === "childList" && m.target.id === "CommentList") {
+                needUpdate = true;
+            }
+
+            if (m.type === "attributes" && m.target.id === "CommentList") {
                 needUpdate = true;
             }
         }
 
-        if (m.type === "childList" && m.target.id === "CommentList") {
-            needUpdate = true;
+        if (needUpdate) {
+            setTimeout(() => {
+                applyCommentColors();
+            }, 50);
         }
+    });
 
-        if (m.type === "attributes" && m.target.id === "CommentList") {
-            needUpdate = true;
-        }
-    }
-
-    if (needUpdate) {
-        setTimeout(() => {
-            applyCommentColors();
-        }, 50);
-    }
-});
-
-commentObserver.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ["class", "data-*"]
-});
+    commentObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["class"]
+    });
+}

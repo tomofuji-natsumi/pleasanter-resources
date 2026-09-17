@@ -1,0 +1,48 @@
+/* =========================================================
+   CSVエクスポート中の進捗フィードバック
+   ========================================================= */
+
+#export-progress-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+#export-progress-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.export-progress-box {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1rem 1.4rem;
+    background-color: var(--surface-base);
+    border-radius: var(--radius-large);
+    box-shadow: var(--elevation-3);
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+.export-progress-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border-normal);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: export-progress-spin 0.7s linear infinite;
+}
+
+@keyframes export-progress-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

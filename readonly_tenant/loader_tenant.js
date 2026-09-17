@@ -23,7 +23,7 @@
           clearTimeout(timeout);
           resolve(window.jQuery || window.$p);
         }
-      }, 20);
+      }, 50);
       const timeout = setTimeout(() => {
         clearInterval(timer);
         reject(new Error('jQuery の読み込みがタイムアウトしました'));
@@ -51,26 +51,24 @@
 
   let __loaderLoaded = false;
   let __running = false;
+  let __pending = false;
 
-  async function runAll() {
-    if (__running) return;
+  async function runAll(jq) {
+    if (__running) {
+      __pending = true;
+      return;
+    }
     __running = true;
 
     try {
-      await Promise.all([
-        waitForAllCss().then(() => {
-          document.documentElement.classList.add('theme-ready');
-        }),
-        waitForjQuery()
-      ]);
+      await waitForAllCss();
+      document.documentElement.classList.add('theme-ready');
 
       if (!__loaderLoaded) {
-        await $.getScript("https://tomofuji-natsumi.github.io/pleasanter-resources/js/loader_folders.js");
+        await jq.getScript("https://tomofuji-natsumi.github.io/pleasanter-resources/js/loader_folders.js");
         __loaderLoaded = true;
-      } else {
-        if (window.reapplyFolderScripts) {
-          window.reapplyFolderScripts();
-        }
+      } else if (window.reapplyFolderScripts) {
+        window.reapplyFolderScripts();
       }
 
       if (typeof window.runTenantScripts === 'function') {
@@ -86,11 +84,16 @@
       console.error('[loader] 初期化エラー:', e);
     } finally {
       __running = false;
+      if (__pending) {
+        __pending = false;
+        runAll(jq);
+      }
     }
   }
 
-  runAll();
-
-  $(document).on("pjax:complete", runAll);
+  waitForjQuery().then(jq => {
+    runAll(jq);
+    jq(document).on("pjax:complete", () => runAll(jq));
+  });
 
 })();

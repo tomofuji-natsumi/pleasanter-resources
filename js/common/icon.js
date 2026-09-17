@@ -172,18 +172,21 @@
     }
 
     // ===============================
-    // 6. カスタムマップのマージ（初回のみ）
-    //    サイト側が先に定義していなくてもクラッシュしない
+    // 6. カスタムマップのマージ
+    //    サイト側の定義（window.__pleasanterCustomIconMap）が
+    //    このスクリプトより後に読み込まれる可能性があるため、
+    //    実際にマージできるまで毎回チェックする（マージ後は再実行しない）
     // ===============================
     let merged = false;
     let allDefs = ICON_DEFS;
 
     function mergeCustomDefs() {
         if (merged) return;
-        merged = true;
 
         const custom = window.__pleasanterCustomIconMap;
         if (!custom) return;
+
+        merged = true;
 
         const extra = [];
         for (const [color, map] of Object.entries(custom)) {

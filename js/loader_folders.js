@@ -9,12 +9,21 @@ const BASE_URL = "https://tomofuji-natsumi.github.io/pleasanter-resources";
 const scripts = [
     BASE_URL + "/js/common/port_setting.js",
     BASE_URL + "/js/common/icon.js",
+    BASE_URL + "/js/common/tooltip.js",
+    BASE_URL + "/js/common/image_lightbox.js",
+    BASE_URL + "/js/common/restore_scroll_position.js",
+    BASE_URL + "/js/common/confirm_delete_title.js",
+    BASE_URL + "/js/common/select_all_shortcut.js",
+    BASE_URL + "/js/common/zebra_stripe.js",
+    BASE_URL + "/js/sites/scroll_to_error.js",
+    BASE_URL + "/js/sites/search_shortcut.js",
 ];
 
 // ===============================
 // 順番に読み込む
 // ===============================
 function loadScriptSequential(urls) {
+    let allSucceeded = true;
     return urls.reduce((p, url) => {
         return p.then(() => new Promise((resolve) => {
 
@@ -27,12 +36,14 @@ function loadScriptSequential(urls) {
             s.onload = resolve;
             s.onerror = (e) => {
                 console.warn("Script load failed:", url, e);
+                allSucceeded = false;
+                s.remove();
                 resolve();
             };
 
             document.head.appendChild(s);
         }));
-    }, Promise.resolve());
+    }, Promise.resolve()).then(() => allSucceeded);
 }
 
 let __scriptsLoaded = false;
@@ -43,8 +54,7 @@ let __scriptsLoaded = false;
 window.runTenantScripts = async function () {
 
     if (!__scriptsLoaded) {
-        await loadScriptSequential(scripts);
-        __scriptsLoaded = true;
+        __scriptsLoaded = await loadScriptSequential(scripts);
     }
 };
 
