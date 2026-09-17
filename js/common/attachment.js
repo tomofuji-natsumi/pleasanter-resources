@@ -15,7 +15,6 @@
     'use strict';
 
     var ITEM_SELECTOR = '.control-attachments-item';
-    var LINK_SELECTOR = ITEM_SELECTOR + ' a.file-name';
     var DOWNLOAD_BUTTON_SELECTOR = '.attachment-download-button';
 
     // ブラウザが追加アプリなしでそのまま表示できる拡張子
@@ -120,8 +119,11 @@
         $tempLink.remove();
     }
 
-    $(document).on('click', LINK_SELECTOR, function (e) {
-        // ファイル名部分のクリックでは、対応形式のプレビュー表示以外
+    $(document).on('click', ITEM_SELECTOR, function (e) {
+        // ダウンロード/削除ボタン上のクリックはそれぞれの専用処理に任せる
+        if (e.target.closest('.attachment-download-button, .delete-file')) { return; }
+
+        // ファイル名以外を含む項目全体のクリックでも、対応形式のプレビュー表示以外
         // 何も起こさない（ダウンロードや別タブでの表示は行わない）。
         // ダウンロードは一覧側／プレビュー内のダウンロードボタンからのみ行う。
         e.preventDefault();

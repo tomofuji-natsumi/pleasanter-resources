@@ -34,11 +34,9 @@
         }
 
         var $btn = ensureButton();
-        if (window.scrollY > SCROLL_SHOW_THRESHOLD) {
-            $btn.addClass('is-visible');
-        } else {
-            $btn.removeClass('is-visible');
-        }
+        var isVisible = window.scrollY > SCROLL_SHOW_THRESHOLD;
+        $btn.toggleClass('is-visible', isVisible);
+        $grid.toggleClass('has-scroll-to-top-space', isVisible);
     }
 
     // scrollイベントは高頻度で発火するため、rAFで間引く

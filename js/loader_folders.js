@@ -9,6 +9,14 @@ const BASE_URL = "https://tomofuji-natsumi.github.io/pleasanter-resources";
 const scripts = [
     BASE_URL + "/js/common/port_setting.js",
     BASE_URL + "/js/common/icon.js",
+    BASE_URL + "/js/common/tooltip.js",
+    BASE_URL + "/js/common/image_lightbox.js",
+    BASE_URL + "/js/common/restore_scroll_position.js",
+    BASE_URL + "/js/common/confirm_delete_title.js",
+    BASE_URL + "/js/common/select_all_shortcut.js",
+    BASE_URL + "/js/common/zebra_stripe.js",
+    BASE_URL + "/js/sites/scroll_to_error.js",
+    BASE_URL + "/js/sites/search_shortcut.js",
 ];
 
 // ===============================
