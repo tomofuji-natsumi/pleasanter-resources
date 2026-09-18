@@ -675,6 +675,10 @@ select:not([name="Results_Status"]):focus,
     border: 1px solid var(--border-normal);
 }
 
+.check-option .check-icon:has(input:disabled):has(input:checked):before {
+    color: var(--text-disabled) !important;
+}
+
 .check-option .check-text {
     user-select: none;
 }
