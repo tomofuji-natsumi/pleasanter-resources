@@ -1,0 +1,15 @@
+{
+  "Js": {
+    "All": [
+      "common/port_setting.js",
+      "common/icon.js"
+    ]
+  },
+  "Css": {
+    "All": [
+      "definition.css",
+      "custom_common.css",
+      "custom_folders.css"
+    ]
+  }
+}

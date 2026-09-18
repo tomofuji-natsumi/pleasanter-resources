@@ -1,0 +1,55 @@
+{
+  "Js": {
+    "All": [
+      "common/port_setting.js",
+      "common/icon.js"
+    ],
+    "Edit": [
+      "sites/readonly.js",
+      "sites/scroll_to_error.js",
+      "sites/attachment.js",
+      "sites/confirm_delete_title.js",
+      "sites/image_lightbox.js",
+      "sites/zebra_stripe.js"
+    ],
+    "New": [
+      "sites/scroll_to_error.js"
+    ],
+    "Calendar": [
+      "sites/holiday_setting.js",
+      "sites/calendar_swap_on_drop.js",
+      "sites/calendar_from_to_filter.js",
+      "sites/tooltip.js",
+      "sites/zebra_stripe.js"
+    ],
+    "Index": [
+      "sites/restore_scroll_position.js",
+      "sites/holiday_setting.js",
+      "sites/search_shortcut.js",
+      "sites/select_all_shortcut.js",
+      "sites/tooltip.js",
+      "sites/zebra_stripe.js"
+    ]
+  },
+  "Css": {
+    "All": [
+      "definition.css",
+      "custom_common.css"
+    ],
+    "Edit": [
+      "sites/readonly.css"
+    ],
+    "Calendar": [
+      "sites/calendar.css"
+    ],
+    "Index": [
+      "sites/calendar.css"
+    ],
+    "TimeSeries": [
+      "sites/time_series.css"
+    ],
+    "ImageLib": [
+      "sites/image_library.css"
+    ]
+  }
+}

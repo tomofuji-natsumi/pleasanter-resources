@@ -1,14 +1,12 @@
 // ===============================
 // カレンダー画面：祝日表示・月移動ショートカット
 //
-// 休日カレンダーマスタ（別サイト）から祝日データを取得し、カレンダー画面に
-// 祝日名を表示する。あわせて、左右矢印キーでの月移動・Tキーでの今日への
-// ジャンプもここで扱う。
+// 休日カレンダーマスタ（別サイト）から祝日データを取得し、カレンダー画面に祝日名を表示する。
+// あわせて、左右矢印キーでの月移動・Tキーでの今日へのジャンプもここで扱う。
 //
 // 休日カレンダーマスタのSiteIdはJSONの再エクスポートのたびに変わる上、
 // 環境（DEV/本番）ごとに異なるため、git管理のsite_ids.jsonから取得する。
-// 環境の判定はwindow.__pleasanterEnv（サイト個別設定側で"dev"等をセット、
-// 未設定時は"prod"扱い）による。
+// 環境の判定はwindow.__pleasanterEnv（サイト個別設定側で"dev"等をセット、未設定時は"prod"扱い）による。
 // ===============================
 const PLEASANTER_ENV = window.__pleasanterEnv || "prod";
 
@@ -73,8 +71,7 @@ const setupHolidayRendering = (getHolidayMap) => {
 
         $cells.find(".holiday-name").remove();
         // ⚠️ 休日区分(ClassD)は 100/150/200 の3種類（休日カレンダーマスタのChoicesText参照）。
-        // 以前は holiday-300 という存在しない値を含み、実在する holiday-150 が
-        // 抜けていたため、月移動時にクラスが正しく除去されないバグがあった。
+        // 以前は holiday-300 という存在しない値を含み、実在する holiday-150 が抜けていたため、月移動時にクラスが正しく除去されないバグがあった。
         $cells.removeClass("holiday-100 holiday-150 holiday-200");
 
         $cells.each(function () {
@@ -96,25 +93,13 @@ const setupHolidayRendering = (getHolidayMap) => {
     // 初回
     renderHolidays();
 
-    // ⚠️ 以前は月移動ボタン・navlinkのクリックだけをフックしていたが、
-    // FullCalendarの表示切り替え（月/週/日表示等）ボタンは拾えておらず、
-    // 切り替えるとFullCalendarがDOMを再構築して祝日表示が消えたまま
-    // 再描画されないバグがあった。
-    //
-    // ⚠️ 一度 #FullCalendar/.fc の要素参照を取得してそれだけを監視する
-    // 方式も試したが、月移動・表示切替時にFullCalendarがその要素自体を
-    // 作り直す（古い要素が丸ごと入れ替わる）ケースがあり、監視対象が
-    // 存在しなくなった古い要素のままになって以降の変化を検知できなくなる
-    // バグがあった（初回は表示されるが切替後は消えたままになる症状と一致）。
-    // 他のスクリプト（tooltip.js等）と同様、常に存在し続ける document.body
-    // を監視することで、この参照切れを避ける。
+    // 常に存在し続ける document.bodyを監視することで、参照切れを避ける。
     const observeOptions = { childList: true, subtree: true };
     let debounceTimer = null;
 
-    // renderHolidays() 自体が .holiday-name の削除・追加等のDOM変更を
-    // 行うため、そのままでは自分自身の変更を検知して再度発火し、
-    // 無限ループになってしまう。再描画中だけobserverを一時停止することで
-    // これを防ぐ。
+    // renderHolidays() 自体が .holiday-name の削除・追加等のDOM変更を行うため、
+    // そのままでは自分自身の変更を検知して再度発火し、無限ループになってしまう。
+    // 再描画中だけobserverを一時停止することでこれを防ぐ。
     const rerender = () => {
         calendarObserver.disconnect();
         renderHolidays();
@@ -137,13 +122,9 @@ let rerenderHolidays = null;
 // 環境（DEV/本番）ごとの休日カレンダーマスタSiteIdはgit管理のsite_ids.jsonから取得する。
 // SiteIdがJSONの再エクスポート等で変わった場合はsite_ids.jsonの編集のみで反映される。
 //
-// ⚠️ このスクリプトは全画面共通で読み込まれるため、カレンダー画面以外では
-// 以降のAPI呼び出し・MutationObserver起動を一切行わないようガードする。
-// カレンダー画面はURL（/items/{SiteId}/calendar）で判定する
-// （FullCalendarの描画タイミングに依存させないため）。
-// 一覧画面のダッシュボードにカレンダーウィジェットを置く場合もあるため、
-// .dashboard-calendar-container の存在でも読み込む
-// （このコンテナ自体はウィジェット初期化前から存在するため、DOM判定でも安全）。
+// ⚠️ このスクリプトは全画面共通で読み込まれるため、カレンダー画面以外では以降のAPI呼び出し・MutationObserver起動を一切行わないようガードする。
+// カレンダー画面はURL（/items/{SiteId}/calendar）で判定する（FullCalendarの描画タイミングに依存させないため）。
+// 一覧画面のダッシュボードにカレンダーウィジェットを置く場合もあるため、.dashboard-calendar-container の存在でも読み込む
 if (/\/calendar(?:[/?#]|$)/.test(location.pathname) || $(".dashboard-calendar-container").length > 0) {
 $.getJSON("https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix/js/site_ids.json")
     .done(function (siteIds) {
@@ -153,9 +134,8 @@ $.getJSON("https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_
             return;
         }
 
-        // 表示のたびに毎回APIを待たせないよう、取得結果をsessionStorageに
-        // キャッシュしておき、次回以降はキャッシュを即座に描画してから
-        // 裏で最新データを取得・差分があれば再描画する（stale-while-revalidate）。
+        // 表示のたびに毎回APIを待たせないよう、取得結果をsessionStorageにキャッシュしておき、
+        // 次回以降はキャッシュを即座に描画してから裏で最新データを取得・差分があれば再描画する（stale-while-revalidate）。
         const HOLIDAY_CACHE_KEY = `holidayMapCache_${HOLIDAY_CALENDAR_SITE_ID}`;
 
         // キャッシュがあれば通信を待たずに即描画する
