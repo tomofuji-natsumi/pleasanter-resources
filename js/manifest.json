@@ -1,0 +1,25 @@
+{
+  "All": [
+    "common/tooltip.js",
+    "common/port_setting.js",
+    "common/icon.js",
+    "sites/calendar_from_to_filter.js",
+    "common/image_lightbox.js",
+    "common/confirm_delete_title.js",
+    "common/select_all_shortcut.js",
+    "common/zebra_stripe.js",
+    "sites/scroll_to_error.js",
+    "sites/search_shortcut.js"
+  ],
+  "Edit": [
+    "sites/readonly.js",
+    "common/attachment.js"
+  ],
+  "Calendar": [
+    "sites/holiday_setting.js",
+    "sites/calendar_swap_on_drop.js"
+  ],
+  "Index": [
+    "common/restore_scroll_position.js"
+  ]
+}
