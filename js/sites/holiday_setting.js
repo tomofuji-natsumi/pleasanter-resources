@@ -1,6 +1,16 @@
-// ⚠️ 要設定: 開発環境ごとに実際のSiteIdへ差し替えること。
-// 休日カレンダーマスタのSiteIdはJSONの再エクスポートのたびに変わる（休日カレンダーマスタ_検討メモ.md参照）。
-const HOLIDAY_CALENDAR_SITE_ID = 24082;
+// ===============================
+// カレンダー画面：祝日表示・月移動ショートカット
+//
+// 休日カレンダーマスタ（別サイト）から祝日データを取得し、カレンダー画面に
+// 祝日名を表示する。あわせて、左右矢印キーでの月移動・Tキーでの今日への
+// ジャンプもここで扱う。
+//
+// 休日カレンダーマスタのSiteIdはJSONの再エクスポートのたびに変わる上、
+// 環境（DEV/本番）ごとに異なるため、git管理のsite_ids.jsonから取得する。
+// 環境の判定はwindow.__pleasanterEnv（サイト個別設定側で"dev"等をセット、
+// 未設定時は"prod"扱い）による。
+// ===============================
+const PLEASANTER_ENV = window.__pleasanterEnv || "prod";
 
 // 月移動・今日へジャンプのキーボードショートカット（左右矢印キー・Tキー）
 // 祝日データの取得成否とは無関係に効かせたいため、$.ajaxの外側で一度だけ登録する。
@@ -30,11 +40,6 @@ if (!window.__calendarArrowShortcutBound) {
         }
     });
 }
-
-// 表示のたびに毎回APIを待たせないよう、取得結果をsessionStorageに
-// キャッシュしておき、次回以降はキャッシュを即座に描画してから
-// 裏で最新データを取得・差分があれば再描画する（stale-while-revalidate）。
-const HOLIDAY_CACHE_KEY = `holidayMapCache_${HOLIDAY_CALENDAR_SITE_ID}`;
 
 const escapeHtml = (str) =>
     String(str ?? "").replace(/[&<>"']/g, s => ({
@@ -129,44 +134,73 @@ const setupHolidayRendering = (getHolidayMap) => {
 let holidayMap = {};
 let rerenderHolidays = null;
 
-// キャッシュがあれば通信を待たずに即描画する
-try {
-    const cached = sessionStorage.getItem(HOLIDAY_CACHE_KEY);
-    if (cached) {
-        holidayMap = JSON.parse(cached);
-        rerenderHolidays = setupHolidayRendering(() => holidayMap);
-    }
-} catch (e) {
-    console.warn("[holiday_setting.js] キャッシュの読み込みに失敗", e);
-}
+// 環境（DEV/本番）ごとの休日カレンダーマスタSiteIdはgit管理のsite_ids.jsonから取得する。
+// SiteIdがJSONの再エクスポート等で変わった場合はsite_ids.jsonの編集のみで反映される。
+//
+// ⚠️ このスクリプトは全画面共通で読み込まれるため、カレンダー画面以外では
+// 以降のAPI呼び出し・MutationObserver起動を一切行わないようガードする。
+// カレンダー画面はURL（/items/{SiteId}/calendar）で判定する
+// （FullCalendarの描画タイミングに依存させないため）。
+// 一覧画面のダッシュボードにカレンダーウィジェットを置く場合もあるため、
+// .dashboard-calendar-container の存在でも読み込む
+// （このコンテナ自体はウィジェット初期化前から存在するため、DOM判定でも安全）。
+if (/\/calendar(?:[/?#]|$)/.test(location.pathname) || $(".dashboard-calendar-container").length > 0) {
+$.getJSON("https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix/js/site_ids.json")
+    .done(function (siteIds) {
+        const HOLIDAY_CALENDAR_SITE_ID = siteIds?.[PLEASANTER_ENV]?.holidayCalendarSiteId;
+        if (!HOLIDAY_CALENDAR_SITE_ID) {
+            console.warn(`[holiday_setting.js] 環境"${PLEASANTER_ENV}"の休日カレンダーマスタSiteIdが未設定です`);
+            return;
+        }
 
-$.ajax({
-    url: `/api/items/${HOLIDAY_CALENDAR_SITE_ID}/get`,
-    type: "POST",
-    contentType: "application/json",
-    success: function (res) {
+        // 表示のたびに毎回APIを待たせないよう、取得結果をsessionStorageに
+        // キャッシュしておき、次回以降はキャッシュを即座に描画してから
+        // 裏で最新データを取得・差分があれば再描画する（stale-while-revalidate）。
+        const HOLIDAY_CACHE_KEY = `holidayMapCache_${HOLIDAY_CALENDAR_SITE_ID}`;
 
-        const rows =
-            res?.Response?.Data ??
-            res?.Response?.Items ??
-            res?.Data ??
-            res?.Items ??
-            [];
-
-        holidayMap = buildHolidayMap(rows);
-
+        // キャッシュがあれば通信を待たずに即描画する
         try {
-            sessionStorage.setItem(HOLIDAY_CACHE_KEY, JSON.stringify(holidayMap));
+            const cached = sessionStorage.getItem(HOLIDAY_CACHE_KEY);
+            if (cached) {
+                holidayMap = JSON.parse(cached);
+                rerenderHolidays = setupHolidayRendering(() => holidayMap);
+            }
         } catch (e) {
-            console.warn("[holiday_setting.js] キャッシュの保存に失敗", e);
+            console.warn("[holiday_setting.js] キャッシュの読み込みに失敗", e);
         }
 
-        if (rerenderHolidays) {
-            // キャッシュから既に描画済み：最新データで再描画するのみ
-            rerenderHolidays();
-        } else {
-            // キャッシュが無かった：ここで初めて描画・監視を開始する
-            rerenderHolidays = setupHolidayRendering(() => holidayMap);
-        }
-    }
-});
+        $.ajax({
+            url: `/api/items/${HOLIDAY_CALENDAR_SITE_ID}/get`,
+            type: "POST",
+            contentType: "application/json",
+            success: function (res) {
+
+                const rows =
+                    res?.Response?.Data ??
+                    res?.Response?.Items ??
+                    res?.Data ??
+                    res?.Items ??
+                    [];
+
+                holidayMap = buildHolidayMap(rows);
+
+                try {
+                    sessionStorage.setItem(HOLIDAY_CACHE_KEY, JSON.stringify(holidayMap));
+                } catch (e) {
+                    console.warn("[holiday_setting.js] キャッシュの保存に失敗", e);
+                }
+
+                if (rerenderHolidays) {
+                    // キャッシュから既に描画済み：最新データで再描画するのみ
+                    rerenderHolidays();
+                } else {
+                    // キャッシュが無かった：ここで初めて描画・監視を開始する
+                    rerenderHolidays = setupHolidayRendering(() => holidayMap);
+                }
+            }
+        });
+    })
+    .fail(function (e) {
+        console.warn("[holiday_setting.js] site_ids.json の読み込みに失敗", e);
+    });
+}

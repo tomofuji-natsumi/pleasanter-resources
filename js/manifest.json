@@ -21,7 +21,8 @@
       "sites/calendar_swap_on_drop.js"
     ],
     "Index": [
-      "common/restore_scroll_position.js"
+      "common/restore_scroll_position.js",
+      "sites/holiday_setting.js"
     ]
   },
   "Css": {
@@ -33,6 +34,9 @@
       "common/attachment.css"
     ],
     "Calendar": [
+      "sites/calendar.css"
+    ],
+    "Index": [
       "sites/calendar.css"
     ],
     "TimeSeries": [
