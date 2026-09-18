@@ -2,7 +2,7 @@
    0. 基本レイアウト・枠線
    ========================================================= */
 
-#MainContainer {
+.dashboard-calendar-container #MainContainer {
     background-color: var(--surface-base);
 }
 
@@ -383,7 +383,7 @@ button.fc-today-button[disabled] {
    6. メッセージ位置
    ========================================================= */
 
-#Message {
+.dashboard-calendar-container #Message {
     position: fixed !important;
     bottom: 0;
     left: 50%;
@@ -420,7 +420,7 @@ button.fc-today-button[disabled] {
     letter-spacing: 0.8px;
 }
 
-#MainCommandsContainer {
+.dashboard-calendar-container #MainCommandsContainer {
     display: none;
 }
 
@@ -434,8 +434,8 @@ button.fc-today-button[disabled] {
     padding-top: 10px;
 }
 
-#Calendar,
-#BottomMargin {
+.dashboard-calendar-container #Calendar,
+.dashboard-calendar-container #BottomMargin {
     background-color: var(--bg-surface) !important;
 }
 
