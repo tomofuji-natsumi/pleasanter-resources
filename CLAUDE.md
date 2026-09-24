@@ -8,13 +8,13 @@ Pleasanter（ノーコード業務アプリ基盤）のカスタマイズ資産�
 ここにあるのは **CDN から直接配信される素材** であり、`git push` した瞬間が「デプロイ」になる。
 
 - リモート: `https://github.com/tomofuji-natsumi/pleasanter-resources`
-- 配信元1: `https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix/...`（サイトパッケージ側）
+- 配信元1: `https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@main/...`（サイトパッケージ側）
 - 配信元2: `https://tomofuji-natsumi.github.io/pleasanter-resources/...`（`js/loader_folders.js`、`readonly_tenant/loader_tenant.js`）
 
 `loader_folders.js` 自体は配信元2から取得されるが、**その中で読むマニフェストとスクリプトは配信元1（jsdelivr）**。
 フォルダ側テンプレートのローダーと同一URLになるよう意図的に揃えてあり、両経路が効く画面でキャッシュが共有される。
 
-**⚠️ CDN URL にブランチ名 `@js_fix` がハードコードされている。** `window.__pleasanterCdnBase` に集約済み（D-1）だが、
+**⚠️ CDN URL にブランチ名 `@main` がハードコードされている。** `window.__pleasanterCdnBase` に集約済み（D-1）だが、
 Htmls/Scripts の評価順序が保証されないため、各所にフォールバック値として同じ文字列が残っている。
 ブランチを変える／`main` にマージする際は、以下を同時に書き換えないと本番が壊れる:
 
@@ -185,7 +185,7 @@ python font/NotoSansJP-Regular_Original/build_font.py
 `tenant.css` は Pleasanter のテナント設定「スタイル」欄に**インライン（`<style>`直書き）**で
 貼る運用のため、外部ファイルとして `<link>` 経由で読み込まれることはない。そのため中で
 `css/` 配下を `@import` する場合、相対パス（`../css/...` 等）は効かず、絶対CDN URL
-（`https://cdn.jsdelivr.net/gh/.../@js_fix/css/definition.css` 等、`window.__pleasanterCdnBase`
+（`https://cdn.jsdelivr.net/gh/.../@main/css/definition.css` 等、`window.__pleasanterCdnBase`
 と同じブランチ名ハードコード箇所）で書く必要がある（実機確認済み: 2026-09-24）。
 現状は `@import` で `definition.css` / `custom_common.css` を絶対URL指定して読み、
 `css/` 側のトークン・ベーススタイルと共有する形にしている（旧: 全ルールを`tenant.css`に

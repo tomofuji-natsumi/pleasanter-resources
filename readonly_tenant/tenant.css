@@ -3,8 +3,8 @@
    Pleasanterのテナント設定「スタイル」欄にインライン（<style>直書き）で貼る。
    ========================================================= */
 
-@import "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix/css/definition.css";
-@import "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix/css/custom_common.css";
+@import "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@main/css/definition.css";
+@import "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@main/css/custom_common.css";
 
 #Encoding,
 #ExportEncoding {

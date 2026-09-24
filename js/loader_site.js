@@ -27,7 +27,7 @@
 
     // D-1: CDN配信元＋ブランチ名はテンプレート側のwindow.__pleasanterCdnBaseに集約している。
     // 未定義の場合（テンプレート未反映等）に備え、フォールバック値も持たせる。
-    var CDN_BASE = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix";
+    var CDN_BASE = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@main";
 
     window.__pleasanterScreenType = window.__pleasanterScreenType || function () {
         var action = (location.pathname.match(/\/items\/\d+\/([a-zA-Z]+)/) || [])[1] || "";

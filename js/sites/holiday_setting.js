@@ -139,7 +139,7 @@ function tryInitHolidaySetting() {
 
 // D-1: CDN配信元＋ブランチ名はテンプレート側のwindow.__pleasanterCdnBaseに集約している。
 // 未定義の場合に備え、フォールバック値も持たせる。
-var CDN_BASE = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix";
+var CDN_BASE = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@main";
 
 $.getJSON(CDN_BASE + "/js/site_ids.json")
     .done(function (siteIds) {

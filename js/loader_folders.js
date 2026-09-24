@@ -12,7 +12,7 @@
 // トークン定義を含む自己完結版として担当しており、manifest_folder.json の Css.All
 // （custom_folders.css）を重ねるとトークンが二重定義になるため。
 //
-// ⚠️ 読み込み元は フォルダ_テンプレート.json 側のローダーと同じ jsdelivr @js_fix に統一している。
+// ⚠️ 読み込み元は フォルダ_テンプレート.json 側のローダーと同じ jsdelivr @main に統一している。
 // 同一URLになることで、両経路が効く画面でもブラウザキャッシュが共有される。
 // D-1: CDN配信元＋ブランチ名はテンプレート側のwindow.__pleasanterCdnBaseに集約している。
 // 未定義の場合（テンプレート未反映・github.io経由のreadonly_tenant等）に備え、
@@ -28,7 +28,7 @@
     if (window.__loaderFoldersBound) { return; }
     window.__loaderFoldersBound = true;
 
-    var BASE_URL = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix";
+    var BASE_URL = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@main";
     var MANIFEST_URL = BASE_URL + "/js/manifest_folder.json";
 
     // 取得済みのマニフェストを保持する。pjax遷移のたびに取り直さないことで、
