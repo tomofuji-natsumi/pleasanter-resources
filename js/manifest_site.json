@@ -9,12 +9,12 @@
       "common/dom_watcher.js",
       "common/port_setting.js",
       "common/icon.js",
-      "sites/zebra_stripe.js"
+      "sites/zebra_stripe.js",
+      "sites/attachment.js"
     ],
     "Edit": [
       "sites/readonly.js",
       "sites/scroll_to_error.js",
-      "sites/attachment.js",
       "sites/confirm_delete_title.js",
       "sites/image_lightbox.js"
     ],
