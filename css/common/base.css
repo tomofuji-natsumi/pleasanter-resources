@@ -931,7 +931,7 @@ span.flatpickr-weekday {
     border: 1px solid var(--border-normal) !important;
     border-radius: var(--radius-medium) !important;
     pointer-events: none;
-    user-select: text;
+    user-select: none;
 }
 
 .container-normal span[data-readonly="1"] {

@@ -35,6 +35,11 @@ td[role="presentation"],
     border-spacing: 0 !important;
 }
 
+label[for="CalendarFromTo"] {
+    cursor: default;
+    user-select: none;
+}
+
 
 
 /* =========================================================
@@ -63,6 +68,7 @@ td[role="presentation"],
     text-shadow: 0 0 2px var(--shadow-strong);
     font-size: 1rem !important;
     font-weight: 550 !important;
+    user-select: none;
 }
 
 /* 平日 */
@@ -115,6 +121,7 @@ td[role="presentation"],
 .fc-daygrid-day-frame .fc-daygrid-day-number {
     font-size: 0.95rem;
     white-space: nowrap;
+    user-select: none;
 }
 
 .fc-day:not(.fc-day-other) .fc-daygrid-day-number {
@@ -243,6 +250,7 @@ td[role="presentation"],
     font-weight: 600 !important;
     font-size: 0.90rem !important;
     padding: 4px 8px 6px 13px !important;
+    user-select: none;
 }
 
 /* 左バー */
@@ -404,6 +412,7 @@ button.fc-today-button[disabled] {
     align-items: center !important;
     position: relative !important;
     padding: 0 8px !important;
+    user-select: none;
 }
 
 .fc-toolbar-title {
@@ -459,6 +468,7 @@ button.fc-today-button[disabled] {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    user-select: none;
 }
 
 /* =========================================================
