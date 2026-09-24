@@ -181,10 +181,15 @@ python font/NotoSansJP-Regular_Original/build_font.py
 `?_=<timestamp>` が付き、ブラウザキャッシュを毎回バイパスしてしまう。`<script>` 要素を自前で挿入し、
 `s.async = false` でマニフェストの記載順を保つ。
 
-**CSS は `loader_folders.js` からは読まない。** テナント画面のスタイルは `tenant.css` が
-トークン定義を含む自己完結版として担当しており、`manifest_folder.json` の `Css.All`
-（`custom_folders.css`）を重ねるとトークンが二重定義になるため。
-`tenant.css` は `css/` 配下とは別系統。両方を直す変更は同期を忘れないこと。
+**CSS は `loader_folders.js` からは読まない。** テナント画面のスタイルは `tenant.css` が担当。
+`tenant.css` は Pleasanter のテナント設定「スタイル」欄に**インライン（`<style>`直書き）**で
+貼る運用のため、外部ファイルとして `<link>` 経由で読み込まれることはない。そのため中で
+`css/` 配下を `@import` する場合、相対パス（`../css/...` 等）は効かず、絶対CDN URL
+（`https://cdn.jsdelivr.net/gh/.../@js_fix/css/definition.css` 等、`window.__pleasanterCdnBase`
+と同じブランチ名ハードコード箇所）で書く必要がある（実機確認済み: 2026-09-24）。
+現状は `@import` で `definition.css` / `custom_common.css` を絶対URL指定して読み、
+`css/` 側のトークン・ベーススタイルと共有する形にしている（旧: 全ルールを`tenant.css`に
+自己完結でコピーしていたが、`base.css`とほぼ全重複だったため整理済み）。
 
 `loader_tenant.js:80` の `window.startIconObserverForIcons` は未定義のまま
 （`icon.js` は `window` に何も export せず、自前の `pjax:complete` と MutationObserver で自走する）。
