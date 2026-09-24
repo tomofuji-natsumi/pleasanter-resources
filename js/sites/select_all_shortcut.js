@@ -12,33 +12,30 @@
 (function () {
     'use strict';
 
-    if (window.__selectAllShortcutBound) { return; }
-    window.__selectAllShortcutBound = true;
-
     function findTargetGrid() {
         var $focused = $(document.activeElement).closest('.grid');
         if ($focused.length) { return $focused; }
         return $('.grid:visible').first();
     }
 
-    $(document).on('keydown', function (e) {
-        if (!(e.ctrlKey || e.metaKey) || e.key.toLowerCase() !== 'a') { return; }
+    // js/common/shortcut.js（manifestでこのファイルより先に読まれる）が
+    // 入力欄ガード・修飾キー判定・多重登録防止を面倒見る
+    window.once('selectAllShortcut', function () {
+        window.registerShortcut({
+            key: 'a',
+            ctrlOrMeta: true,
+            handler: function (e) {
+                var $grid = findTargetGrid();
+                var $selectAllLabel = $grid.find('th:first-child .check-option').first();
+                var $checkbox = $selectAllLabel.find('input[type="checkbox"]').first();
+                if (!$selectAllLabel.length || !$checkbox.length) { return; }
 
-        // 入力欄でのテキスト全選択（ブラウザ標準動作）は妨げない
-        var tag = (e.target.tagName || '').toLowerCase();
-        if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) {
-            return;
-        }
-
-        var $grid = findTargetGrid();
-        var $selectAllLabel = $grid.find('th:first-child .check-option').first();
-        var $checkbox = $selectAllLabel.find('input[type="checkbox"]').first();
-        if (!$selectAllLabel.length || !$checkbox.length) { return; }
-
-        e.preventDefault();
-
-        if (!$checkbox.prop('checked')) {
-            $selectAllLabel.trigger('click');
-        }
+                // 未チェックなら選択、チェック済みなら選択解除（ラベル自体のトグル動作に委ねる）。
+                // チェック済みかの判定より前にpreventDefault()すると、2回目のCtrl+Aで
+                // ブラウザ標準の全選択もトグル解除も起きない死にキーになるため、判定後に呼ぶ。
+                e.preventDefault();
+                $selectAllLabel.trigger('click');
+            }
+        });
     });
 })();

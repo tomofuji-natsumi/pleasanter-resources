@@ -83,12 +83,10 @@
         // 元のリクエストはここで中止し、衝突確認後に自分たちで送り直す
         options.beforeSend = function () { return false; };
 
-        $.ajax({
-            url: '/api/items/' + siteId + '/get',
-            type: 'POST',
-            contentType: 'application/json'
-        }).done(function (res) {
-            var rows = (res && res.Response && res.Response.Data) || [];
+        // js/common/api.js（manifestでこのファイルより先に読まれる）が
+        // ApiVersionの付与（A-5）・ページング対策（B-6）・失敗時のwarnを面倒見る
+        window.pleasanterApi.getRecords(siteId).done(function (res) {
+            var rows = window.pleasanterApi.extractRows(res);
             var targetKey = toDateKey(newDateValue);
 
             var draggedRow = rows.find(function (row) {

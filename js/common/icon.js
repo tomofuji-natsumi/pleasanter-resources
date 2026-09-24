@@ -6,10 +6,9 @@
 
     // このファイルは画面遷移のたびに再取得・再評価されるため、IIFEを抜けるたびに
     // pjax:complete ハンドラとMutationObserverが積み重なってしまう。
-    // window.__iconBound で多重登録を防ぐ（既存インスタンスの WeakSet「applied」も
+    // once（js/common/utils.js）で多重登録を防ぐ（既存インスタンスの WeakSet「applied」も
     // 新インスタンスには引き継がれないため、二重登録を防ぐことで二重挿入も防ぐ）。
-    if (window.__iconBound) { return; }
-    window.__iconBound = true;
+    window.once("icon", function () {
 
     // ===============================
     // 1. アイコンマップ定義
@@ -227,15 +226,9 @@
     $(document).ready(runIconApply);
 
     // ===============================
-    // 9. MutationObserver（debounce 25ms）
+    // 9. DOM監視（js/common/dom_watcher.js に集約。manifestでこのファイルより先に読まれる）
     // ===============================
-    let debounceTimer = null;
+    window.__pleasanterWatch(runIconApply, { delay: 25, guard: "icon" });
 
-    const observer = new MutationObserver(function () {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(runIconApply, 25);
     });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-
 })();

@@ -12,42 +12,38 @@
 
     var SEARCH_INPUT_SELECTOR = '#ViewFilters_Search';
 
-    if (window.__searchShortcutBound) { return; }
-    window.__searchShortcutBound = true;
+    // js/common/shortcut.js（manifestでこのファイルより先に読まれる）が
+    // 入力欄ガード・修飾キー判定を面倒見る
+    window.once('searchShortcut', function () {
+        window.registerShortcut({
+            key: '/',
+            allowShift: false,
+            handler: function (e) {
+                var $search = $(SEARCH_INPUT_SELECTOR);
+                if (!$search.length) {
+                    console.warn('[検索ショートカット] 検索欄が見つかりませんでした。SEARCH_INPUT_SELECTORの見直しが必要です。');
+                    return;
+                }
 
-    $(document).on('keydown', function (e) {
-        if (e.key !== '/') { return; }
+                // "/" 自体が入力されないようにする（Firefoxのクイック検索起動の抑制も兼ねる）
+                e.preventDefault();
 
-        // 入力欄でのタイピング中（URLや日付等に"/"を含む場合）は妨げない
-        var tag = (e.target.tagName || '').toLowerCase();
-        if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable) {
-            return;
-        }
-        if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) { return; }
+                if ($search.is(':visible')) {
+                    $search.trigger('focus').select();
+                    return;
+                }
 
-        var $search = $(SEARCH_INPUT_SELECTOR);
-        if (!$search.length) {
-            console.warn('[検索ショートカット] 検索欄が見つかりませんでした。SEARCH_INPUT_SELECTORの見直しが必要です。');
-            return;
-        }
-
-        // "/" 自体が入力されないようにする（Firefoxのクイック検索起動の抑制も兼ねる）
-        e.preventDefault();
-
-        if ($search.is(':visible')) {
-            $search.trigger('focus').select();
-            return;
-        }
-
-        // 絞り込みパネルが閉じている場合は開いてからフォーカスする
-        var $expand = $('#ExpandViewFilters');
-        if ($expand.length && $expand.is(':visible')) {
-            $expand.trigger('click');
-            setTimeout(function () {
-                $search.trigger('focus').select();
-            }, 200);
-        } else {
-            console.warn('[検索ショートカット] 絞り込みパネルを開けませんでした（#ExpandViewFiltersが見つからない）。');
-        }
+                // 絞り込みパネルが閉じている場合は開いてからフォーカスする
+                var $expand = $('#ExpandViewFilters');
+                if ($expand.length && $expand.is(':visible')) {
+                    $expand.trigger('click');
+                    setTimeout(function () {
+                        $search.trigger('focus').select();
+                    }, 200);
+                } else {
+                    console.warn('[検索ショートカット] 絞り込みパネルを開けませんでした（#ExpandViewFiltersが見つからない）。');
+                }
+            }
+        });
     });
 })();

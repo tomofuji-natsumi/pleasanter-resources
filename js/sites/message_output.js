@@ -3,16 +3,27 @@
 //
 // Pleasanter標準形式の成功・警告・エラーメッセージを表示する。
 // ===============================
+(function () {
+"use strict";
+
+/**
+ * Pleasanter標準形式のメッセージを表示
+ * @param {string} css 適用するCssクラス（alert-success/alert-warning/alert-error）
+ * @param {string} message 表示するメッセージ
+ */
+function outLog(css, message){
+    $p.setMessage("#Message", JSON.stringify({
+        Css:css,
+        Text:message
+    }));
+}
 
 /**
  * Pleasanter標準形式の成功メッセージを表示
  * @param {string} message 表示するメッセージ
  */
 function outSuccessLog(message){
-    $p.setMessage("#Message", JSON.stringify({
-        Css:"alert-success",
-        Text:message
-    }));
+    outLog("alert-success", message);
 }
 
 /**
@@ -20,10 +31,7 @@ function outSuccessLog(message){
  * @param {string} message 表示するメッセージ
  */
 function outWarnLog(message){
-    $p.setMessage("#Message", JSON.stringify({
-        Css:"alert-warning",
-        Text:message
-    }));
+    outLog("alert-warning", message);
 }
 
 /**
@@ -31,8 +39,10 @@ function outWarnLog(message){
  * @param {string} message 表示するメッセージ
  */
 function outErrorLog(message){
-    $p.setMessage("#Message", JSON.stringify({
-        Css:"alert-error",
-        Text:message
-    }));
+    outLog("alert-error", message);
 }
+
+window.outSuccessLog = outSuccessLog;
+window.outWarnLog = outWarnLog;
+window.outErrorLog = outErrorLog;
+})();

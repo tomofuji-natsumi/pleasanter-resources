@@ -15,41 +15,36 @@ const PLEASANTER_ENV = window.__pleasanterEnv || "prod";
 
 // 月移動・今日へジャンプのキーボードショートカット（左右矢印キー・Tキー）
 // 祝日データの取得成否とは無関係に効かせたいため、$.ajaxの外側で一度だけ登録する。
-if (!window.__calendarArrowShortcutBound) {
-    window.__calendarArrowShortcutBound = true;
-
-    $(document).on("keydown", function (e) {
-        // 入力欄でのカーソル移動・タイピングを妨げないようにする
-        var tag = (e.target.tagName || "").toLowerCase();
-        if (tag === "input" || tag === "textarea" || tag === "select" || e.target.isContentEditable) {
-            return;
-        }
-        // 他の修飾キーとの組み合わせ（ブラウザ標準操作等）には反応しない
-        if (e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) {
-            return;
-        }
-
-        if (e.key === "ArrowLeft") {
+// js/common/shortcut.js（manifestでこのファイルより先に読まれる）が
+// 入力欄ガード・修飾キー判定・多重登録防止を面倒見る
+window.once("calendarArrowShortcut", function () {
+    window.registerShortcut({
+        key: "ArrowLeft",
+        allowShift: false,
+        handler: function () {
             var $prev = $(".fc-prev-button");
             if ($prev.length) { $prev.trigger("click"); }
-        } else if (e.key === "ArrowRight") {
+        }
+    });
+    window.registerShortcut({
+        key: "ArrowRight",
+        allowShift: false,
+        handler: function () {
             var $next = $(".fc-next-button");
             if ($next.length) { $next.trigger("click"); }
-        } else if (e.key === "t" || e.key === "T") {
+        }
+    });
+    window.registerShortcut({
+        key: "t",
+        allowShift: false,
+        handler: function () {
             var $today = $(".fc-today-button:not([disabled])");
             if ($today.length) { $today.trigger("click"); }
         }
     });
-}
+});
 
-const escapeHtml = (str) =>
-    String(str ?? "").replace(/[&<>"']/g, s => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-    })[s]);
+// escapeHtmlはjs/common/utils.js（manifestでこのファイルより先に読まれる）が提供する
 
 const buildHolidayMap = (rows) => {
     const holidayMap = {};
@@ -130,8 +125,23 @@ let rerenderHolidays = null;
 // ⚠️ このスクリプトは全画面共通で読み込まれるため、カレンダー画面以外では以降のAPI呼び出し・MutationObserver起動を一切行わないようガードする。
 // カレンダー画面はURL（/items/{SiteId}/calendar）で判定する（FullCalendarの描画タイミングに依存させないため）。
 // 一覧画面のダッシュボードにカレンダーウィジェットを置く場合もあるため、.dashboard-calendar-container の存在でも読み込む
-if (/\/calendar(?:[/?#]|$)/.test(location.pathname) || $(".dashboard-calendar-container").length > 0) {
-$.getJSON("https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix/js/site_ids.json")
+//
+// ⚠️ ローダー側がB-1対応（<script>要素の重複読み込み防止）により、このファイル自体は
+// 画面遷移のたびに再取得・再評価されなくなった。そのため初回読み込み時にカレンダー画面以外に
+// いた場合でも、以降pjax遷移でカレンダー画面に来た時に初期化できるよう、判定を
+// pjax:completeのたびに再実行する（初期化は一度成功したら__holidaySettingInitedで打ち切る）。
+function tryInitHolidaySetting() {
+    if (window.__holidaySettingInited) { return; }
+    if (!(/\/calendar(?:[/?#]|$)/.test(location.pathname) || $(".dashboard-calendar-container").length > 0)) {
+        return;
+    }
+    window.__holidaySettingInited = true;
+
+// D-1: CDN配信元＋ブランチ名はテンプレート側のwindow.__pleasanterCdnBaseに集約している。
+// 未定義の場合に備え、フォールバック値も持たせる。
+var CDN_BASE = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix";
+
+$.getJSON(CDN_BASE + "/js/site_ids.json")
     .done(function (siteIds) {
         const HOLIDAY_CALENDAR_SITE_ID = siteIds?.[PLEASANTER_ENV]?.holidayCalendarSiteId;
         if (!HOLIDAY_CALENDAR_SITE_ID) {
@@ -154,40 +164,37 @@ $.getJSON("https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_
             console.warn("[holiday_setting.js] キャッシュの読み込みに失敗", e);
         }
 
-        $.ajax({
-            url: `/api/items/${HOLIDAY_CALENDAR_SITE_ID}/get`,
-            type: "POST",
-            contentType: "application/json",
-            success: function (res) {
+        // js/common/api.js（manifestでこのファイルより先に読まれる）が
+        // ApiVersionの付与（A-5）・ページング対策（B-6）を面倒見る。
+        // 従来failハンドラが無く、失敗時は無言でキャッシュ描画のまま放置されていた（C-3）
+        window.pleasanterApi.getRecords(HOLIDAY_CALENDAR_SITE_ID).done(function (res) {
+            const rows = window.pleasanterApi.extractRows(res);
 
-                const rows =
-                    res?.Response?.Data ??
-                    res?.Response?.Items ??
-                    res?.Data ??
-                    res?.Items ??
-                    [];
+            holidayMap = buildHolidayMap(rows);
 
-                holidayMap = buildHolidayMap(rows);
-
-                try {
-                    sessionStorage.setItem(HOLIDAY_CACHE_KEY, JSON.stringify(holidayMap));
-                } catch (e) {
-                    console.warn("[holiday_setting.js] キャッシュの保存に失敗", e);
-                }
-
-                if (rerenderHolidays) {
-                    // キャッシュから既に描画済み：最新データで再描画するのみ
-                    rerenderHolidays();
-                } else {
-                    // キャッシュが無かった：ここで初めて描画・監視を開始する
-                    rerenderHolidays = setupHolidayRendering(() => holidayMap);
-                }
+            try {
+                sessionStorage.setItem(HOLIDAY_CACHE_KEY, JSON.stringify(holidayMap));
+            } catch (e) {
+                console.warn("[holiday_setting.js] キャッシュの保存に失敗", e);
             }
+
+            if (rerenderHolidays) {
+                // キャッシュから既に描画済み：最新データで再描画するのみ
+                rerenderHolidays();
+            } else {
+                // キャッシュが無かった：ここで初めて描画・監視を開始する
+                rerenderHolidays = setupHolidayRendering(() => holidayMap);
+            }
+        }).fail(function (e) {
+            console.warn("[holiday_setting.js] 祝日データの取得に失敗", e);
         });
     })
     .fail(function (e) {
         console.warn("[holiday_setting.js] site_ids.json の読み込みに失敗", e);
     });
 }
+
+$(document).on("pjax:complete", tryInitHolidaySetting);
+tryInitHolidaySetting();
 
 })();

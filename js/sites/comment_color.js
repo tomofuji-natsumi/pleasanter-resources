@@ -40,48 +40,22 @@
     }
 
     // 編集画面（#UpdateCommandが存在する）以外では、コメント色データ自体がサーバー側で計算されないため、Observerを起動しても意味がない
-    if (document.getElementById('UpdateCommand') && !window.__commentColorBound) {
-        window.__commentColorBound = true;
+    if (document.getElementById('UpdateCommand')) {
+        window.once("commentColor", function () {
+            // 初回表示時点で既にDOMにある既存コメントには、以降のMutationObserverは
+            // 反応しない（新規追加されたノードにしか反応しないため）ため、ここで一度実行する
+            applyCommentColors();
 
-        // 初回表示時点で既にDOMにある既存コメントには、以降のMutationObserverは
-        // 反応しない（新規追加されたノードにしか反応しないため）ため、ここで一度実行する
-        applyCommentColors();
-
-        let debounceTimer = null;
-
-        const commentObserver = new MutationObserver(mutations => {
-            let needUpdate = false;
-
-            for (const m of mutations) {
-
-                for (const node of m.addedNodes) {
-                    if (node.nodeType === 1 && node.id && node.id.startsWith("Comment")) {
-                        needUpdate = true;
-                    }
-                }
-
-                if (m.type === "childList" && m.target.id === "CommentList") {
-                    needUpdate = true;
-                }
-
-                if (m.type === "attributes" && m.target.id === "CommentList") {
-                    needUpdate = true;
-                }
-            }
-
-            if (needUpdate) {
-                clearTimeout(debounceTimer);
-                debounceTimer = setTimeout(() => {
-                    applyCommentColors();
-                }, 50);
-            }
-        });
-
-        commentObserver.observe(document.body, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ["class"]
+            // js/common/dom_watcher.js に集約（manifestでこのファイルより先に読まれる）。
+            // 元々はCommentList配下の変更かどうかをmutations側で判定していたが、
+            // applyCommentColors自体が軽量（該当DOMのCSS書き換えのみ）なため、
+            // 対象を絞らず毎回呼び出して問題ない
+            window.__pleasanterWatch(applyCommentColors, {
+                delay: 50,
+                guard: "commentColor",
+                attributes: true,
+                attributeFilter: ["class"]
+            });
         });
     }
 })();

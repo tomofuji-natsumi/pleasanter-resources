@@ -10,41 +10,21 @@
 
     var IMAGE_SELECTOR = '.md-viewer .notes img[src*="/binaries/"]';
 
-    if (window.__imageLightboxBound) { return; }
-    window.__imageLightboxBound = true;
+    window.once('imageLightbox', function () {
+        // js/common/overlay.js（manifestでこのファイルより先に読まれる）が
+        // 生成・Escape・外側クリックでの非表示を面倒見る
+        var overlay = window.createOverlay('image-lightbox-overlay',
+            '<div id="image-lightbox-overlay"><img class="image-lightbox-img" alt=""></div>'
+        );
 
-    function ensureOverlay() {
-        var $overlay = $('#image-lightbox-overlay');
-        if ($overlay.length) { return $overlay; }
+        $(document).on('click', IMAGE_SELECTOR, function (e) {
+            e.preventDefault();
 
-        $overlay = $(
-            '<div id="image-lightbox-overlay">' +
-                '<img class="image-lightbox-img" alt="">' +
-            '</div>'
-        ).appendTo('body');
+            var url = new URL(this.src, window.location.href);
+            url.searchParams.delete('thumbnail');
 
-        $overlay.on('click', function () {
-            $overlay.removeClass('is-visible');
+            overlay.$el.find('.image-lightbox-img').attr('src', url.toString());
+            overlay.show();
         });
-
-        return $overlay;
-    }
-
-    $(document).on('click', IMAGE_SELECTOR, function (e) {
-        e.preventDefault();
-
-        var url = new URL(this.src, window.location.href);
-        url.searchParams.delete('thumbnail');
-        var fullSizeUrl = url.toString();
-        var $overlay = ensureOverlay();
-
-        $overlay.find('.image-lightbox-img').attr('src', fullSizeUrl);
-        $overlay.addClass('is-visible');
-    });
-
-    $(document).on('keydown', function (e) {
-        if (e.key === 'Escape') {
-            $('#image-lightbox-overlay').removeClass('is-visible');
-        }
     });
 })();

@@ -15,6 +15,9 @@
 
     var ITEM_SELECTOR = '.control-attachments-item';
     var DOWNLOAD_BUTTON_SELECTOR = '.attachment-download-button';
+    var PREVIEW_LOAD_TIMEOUT_MS = 8000;
+
+    var previewLoadTimeoutTimer = null;
 
     // ブラウザが追加アプリなしでそのまま表示できる拡張子
     var PREVIEWABLE_EXTENSIONS = [
@@ -26,8 +29,7 @@
     ];
     var PREVIEWABLE_PATTERN = new RegExp('\\.(' + PREVIEWABLE_EXTENSIONS.join('|') + ')$', 'i');
 
-    if (window.__attachmentPreviewBound) { return; }
-    window.__attachmentPreviewBound = true;
+    window.once("attachmentPreview", function () {
 
     // 同一アイテム内で複数回 a.file-name を探し直さずに済むよう、
     // ダウンロード用リンク・プレビュー用リンクをまとめて1回のlookupで取得する
@@ -37,16 +39,6 @@
             $download: $links.not('[target]').first(),
             $show: $links.filter('[target="_blank"]').first()
         };
-    }
-
-    function getFileName($item) {
-        var text = getLinks($item).$download.text() || '';
-        // 「ファイル名　(サイズ)」の全角スペース区切りからファイル名部分のみ取り出す
-        return text.split('　')[0].trim();
-    }
-
-    function getShowUrl($item) {
-        return getLinks($item).$show.attr('href');
     }
 
     function getDownloadUrl($item) {
@@ -66,44 +58,44 @@
         });
     }
 
-    function ensureOverlay() {
-        var $overlay = $('#attachment-preview-overlay');
-        if ($overlay.length) { return $overlay; }
-
-        $overlay = $(
-            '<div id="attachment-preview-overlay">' +
-                '<div class="attachment-preview-panel">' +
-                    '<div class="attachment-preview-controls">' +
-                        '<div class="attachment-preview-download" title="ダウンロード">' +
-                            '<span class="ui-icon ui-icon-circle-arrow-s"></span>' +
-                        '</div>' +
-                        '<div class="attachment-preview-close" title="閉じる">&times;</div>' +
+    // js/common/overlay.js（manifestでこのファイルより先に読まれる）が
+    // 生成・Escape・外側クリック・閉じるボタンを面倒見る。ダウンロードボタン・
+    // iframeのload監視はこのファイル固有の処理のため、初回のみ個別に紐付ける
+    var previewOverlay = window.createOverlay('attachment-preview-overlay',
+        '<div id="attachment-preview-overlay">' +
+            '<div class="attachment-preview-panel">' +
+                '<div class="attachment-preview-controls">' +
+                    '<div class="attachment-preview-download" title="ダウンロード">' +
+                        '<span class="ui-icon ui-icon-circle-arrow-s"></span>' +
                     '</div>' +
-                    '<div class="attachment-preview-spinner"></div>' +
-                    '<iframe class="attachment-preview-frame" frameborder="0"></iframe>' +
+                    '<div class="attachment-preview-close" title="閉じる">&times;</div>' +
                 '</div>' +
-            '</div>'
-        ).appendTo('body');
-
-        function close() {
-            $overlay.removeClass('is-visible is-loading');
-            $overlay.find('.attachment-preview-frame').attr('src', 'about:blank');
-            $overlay.removeData('download-url');
+                '<div class="attachment-preview-spinner"></div>' +
+                '<iframe class="attachment-preview-frame" frameborder="0"></iframe>' +
+            '</div>' +
+        '</div>',
+        {
+            closeSelector: '.attachment-preview-close',
+            onClose: function ($el) {
+                clearTimeout(previewLoadTimeoutTimer);
+                $el.removeClass('is-loading');
+                $el.find('.attachment-preview-frame').attr('src', 'about:blank');
+                $el.removeData('download-url');
+            }
         }
+    );
 
-        $overlay.on('click', '.attachment-preview-close', close);
-        $overlay.on('click', function (e) {
-            if (e.target === this) { close(); }
-        });
-        $overlay.on('click', '.attachment-preview-download', function (e) {
-            e.preventDefault();
-            triggerDownload($overlay.data('download-url'));
-        });
-        $overlay.find('.attachment-preview-frame').on('load', function () {
-            $overlay.removeClass('is-loading');
-        });
+    previewOverlay.$el.on('click', '.attachment-preview-download', function (e) {
+        e.preventDefault();
+        triggerDownload(previewOverlay.$el.data('download-url'));
+    });
+    previewOverlay.$el.find('.attachment-preview-frame').on('load', function () {
+        clearTimeout(previewLoadTimeoutTimer);
+        previewOverlay.$el.removeClass('is-loading');
+    });
 
-        return $overlay;
+    function ensureOverlay() {
+        return previewOverlay.$el;
     }
 
     function triggerDownload(downloadUrl) {
@@ -136,17 +128,16 @@
         var $overlay = ensureOverlay();
 
         $overlay.data('download-url', links.$download.attr('href'));
-        $overlay.addClass('is-visible is-loading');
+        $overlay.addClass('is-loading');
+        previewOverlay.show();
         $overlay.find('.attachment-preview-frame').attr('src', links.$show.attr('href'));
-    });
 
-    $(document).on('keydown', function (e) {
-        if (e.key === 'Escape') {
-            var $overlay = $('#attachment-preview-overlay');
-            $overlay.removeClass('is-visible');
-            $overlay.find('.attachment-preview-frame').attr('src', 'about:blank');
-            $overlay.removeData('download-url');
-        }
+        // hrefが取得できない等でiframeのloadが発火しない場合、is-loadingが永久に残る
+        // （スピナーが回り続ける）ため、タイムアウトで強制的に解除する
+        clearTimeout(previewLoadTimeoutTimer);
+        previewLoadTimeoutTimer = setTimeout(function () {
+            $overlay.removeClass('is-loading');
+        }, PREVIEW_LOAD_TIMEOUT_MS);
     });
 
     $(document).on('click', DOWNLOAD_BUTTON_SELECTOR, function (e) {
@@ -160,18 +151,16 @@
 
     // コンテナ要素だけを監視する方式も検討したが、pjax遷移でコンテナ自体が丸ごと再生成され監視対象への参照が古くなるケースがある
     // （holiday_setting.jsのcalendarObserverで踏んだのと同種の問題）ため、常に存在し続けるdocument.bodyを監視する
-    var debounceTimer = null;
-    var observer = new MutationObserver(function () {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(ensureDownloadButtons, 50);
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
+    // （js/common/dom_watcher.js に集約。manifestでこのファイルより先に読まれる）
+    window.__pleasanterWatch(ensureDownloadButtons, { delay: 50, guard: 'attachmentDownloadButtons' });
 
     ensureDownloadButtons();
+
+    });
 })();
 
 // ===============================
-// 
+//
 // 添付ファイルの長押しで並べ替え
 //
 // Pleasanter標準では添付ファイルの表示順は登録順で固定だが、各アイテムを長押ししてから掴んで並べ替えられるようにする。
@@ -192,8 +181,7 @@
     var LONG_PRESS_MS = 350;
     var MOVE_CANCEL_THRESHOLD = 6; // px。これ以上動いたら長押し判定を中断する
 
-    if (window.__attachmentReorderBound) { return; }
-    window.__attachmentReorderBound = true;
+    window.once("attachmentReorder", function () {
 
     function getHiddenInput($items) {
         return $items.closest('.container-normal').find('input.control-attachments');
@@ -240,11 +228,37 @@
     var $dragging = null;
     var suppressNextClick = false;
 
+    // B-8: mousemove/touchmoveは「長押し中〜ドラッグ中」だけ必要なため、常時登録せず
+    // 押している間だけ動的に付け外しする（touchmoveのpassive:falseがページ全体の
+    // スクロール最適化を常時無効化してしまう問題を解消）
+    var moveListenersActive = false;
+
+    function addMoveListeners() {
+        if (moveListenersActive) { return; }
+        moveListenersActive = true;
+        document.addEventListener('mousemove', onPressMove, true);
+        document.addEventListener('touchmove', onPressMove, { capture: true, passive: false });
+    }
+
+    function removeMoveListeners() {
+        if (!moveListenersActive) { return; }
+        moveListenersActive = false;
+        document.removeEventListener('mousemove', onPressMove, true);
+        document.removeEventListener('touchmove', onPressMove, true);
+    }
+
+    function releaseMoveListenersIfIdle() {
+        if (!pressTimer && !$dragging) {
+            removeMoveListeners();
+        }
+    }
+
     function clearPress() {
         clearTimeout(pressTimer);
         pressTimer = null;
         pressOrigin = null;
         $pressItem = null;
+        releaseMoveListenersIfIdle();
     }
 
     function startDragging($item) {
@@ -272,10 +286,37 @@
         }
     }
 
+    // B-8: document.elementFromPoint()はレイアウトを強制読み取りするため、mousemoveのたびに
+    // 呼ぶと高頻度になる。1フレームにつき1回に間引く
+    var dragMoveFrame = null;
+    var pendingDragEvent = null;
+
+    function scheduleDragMove(e) {
+        pendingDragEvent = e;
+        if (dragMoveFrame !== null) { return; }
+        dragMoveFrame = requestAnimationFrame(function () {
+            dragMoveFrame = null;
+            if ($dragging && pendingDragEvent) {
+                handleDragMove(pendingDragEvent);
+            }
+            pendingDragEvent = null;
+        });
+    }
+
+    function cancelScheduledDragMove() {
+        if (dragMoveFrame !== null) {
+            cancelAnimationFrame(dragMoveFrame);
+            dragMoveFrame = null;
+        }
+        pendingDragEvent = null;
+    }
+
     function finishDragging() {
+        cancelScheduledDragMove();
         $dragging.removeClass('is-dragging');
         syncHiddenInputOrder($dragging.closest(ITEMS_SELECTOR));
         $dragging = null;
+        releaseMoveListenersIfIdle();
     }
 
     function onPressStart(e) {
@@ -287,6 +328,7 @@
         clearPress();
         pressOrigin = getPoint(e);
         $pressItem = $item;
+        addMoveListeners();
 
         pressTimer = setTimeout(function () {
             pressTimer = null;
@@ -306,7 +348,7 @@
 
         if ($dragging) {
             e.preventDefault();
-            handleDragMove(e);
+            scheduleDragMove(e);
         }
     }
 
@@ -319,9 +361,6 @@
 
     document.addEventListener('mousedown', onPressStart, true);
     document.addEventListener('touchstart', onPressStart, true);
-
-    document.addEventListener('mousemove', onPressMove, true);
-    document.addEventListener('touchmove', onPressMove, { capture: true, passive: false });
 
     document.addEventListener('mouseup', onPressEnd, true);
     document.addEventListener('touchend', onPressEnd, true);
@@ -336,6 +375,8 @@
         e.stopPropagation();
         if (e.stopImmediatePropagation) { e.stopImmediatePropagation(); }
     }, true);
+
+    });
 })();
 
 // ===============================
@@ -353,8 +394,7 @@
     var IMAGE_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'svg'];
     var IMAGE_PATTERN = new RegExp('\\.(' + IMAGE_EXTENSIONS.join('|') + ')$', 'i');
 
-    if (window.__attachmentThumbnailBound) { return; }
-    window.__attachmentThumbnailBound = true;
+    window.once("attachmentThumbnail", function () {
 
     function getFileName($item) {
         var $downloadLink = $item.find('a.file-name').not('[target]').first();
@@ -366,39 +406,30 @@
         return $item.find('a.file-name[target="_blank"]').first().attr('href');
     }
 
-    var $thumbnail = $('<div id="attachment-thumbnail"><img alt=""></div>').appendTo('body');
-    var hideTimer;
-
-    $(document).on('mouseenter', ITEM_SELECTOR, function () {
-        var $item = $(this);
-        var fileName = getFileName($item);
-        if (!IMAGE_PATTERN.test(fileName)) { return; }
-
+    // B-7: ホバーのたびに原寸画像をダウンロードしていた（image_lightbox.jsが認識する
+    // ?thumbnail=1を付けていなかったため）。サムネイル表示なので縮小版のURLに変える
+    function getThumbnailUrl($item) {
         var showUrl = getShowUrl($item);
-        if (!showUrl) { return; }
+        if (!showUrl) { return null; }
 
-        clearTimeout(hideTimer);
-        $thumbnail.find('img').attr('src', showUrl);
-        $thumbnail.css({ display: 'block', opacity: 0 });
+        var url = new URL(showUrl, window.location.href);
+        url.searchParams.set('thumbnail', '1');
+        return url.toString();
+    }
 
-        setTimeout(function () {
-            $thumbnail.css('opacity', 1);
-        }, 10);
+    // js/common/hover_popup.js（manifestでこのファイルより先に読まれる）が
+    // 表示・追従・遅延非表示を面倒見る
+    window.createHoverPopup('attachment-thumbnail', '<div id="attachment-thumbnail"><img alt=""></div>', ITEM_SELECTOR, {
+        onEnter: function ($popup, $item) {
+            var fileName = getFileName($item);
+            if (!IMAGE_PATTERN.test(fileName)) { return false; }
+
+            var showUrl = getThumbnailUrl($item);
+            if (!showUrl) { return false; }
+
+            $popup.find('img').attr('src', showUrl);
+        }
     });
 
-    $(document).on('mousemove', ITEM_SELECTOR, function (e) {
-        $thumbnail.css({
-            top: e.pageY + 16,
-            left: e.pageX + 16
-        });
-    });
-
-    $(document).on('mouseleave', ITEM_SELECTOR, function () {
-        hideTimer = setTimeout(function () {
-            $thumbnail.css('opacity', 0);
-            setTimeout(function () {
-                $thumbnail.css('display', 'none');
-            }, 200);
-        }, 150);
     });
 })();

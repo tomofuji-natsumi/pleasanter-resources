@@ -14,7 +14,9 @@
 //
 // ⚠️ 読み込み元は フォルダ_テンプレート.json 側のローダーと同じ jsdelivr @js_fix に統一している。
 // 同一URLになることで、両経路が効く画面でもブラウザキャッシュが共有される。
-// CLAUDE.md の警告どおり、ブランチを変える際は BASE_URL も同時に書き換えること。
+// D-1: CDN配信元＋ブランチ名はテンプレート側のwindow.__pleasanterCdnBaseに集約している。
+// 未定義の場合（テンプレート未反映・github.io経由のreadonly_tenant等）に備え、
+// フォールバック値も持たせているため、ブランチを変える際はこのフォールバック値も忘れず書き換えること。
 //
 // ⚠️ このファイルは評価時には何も実行しない。loader_tenant.js が
 // window.runTenantScripts() / window.reapplyFolderScripts() を呼ぶ契約になっているため、
@@ -26,7 +28,7 @@
     if (window.__loaderFoldersBound) { return; }
     window.__loaderFoldersBound = true;
 
-    var BASE_URL = "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix";
+    var BASE_URL = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_fix";
     var MANIFEST_URL = BASE_URL + "/js/manifest_folder.json";
 
     // 取得済みのマニフェストを保持する。pjax遷移のたびに取り直さないことで、

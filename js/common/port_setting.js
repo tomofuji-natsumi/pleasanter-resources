@@ -6,8 +6,7 @@
 
     // このファイルは画面遷移のたびに再取得・再評価されるため、ガード無しでは
     // MutationObserverが遷移のたびに積み重なってしまう。
-    if (window.__portSettingBound) { return; }
-    window.__portSettingBound = true;
+    window.once("portSetting", function () {
 
     // ===============================
     // 1. ファイル種別の定義
@@ -102,7 +101,7 @@
         input.attr("accept", fileType.accept);
 
         // ボタンクリックで input を起動
-        $fileButton.off("click").on("click", function () {
+        $fileButton.off("click.import").on("click.import", function () {
             input.trigger("click");
         });
 
@@ -131,13 +130,10 @@
     }
 
     // ===============================
-    // 6. 常時監視 Observer
-    //    disconnect しない — ダイアログは開くたびに
-    //    新しいDOMノードを生成するため、
+    // 6. 常時監視（js/common/dom_watcher.js に集約。manifestでこのファイルより先に読まれる）
+    //    ダイアログは開くたびに新しいDOMノードを生成するため、
     //    WeakSet のガードで二重処理を防ぐ
     // ===============================
-    let debounceTimer = null;
-
     function runChecks() {
         // --- インポート エンコーディング固定 ---
         fixEncoding($("#Encoding"));
@@ -156,16 +152,9 @@
         if ($tmpl.length) setupImportInput($tmpl);
     }
 
-    const watcher = new MutationObserver(function () {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(runChecks, 25);
-    });
+    window.__pleasanterWatch(runChecks, { delay: 25, guard: "portSetting" });
 
-    watcher.observe(document.body, {
-        childList: true,
-        subtree:   true,
     });
-
 })();
 
 // ===============================
@@ -185,32 +174,24 @@
 
     var SAFETY_TIMEOUT_MS = 10000;
 
-    if (window.__exportProgressBound) { return; }
-    window.__exportProgressBound = true;
+    window.once("exportProgress", function () {
 
-    function ensureOverlay() {
-        var $overlay = $('#export-progress-overlay');
-        if ($overlay.length) { return $overlay; }
-
-        return $(
-            '<div id="export-progress-overlay">' +
-                '<div class="export-progress-box">' +
-                    '<span class="export-progress-spinner"></span>' +
-                    '<span>エクスポート中です。しばらくお待ちください。</span>' +
-                '</div>' +
-            '</div>'
-        ).appendTo('body');
-    }
-
-    function hideOverlay() {
-        $('#export-progress-overlay').removeClass('is-visible');
-    }
+    // js/common/overlay.js（manifestでこのファイルより先に読まれる）が生成を面倒見る。
+    // Escape・外側クリックでの非表示は用途に合わないため無効にする
+    var overlay = window.createOverlay('export-progress-overlay',
+        '<div id="export-progress-overlay">' +
+            '<div class="export-progress-box">' +
+                '<span class="export-progress-spinner"></span>' +
+                '<span>エクスポート中です。しばらくお待ちください。</span>' +
+            '</div>' +
+        '</div>',
+        { closeOnBackdrop: false, closeOnEscape: false }
+    );
 
     $(document).on('click', '#DoExport', function () {
-        var $overlay = ensureOverlay();
-        $overlay.addClass('is-visible');
+        overlay.show();
 
-        var hideTimer = setTimeout(hideOverlay, SAFETY_TIMEOUT_MS);
+        var hideTimer = setTimeout(overlay.close, SAFETY_TIMEOUT_MS);
 
         // ダイアログが閉じた時点でエクスポート操作自体は終わっているとみなす。
         // jQuery UIのダイアログは中身自体ではなく親のラッパー（.ui-dialog）側の
@@ -222,7 +203,7 @@
             var dialogObserver = new MutationObserver(function () {
                 if (!$dialog.is(':visible')) {
                     clearTimeout(hideTimer);
-                    hideOverlay();
+                    overlay.close();
                     dialogObserver.disconnect();
                 }
             });
@@ -233,5 +214,7 @@
                 attributeFilter: ['style', 'class']
             });
         }
+    });
+
     });
 })();

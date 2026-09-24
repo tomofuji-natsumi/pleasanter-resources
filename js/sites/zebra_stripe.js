@@ -18,16 +18,9 @@
 
     applyStripes();
 
-    if (!window.__zebraStripeBound) {
-        window.__zebraStripeBound = true;
-
+    window.once('zebraStripe', function () {
         $(document).on('pjax:complete', applyStripes);
 
-        var debounceTimer = null;
-        var observer = new MutationObserver(function () {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(applyStripes, 50);
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-    }
+        window.__pleasanterWatch(applyStripes, { delay: 50, guard: 'zebraStripe' });
+    });
 })();
