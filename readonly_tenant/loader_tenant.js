@@ -76,10 +76,6 @@
       }
 
       await waitForPleasanterDom();
-
-      if (typeof window.startIconObserverForIcons === 'function') {
-        window.startIconObserverForIcons();
-      }
     } catch (e) {
       console.error('[loader] 初期化エラー:', e);
     } finally {
