@@ -8,6 +8,9 @@
 // 環境（DEV/本番）ごとに異なるため、git管理のsite_ids.jsonから取得する。
 // 環境の判定はwindow.__pleasanterEnv（サイト個別設定側で"dev"等をセット、未設定時は"prod"扱い）による。
 // ===============================
+(function () {
+    "use strict";
+
 const PLEASANTER_ENV = window.__pleasanterEnv || "prod";
 
 // 月移動・今日へジャンプのキーボードショートカット（左右矢印キー・Tキー）
@@ -70,9 +73,11 @@ const setupHolidayRendering = (getHolidayMap) => {
         const holidayMap = getHolidayMap();
 
         $cells.find(".holiday-name").remove();
-        // ⚠️ 休日区分(ClassD)は 100/150/200 の3種類（休日カレンダーマスタのChoicesText参照）。
-        // 以前は holiday-300 という存在しない値を含み、実在する holiday-150 が抜けていたため、月移動時にクラスが正しく除去されないバグがあった。
-        $cells.removeClass("holiday-100 holiday-150 holiday-200");
+        // 休日区分(ClassD)の値がハードコードリストと食い違うと除去漏れが起きるため、
+        // "holiday-"接頭のクラスを総なめして除去する（以前 holiday-300 を含み holiday-150 が抜けていたバグの再発防止）。
+        $cells.removeClass(function (i, classNames) {
+            return (classNames.match(/(^|\s)holiday-\S+/g) || []).join(" ");
+        });
 
         $cells.each(function () {
             const date = $(this).attr("data-date");
@@ -184,3 +189,5 @@ $.getJSON("https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@js_
         console.warn("[holiday_setting.js] site_ids.json の読み込みに失敗", e);
     });
 }
+
+})();

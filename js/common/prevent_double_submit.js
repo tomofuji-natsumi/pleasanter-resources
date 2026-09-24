@@ -22,14 +22,25 @@
         var $btn = $(this);
         if ($btn.prop('disabled')) { return; }
 
+        // disabled化前の0ms間に連打されると安全解除タイマーが複数生成されてしまうため、
+        // 既存のタイマーがあれば解除してから積み直す
+        var existingTimer = $btn.data('preventDoubleSubmitTimer');
+        if (existingTimer) { clearTimeout(existingTimer); }
+
         $btn.addClass('is-submitting');
 
         setTimeout(function () {
             $btn.prop('disabled', true);
         }, 0);
 
-        setTimeout(function () {
-            $btn.prop('disabled', false).removeClass('is-submitting');
+        var safetyTimer = setTimeout(function () {
+            $btn.removeClass('is-submitting').removeData('preventDoubleSubmitTimer');
+            // lock_save_during_upload.js によるアップロード中ロックがあれば解除しない
+            // （そちらのMutationObserverがアップロード終了時に改めて解除する）
+            if (!$btn.hasClass('is-upload-locked')) {
+                $btn.prop('disabled', false);
+            }
         }, SAFETY_TIMEOUT_MS);
+        $btn.data('preventDoubleSubmitTimer', safetyTimer);
     });
 })();

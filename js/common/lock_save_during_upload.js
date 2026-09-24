@@ -25,9 +25,21 @@
         var uploading = isUploading();
         var $buttons = $('#CreateCommand, #UpdateCommand');
 
-        $buttons.prop('disabled', uploading);
         $buttons.toggleClass('is-upload-locked', uploading);
         $buttons.attr('title', uploading ? LOCK_MESSAGE : '');
+
+        // prevent_double_submit.js が付与する is-submitting クラス（多重送信防止）を
+        // ここで無条件に解除してしまうと二重送信防止が50ms程度しか効かなくなる。
+        // アップロード中は無条件で無効化するが、アップロード終了時は
+        // 他スクリプトによるロックが無い場合のみ有効化し直す。
+        $buttons.each(function () {
+            var $btn = $(this);
+            if (uploading) {
+                $btn.prop('disabled', true);
+            } else if (!$btn.hasClass('is-submitting')) {
+                $btn.prop('disabled', false);
+            }
+        });
     }
 
     if (!window.__lockSaveDuringUploadBound) {

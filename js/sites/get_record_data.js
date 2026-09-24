@@ -18,15 +18,35 @@ function getRecord(recordId){
         throw new Error("get Record:IDが未入力です。");
     }
     return new Promise(function(resolve,reject){
+        var GET_RECORD_TIMEOUT_MS = 10000;
+        var settled = false;
+
+        var timeoutTimer = setTimeout(function () {
+            if (settled) { return; }
+            settled = true;
+            reject(new Error(`get Record:タイムアウトしました。recordId=${recordId}`));
+        }, GET_RECORD_TIMEOUT_MS);
+
         $p.apiGet({
             id:recordId,
             done:function(data){
-                if(!data){
+                if(settled){ return; }
+                settled = true;
+                clearTimeout(timeoutTimer);
+
+                var rows = data && data.Response && data.Response.Data;
+                if(!rows || !rows.length){
                     reject(new Error(`get Record:指定されたレコードIDが存在しません。recordId=${recordId}`));
                     return
                 }
-                //console.log(data);
-                resolve(data.Response.Data[0]);
+                resolve(rows[0]);
+            },
+            fail:function(error){
+                if(settled){ return; }
+                settled = true;
+                clearTimeout(timeoutTimer);
+                console.warn("[get_record_data] レコード取得に失敗しました", recordId, error);
+                reject(new Error(`get Record:レコード取得に失敗しました。recordId=${recordId}`));
             }
         });
     });
@@ -41,7 +61,6 @@ function getRecord(recordId){
  * @throws {Error} 指定した分類が存在しない場合
  */
 function getClassFromRecord(record, targetName){
-    console.log(record);
     let result = record.ClassHash[targetName];
     if(result == undefined){
         throw new Error(`getClassFromRecord:指定した分類が存在しません。targetName=${targetName}`);

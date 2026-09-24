@@ -37,11 +37,12 @@ if (document.body.classList.contains("readonly-mode")) {
             if (df.shadowRoot) {
                 injectDateFieldCSS(df.shadowRoot);
                 clearInterval(timer);
+                clearTimeout(giveUpTimer);
             }
         }, 50);
 
         // 1秒経っても shadowRoot が無ければ諦める（安全）
-        setTimeout(() => clearInterval(timer), 1000);
+        const giveUpTimer = setTimeout(() => clearInterval(timer), 1000);
     };
 
     // 既存の date-field
@@ -70,9 +71,22 @@ $(function () {
 
     // ===============================
     // 2-1. フォーム要素を完全に無効化
+    //
+    // disabled にすると submit 対象から除外され、読取専用画面から何らかの経路で
+    // submit された場合に値が空で保存されてしまうため使わない。
+    // text系（readonly対応）は readonly属性、select/checkbox/radio（readonly非対応）は
+    // pointer-events:none + tabindex="-1" でクリック・キー操作のみ無効化し、値は送信可能なままにする。
     // ===============================
     $("form input:not([type='hidden']), form textarea, form select, form input[type='checkbox'], form input[type='radio']")
-        .prop("disabled", true);
+        .each(function () {
+            var tag = this.tagName.toLowerCase();
+            var type = (this.type || "").toLowerCase();
+            if (tag === "select" || type === "checkbox" || type === "radio") {
+                $(this).css("pointer-events", "none").attr("tabindex", "-1");
+            } else {
+                $(this).prop("readOnly", true);
+            }
+        });
 
     // ===============================
     // 2-2. HTMLエスケープ
@@ -99,19 +113,19 @@ $(function () {
         control.find("input.flatpickr-input").each(function () {
             const val = escapeHtml($(this).val());
             $(this).hide();
-            control.append(`<div class="readonly-value" data-source="#${this.id}">${val}</div>`);
+            control.append(`<div class="readonly-value" data-source-id="${escapeHtml(this.id)}">${val}</div>`);
         });
-    
+
         // select
         control.find("select.control-dropdown").each(function () {
             $(this).hide();
-            control.append(`<div class="readonly-value" data-source="#${this.id}"></div>`);
+            control.append(`<div class="readonly-value" data-source-id="${escapeHtml(this.id)}"></div>`);
         });
-    
+
         // textarea
         control.find("textarea.control-markdown, textarea.control-textarea").each(function () {
             $(this).hide();
-            control.append(`<div class="readonly-value" data-source="#${this.id}"></div>`);
+            control.append(`<div class="readonly-value" data-source-id="${escapeHtml(this.id)}"></div>`);
         });
     
         // SunEditor
@@ -125,12 +139,17 @@ $(function () {
     // 2-3.5 readonly-value に元の値を反映
     // ===============================
     $(".readonly-value").each(function () {
-        const selector = $(this).data("source");
-        if (!selector) return;
-    
-        const $src = $(selector);
+        const sourceId = $(this).attr("data-source-id");
+        if (!sourceId) return;
+
+        // data-*属性値をそのまま $() に渡すと、idにドットが含まれる場合に
+        // "#Id.Class" と誤解釈されたり、空文字で $("#") が例外を投げたりするため getElementById を使う
+        const el = document.getElementById(sourceId);
+        if (!el) return;
+
+        const $src = $(el);
         let text = "";
-    
+
         if ($src.is("select")) {
             text = $src.find("option:selected").map(function () {
                 return $(this).text();

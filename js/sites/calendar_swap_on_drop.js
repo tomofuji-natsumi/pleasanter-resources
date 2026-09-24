@@ -95,6 +95,13 @@
                 return String(row.Id) === String(recordId);
             });
             var originalDateValue = draggedRow && draggedRow.DateHash && draggedRow.DateHash[columnName];
+            if (!draggedRow || originalDateValue === undefined) {
+                console.warn('[calendar_swap_on_drop] ドラッグ元レコードの元の日付が取得できないため入れ替えを中止します', recordId);
+                sendCalendarUpdate(options.url, fields, {}).always(function () {
+                    location.reload();
+                });
+                return;
+            }
 
             var collisionRow = rows.find(function (row) {
                 if (String(row.Id) === String(recordId)) { return false; }
@@ -121,15 +128,15 @@
                 return;
             }
 
-            // ドラッグしたレコードは移動先の日付へ（fieldsに元々含まれる値のまま）
+            // 衝突相手には Id と日付列だけを送る（ドラッグしたレコードのタイトル等を巻き込まないため baseFields は空にする）
             var collisionFields = {};
             collisionFields['Id'] = collisionRow.Id;
             collisionFields[dateFieldKey] = originalDateValue;
 
-            $.when(
-                sendCalendarUpdate(options.url, fields, {}),
-                sendCalendarUpdate(options.url, fields, collisionFields)
-            ).always(function () {
+            // 同一サイト・同一日付列への更新が競合しないよう直列に送信する
+            sendCalendarUpdate(options.url, fields, {}).then(function () {
+                return sendCalendarUpdate(options.url, {}, collisionFields);
+            }).always(function () {
                 location.reload();
             });
         }).fail(function () {

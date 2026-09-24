@@ -4,6 +4,11 @@
 (function () {
     "use strict";
 
+    // このファイルは画面遷移のたびに再取得・再評価されるため、ガード無しでは
+    // MutationObserverが遷移のたびに積み重なってしまう。
+    if (window.__portSettingBound) { return; }
+    window.__portSettingBound = true;
+
     // ===============================
     // 1. ファイル種別の定義
     //    親フォームのIDで種別を判定し、
@@ -37,11 +42,15 @@
     // ===============================
     // 3. エンコーディング固定ヘルパー
     //    完了後に encoding-ready を付与して表示
+    //
+    //    disabled にすると submit 対象から除外され、Encodingパラメータがサーバに
+    //    届かなくなるため使わない。select は readonly 非対応のため、
+    //    pointer-events:none + tabindex="-1" でクリック・キー操作のみ無効化する。
     // ===============================
     function fixEncoding($el) {
         if (!$el.length || setupDone.has($el[0])) return;
         setupDone.add($el[0]);
-        $el.val("UTF-8").prop("disabled", true);
+        $el.val("UTF-8").css("pointer-events", "none").attr("tabindex", "-1");
         $el.addClass("encoding-ready");
     }
 

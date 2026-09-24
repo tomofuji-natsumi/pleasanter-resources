@@ -4,6 +4,13 @@
 (function () {
     "use strict";
 
+    // このファイルは画面遷移のたびに再取得・再評価されるため、IIFEを抜けるたびに
+    // pjax:complete ハンドラとMutationObserverが積み重なってしまう。
+    // window.__iconBound で多重登録を防ぐ（既存インスタンスの WeakSet「applied」も
+    // 新インスタンスには引き継がれないため、二重登録を防ぐことで二重挿入も防ぐ）。
+    if (window.__iconBound) { return; }
+    window.__iconBound = true;
+
     // ===============================
     // 1. アイコンマップ定義
     //    各エントリは { s: selector, c: color, i: icon } の形式
@@ -154,7 +161,12 @@
             const el = document.getElementById(m[1]);
             return el ? [el] : [];
         }
-        return Array.from(document.querySelectorAll(selector));
+        try {
+            return Array.from(document.querySelectorAll(selector));
+        } catch (e) {
+            console.warn("[icon.js] 不正なセレクタのためスキップします", selector, e);
+            return [];
+        }
     }
 
     // ===============================
@@ -184,14 +196,15 @@
         if (merged) return;
 
         const custom = window.__pleasanterCustomIconMap;
-        if (!custom) return;
+        if (!custom || typeof custom !== "object") return;
 
         merged = true;
 
         const extra = [];
         for (const [color, map] of Object.entries(custom)) {
-            if (!CLASS_MAP[color]) continue;
+            if (!CLASS_MAP[color] || !map || typeof map !== "object") continue;
             for (const [selector, icon] of Object.entries(map)) {
+                if (typeof selector !== "string" || typeof icon !== "string") continue;
                 extra.push({ s: selector, c: color, i: icon });
             }
         }
