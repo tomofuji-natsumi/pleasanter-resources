@@ -6,8 +6,8 @@
 	content: "";
     display: block;
     color: var(--semantic-warning-text) !important;
-    font-weight: 550;
-    font-size: 0.85rem;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
     margin-bottom: 10px;
     padding: 6px 12px;
     background-color: var(--semantic-warning);
@@ -67,7 +67,7 @@
 }
 
 #CommentList markdown-field .notes {
-    font-size: 0.88rem;
+    font-size: var(--font-size-sm);
     color: var(--text-main);
 }
 
@@ -83,7 +83,7 @@
 
 .comment-header .time {
     order: 2;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
 }
 
 @media screen and (max-width: 1024px) and (min-width: 0) {
@@ -131,5 +131,5 @@
 }
 
 #Editor #RecordSwitchers button {
-    font-weight: 550;
+    font-weight: var(--font-weight-medium);
 }

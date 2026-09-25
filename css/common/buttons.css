@@ -47,7 +47,7 @@
     transform: translateY(-50%);
     top: 50%;
     left: 0.35rem;
-    font-size: 1.16rem;
+    font-size: var(--font-size-lg);
 	user-select: none;
 }
 
@@ -72,14 +72,14 @@
     padding: 0.3rem 0.4rem 0.35rem 1.7rem !important;
     border-radius: var(--radius-small);
     border: 1px solid transparent !important;
-    font-size: 0.85rem !important;
-    font-weight: 550;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium);
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
     box-shadow: var(--elevation-3);
 }
 
 .ui-button:hover {
-    font-weight: 550 !important;
+    font-weight: var(--font-weight-medium) !important;
     background: transparent;
 }
 

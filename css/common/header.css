@@ -6,7 +6,7 @@
     padding: 2px 12px;
     background-color: var(--surface-soft) !important;
     border-bottom: 1px solid var(--border-light);
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
     color: var(--text-emphasis) !important;
     box-shadow: var(--elevation-1);
 }
@@ -21,7 +21,7 @@
     max-width: 200px;
     padding: 2px 4px !important;
     height: auto;
-    font-size: 0.83rem !important;
+    font-size: var(--font-size-sm) !important;
 }
 
 
@@ -58,7 +58,7 @@
 }
 
 #Header .hamburger-menubox #NewMenuContainer span:last-child {
-    font-size: 1rem;
+    font-size: var(--font-size-md);
     margin-left: 0.3rem;
 }
 
@@ -68,7 +68,7 @@
 }
 
 #Header .hamburger-menubox .menubox .menulabel span:last-child {
-    font-size: 0.94rem;
+    font-size: var(--font-size-base);
     user-select: none;
 }
 
@@ -79,7 +79,7 @@
 
 #Header .hamburger-menubox .menubox-sub {
     background-color: var(--surface-strong);
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
 }
 
 #Header .hamburger-menubox .menubox-sub ul a {
@@ -113,10 +113,10 @@
 }
 
 #Breadcrumb span.label {
-    font-size: 0.8rem;
-    font-weight: 550;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
     white-space: pre;
-    line-height: 1.4;
+    line-height: var(--line-height-normal);
     color: var(--text-sub);
 }
 
@@ -136,7 +136,7 @@
 #Breadcrumb .item:last-child:is(.trashbox) span {
     color: var(--text-on-primary);
     text-shadow: var(--elevation-1);
-	font-weight: 550;
+	font-weight: var(--font-weight-medium);
     user-select: none;
 }
 

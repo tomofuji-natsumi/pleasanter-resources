@@ -70,21 +70,53 @@
     --border-nav: oklch(from var(--primary) calc(l + 0.30) calc(c * 0.28) h);
     --border-accent: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
     --border-title: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.18) h);
-    --border-interactive: oklch(0.72 0.09 255);
+    --border-interactive: oklch(from var(--primary) calc(l + 0.20) calc(c * 0.65) h);
     --comment-border-color: oklch(from var(--primary) calc(l + 0.29) calc(c * 0.22) h);
     --border-comment: 1px solid var(--comment-border-color);
+
+    /* --- Focus Ring --- */
+    --focus-ring-color: color-mix(in oklch, var(--primary) 35%, transparent);
+    --focus-ring: 0 0 0 2px var(--focus-ring-color);
+
+    /* =========================================================
+       3.5 タイポグラフィ（フォントサイズスケール）
+       ========================================================= */
+
+    --font-size-2xs: 0.72rem;
+    --font-size-xs:  0.75rem;
+    --font-size-sm:  0.85rem;
+    --font-size-base: 0.9rem;
+    --font-size-md:  1rem;
+    --font-size-lg:  1.1rem;
+    --font-size-xl:  1.3rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.7rem;
+
+    --font-weight-thin:   200;
+    --font-weight-light:  400;
+    --font-weight-normal: 500;
+    --font-weight-medium: 550;
+    --font-weight-bold:   600;
+    --font-weight-heavy:  700;
+
+    --line-height-tight:   1.0;
+    --line-height-snug:    1.3;
+    --line-height-normal:  1.4;
+    --line-height-relaxed: 1.55;
 
     --radius-small: 4px;
     --radius-medium: 5px;
     --radius-large: 6px;
 
-    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-faint:  rgba(0, 0, 0, 0.02);
+    --shadow-light:  rgba(0, 0, 0, 0.05);
     --shadow-medium: rgba(0, 0, 0, 0.10);
     --shadow-strong: rgba(0, 0, 0, 0.18);
 
     --elevation-1: 0 1px 2px var(--shadow-light);
     --elevation-2: 0 2px 4px var(--shadow-medium);
     --elevation-3: 0 2px 4px var(--shadow-strong);
+    --elevation-4: 0 10px 28px var(--shadow-medium), 0 3px 6px var(--shadow-light);
 
     /* =========================================================
        4. テキストカラー（文字色）
@@ -142,87 +174,87 @@
 
       --status-no-bg: #EEF0F3;
       --status-no-border: #C4CAD2;
-      --status-no-bg-hover: #E2E5EA;
-      --status-no-border-hover: #B6BCC6;
+      --status-no-bg-hover: color-mix(in oklch, var(--status-no-bg) 95%, black);
+      --status-no-border-hover: color-mix(in oklch, var(--status-no-border) 90%, black);
       --status-no-text: #3E4856;
 
       --status-new-bg: #EAF1FE;
       --status-new-border: #ADC6EC;
-      --status-new-bg-hover: #DCE8FC;
-      --status-new-border-hover: #98B6E2;
+      --status-new-bg-hover: color-mix(in oklch, var(--status-new-bg) 95%, black);
+      --status-new-border-hover: color-mix(in oklch, var(--status-new-border) 90%, black);
       --status-new-text: #123467;
 
       --status-preparation-bg: #FFF5DA;
       --status-preparation-border: #E8C468;
-      --status-preparation-bg-hover: #FFEDBE;
-      --status-preparation-border-hover: #DCB350;
+      --status-preparation-bg-hover: color-mix(in oklch, var(--status-preparation-bg) 95%, black);
+      --status-preparation-border-hover: color-mix(in oklch, var(--status-preparation-border) 90%, black);
       --status-preparation-text: #6B4C00;
 
       --status-inprogress-bg: #DAF6EF;
       --status-inprogress-border: #56BFAD;
-      --status-inprogress-bg-hover: #C4EEE4;
-      --status-inprogress-border-hover: #46AE9C;
+      --status-inprogress-bg-hover: color-mix(in oklch, var(--status-inprogress-bg) 95%, black);
+      --status-inprogress-border-hover: color-mix(in oklch, var(--status-inprogress-border) 90%, black);
       --status-inprogress-text: #06463E;
 
       --status-approval-bg: #F0E8FF;
       --status-approval-border: #B790EC;
-      --status-approval-bg-hover: #E5D8FC;
-      --status-approval-border-hover: #A87EE0;
+      --status-approval-bg-hover: color-mix(in oklch, var(--status-approval-bg) 95%, black);
+      --status-approval-border-hover: color-mix(in oklch, var(--status-approval-border) 90%, black);
       --status-approval-text: #3C1478;
 
       --status-completed-bg: #E2F5E6;
       --status-completed-border: #7BC08C;
-      --status-completed-bg-hover: #D0EED6;
-      --status-completed-border-hover: #6AB27C;
+      --status-completed-bg-hover: color-mix(in oklch, var(--status-completed-bg) 95%, black);
+      --status-completed-border-hover: color-mix(in oklch, var(--status-completed-border) 90%, black);
       --status-completed-text: #124D26;
 
       --status-declined-bg: #FFE6EA;
       --status-declined-border: #E68E97;
-      --status-declined-bg-hover: #FFD0D6;
-      --status-declined-border-hover: #DA7E88;
+      --status-declined-bg-hover: color-mix(in oklch, var(--status-declined-bg) 95%, black);
+      --status-declined-border-hover: color-mix(in oklch, var(--status-declined-border) 90%, black);
       --status-declined-text: #74151B;
 
       /* ランク評価専用(統一ルールの対象外) */
       --status-rank-e-bg: #F0F1F3;
       --status-rank-e-border: #C8CDD4;
-      --status-rank-e-bg-hover: #E4E6EA;
-      --status-rank-e-border-hover: #BCC1C9;
+      --status-rank-e-bg-hover: color-mix(in oklch, var(--status-rank-e-bg) 95%, black);
+      --status-rank-e-border-hover: color-mix(in oklch, var(--status-rank-e-border) 90%, black);
       --status-rank-e-text: #4A5260;
 
       --status-rank-d-bg: #F0F4FE;
       --status-rank-d-border: #C0CFEE;
-      --status-rank-d-bg-hover: #E4ECFC;
-      --status-rank-d-border-hover: #B0C2E6;
+      --status-rank-d-bg-hover: color-mix(in oklch, var(--status-rank-d-bg) 95%, black);
+      --status-rank-d-border-hover: color-mix(in oklch, var(--status-rank-d-border) 90%, black);
       --status-rank-d-text: #1A3A7A;
 
       --status-rank-c-bg: #E0F8F4;
       --status-rank-c-border: #6ACABA;
-      --status-rank-c-bg-hover: #CCF0EA;
-      --status-rank-c-border-hover: #58BCAC;
+      --status-rank-c-bg-hover: color-mix(in oklch, var(--status-rank-c-bg) 95%, black);
+      --status-rank-c-border-hover: color-mix(in oklch, var(--status-rank-c-border) 90%, black);
       --status-rank-c-text: #0A5048;
 
       --status-rank-b-bg: #FFF8E1;
       --status-rank-b-border: #F0D080;
-      --status-rank-b-bg-hover: #FFF0C0;
-      --status-rank-b-border-hover: #E8C060;
+      --status-rank-b-bg-hover: color-mix(in oklch, var(--status-rank-b-bg) 95%, black);
+      --status-rank-b-border-hover: color-mix(in oklch, var(--status-rank-b-border) 90%, black);
       --status-rank-b-text: #7A5500;
 
       --status-rank-a-bg: #F3EEFF;
       --status-rank-a-border: #C4A8F0;
-      --status-rank-a-bg-hover: #EAE0FC;
-      --status-rank-a-border-hover: #B89AE4;
+      --status-rank-a-bg-hover: color-mix(in oklch, var(--status-rank-a-bg) 95%, black);
+      --status-rank-a-border-hover: color-mix(in oklch, var(--status-rank-a-border) 90%, black);
       --status-rank-a-text: #4A1A8A;
 
       --status-rank-s-bg: #E8F5EC;
       --status-rank-s-border: #90CC9E;
-      --status-rank-s-bg-hover: #D8EEDE;
-      --status-rank-s-border-hover: #80BE8E;
+      --status-rank-s-bg-hover: color-mix(in oklch, var(--status-rank-s-bg) 95%, black);
+      --status-rank-s-border-hover: color-mix(in oklch, var(--status-rank-s-border) 90%, black);
       --status-rank-s-text: #1A5830;
 
       --status-rank-x-bg: #FFEBEE;
       --status-rank-x-border: #F0A0A8;
-      --status-rank-x-bg-hover: #FFD8DC;
-      --status-rank-x-border-hover: #E49098;
+      --status-rank-x-bg-hover: color-mix(in oklch, var(--status-rank-x-bg) 95%, black);
+      --status-rank-x-border-hover: color-mix(in oklch, var(--status-rank-x-border) 90%, black);
       --status-rank-x-text: #8A1A20;
 
     /* =========================================================

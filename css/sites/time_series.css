@@ -3,8 +3,8 @@
 }
 
 .tick text {
-    font-weight: 200;
-    font-size: 0.7rem;
+    font-weight: var(--font-weight-thin);
+    font-size: var(--font-size-2xs);
     fill: var(--text-main);
 }
 

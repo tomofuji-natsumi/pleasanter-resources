@@ -31,7 +31,7 @@ textarea,
 .ui-widget textarea,
 .dashboard-custom-body {
     font-family: auto !important;
-    line-height: 1.36;
+    line-height: var(--line-height-snug);
 }
 
 a {
@@ -123,7 +123,7 @@ img {
     transform: translateY(-50%);
     top: 50%;
     left: 0.35rem;
-    font-size: 1.16rem;
+    font-size: var(--font-size-lg);
 	user-select: none;
 }
 
@@ -148,14 +148,14 @@ img {
     padding: 0.3rem 0.4rem 0.35rem 1.7rem !important;
     border-radius: var(--radius-small);
     border: 1px solid transparent !important;
-    font-size: 0.85rem !important;
-    font-weight: 550;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-medium);
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
     box-shadow: var(--elevation-3);
 }
 
 .ui-button:hover {
-    font-weight: 550 !important;
+    font-weight: var(--font-weight-medium) !important;
     background: transparent;
 }
 
@@ -259,7 +259,7 @@ button:has(.extra-material-icons):active {
     padding: 2px 12px;
     background-color: var(--surface-soft) !important;
     border-bottom: 1px solid var(--border-light);
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
     color: var(--text-emphasis) !important;
     box-shadow: var(--elevation-1);
 }
@@ -274,7 +274,7 @@ button:has(.extra-material-icons):active {
     max-width: 200px;
     padding: 2px 4px !important;
     height: auto;
-    font-size: 0.83rem !important;
+    font-size: var(--font-size-sm) !important;
 }
 
 
@@ -311,7 +311,7 @@ button:has(.extra-material-icons):active {
 }
 
 #Header .hamburger-menubox #NewMenuContainer span:last-child {
-    font-size: 1rem;
+    font-size: var(--font-size-md);
     margin-left: 0.3rem;
 }
 
@@ -321,7 +321,7 @@ button:has(.extra-material-icons):active {
 }
 
 #Header .hamburger-menubox .menubox .menulabel span:last-child {
-    font-size: 0.94rem;
+    font-size: var(--font-size-base);
     user-select: none;
 }
 
@@ -332,7 +332,7 @@ button:has(.extra-material-icons):active {
 
 #Header .hamburger-menubox .menubox-sub {
     background-color: var(--surface-strong);
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
 }
 
 #Header .hamburger-menubox .menubox-sub ul a {
@@ -366,10 +366,10 @@ button:has(.extra-material-icons):active {
 }
 
 #Breadcrumb span.label {
-    font-size: 0.8rem;
-    font-weight: 550;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
     white-space: pre;
-    line-height: 1.4;
+    line-height: var(--line-height-normal);
     color: var(--text-sub);
 }
 
@@ -389,7 +389,7 @@ button:has(.extra-material-icons):active {
 #Breadcrumb .item:last-child:is(.trashbox) span {
     color: var(--text-on-primary);
     text-shadow: var(--elevation-1);
-	font-weight: 550;
+	font-weight: var(--font-weight-medium);
     user-select: none;
 }
 
@@ -437,7 +437,7 @@ button:has(.extra-material-icons):active {
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) a label {
-    font-weight: 500;
+    font-weight: var(--font-weight-normal);
     color: var(--primary);
     user-select: none;
 }
@@ -455,13 +455,13 @@ button:has(.extra-material-icons):active {
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
 	color: var(--text-on-primary);
     text-shadow: var(--elevation-1);
-	font-weight: 550;
+	font-weight: var(--font-weight-medium);
     user-select: none;
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
     padding: 8px 16px;
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor label {
@@ -473,16 +473,16 @@ button:has(.extra-material-icons):active {
 }
 
 .ui-tabs-panel .field-label {
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     color: var(--text-sub);
-    line-height: 1.5;
+    line-height: var(--line-height-relaxed);
     padding: 0 0.7rem 0 0;
     margin-bottom: 0;
 }
 
 .ui-tabs-panel .field-label label {
     vertical-align: sub;
-    font-weight: 500;
+    font-weight: var(--font-weight-normal);
     user-select: none;
 }
 
@@ -616,6 +616,7 @@ select:not([name="Results_Status"]):focus,
     border: 1px solid var(--primary) !important;
     background-color: var(--surface-base) !important;
     color: var(--text-main) !important;
+    box-shadow: var(--focus-ring);
 }
 
 .container-normal {
@@ -623,7 +624,7 @@ select:not([name="Results_Status"]):focus,
 }
 
 [class^="control-"] {
-    font-size: 0.85rem !important;
+    font-size: var(--font-size-sm) !important;
 }
 
 .control-text {
@@ -750,7 +751,7 @@ markdown-field.is-comment .md-viewer {
 
 markdown-field .md-viewer {
     color: var(--text-main) !important;
-    line-height: 1.55;
+    line-height: var(--line-height-relaxed);
     letter-spacing: 0.2px;
 }
 
@@ -788,7 +789,7 @@ rt-editor .se-btn-tray {
 
 rt-editor button:not([disabled="true"]) {
 	color: var(--text-main) !important;
-	font-weight: 450;
+	font-weight: var(--font-weight-normal);
 }
 
 rt-editor .se-btn:enabled:active,
@@ -845,7 +846,7 @@ span.flatpickr-weekday {
 .flatpickr-months .flatpickr-next-month {
     color: var(--text-on-primary) !important;
     fill: var(--text-on-primary) !important;
-    line-height: 1.4;
+    line-height: var(--line-height-normal);
 }
 
 .flatpickr-day.selected {
@@ -911,7 +912,7 @@ span.flatpickr-weekday {
     border: none !important;
     min-height: fit-content;
     height: fit-content;
-    line-height: 1.4;
+    line-height: var(--line-height-normal);
 }
 
 .container-normal span[data-readonly="1"]:not(:empty) {
@@ -949,7 +950,7 @@ span.flatpickr-weekday {
    ========================================================= */
 
 .ui-multiselect-menu {
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
 	background: var(--surface-base);
     border: 1px solid var(--border-strong) !important;
     color: var(--text-main);
@@ -975,7 +976,7 @@ span.flatpickr-weekday {
 .ui-multiselect-menu .ui-multiselect-checkboxes li label span {
     padding-left: 5px;
     vertical-align: text-top;
-	line-height: 1.37;
+	line-height: var(--line-height-snug);
 }
 
 .container-selectable:not(:has(#OutgoingMails_MailAddressesWrapper)) {
@@ -1028,11 +1029,11 @@ span.flatpickr-weekday {
 .dialog .command-left button,
 .dialog .command-right button {
     padding: 0.4rem 0.4rem 0.4rem 1.4rem !important;
-    line-height: 1.0;
+    line-height: var(--line-height-tight);
 }
 
 .dialog .material-symbols-outlined:not(.md-btn-icon) {
-    font-size: 1.1rem;
+    font-size: var(--font-size-lg);
     left: 6px;
 }
 
@@ -1048,9 +1049,7 @@ span.flatpickr-weekday {
 
 .ui-dialog {
     border-radius: 10px;
-    box-shadow:
-        0 10px 28px rgba(0, 0, 0, 0.08),
-        0 3px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--elevation-4);
 }
 
 .ui-dialog .ui-dialog-titlebar {
@@ -1067,9 +1066,9 @@ span.flatpickr-weekday {
 
 .ui-dialog .ui-dialog-title {
     font-family: sans-serif;
-    font-weight: 550;
-    line-height: 1.5;
-    font-size: 0.85rem;
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-sm);
 }
 
 .ui-dialog .ui-dialog-content {
@@ -1081,7 +1080,7 @@ span.flatpickr-weekday {
 }
 
 .ui-dialog .ui-dialog-content .field-label {
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     padding: 0.4rem 0.7rem 0.4rem 0;
 }
 
@@ -1090,11 +1089,11 @@ span.flatpickr-weekday {
 }
 
 .ui-dialog .command-center button {
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
 }
 
 #DropDownSearchDialogBody .material-symbols-outlined:not(.md-btn-icon) {
-    font-size: 1.1rem;
+    font-size: var(--font-size-lg);
     top: 54%;
     left: 4%;
 }
@@ -1177,10 +1176,10 @@ span.flatpickr-weekday {
     padding: 6px 15px 7px;
     border-radius: var(--radius-small);
     z-index: 999;
-    font-weight: 500;
+    font-weight: var(--font-weight-normal);
     cursor: pointer !important;
     user-select: none;
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     white-space: nowrap;
 }
 
@@ -1190,7 +1189,7 @@ span.flatpickr-weekday {
 
 .file-name {
     color: var(--text-muted);
-    font-size: 0.82rem;
+    font-size: var(--font-size-sm);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
@@ -1212,13 +1211,13 @@ label[for="Import"] {
 }
 
 label.error {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
 }
 
 .ui-dialog-content a,
 .ui-dialog-content .check-text {
     color: var(--text-main);
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
 }
 
 .ui-dialog-overlay {
@@ -1476,8 +1475,8 @@ label.error {
 	content: "";
     display: block;
     color: var(--semantic-warning-text) !important;
-    font-weight: 550;
-    font-size: 0.85rem;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
     margin-bottom: 10px;
     padding: 6px 12px;
     background-color: var(--semantic-warning);
@@ -1537,7 +1536,7 @@ label.error {
 }
 
 #CommentList markdown-field .notes {
-    font-size: 0.88rem;
+    font-size: var(--font-size-sm);
     color: var(--text-main);
 }
 
@@ -1553,7 +1552,7 @@ label.error {
 
 .comment-header .time {
     order: 2;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
 }
 
 @media screen and (max-width: 1024px) and (min-width: 0) {
@@ -1601,7 +1600,7 @@ label.error {
 }
 
 #Editor #RecordSwitchers button {
-    font-weight: 550;
+    font-weight: var(--font-weight-medium);
 }
 
 /* ----- common/submit_lock.css ----- */
@@ -1652,10 +1651,10 @@ label.error {
     position: relative;
     padding: 3px 6px;
     border-radius: var(--radius-small);
-    font-weight: 500;
+    font-weight: var(--font-weight-normal);
     display: inline-block;
 	cursor: pointer;
-    line-height: 1.53;
+    line-height: var(--line-height-relaxed);
     user-select: none;
 }
 
@@ -1760,9 +1759,9 @@ label.error {
 
 [class^="status-"],
 [style^="status-"] {
-    font-size: 0.85rem !important;
-    font-weight: 500 !important;
-    line-height: 1.3 !important;
+    font-size: var(--font-size-sm) !important;
+    font-weight: var(--font-weight-normal) !important;
+    line-height: var(--line-height-snug) !important;
     white-space: nowrap !important;
     color: var(--text-main);
     padding: 0.13rem 0.37rem !important;
@@ -1931,7 +1930,7 @@ p.status-rank-x:hover {
 .display-control {
     position: relative !important;
 	padding: 0 0.2rem 0 1.75rem !important;
-    font-weight: 600 !important;
+    font-weight: var(--font-weight-bold) !important;
     color: var(--text-main) !important;
 }
 
@@ -1955,7 +1954,7 @@ p.status-rank-x:hover {
 #ExpandViewFilters,
 #ReduceAggregations,
 #ExpandAggregations {
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
 	height: 32px;
     align-content: center;
     user-select: none;
@@ -1976,7 +1975,7 @@ p.status-rank-x:hover {
 
 #ViewFilters .ui-multiselect .ui-multiselect-open+span,
 #ViewFilters [class^="control-"] {
-    font-size: 0.82rem !important;
+    font-size: var(--font-size-sm) !important;
 }
 
 
@@ -2001,19 +2000,19 @@ p.status-rank-x:hover {
 }
 
 #Guide .display-material-icons {
-	font-size: 1.11rem;
+	font-size: var(--font-size-lg);
     top: 55%;
 }
 
 #Guide > div {
     background-color: transparent;
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     border: none !important;
 }
 
 #Guide .notes {
     color: var(--text-main);
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
     font-family: auto;
 }
 
@@ -2032,7 +2031,7 @@ p.status-rank-x:hover {
    ========================================================= */
 
 #ViewFilters {
-    font-size: 0.85rem !important;
+    font-size: var(--font-size-sm) !important;
     overflow: hidden;
     transition: height 0.28s ease, opacity 0.22s ease;
 }
@@ -2111,7 +2110,7 @@ p.status-rank-x:hover {
     background: none;
     border: none;
     padding: 0;
-    font-size: 0.86rem;
+    font-size: var(--font-size-sm);
     color: var(--text-emphasis);
     user-select: none;
 }
@@ -2121,7 +2120,7 @@ p.status-rank-x:hover {
     background: var(--semantic-danger);
     border: 1px solid var(--semantic-danger);
     padding: 0.2rem 0.5rem;
-    font-weight: 600;
+    font-weight: var(--font-weight-bold);
 }
 
 #Aggregations .label:not(:first-of-type) {
@@ -2134,13 +2133,13 @@ p.status-rank-x:hover {
 
 #Aggregations .data:not(.link) {
     padding: 0;
-	font-size: 0.86rem;
+	font-size: var(--font-size-sm);
     color: var(--text-emphasis);
 }
 
 #Aggregations .link .bold {
     margin-right: 0.5rem;
-    font-weight: 500 !important;
+    font-weight: var(--font-weight-normal) !important;
 }
 
 
@@ -2171,7 +2170,7 @@ p.status-rank-x:hover {
 
     #ViewFilters .field-auto-thin,
     #ViewFilters .ui-multiselect .ui-multiselect-open + span {
-        font-size: 0.85rem !important;
+        font-size: var(--font-size-sm) !important;
     }
 
     #ViewFilters .field-control:has(.check-option) {
@@ -2185,8 +2184,8 @@ p.status-rank-x:hover {
    ========================================================= */
 
 .grid {
-    font-size: 0.9rem;
-    line-height: 1.55;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
     letter-spacing: 0.3px;
     color: var(--text-main);
     width: 100%;
@@ -2231,7 +2230,7 @@ tr.crosstab-row th {
 }
 
 .grid th.sortable span {
-    font-weight: 550;
+    font-weight: var(--font-weight-medium);
     user-select: none;
 }
 
@@ -2323,7 +2322,7 @@ tr.crosstab-row th {
 
 /* ユーザー名 */
 .grid .grid-row td .user span {
-	font-weight: 400;
+	font-weight: var(--font-weight-light);
 }
 
 /* 内容 */
@@ -2401,7 +2400,7 @@ td .notes {
     padding: 8px 12px;
     max-width: 400px;
     white-space: pre-wrap;
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -2416,7 +2415,7 @@ td .notes {
 
 #Grid .limit-normal {
     color: var(--semantic-danger);
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     margin-left: 1rem;
 }
 
@@ -2463,7 +2462,7 @@ td .notes {
 }
 
 #scroll-to-top .material-symbols-outlined {
-    font-size: 1.3rem;
+    font-size: var(--font-size-xl);
 }
 
 
@@ -2475,7 +2474,7 @@ td .notes {
     padding: 2.5rem 1rem;
     text-align: center;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
     background-color: var(--surface-soft);
     border-top: 1px solid var(--border-light);
 }
@@ -2527,7 +2526,7 @@ td .notes {
     min-height: 160px;
     border-radius: 8px;
     background: var(--surface-base);
-    box-shadow: 0 2px 4px rgba(0,0,0,.01);
+    box-shadow: 0 2px 4px var(--shadow-faint);
     transition: transform .12s ease, box-shadow .12s ease;
     filter: drop-shadow(0 2px 4px var(--shadow-strong));
 }
@@ -2549,7 +2548,7 @@ td .notes {
 }
 
 .nav-site .title {
-    font-weight: 550;
+    font-weight: var(--font-weight-medium);
     overflow: hidden;
     white-space: nowrap !important;
     text-overflow: ellipsis;
@@ -2564,13 +2563,13 @@ td .notes {
 
 .nav-site .conditions {
     padding: 10px;
-    font-size: 0.72rem;
+    font-size: var(--font-size-2xs);
 }
 
 .nav-site .conditions span.elapsed-time {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     color: var(--text-disabled) !important;
-    font-weight: 500;
+    font-weight: var(--font-weight-normal);
     padding: 0 !important;
     margin-left: 4px !important;
 }
@@ -2599,7 +2598,7 @@ td .notes {
    ========================================================= */
 
 #TemplateTabsContainer {
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     margin: 0;
     width: 100%;
 }
@@ -2660,7 +2659,7 @@ td .notes {
     background-color: var(--primary);
     color: var(--text-white);
     user-select: none;
-    font-size: 0.94rem;
+    font-size: var(--font-size-base);
 }
 
 .field-section .ui-icon {
@@ -2742,7 +2741,7 @@ td .notes {
     border-radius: var(--radius-large);
     box-shadow: var(--elevation-3);
     color: var(--text-main);
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
 }
 
 .export-progress-spinner {

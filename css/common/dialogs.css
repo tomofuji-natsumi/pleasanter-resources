@@ -19,11 +19,11 @@
 .dialog .command-left button,
 .dialog .command-right button {
     padding: 0.4rem 0.4rem 0.4rem 1.4rem !important;
-    line-height: 1.0;
+    line-height: var(--line-height-tight);
 }
 
 .dialog .material-symbols-outlined:not(.md-btn-icon) {
-    font-size: 1.1rem;
+    font-size: var(--font-size-lg);
     left: 6px;
 }
 
@@ -39,9 +39,7 @@
 
 .ui-dialog {
     border-radius: 10px;
-    box-shadow:
-        0 10px 28px rgba(0, 0, 0, 0.08),
-        0 3px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--elevation-4);
 }
 
 .ui-dialog .ui-dialog-titlebar {
@@ -58,9 +56,9 @@
 
 .ui-dialog .ui-dialog-title {
     font-family: sans-serif;
-    font-weight: 550;
-    line-height: 1.5;
-    font-size: 0.85rem;
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-sm);
 }
 
 .ui-dialog .ui-dialog-content {
@@ -72,7 +70,7 @@
 }
 
 .ui-dialog .ui-dialog-content .field-label {
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     padding: 0.4rem 0.7rem 0.4rem 0;
 }
 
@@ -81,11 +79,11 @@
 }
 
 .ui-dialog .command-center button {
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
 }
 
 #DropDownSearchDialogBody .material-symbols-outlined:not(.md-btn-icon) {
-    font-size: 1.1rem;
+    font-size: var(--font-size-lg);
     top: 54%;
     left: 4%;
 }
@@ -168,10 +166,10 @@
     padding: 6px 15px 7px;
     border-radius: var(--radius-small);
     z-index: 999;
-    font-weight: 500;
+    font-weight: var(--font-weight-normal);
     cursor: pointer !important;
     user-select: none;
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     white-space: nowrap;
 }
 
@@ -181,7 +179,7 @@
 
 .file-name {
     color: var(--text-muted);
-    font-size: 0.82rem;
+    font-size: var(--font-size-sm);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
@@ -203,13 +201,13 @@ label[for="Import"] {
 }
 
 label.error {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
 }
 
 .ui-dialog-content a,
 .ui-dialog-content .check-text {
     color: var(--text-main);
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
 }
 
 .ui-dialog-overlay {

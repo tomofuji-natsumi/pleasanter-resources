@@ -44,7 +44,7 @@
     min-height: 160px;
     border-radius: 8px;
     background: var(--surface-base);
-    box-shadow: 0 2px 4px rgba(0,0,0,.01);
+    box-shadow: 0 2px 4px var(--shadow-faint);
     transition: transform .12s ease, box-shadow .12s ease;
     filter: drop-shadow(0 2px 4px var(--shadow-strong));
 }
@@ -66,7 +66,7 @@
 }
 
 .nav-site .title {
-    font-weight: 550;
+    font-weight: var(--font-weight-medium);
     overflow: hidden;
     white-space: nowrap !important;
     text-overflow: ellipsis;
@@ -81,13 +81,13 @@
 
 .nav-site .conditions {
     padding: 10px;
-    font-size: 0.72rem;
+    font-size: var(--font-size-2xs);
 }
 
 .nav-site .conditions span.elapsed-time {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     color: var(--text-disabled) !important;
-    font-weight: 500;
+    font-weight: var(--font-weight-normal);
     padding: 0 !important;
     margin-left: 4px !important;
 }
@@ -116,7 +116,7 @@
    ========================================================= */
 
 #TemplateTabsContainer {
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     margin: 0;
     width: 100%;
 }
@@ -177,7 +177,7 @@
     background-color: var(--primary);
     color: var(--text-white);
     user-select: none;
-    font-size: 0.94rem;
+    font-size: var(--font-size-base);
 }
 
 .field-section .ui-icon {

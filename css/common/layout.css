@@ -26,7 +26,7 @@ textarea,
 .ui-widget textarea,
 .dashboard-custom-body {
     font-family: auto !important;
-    line-height: 1.36;
+    line-height: var(--line-height-snug);
 }
 
 a {

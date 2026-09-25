@@ -3,8 +3,8 @@
    ========================================================= */
 
 .grid {
-    font-size: 0.9rem;
-    line-height: 1.55;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
     letter-spacing: 0.3px;
     color: var(--text-main);
     width: 100%;
@@ -49,7 +49,7 @@ tr.crosstab-row th {
 }
 
 .grid th.sortable span {
-    font-weight: 550;
+    font-weight: var(--font-weight-medium);
     user-select: none;
 }
 
@@ -141,7 +141,7 @@ tr.crosstab-row th {
 
 /* ユーザー名 */
 .grid .grid-row td .user span {
-	font-weight: 400;
+	font-weight: var(--font-weight-light);
 }
 
 /* 内容 */
@@ -219,7 +219,7 @@ td .notes {
     padding: 8px 12px;
     max-width: 400px;
     white-space: pre-wrap;
-    font-size: 0.8rem;
+    font-size: var(--font-size-sm);
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -234,7 +234,7 @@ td .notes {
 
 #Grid .limit-normal {
     color: var(--semantic-danger);
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     margin-left: 1rem;
 }
 
@@ -281,7 +281,7 @@ td .notes {
 }
 
 #scroll-to-top .material-symbols-outlined {
-    font-size: 1.3rem;
+    font-size: var(--font-size-xl);
 }
 
 
@@ -293,7 +293,7 @@ td .notes {
     padding: 2.5rem 1rem;
     text-align: center;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: var(--font-size-base);
     background-color: var(--surface-soft);
     border-top: 1px solid var(--border-light);
 }

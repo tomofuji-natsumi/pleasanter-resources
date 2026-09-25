@@ -34,8 +34,7 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
 
     border-radius: var(--radius-large);
     text-decoration: none;
-    font-size: 95%;
-    font-weight: 550;
+    font-weight: var(--font-weight-medium);
     box-sizing: border-box;
 
     width: min(100%, 200px);
@@ -56,13 +55,13 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
 .nav-site.to-parent a::before {
     content: "戻る";
     display: inline-block;
-    font-size: 0.83rem;
+    font-size: var(--font-size-sm);
     margin-left: 6px;
     vertical-align: middle;
 }
 
 .nav-site.to-parent .primary-material-icons {
-    font-size: 1rem;
+    font-size: var(--font-size-md);
     top: 50%;
     left: 0.8rem;
 }
@@ -75,7 +74,7 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
 .nav-site.to-parent:focus  a::before {
     background: var(--primary) !important;
     color: var(--text-on-primary) !important;
-    font-weight: 550;
+    font-weight: var(--font-weight-medium);
 }
 
 .nav-site.to-parent:hover,
@@ -86,5 +85,5 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
 .nav-site.to-parent:active a::before {
     background: var(--primary-hover) !important;
     color: var(--surface-strong) !important;
-    font-weight: 550;
+    font-weight: var(--font-weight-medium);
 }
