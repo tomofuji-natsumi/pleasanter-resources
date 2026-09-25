@@ -1,0 +1,30 @@
+#ViewModeContainer:has(#ImageLib) {
+    padding: 2em;
+    background-color: var(--bg-main);
+}
+
+#ImageLibBody .item {
+    padding: 0.8rem 1rem !important;
+    border-radius: 8px !important;
+    background-color: var(--surface-base) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .01);
+    transition: transform .12s ease, box-shadow .12s ease;
+    filter: drop-shadow(0 2px 4px var(--shadow-medium));
+}
+
+#ImageLibBody .title {
+    font-size: 0.9rem;
+    color: var(--primary);
+}
+
+#ImageLibBody .image a {
+    border: 1px solid var(--border-normal) !important;
+}
+
+#ImageLibBody .image img:hover {
+    transform: none !important;
+}
+
+.danger-material-icons {
+    left: 6px !important;
+}

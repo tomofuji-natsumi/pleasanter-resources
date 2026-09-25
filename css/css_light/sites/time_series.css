@@ -1,0 +1,22 @@
+#TimeSeries .index {
+    fill: var(--text-main);
+}
+
+.tick text {
+    font-weight: 200;
+    font-size: 0.7rem;
+    fill: var(--text-main);
+}
+
+path {
+    stroke: var(--text-main);
+}
+
+#TimeSeries {
+    border-radius: 0;
+    background-color: transparent;
+}
+
+#TimeSeriesBody {
+    background-color: var(--bg-main);
+}

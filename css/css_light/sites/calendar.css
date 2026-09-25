@@ -1,0 +1,694 @@
+/* =========================================================
+   0. 基本レイアウト・枠線
+   ========================================================= */
+
+.dashboard-calendar-container #MainContainer {
+    background-color: var(--surface-base);
+}
+
+.fc-col-header,
+.fc-daygrid-body,
+.fc-scrollgrid-sync-table {
+    width: 100% !important;
+}
+
+.fc-scrollgrid > thead > tr > th[role="presentation"],
+.fc-scrollgrid > tbody > tr > td[role="presentation"] {
+    display: table-cell !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-color: transparent !important;
+    width: auto !important;
+}
+
+th[role="presentation"],
+td[role="presentation"],
+.fc-scrollgrid {
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.fc-scrollgrid table,
+.fc-col-header,
+.fc-scrollgrid-sync-table {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+}
+
+label[for="CalendarFromTo"] {
+    cursor: default;
+    user-select: none;
+}
+
+
+
+/* =========================================================
+   1. 他月セル
+   ========================================================= */
+
+.fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-top {
+    opacity: 1 !important;
+}
+
+.fc .fc-daygrid-day.fc-day-other .fc-daygrid-day-number {
+    color: var(--cal-other-text) !important;
+}
+
+.fc .fc-daygrid-day.fc-day-other {
+    background-color: var(--cal-other-bg) !important;
+}
+
+
+
+/* =========================================================
+   2. 曜日ヘッダー
+   ========================================================= */
+
+.fc-view-harness th.fc-col-header-cell .fc-col-header-cell-cushion {
+    text-shadow: 0 0 2px var(--shadow-strong);
+    font-size: 1rem !important;
+    font-weight: 550 !important;
+    user-select: none;
+}
+
+/* 平日 */
+.fc-col-header-cell.fc-day-mon,
+.fc-col-header-cell.fc-day-tue,
+.fc-col-header-cell.fc-day-wed,
+.fc-col-header-cell.fc-day-thu,
+.fc-col-header-cell.fc-day-fri {
+    background-color: var(--cal-weekday-bg) !important;
+}
+
+.fc-col-header-cell.fc-day-mon .fc-col-header-cell-cushion,
+.fc-col-header-cell.fc-day-tue .fc-col-header-cell-cushion,
+.fc-col-header-cell.fc-day-wed .fc-col-header-cell-cushion,
+.fc-col-header-cell.fc-day-thu .fc-col-header-cell-cushion,
+.fc-col-header-cell.fc-day-fri .fc-col-header-cell-cushion {
+    color: var(--cal-weekday-text) !important;
+}
+
+/* 土曜 */
+.fc-col-header-cell.fc-day-sat {
+    background-color: var(--cal-sat-bg) !important;
+}
+
+.fc-col-header-cell.fc-day-sat .fc-col-header-cell-cushion {
+    color: var(--cal-sat-text) !important;
+}
+
+/* 日曜 */
+.fc-col-header-cell.fc-day-sun {
+    background-color: var(--cal-holi-bg) !important;
+}
+
+.fc-col-header-cell.fc-day-sun .fc-col-header-cell-cushion {
+    color: var(--cal-holi-text) !important;
+}
+
+/* ヘッダー境界線 */
+.fc-view-harness th.fc-col-header-cell {
+    border-top: 1px solid var(--cal-border) !important;
+    border-bottom: 1px solid var(--cal-border) !important;
+}
+
+
+
+/* =========================================================
+   3. 日付セル（背景・文字色）
+   ========================================================= */
+
+.fc-daygrid-day-frame .fc-daygrid-day-number {
+    font-size: 0.95rem;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.fc-day:not(.fc-day-other) .fc-daygrid-day-number {
+    font-weight: 440;
+}
+
+/* 非営業日 */
+.fc .fc-non-business {
+    background: none;
+}
+
+/* 平日 */
+.fc-daygrid-day {
+    background-color: var(--cal-weekday-cell-bg) !important;
+}
+
+.fc-daygrid-day .fc-daygrid-day-number {
+    color: var(--cal-weekday-cell-text) !important;
+}
+
+/* 土曜 */
+.fc-day-sat {
+    background-color: var(--cal-sat-cell-bg) !important;
+}
+
+.fc-day-sat .fc-daygrid-day-number {
+    color: var(--cal-sat-cell-text) !important;
+}
+
+/* 日曜 */
+.fc-day-sun,
+.fc-day.holiday-100,
+.fc-sat.holiday-100 {
+    background-color: var(--cal-holi-cell-bg) !important;
+}
+
+.fc-day-sun .fc-daygrid-day-number,
+.fc-day.holiday-100 .fc-daygrid-day-number,
+.fc-sat.holiday-100 .fc-daygrid-day-number {
+    color: var(--cal-holi-cell-text) !important;
+}
+
+/* 所定休日（会社休日） */
+.fc-day.holiday-150 {
+    background-color: var(--cal-digestion-bg) !important;
+}
+
+.fc-day.holiday-150 .fc-daygrid-day-number {
+    color: var(--cal-digestion-text) !important;
+}
+
+/* 休日セルは背景色・祝日名で表現済みのため、レコード自体のイベント枠は重複表示になり不要 */
+.fc-daygrid-day[class*="holiday-"] .fc-daygrid-day-events {
+    display: none !important;
+}
+
+.holiday-name {
+    font-weight: 500;
+    font-size: 0.90em;
+    color: var(--cal-holi-cell-text);
+    line-height: 1.2;
+    position: relative;
+    top: -1px;
+    letter-spacing: 0.02em;
+    margin: 0 0.25em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+/* 今日 */
+.fc-day-today:not(.fc-day-other) .fc-daygrid-day-frame {
+    background-color: var(--cal-today-bg) !important;
+    border: 1px solid var(--cal-today-border);
+    border-radius: var(--radius-medium);
+}
+
+.fc-day-today .fc-daygrid-day-number {
+    font-weight: 700 !important;
+    color: var(--cal-today-text) !important;
+}
+
+/* 指定休暇日 */
+.company-holiday {
+    background-color: var(--cal-digestion-bg);
+    color: var(--cal-digestion-text);
+}
+
+.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+    min-height: 3em;
+    margin-bottom: 0.2rem;
+	justify-self: end;
+}
+
+
+
+/* =========================================================
+   4. イベント（視認性 × 柔らかい × 上品）
+   ========================================================= */
+
+.fc-h-event {
+	background-color: transparent;
+	border: none;
+}
+
+.fc-daygrid-event-dot,
+.fc-event-time {
+    display: none !important;
+}
+
+.fc-daygrid-day-events {
+    width: fit-content;
+	justify-self: end;
+    margin-right: 0.4rem !important;
+}
+
+.fc-daygrid-event-harness {
+    border-radius: var(--radius-medium) !important;
+    box-shadow: var(--elevation-1);
+    padding: 0 !important;
+    line-height: 1.3;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    position: relative;
+	z-index: 10;
+}
+
+.fc-event-title {
+    font-weight: 600 !important;
+    font-size: 0.90rem !important;
+    padding: 4px 8px 6px 13px !important;
+    user-select: none;
+}
+
+/* 左バー */
+.fc-daygrid-event-harness::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    border-radius: var(--radius-medium) 0 0 var(--radius-medium);
+    opacity: 0.8;
+}
+
+/* 平日イベント */
+.fc-daygrid-day:not(.fc-day-sat):not(.fc-day-sun):not(.fc-day-other)
+  .fc-daygrid-event-harness {
+    background-color: var(--cal-event-bg-weekday) !important;
+}
+
+.fc-daygrid-day:not(.fc-day-sat):not(.fc-day-sun):not(.fc-day-other)
+  .fc-daygrid-event-harness::before {
+    background-color: var(--cal-event-tag-weekday);
+}
+
+.fc-daygrid-day:not(.fc-day-sat):not(.fc-day-sun):not(.fc-day-other)
+  .fc-daygrid-event-harness:hover {
+    background-color: var(--cal-event-hover-weekday) !important;
+    box-shadow: var(--elevation-2);
+}
+
+.fc-daygrid-day:not(.fc-day-sat):not(.fc-day-sun):not(.fc-day-other)
+  .fc-event-title {
+    color: var(--cal-event-text-weekday) !important;
+}
+
+/* 土曜イベント */
+.fc-day-sat .fc-daygrid-event-harness {
+    background-color: var(--cal-event-bg-sat) !important;
+}
+
+.fc-day-sat .fc-daygrid-event-harness::before {
+    background-color: var(--cal-event-tag-sat);
+}
+
+.fc-day-sat .fc-daygrid-event-harness:hover {
+    background-color: var(--cal-event-hover-sat) !important;
+    box-shadow: var(--elevation-2);
+}
+
+.fc-day-sat .fc-event-title {
+    color: var(--cal-event-text-sat) !important;
+}
+
+/* 日曜イベント */
+.fc-day-sun .fc-daygrid-event-harness {
+    background-color: var(--cal-event-bg-holi) !important;
+}
+
+.fc-day-sun .fc-daygrid-event-harness::before {
+    background-color: var(--cal-event-tag-holi);
+}
+
+.fc-day-sun .fc-daygrid-event-harness:hover {
+    background-color: var(--cal-event-hover-holi) !important;
+    box-shadow: var(--elevation-2);
+}
+
+.fc-day-sun .fc-event-title {
+    color: var(--cal-event-text-holi) !important;
+}
+
+/* 他月イベント */
+.fc-day-other .fc-daygrid-event-harness {
+    background-color: var(--cal-event-bg-other) !important;
+}
+
+.fc-day-other .fc-daygrid-event-harness::before {
+    background-color: var(--cal-event-tag-other);
+}
+
+.fc-day-other .fc-daygrid-event-harness:hover {
+    background-color: var(--cal-event-hover-other) !important;
+    box-shadow: var(--elevation-2);
+}
+
+.fc-day-other .fc-event-title {
+    color: var(--cal-event-text-other) !important;
+}
+
+/* イベント間隔 */
+.fc-daygrid-event-harness:not(:last-child) {
+    margin-bottom: 6px !important;
+}
+
+
+
+/* =========================================================
+   5. FullCalendar ボタン
+   ========================================================= */
+
+.fc .fc-button,
+.fc .fc-button-primary,
+.fc .fc-button-group .fc-button {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: var(--text-on-primary) !important;
+    border-radius: var(--radius-small);
+}
+
+.fc .fc-button:hover,
+.fc .fc-button-primary:hover {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+.fc .fc-button {
+    font-size: 14px !important;
+    padding: 4px 12px 8px !important;
+    height: 32px !important;
+}
+
+.fc .fc-button-group button.fc-today-button {
+    padding: 0.4rem 0.8rem !important;
+}
+
+button.fc-today-button[disabled] {
+    display: none !important;
+}
+
+.fc .fc-button .fc-icon {
+    vertical-align: bottom;
+}
+
+
+
+/* =========================================================
+   6. メッセージ位置
+   ========================================================= */
+
+.dashboard-calendar-container #Message {
+    position: fixed !important;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    pointer-events: none;
+}
+
+
+
+/* =========================================================
+   7. レイアウト調整（タイトル中央配置）
+   ========================================================= */
+
+.fc-header-toolbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    position: relative !important;
+    padding: 0 8px !important;
+    user-select: none;
+}
+
+.fc-toolbar-title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+    font-weight: 600;
+    color: var(--text-main) !important;
+    font-size: 1.7rem !important;
+    letter-spacing: 0.8px;
+}
+
+.dashboard-calendar-container #MainCommandsContainer {
+    display: none;
+}
+
+
+
+/* =========================================================
+   8. カレンダー余白
+   ========================================================= */
+
+#FullCalendar {
+    padding-top: 10px;
+}
+
+.dashboard-calendar-container #Calendar,
+.dashboard-calendar-container #BottomMargin {
+    background-color: var(--bg-surface) !important;
+}
+
+#FullCalendar th,
+#FullCalendar td,
+.grid-stack-item .fc th,
+.grid-stack-item .fc td {
+	border: 1px solid var(--cal-border);
+}
+
+/* =========================================================
+   9. ハイライト（選択範囲）
+   その日のセル背景色（平日/土曜/日曜/他月/祝日/今日）に応じて
+   ハイライト色を変える。旧: --cal-highlight-bg 固定で全セルが
+   primary由来の青になっていたため、各セルの背景トークンをベースに
+   primaryを薄く混ぜる形に変更。
+   ========================================================= */
+
+/* 平日 */
+.fc-daygrid-day:not(.fc-day-sat):not(.fc-day-sun):not(.fc-day-other):not([class*="holiday-"]) .fc-highlight {
+    background: color-mix(in oklch, var(--cal-weekday-cell-bg) 60%, var(--primary) 25%);
+}
+
+/* 土曜 */
+.fc-day-sat .fc-highlight {
+    background: color-mix(in oklch, var(--cal-sat-cell-bg) 55%, var(--cal-sat-bg) 30%);
+}
+
+/* 日曜・祝日 */
+.fc-day-sun .fc-highlight,
+.fc-day.holiday-100 .fc-highlight,
+.fc-sat.holiday-100 .fc-highlight {
+    background: color-mix(in oklch, var(--cal-holi-cell-bg) 55%, var(--cal-holi-bg) 30%);
+}
+
+/* 所定休日（会社休日） */
+.fc-day.holiday-150 .fc-highlight {
+    background: color-mix(in oklch, var(--cal-digestion-bg) 60%, var(--cal-digestion-text) 20%);
+}
+
+/* 他月 */
+.fc-day-other .fc-highlight {
+    background: color-mix(in oklch, var(--cal-other-bg) 70%, var(--text-muted) 15%);
+}
+
+/* 今日 */
+.fc-day-today .fc-highlight {
+    background: color-mix(in oklch, var(--cal-today-bg) 55%, var(--primary) 30%);
+}
+
+.fc-daygrid-day-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    user-select: none;
+}
+
+/* =========================================================
+   スマホ（〜480px）
+   ========================================================= */
+@media (max-width: 480px) {
+
+    /* カレンダー全体を画面幅にフィット */
+    .fc .fc-col-header,
+    .fc .fc-scrollgrid,
+    .fc .fc-daygrid,
+    .fc .fc-daygrid-body,
+    .fc .fc-daygrid-body table,
+    .fc .fc-scrollgrid table {
+        width: 100% !important;
+    }
+
+    .fc-daygrid-day-events {
+        margin-right: 0 !important;
+    }
+
+    /* セルを均等に縮める */
+    .fc-daygrid-day {
+        width: calc(100% / 7) !important;
+        padding: 2px 0 !important;
+    }
+
+    .fc-scroller,
+    .fc-daygrid-body,
+    .fc-scrollgrid {
+        overflow-x: hidden !important;
+    }
+
+    /* 全体フォント縮小（読みやすさ優先） */
+    .fc {
+        font-size: 0.75rem !important;
+    }
+
+    /* 日付数字 */
+    .fc-daygrid-day-number {
+        padding: 2px !important;
+        font-size: 0.78rem !important;
+    }
+
+    /* 曜日ヘッダー */
+    .fc-view-harness th.fc-col-header-cell .fc-col-header-cell-cushion {
+        font-size: 0.85rem !important;
+        font-weight: 550;
+        padding: 4px 0 !important;
+    }
+
+    /* イベントタイトル */
+    .fc-event-title {
+        font-size: 0.7rem !important;
+        line-height: 1.3;
+        white-space: pre-line;
+        padding: 3px 6px 5px 8px !important;
+    }
+
+    /* イベントカードを幅100%に */
+    .fc-daygrid-event-harness {
+        width: 100% !important;
+        min-height: 20px;
+        margin: 0 5px;
+        border-radius: var(--radius-medium) !important;
+        box-shadow: var(--shadow-light);
+
+        margin: 0 0.2rem;
+        width: fit-content !important;
+    }
+
+    /* ヘッダーを縦積みにして安定化 */
+    .fc-header-toolbar {
+        flex-direction: column !important;
+        gap: 6px;
+        padding: 4px 6px !important;
+        height: auto !important;
+    }
+
+    /* ボタン群を中央寄せ */
+    .fc-toolbar-chunk {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    /* 年月タイトルを中央に */
+    .fc-toolbar-title {
+        position: static !important;
+        transform: none !important;
+        margin: 4px auto !important;
+        font-size: 1.45rem !important;
+        letter-spacing: 0.4px;
+        white-space: nowrap;
+    }
+
+    /* ボタンを小さく */
+    .fc .fc-button {
+        padding: 2px 6px !important;
+        font-size: 12px !important;
+        height: 28px !important;
+        border-radius: var(--radius-small);
+    }
+}
+
+
+/* =========================================================
+   タブレット（481px〜1024px）
+   ========================================================= */
+@media (min-width: 481px) and (max-width: 1024px) {
+
+    .fc-daygrid-day-events {
+        width: auto;
+    }
+
+    .fc-daygrid-day-number {
+        font-size: 0.85rem !important;
+        font-weight: 600;
+    }
+
+    /* タイトル */
+    .fc-toolbar-title {
+        font-size: 1.5rem !important;
+        position: static !important;
+        transform: none !important;
+        margin: 6px auto !important;
+        letter-spacing: 0.45px;
+        padding: 0;
+    }
+
+    /* ボタン */
+    .fc .fc-button {
+        font-size: 0.75rem !important;;
+        padding: 2px 8px 4px !important;
+        border-radius: var(--radius-small);
+    }
+
+    #Calendar button + button {
+        margin-left: 5px;
+    }
+
+    /* イベントタイトル */
+    .fc-event-title {
+        font-size: 0.75rem !important;
+        padding: 3px 6px 5px 10px !important;
+        white-space: pre-line;
+    }
+
+    /* イベントカード */
+    .fc-daygrid-event-harness {
+        width: 100% !important;
+        min-height: 20px;
+        margin: 0 5px;
+        border-radius: var(--radius-medium) !important;
+        box-shadow: var(--shadow-light);
+    }
+}
+
+/* =========================================================
+   PC大画面（1200px〜）
+   ========================================================= */
+@media (min-width: 1200px) {
+
+    /* カレンダーを広く、余白を上品に */
+    #FullCalendar {
+        max-width: 1900px;
+        width: 92%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* イベントの右側余白 */
+    .fc-daygrid-event-harness {
+        padding-right: 4px;
+    }
+
+    /* ヘッダー余白 */
+    .fc-header-toolbar {
+        padding: 0 24px !important;
+    }
+}

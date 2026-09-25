@@ -1,0 +1,299 @@
+/* =========================================================
+   Grid（一覧）
+   ========================================================= */
+
+.grid {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    letter-spacing: 0.3px;
+    color: var(--text-main);
+    width: 100%;
+}
+
+.grid:has(tbody:not(:empty)) {
+    border-bottom: none !important;
+}
+
+#GridObserver {
+    background: var(--bg-main);
+}
+
+
+/* =========================================================
+   表見出し
+   ========================================================= */
+.grid thead tr,
+tr.crosstab-row th {
+    background: var(--primary);
+    border: none;
+    color: var(--surface-base);
+}
+
+.grid th {
+    background-color: var(--primary) !important;
+    color: var(--text-on-primary) !important;
+	border-right: 1px solid var(--border-light) !important;
+	border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: 1px 0 0 var(--primary);
+}
+
+.grid th.sortable {
+    padding: 0.5rem 0.85rem !important;
+}
+
+.grid th.sortable:hover,
+.grid th.sortable.active {
+    background-color: var(--primary-hover) !important;
+    color: var(--text-on-primary);
+    transition: background-color 0.2s ease-out;
+}
+
+.grid th.sortable span {
+    font-weight: 550;
+    user-select: none;
+}
+
+.grid th[data-name="Owner"] {
+    min-width: 7rem;
+}
+
+/* チェックボックス */
+.grid th:first-child {
+    border-left: none !important;
+}
+
+.grid th:first-child .check-option {
+    margin: 0 auto !important;
+    width: fit-content;
+}
+
+.grid th:first-child  .check-option .check-icon:has(input:checked) {
+    border: 1px solid var(--text-on-primary);
+}
+
+#GridHeaderMenus .ui-widget-content {
+    color: var(--text-main);
+    background: var(--surface-strong);
+    border: 1px solid var(--border-light);
+}
+
+#GridHeaderMenus .ui-widget-content .ui-menu-item {
+    border-top: 1px solid var(--border-light);
+}
+
+#GridHeaderMenus .ui-widget-content .ui-menu-item-wrapper:hover {
+	color: var(--text-on-primary);
+    background: var(--primary);
+}
+
+
+/* =========================================================
+   データセル
+   ========================================================= */
+
+.grid .grid-row td {
+    background-color: var(--surface-base) !important;
+    border-left: none !important;
+    border-right: 1px solid var(--border-light) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: 1px 0 0 var(--surface-base) !important;
+    vertical-align: middle !important;
+    padding: 0.4rem 0.85rem !important;
+    color: var(--text-main) !important;
+	white-space: pre-line;
+}
+
+/* hover */
+.grid .grid-row:hover td {
+    background-color: var(--surface-base-hover) !important;
+    transition: background-color 0.25s ease-out;
+}
+
+/* 交互色分け（ゼブラストライプ） */
+.grid .grid-row.is-even-row:not(:hover) td {
+    background-color: var(--grid-zebra-bg) !important;
+}
+
+.grid .grid-row td * {
+    white-space: pre-line;
+}
+
+
+/* =========================================================
+   チェックボックス列
+   ========================================================= */
+
+.grid .grid-row td:first-child {
+    padding: 0 !important;
+    line-height: initial;
+}
+
+.grid .grid-row td:first-child .check-option,
+.grid .grid-row td .check-option .check-icon {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================================
+   個別
+   ========================================================= */
+
+/* ユーザー名 */
+.grid .grid-row td .user span {
+	font-weight: 400;
+}
+
+/* 内容 */
+.grid .grid-title-body {
+    margin-bottom: 0;
+    padding: 0;
+    background-color: transparent !important;
+    border: none !important;
+    vertical-align: middle;
+}
+
+.grid .grid-title-body.focus-inform {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.grid markdown-field,
+.grid markdown-field .md-viewer {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+}
+
+.grid markdown-field .notes {
+    display: block !important;
+    align-items: center !important;
+    padding: 0 !important;
+}
+
+/* リンク */
+.grid td p a {
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    color: var(--text-main);
+}
+
+.grid td p a:not([href^="/items/"]) {
+    color: var(--text-link);
+}
+
+.grid td p a:not([href^="/items/"]):hover {
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   tooltip
+   ========================================================= */
+
+td:has(.grid-title-body) {
+    position: relative;
+}
+
+td .grid-title-body.is-clamped,
+td .notes.is-clamped {
+    -webkit-mask-image: linear-gradient(to bottom, var(--text-main) 70%, rgba(0,0,0,0.5) 100%);
+    mask-image: linear-gradient(to bottom, var(--text-main) 70%, rgba(0,0,0,0.5) 100%);
+}
+
+td .grid-title-body,
+td .notes {
+    white-space: pre-wrap !important;
+    overflow: hidden;
+    max-height: 115px !important;
+}
+
+#list-tooltip {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-large);
+    box-shadow: 0 4px 16px var(--shadow-strong);
+    padding: 8px 12px;
+    max-width: 400px;
+    white-space: pre-wrap;
+    font-size: 0.8rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#Grid .limit-warning3 {
+    background-color: var(--semantic-danger);
+    color: var(--surface-base);
+    padding: 0 0.5rem;
+    user-select: none;
+}
+
+#Grid .limit-normal {
+    color: var(--semantic-danger);
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+
+/* =========================================================
+   一覧トップへ戻るボタン
+   ========================================================= */
+
+/* ボタンが一番下の行に重ならないよう、ボタン表示中のみグリッド下部に余白を確保する */
+#Grid.has-scroll-to-top-space {
+    padding-bottom: 4rem;
+}
+
+#scroll-to-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 900;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary);
+    color: var(--text-on-primary);
+    box-shadow: var(--elevation-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+#scroll-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+#scroll-to-top:hover {
+    background-color: var(--primary-hover);
+}
+
+#scroll-to-top .material-symbols-outlined {
+    font-size: 1.3rem;
+}
+
+
+/* =========================================================
+   一覧0件時の案内表示
+   ========================================================= */
+
+.empty-grid-message {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    background-color: var(--surface-soft);
+    border-top: 1px solid var(--border-light);
+}

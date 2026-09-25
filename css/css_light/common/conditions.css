@@ -1,0 +1,259 @@
+/* =========================================================
+   0. 基本レイアウト
+   ========================================================= */
+
+#ViewFilters:empty,
+#Aggregations:empty {
+	display: none;
+}
+
+.display-control {
+    position: relative !important;
+	padding: 0 0.2rem 0 1.75rem !important;
+    font-weight: 600 !important;
+    color: var(--text-main) !important;
+}
+
+
+/* =========================================================
+   1. 開閉トグル
+   ========================================================= */
+#ViewFilters:not(:empty),
+#Aggregations:not(:empty) {
+    position: relative;
+    width: 100% !important;
+    padding: 0.9rem 0.8rem !important;
+    gap: 1.0rem 0.9rem;
+	background-color: var(--bg-accent);
+    border-bottom: 1px solid var(--border-strong) !important;
+    box-shadow: var(--shadow-light);
+    color: var(--text-main);
+}
+
+#ReduceViewFilters,
+#ExpandViewFilters,
+#ReduceAggregations,
+#ExpandAggregations {
+    font-size: 0.9rem;
+	height: 32px;
+    align-content: center;
+    user-select: none;
+}
+
+#ViewFilters .ui-icon-folder-open,
+#ViewFilters .ui-icon-close,
+#Aggregations .ui-icon-folder-open,
+#Aggregations .ui-icon-close {
+	display: none;
+}
+
+#ViewFilters label:not(.check-option),
+#ViewFilters span.check-text {
+    align-self: center;
+    user-select: none;
+}
+
+#ViewFilters .ui-multiselect .ui-multiselect-open+span,
+#ViewFilters [class^="control-"] {
+    font-size: 0.82rem !important;
+}
+
+
+/* =========================================================
+   2. ガイド
+   ========================================================= */
+
+#Guide {
+    background-color: var(--bg-guide);
+}
+
+#Guide .with-icon-close {
+    padding: 0;
+	min-height: 1.65rem;
+}
+
+#Guide:not(:empty) {
+    padding: 0.6rem 0.8rem !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    display: flex;
+    align-items: center;
+}
+
+#Guide .display-material-icons {
+	font-size: 1.11rem;
+    top: 55%;
+}
+
+#Guide > div {
+    background-color: transparent;
+    font-size: 0.85rem;
+    border: none !important;
+}
+
+#Guide .notes {
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-family: auto;
+}
+
+#Guide #ExpandGuides {
+	height: 1.65rem;
+	align-content: center;
+}
+
+#Guide #ReduceGuides {
+	padding-right: 0px !important;
+}
+
+
+/* =========================================================
+   3. フィルタ
+   ========================================================= */
+
+#ViewFilters {
+    font-size: 0.85rem !important;
+    overflow: hidden;
+    transition: height 0.28s ease, opacity 0.22s ease;
+}
+
+#ViewFilters .filter-fields {
+    opacity: 1;
+    height: 30px;
+    transition: opacity 0.18s ease;
+}
+
+#ViewFilters.open {
+    opacity: 1;
+}
+
+#ViewFilters.closed .filter-fields {
+    opacity: 0;
+}
+
+#ViewFilters.closed {
+    opacity: 0;
+    height: 0 !important;
+}
+
+/* リセット */
+#ViewFilters_Reset {
+    margin: 0 0.5rem 0 0;
+    height: 30px;
+	line-height: 0.2rem;
+    box-shadow: var(--elevation-2);
+}
+
+
+/* =========================================================
+   4. フィールド（ラベル・入力欄）
+   ========================================================= */
+
+#ViewFilters .field-auto-thin {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    gap: 0.5rem;
+}
+
+#ViewFilters .field-auto-thin .field-label {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+}
+
+#ViewFilters .field-auto-thin .field-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   5. 集計（開閉・ラベル・値のレイアウト。色は common/status.css）
+   ========================================================= */
+
+#Aggregations {
+    overflow: hidden;
+    height: auto !important;
+    transition: height 0.28s ease, opacity 0.22s ease;
+}
+
+#Aggregations.open {
+    opacity: 1;
+}
+
+#Aggregations.closed {
+    opacity: 0;
+    height: 0 !important;
+}
+
+#Aggregations .label {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.86rem;
+    color: var(--text-emphasis);
+    user-select: none;
+}
+
+#Aggregations .label.overdue {
+    color: var(--text-white);
+    background: var(--semantic-danger);
+    border: 1px solid var(--semantic-danger);
+    padding: 0.2rem 0.5rem;
+    font-weight: 600;
+}
+
+#Aggregations .label:not(:first-of-type) {
+    margin-left: 1.4rem;
+}
+
+#Aggregations .data {
+    user-select: none;
+}
+
+#Aggregations .data:not(.link) {
+    padding: 0;
+	font-size: 0.86rem;
+    color: var(--text-emphasis);
+}
+
+#Aggregations .link .bold {
+    margin-right: 0.5rem;
+    font-weight: 500 !important;
+}
+
+
+/* =========================================================
+   6. レスポンシブ
+   ========================================================= */
+
+@media screen and (max-width: 480px) {
+
+    #ViewFilters .field-auto-thin {
+        width: max-content;
+    }
+
+    #ViewFilters .button {
+        margin: 5px auto 0;
+    }
+
+    #ViewFilters #ViewFilters_Reset {
+        order: 1;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 0) {
+    #ViewSelectorField {
+        background: var(--surface-soft);
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    #ViewFilters .field-auto-thin,
+    #ViewFilters .ui-multiselect .ui-multiselect-open + span {
+        font-size: 0.85rem !important;
+    }
+
+    #ViewFilters .field-control:has(.check-option) {
+        padding: 0;
+    }
+}

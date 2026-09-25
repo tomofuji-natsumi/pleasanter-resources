@@ -1,0 +1,175 @@
+/* =========================================================
+   アイコン（不要アイコンの非表示・ボタン系アイコン色）
+   ========================================================= */
+
+/* 不要アイコンの非表示 */
+#Header .ui-icon-person,
+#CopyToClipboards .ui-icon-link,
+#RecordHeader .ui-icon-person,
+#ReduceGuides .ui-icon-minusthick,
+#ExpandGuides .ui-icon-plusthick,
+.grid-row .ui-icon-person,
+.comment-header .ui-icon-person,
+.button-icon .ui-icon {
+    display: none !important;
+}
+
+.button-negative {
+    background-color: var(--semantic-danger) !important;
+    color: var(--text-on-primary) !important;
+    border-color: var(--semantic-danger-border) !important;
+}
+
+.button-positive {
+    background-color: var(--primary) !important;
+    color: var(--text-on-primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.button-positive:hover {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+.button-neutral {
+    background-color: var(--btn-dark-bg) !important;
+    color: var(--text-white) !important;
+    border-color: var(--btn-dark-bg) !important;
+}
+
+.button-neutral:hover {
+    background-color: var(--btn-dark-bg-hover) !important;
+    border-color: var(--btn-dark-bg-hover) !important;
+}
+
+.material-symbols-outlined:not(.md-btn-icon) {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0.35rem;
+    font-size: 1.16rem;
+	user-select: none;
+}
+
+.display-material-icons {
+    left: 0.2rem !important;
+    width: 20px;
+    text-align: center;
+    color: var(--icon-color);
+}
+
+.ui-multiselect-open .ui-icon {
+    right: 3px;
+}
+
+
+/* =========================================================
+   ボタン（種類別配色: primary / dark / light / danger / execute / approve / notify / extra）
+   ========================================================= */
+
+.ui-button {
+    position: relative;
+    padding: 0.3rem 0.4rem 0.35rem 1.7rem !important;
+    border-radius: var(--radius-small);
+    border: 1px solid transparent !important;
+    font-size: 0.85rem !important;
+    font-weight: 550;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--elevation-3);
+}
+
+.ui-button:hover {
+    font-weight: 550 !important;
+    background: transparent;
+}
+
+/* primary */
+button:has(.primary-material-icons),
+button:has(.primary-material-icons):focus {
+    background: var(--primary) !important;
+    color: var(--text-on-primary) !important;
+}
+button:has(.primary-material-icons):hover,
+button:has(.primary-material-icons):active {
+    background: var(--primary-hover) !important;
+}
+
+/* dark */
+button:has(.dark-material-icons),
+button:has(.dark-material-icons):focus {
+    background: var(--btn-dark-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.dark-material-icons):hover,
+button:has(.dark-material-icons):active {
+    background: var(--btn-dark-bg-hover) !important;
+}
+
+/* light */
+button:has(.light-material-icons),
+button:has(.light-material-icons):focus {
+    background: var(--surface-soft);
+    border: 1px solid var(--border-normal) !important;
+    color: var(--text-emphasis);
+}
+button:has(.light-material-icons):hover,
+button:has(.light-material-icons):active {
+    background: var(--surface-strong);
+    border: 1px solid var(--border-strong) !important;
+    color: var(--text-main);
+}
+
+/* danger */
+button:has(.danger-material-icons),
+button:has(.danger-material-icons):focus {
+    background: var(--btn-danger-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.danger-material-icons):hover,
+button:has(.danger-material-icons):active {
+    background: var(--btn-danger-bg-hover) !important;
+}
+
+/* execute */
+button:has(.execute-material-icons),
+button:has(.execute-material-icons):focus {
+    background: var(--btn-execute-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.execute-material-icons):hover,
+button:has(.execute-material-icons):active {
+    background: var(--btn-execute-bg-hover) !important;
+}
+
+/* approve */
+button:has(.approve-material-icons),
+button:has(.approve-material-icons):focus {
+    background: var(--btn-approve-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.approve-material-icons):hover,
+button:has(.approve-material-icons):active {
+    background: var(--btn-approve-bg-hover) !important;
+}
+
+/* notify */
+button:has(.notify-material-icons),
+button:has(.notify-material-icons):focus {
+    background: var(--btn-notify-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.notify-material-icons):hover,
+button:has(.notify-material-icons):active {
+    background: var(--btn-notify-bg-hover) !important;
+}
+
+/* extra */
+button:has(.extra-material-icons),
+button:has(.extra-material-icons):focus {
+    background: var(--btn-extra-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.extra-material-icons):hover,
+button:has(.extra-material-icons):active {
+    background: var(--btn-extra-bg-hover) !important;
+}
