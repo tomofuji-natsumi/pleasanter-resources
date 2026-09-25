@@ -4,8 +4,11 @@
       "common/utils.js",
       "common/dom_watcher.js",
       "common/icon.js",
+      "common/api.js",
       "common/overlay.js",
-      "common/port_setting.js"
+      "common/shortcut.js",
+      "common/port_setting.js",
+      "sites/holiday_setting.js"
     ]
   },
   "Css": {
