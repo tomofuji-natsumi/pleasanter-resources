@@ -1,0 +1,31 @@
+/* =========================================================
+   保存ボタンの多重クリック防止（スピナー表示）
+   ========================================================= */
+
+#CreateCommand.is-submitting,
+#UpdateCommand.is-submitting {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+#CreateCommand.is-submitting::after,
+#UpdateCommand.is-submitting::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    border: 2px solid var(--text-on-primary);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: prevent-double-submit-spin 0.7s linear infinite;
+}
+
+@keyframes prevent-double-submit-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

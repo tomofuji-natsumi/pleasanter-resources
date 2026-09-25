@@ -1,0 +1,513 @@
+/* =========================================================
+   エディター（コンテナ）
+   ========================================================= */
+
+#Editor #EditorTabsContainer,
+#Editor #GroupForm {
+    background: var(--surface-base);
+}
+
+#Editor #MainForm {
+    background: var(--surface-base);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--elevation-1);
+}
+
+#Editor #MainForm:after {
+    background-color: var(--surface-strong);
+}
+
+#TitleContainer:not(:empty) + #Warnings:empty + #Editor:has(#RecordHeader) {
+    margin-top: 0px;
+}
+
+.field-wide,
+.field-markdown {
+    min-height: initial;
+    margin-bottom: 20px;
+    padding: 0 10px 0 0;
+}
+
+.field-normal {
+    height: initial;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 0 20px 0 0;
+}
+
+#SiteImageIconContainer {
+    display: none;
+}
+
+.ui-icon {
+    color: var(--icon-color);
+}
+
+
+/* =========================================================
+   必須マーク
+   ========================================================= */
+
+.required::before {
+    color: var(--semantic-danger);
+    margin-right: 3px;
+    content: "*";
+}
+
+.required::after {
+    content: none !important;
+}
+
+
+/* =========================================================
+   フィールド（ラベル・入力欄のグリッド構造 / 入力コントロールの基本装飾）
+   ========================================================= */
+
+.field {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.field-label {
+    flex: 0 0 auto;
+    max-width: 100%;
+}
+
+.field-control {
+    flex: 1 1 0;
+    min-width: 0 !important;
+}
+
+.field-wide .field-control {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+.field-control input,
+.field-control select,
+.field-control textarea,
+.field-control .control-markdown {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+.field-control select {
+    user-select: none;
+}
+
+.field-control .control-markdown {
+    min-width: 80px;
+    border: 1px solid var(--border-normal);
+}
+
+textarea,
+input,
+select:not([name="Results_Status"]),
+.ui-widget.ui-state-default.ui-multiselect {
+    background: var(--surface-base) !important;
+    border: 1px solid var(--border-normal) !important;
+    border-radius: var(--radius-medium) !important;
+    color: var(--text-main);
+}
+
+textarea:focus,
+input:focus,
+select:not([name="Results_Status"]):focus,
+.control-dropdown:focus
+.ui-widget.ui-state-default.ui-multiselect:focus {
+    border: 1px solid var(--primary) !important;
+    background-color: var(--surface-base) !important;
+    color: var(--text-main) !important;
+}
+
+.container-normal {
+    min-height: 2rem !important;
+}
+
+[class^="control-"] {
+    font-size: 0.85rem !important;
+}
+
+.control-text {
+	color: var(--text-main);
+}
+
+.control-text,
+.control-basket {
+    border-radius: 0;
+}
+
+.control-textbox,
+.control-spinner,
+.select-field .control-dropdown:has(+.current-user),
+.select-field .control-dropdown:has(+.current-dept) {
+    padding: 4px 4px 4px 8px;
+}
+
+.select-field:not(:has(div.ui-icon-person)) .control-dropdown {
+    padding: 3px 4px 4px 5px !important;
+}
+
+.control-dropdown {
+	border: 1px solid var(--border-normal);
+}
+
+
+/* =========================================================
+   チェックボックス
+   ========================================================= */
+
+.container-normal:has(.check-option) {
+    align-content: center;;
+}
+
+.check-option {
+    gap: 0.8rem !important;
+    margin: 0;
+    align-items: center;
+}
+
+.check-option .check-icon {
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-normal) !important;
+    border-radius: var(--radius-medium) !important;
+}
+
+.check-option .check-icon:before {
+    color: var(--surface-base) !important;
+}
+
+.check-option .check-icon:has(input:checked) {
+    background-color: var(--primary);
+}
+
+.check-option .check-icon:has(input:disabled):has(input:checked) {
+    background-color: var(--bg-disabled);
+    border: 1px solid var(--border-normal);
+}
+
+.check-option .check-icon:has(input:disabled):has(input:checked):before {
+    color: var(--text-disabled) !important;
+}
+
+.check-option .check-text {
+    user-select: none;
+}
+
+
+/* =========================================================
+   スピナー
+   ========================================================= */
+
+.spinner-field .ui-spinner .ui-button {
+    position: absolute !important;
+    background-color: var(--surface-base);
+    border-left: 1px solid var(--border-normal);
+}
+
+.spinner-field:has(.with-unit) .unit {
+    padding-left: 5px;
+}
+
+
+/* =========================================================
+   テキストエリア / Markdown
+   ========================================================= */
+
+textarea {
+    field-sizing: content;
+    resize: vertical;
+    min-height: 4lh;
+    max-height: 20lh;
+    height: auto !important;
+}
+
+markdown-field .md-viewer:not(.control-text) {
+    background-color: var(--surface-base) !important;
+}
+
+markdown-field:not(.is-comment) .md-viewer:not(.not-send) {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-normal) !important;
+    padding: 8px 32px 8px 8px;
+}
+
+markdown-field .bottom-tools {
+    margin-top: 0.3rem;
+}
+
+markdown-field .md-btn-icon {
+    color: var(--icon-color);
+    user-select: none;
+}
+
+markdown-field .md-btn.is-editor {
+    right: 15px;
+}
+
+markdown-field.is-comment .md-viewer {
+    border: none !important;
+	background-color: transparent !important;
+}
+
+markdown-field .md-viewer {
+    color: var(--text-main) !important;
+    line-height: 1.55;
+    letter-spacing: 0.2px;
+}
+
+markdown-field .notes {
+    padding: 2px 0;
+}
+
+
+/* =========================================================
+   リッチエディタ / 日付ピッカー（flatpickr）
+   ========================================================= */
+
+rt-editor {
+    color: var(--text-main);
+    background-color: var(--surface-base);
+}
+
+rt-editor .se-toolbar {
+    background-color: var(--primary-dark) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    padding: 4px !important;
+}
+
+rt-editor .toggle:after {
+    background-color: var(--primary-dark) !important;
+}
+
+rt-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
+    color: var(--surface-base) !important;
+}
+
+rt-editor .se-btn-tray {
+    gap: 4px !important;
+}
+
+rt-editor button:not([disabled="true"]) {
+	color: var(--text-main) !important;
+	font-weight: 450;
+}
+
+rt-editor .se-btn:enabled:active,
+rt-editor .se-btn:enabled:focus,
+rt-editor .se-btn:enabled:hover {
+	background-color: var(--surface-light);
+	border: none;
+}
+
+rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
+    flex: 1;
+	width: fit-content;
+    max-width: fit-content;
+    min-width: max-content;
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-normal);
+}
+
+rt-editor .se-btn-list,
+rt-editor .se-btn:not(.se-btn-select):not(.btn-editable-cmd) {
+	width: min-content;
+    padding: 0 0.4rem !important;
+}
+
+rt-editor .se-tooltip .se-tooltip-inner {
+    width: 0;
+}
+
+rt-editor .se-btn-select {
+	margin: 0 !important;
+}
+
+rt-editor .se-btn-select > svg {
+    margin: 8px 0 3px 10px;
+}
+
+.sun-editor-editable {
+	background-color: var(--surface-base) !important;
+}
+
+date-field {
+    --base-text: var(--icon-color);
+    user-select: none;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year,
+span.flatpickr-weekday {
+    color: var(--text-on-primary);
+    background: transparent !important;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: var(--text-on-primary) !important;
+    fill: var(--text-on-primary) !important;
+    line-height: 1.4;
+}
+
+.flatpickr-day.selected {
+    color: var(--text-on-primary);
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day.selected:hover,
+.flatpickr-day.selected:focus {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-weekdays {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day {
+    color: var(--text-main);
+}
+
+.flatpickr-day.today {
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.today:hover,
+.flatpickr-day.today:focus {
+    background: var(--cal-other-bg);
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.notAllowed,
+.flatpickr-day.notAllowed.prevMonthDay,
+.flatpickr-day.notAllowed.nextMonthDay {
+    color: var(--text-other-month);
+}
+
+
+/* =========================================================
+   Readonly（読取専用スタイル）
+   ========================================================= */
+
+.container-normal:has(span[data-readonly="1"]),
+.readonly-style {
+    padding: 0.3rem 0.55rem !important;
+    background: var(--bg-disabled) !important;
+    color: var(--text-disabled) !important;
+    border: 1px solid var(--border-normal) !important;
+    border-radius: var(--radius-medium) !important;
+    pointer-events: none;
+    user-select: none;
+}
+
+.container-normal span[data-readonly="1"] {
+    background: transparent !important;
+    border: none !important;
+    min-height: fit-content;
+    height: fit-content;
+    line-height: 1.4;
+}
+
+.container-normal span[data-readonly="1"]:not(:empty) {
+    padding: 0 !important;
+    color: var(--text-disabled) !important;
+}
+
+
+/* =========================================================
+   Fieldset（種類）
+   ========================================================= */
+
+.fieldset > .legend {
+    background-color: var(--bg-main-dark);
+    border: 1px solid var(--border-normal);
+    color: var(--text-emphasis);
+}
+
+.fieldset.enclosed,
+.fieldset.enclosed-half,
+.fieldset.enclosed-thin {
+    background: var(--bg-main);
+}
+
+.fieldset.enclosed:has(.legend),
+.fieldset.enclosed-half:has(.legend),
+.fieldset.enclosed-thin:has(.legend) {
+    border: 1px solid var(--border-normal);
+    box-shadow: 0 0 4px var(--shadow-strong);
+}
+
+
+/* =========================================================
+   選択肢（multiselect）
+   ========================================================= */
+
+.ui-multiselect-menu {
+    font-size: 0.9rem;
+	background: var(--surface-base);
+    border: 1px solid var(--border-strong) !important;
+    color: var(--text-main);
+    padding: 5px;
+}
+
+.ui-multiselect-menu .ui-multiselect-header {
+	color: var(--text-main);
+    background: var(--bg-main-dark);
+    border: 1px solid var(--border-strong);
+}
+
+.ui-multiselect-menu .ui-multiselect-checkboxes .ui-state-hover {
+    background: var(--surface-base-hover);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+}
+
+.ui-multiselect-menu .ui-multiselect-checkboxes li label {
+	padding: 0.2rem 0.3rem 0.2rem 1.3rem;
+}
+
+.ui-multiselect-menu .ui-multiselect-checkboxes li label span {
+    padding-left: 5px;
+    vertical-align: text-top;
+	line-height: 1.37;
+}
+
+.container-selectable:not(:has(#OutgoingMails_MailAddressesWrapper)) {
+	margin-top: 0;
+}
+
+.field-vertical {
+	width: fit-content !important;
+	margin-bottom: 1rem;
+}
+
+
+/* =========================================================
+   レスポンシブ（1024px以下: フィールド最小高さ解除）
+   ========================================================= */
+
+@media screen and (max-width: 1024px) and (min-width: 0) {
+    body:has(#Editor) #TitleContainer #HeaderTitle {
+        color: var(--text-main);
+    }
+
+	.field-normal,
+	.field-wide,
+	.field-auto,
+	.field-textarea,
+	.field-markdown {
+		min-height: auto;
+	}
+}

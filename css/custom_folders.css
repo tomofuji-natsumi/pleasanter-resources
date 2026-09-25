@@ -1,8 +1,8 @@
 /* =========================================================
-    1. メッセージ
-    ========================================================= */
+   1. メッセージ
+   ========================================================= */
 
-    #Message {
+#Message {
     bottom: 0;
 }
 
@@ -12,8 +12,9 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
 }
 
 /* =========================================================
-    2. 戻るボタン
-    ========================================================= */
+   2. 戻るボタン（.nav-site のバリエーション。基本カードデザインは
+      common/site_menu.css 側にあり、ここではその上書き分のみを扱う）
+   ========================================================= */
 
 .nav-sites:has(.nav-site.to-parent) {
     margin-bottom: 25px;
@@ -87,4 +88,3 @@ body:not(:has(#TemplateTabsContainer:not(:empty))) #MainCommandsContainer {
     color: var(--surface-strong) !important;
     font-weight: 550;
 }
-

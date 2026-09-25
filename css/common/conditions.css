@@ -61,8 +61,8 @@
 
 /* =========================================================
    2. ガイド
-   ===================================$====================== */
-   
+   ========================================================= */
+
 #Guide {
     background-color: var(--bg-guide);
 }
@@ -168,7 +168,7 @@
 
 
 /* =========================================================
-   5. 集計
+   5. 集計（開閉・ラベル・値のレイアウト。色は common/status.css）
    ========================================================= */
 
 #Aggregations {
@@ -224,114 +224,7 @@
 
 
 /* =========================================================
-   6. ステータス色
-   ========================================================= */
-#Aggregations .data.link {
-    position: relative;
-    padding: 3px 6px;
-    border-radius: var(--radius-small);
-    font-weight: 500;
-    display: inline-block;
-	cursor: pointer;
-    line-height: 1.53;
-    user-select: none;
-}
-
-#Aggregations .data.link:not([data-selector="#ViewFilters__Status"]) {
-    background-color: var(--status-no-bg);
-    border: 1px solid var(--status-no-border);
-    color: var(--status-no-text);
-}
-#Aggregations .data.link:not([data-selector="#ViewFilters__Status"]):hover {
-    background-color: var(--status-no-bg-hover);
-    border-color: var(--status-no-border-hover);
-}
-
-/* 100番台:新規・未着手 */
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="1"] {
-    background-color: var(--status-new-bg);
-    border: 1px solid var(--status-new-border);
-    color: var(--status-new-text);
-}
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="1"]:hover {
-    background-color: var(--status-new-bg-hover);
-    border-color: var(--status-new-border-hover);
-}
-
-/* 200番台:準備中・検討中 */
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="2"] {
-    background-color: var(--status-preparation-bg);
-    border: 1px solid var(--status-preparation-border);
-    color: var(--status-preparation-text);
-}
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="2"]:hover {
-    background-color: var(--status-preparation-bg-hover);
-    border-color: var(--status-preparation-border-hover);
-}
-
-/* 300番台:対応中・進行中 */
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="3"] {
-    background-color: var(--status-inprogress-bg);
-    border: 1px solid var(--status-inprogress-border);
-    color: var(--status-inprogress-text);
-}
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="3"]:hover {
-    background-color: var(--status-inprogress-bg-hover);
-    border-color: var(--status-inprogress-border-hover);
-}
-
-/* 400番台:承認待ち・レビュー中 */
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="4"] {
-    background-color: var(--status-approval-bg);
-    border: 1px solid var(--status-approval-border);
-    color: var(--status-approval-text);
-}
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="4"]:hover {
-    background-color: var(--status-approval-bg-hover);
-    border-color: var(--status-approval-border-hover);
-}
-
-/* 900〜949:完了(成立・ポジティブ) */
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="90"],
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="91"],
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="92"],
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="93"],
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="94"] {
-    background-color: var(--status-completed-bg);
-    border: 1px solid var(--status-completed-border);
-    color: var(--status-completed-text);
-}
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="90"]:hover,
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="91"]:hover,
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="92"]:hover,
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="93"]:hover,
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="94"]:hover {
-    background-color: var(--status-completed-bg-hover);
-    border-color: var(--status-completed-border-hover);
-}
-
-/* 950〜999:完了(不成立・ネガティブ) */
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="95"],
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="96"],
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="97"],
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="98"],
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="99"] {
-    background-color: var(--status-declined-bg);
-    border: 1px solid var(--status-declined-border);
-    color: var(--status-declined-text);
-}
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="95"]:hover,
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="96"]:hover,
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="97"]:hover,
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="98"]:hover,
-#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="99"]:hover {
-    background-color: var(--status-declined-bg-hover);
-    border-color: var(--status-declined-border-hover);
-}
-
-
-/* =========================================================
-   10. レスポンシブ
+   6. レスポンシブ
    ========================================================= */
 
 @media screen and (max-width: 480px) {

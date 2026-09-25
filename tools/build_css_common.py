@@ -1,12 +1,12 @@
 # ===========================================================================
-# css_light/common/ 配下は編集用に分割したソース。
+# css/common/ 配下は編集用に分割したソース。
 # 配信時にリクエスト数(=@importの段数)を増やさないため、
 # custom_common.css / custom_cherry.css はこのスクリプトで単一ファイルへ束ねる。
 # common/*.css を編集したら、このスクリプトを再実行してビルドし直すこと。
 # ===========================================================================
 import pathlib
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent / "css" / "css_light"
+ROOT = pathlib.Path(__file__).resolve().parent.parent / "css"
 
 # custom_common.css / custom_cherry.css の @import 順と対応させる（既存の非対称構成を維持）。
 # custom_common.css: definition.css はテンプレート側の <link> で別途読むためここには含めない。
@@ -20,8 +20,8 @@ COMMON_ORDER_FULL = [
 COMMON_ORDER_CHERRY = [f for f in COMMON_ORDER_FULL if f != "port_setting.css"]
 
 HEADER = (
-    "/* このファイルは tools/build_css_light.py の自動生成物。\n"
-    "   直接編集せず、css_light/common/ 配下のソースを編集してから再ビルドすること。\n"
+    "/* このファイルは tools/build_css_common.py の自動生成物。\n"
+    "   直接編集せず、css/common/ 配下のソースを編集してから再ビルドすること。\n"
     "   （配信時のHTTPリクエスト数を増やさないよう、@import ではなく単一ファイルに束ねている） */\n"
 )
 

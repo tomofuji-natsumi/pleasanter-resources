@@ -1,0 +1,75 @@
+/* =========================================================
+   タブ（.ui-tabs）
+   ========================================================= */
+
+.ui-tabs .ui-tabs-nav {
+    border-bottom: 2px solid var(--border-light) !important;
+    background-color: var(--surface-base);
+    padding: 9px 16px;
+    gap: 7px;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) {
+    background: var(--surface-soft) !important;
+    border: 1px solid var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover {
+    background: var(--primary) !important;
+    border: 1px solid var(--primary-hover);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) a label {
+    font-weight: 500;
+    color: var(--primary);
+    user-select: none;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover a label {
+    color: var(--text-on-primary)  !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    background: var(--primary) !important;
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-small) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	color: var(--text-on-primary);
+    text-shadow: var(--elevation-1);
+	font-weight: 550;
+    user-select: none;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor label {
+    user-select: none;
+}
+
+.ui-tabs-panel {
+	background: var(--surface-base);
+}
+
+.ui-tabs-panel .field-label {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    line-height: 1.5;
+    padding: 0 0.7rem 0 0;
+    margin-bottom: 0;
+}
+
+.ui-tabs-panel .field-label label {
+    vertical-align: sub;
+    font-weight: 500;
+    user-select: none;
+}
+
+.ui-tabs-panel .check-option {
+    margin: 4px 0 !important;
+	gap: 0.8em;
+}

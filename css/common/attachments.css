@@ -1,0 +1,188 @@
+/* =========================================================
+   添付ファイル関連。「基本見た目」と「操作系(プレビュー/D&D/サムネイル)」を統合。
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. 基本見た目（アップロード枠・一覧アイテム）
+   --------------------------------------------------------- */
+
+.control-attachments-upload {
+    padding: 1.7rem 0.8rem !important;
+    color: var(--primary);
+    background: transparent;
+    border: 2px dotted var(--border-interactive) !important;
+    border-radius: var(--radius-medium);
+    user-select: none;
+}
+
+.control-attachments-upload:hover {
+    cursor: pointer;
+}
+
+.control-attachments-items {
+    padding: 0 !important;
+    margin-top: 0.2rem;
+}
+
+.control-attachments-item {
+   padding: 0.6em;
+}
+
+.control-attachments-item.already-attachments {
+    background-color: var(--primary-surface);
+	border-color: var(--primary);
+}
+
+
+/* ---------------------------------------------------------
+   2. 添付画像のプレビュー拡大表示
+   --------------------------------------------------------- */
+
+.md-viewer .notes img[src*="/binaries/"] {
+    cursor: zoom-in;
+}
+
+#image-lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    cursor: zoom-out;
+}
+
+#image-lightbox-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--radius-medium);
+    box-shadow: var(--elevation-3);
+}
+
+
+/* ---------------------------------------------------------
+   3. 添付ファイルアップロード中の保存ボタン制御
+   --------------------------------------------------------- */
+
+#CreateCommand.is-upload-locked,
+#UpdateCommand.is-upload-locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* ---------------------------------------------------------
+   4. 添付ファイルのインライン表示（プレビューパネル）
+   --------------------------------------------------------- */
+
+#attachment-preview-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+#attachment-preview-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.attachment-preview-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    box-sizing: border-box;
+}
+
+.attachment-preview-frame {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-main);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--elevation-3);
+}
+
+.attachment-preview-spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: -1.2rem 0 0 -1.2rem;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--text-on-primary);
+    border-radius: 50%;
+    animation: attachment-preview-spin 0.8s linear infinite;
+}
+
+#attachment-preview-overlay.is-loading .attachment-preview-spinner {
+    display: block;
+}
+
+@keyframes attachment-preview-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.control-attachments-item .show-file {
+    cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------
+   5. 添付ファイルのドラッグ&ドロップ並べ替え
+   --------------------------------------------------------- */
+
+.control-attachments-item {
+    cursor: grab;
+}
+
+.control-attachments-item.is-dragging {
+    cursor: grabbing;
+    opacity: 0.4;
+}
+
+
+/* ---------------------------------------------------------
+   6. 添付ファイルのサムネイル表示（ホバー）
+   --------------------------------------------------------- */
+
+#attachment-thumbnail {
+    position: absolute;
+    z-index: 2200;
+    display: none;
+    padding: 4px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-normal);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--elevation-3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+#attachment-thumbnail img {
+    display: block;
+    max-width: 240px;
+    max-height: 240px;
+}

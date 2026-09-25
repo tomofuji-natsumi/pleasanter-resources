@@ -1,5 +1,2761 @@
-@import "common/base.css";
-@import "common/conditions.css";
-@import "common/grid.css";
-@import "common/editor.css";
-@import "common/port_setting.css";
+/* このファイルは tools/build_css_common.py の自動生成物。
+   直接編集せず、css/common/ 配下のソースを編集してから再ビルドすること。
+   （配信時のHTTPリクエスト数を増やさないよう、@import ではなく単一ファイルに束ねている） */
+
+/* ----- common/layout.css ----- */
+/* =========================================================
+   全体レイアウト（html/body の基本リセット）
+   ========================================================= */
+
+html,
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    min-width: auto !important;
+    background-color: var(--bg-dashboard) !important;
+}
+
+body,
+pre,
+input,
+select,
+button,
+textarea,
+.grid .data,
+.grid .label,
+.ui-widget,
+.ui-widget input,
+.ui-widget button,
+.ui-widget select,
+.ui-widget textarea,
+.dashboard-custom-body {
+    font-family: auto !important;
+    line-height: 1.36;
+}
+
+a {
+    color: var(--text-link);
+}
+
+img {
+	user-select: none;
+}
+
+.material-symbols-sharp {
+    user-select: none;
+}
+
+.grid-stack-item-content .dashboard-part-nav-item:hover {
+    background: var(--dashboard-part-nav-hover-bg);
+    box-shadow: var(--dashboard-part-nav-hover-shadow);
+}
+
+#Import:not(.control-checkbox),
+#ImportUserTemplate_Import,
+#SitePackageForm #Import,
+#Encoding,
+#ExportEncoding {
+    visibility: hidden;
+}
+
+.import-ready,
+.encoding-ready {
+    visibility: visible;
+}
+
+
+/* =========================================================
+   アナウンス（ページ上部の告知バー）
+   ========================================================= */
+
+#AnnouncementModule div div {
+    padding: 0.5rem 0.8rem !important;
+}
+
+/* ----- common/buttons.css ----- */
+/* =========================================================
+   アイコン（不要アイコンの非表示・ボタン系アイコン色）
+   ========================================================= */
+
+/* 不要アイコンの非表示 */
+#Header .ui-icon-person,
+#CopyToClipboards .ui-icon-link,
+#RecordHeader .ui-icon-person,
+#ReduceGuides .ui-icon-minusthick,
+#ExpandGuides .ui-icon-plusthick,
+.grid-row .ui-icon-person,
+.comment-header .ui-icon-person,
+.button-icon .ui-icon {
+    display: none !important;
+}
+
+.button-negative {
+    background-color: var(--semantic-danger) !important;
+    color: var(--text-on-primary) !important;
+    border-color: var(--semantic-danger-border) !important;
+}
+
+.button-positive {
+    background-color: var(--primary) !important;
+    color: var(--text-on-primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.button-positive:hover {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+.button-neutral {
+    background-color: var(--btn-dark-bg) !important;
+    color: var(--text-white) !important;
+    border-color: var(--btn-dark-bg) !important;
+}
+
+.button-neutral:hover {
+    background-color: var(--btn-dark-bg-hover) !important;
+    border-color: var(--btn-dark-bg-hover) !important;
+}
+
+.material-symbols-outlined:not(.md-btn-icon) {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0.35rem;
+    font-size: 1.16rem;
+	user-select: none;
+}
+
+.display-material-icons {
+    left: 0.2rem !important;
+    width: 20px;
+    text-align: center;
+    color: var(--icon-color);
+}
+
+.ui-multiselect-open .ui-icon {
+    right: 3px;
+}
+
+
+/* =========================================================
+   ボタン（種類別配色: primary / dark / light / danger / execute / approve / notify / extra）
+   ========================================================= */
+
+.ui-button {
+    position: relative;
+    padding: 0.3rem 0.4rem 0.35rem 1.7rem !important;
+    border-radius: var(--radius-small);
+    border: 1px solid transparent !important;
+    font-size: 0.85rem !important;
+    font-weight: 550;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--elevation-3);
+}
+
+.ui-button:hover {
+    font-weight: 550 !important;
+    background: transparent;
+}
+
+/* primary */
+button:has(.primary-material-icons),
+button:has(.primary-material-icons):focus {
+    background: var(--primary) !important;
+    color: var(--text-on-primary) !important;
+}
+button:has(.primary-material-icons):hover,
+button:has(.primary-material-icons):active {
+    background: var(--primary-hover) !important;
+}
+
+/* dark */
+button:has(.dark-material-icons),
+button:has(.dark-material-icons):focus {
+    background: var(--btn-dark-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.dark-material-icons):hover,
+button:has(.dark-material-icons):active {
+    background: var(--btn-dark-bg-hover) !important;
+}
+
+/* light */
+button:has(.light-material-icons),
+button:has(.light-material-icons):focus {
+    background: var(--surface-soft);
+    border: 1px solid var(--border-normal) !important;
+    color: var(--text-emphasis);
+}
+button:has(.light-material-icons):hover,
+button:has(.light-material-icons):active {
+    background: var(--surface-strong);
+    border: 1px solid var(--border-strong) !important;
+    color: var(--text-main);
+}
+
+/* danger */
+button:has(.danger-material-icons),
+button:has(.danger-material-icons):focus {
+    background: var(--btn-danger-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.danger-material-icons):hover,
+button:has(.danger-material-icons):active {
+    background: var(--btn-danger-bg-hover) !important;
+}
+
+/* execute */
+button:has(.execute-material-icons),
+button:has(.execute-material-icons):focus {
+    background: var(--btn-execute-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.execute-material-icons):hover,
+button:has(.execute-material-icons):active {
+    background: var(--btn-execute-bg-hover) !important;
+}
+
+/* approve */
+button:has(.approve-material-icons),
+button:has(.approve-material-icons):focus {
+    background: var(--btn-approve-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.approve-material-icons):hover,
+button:has(.approve-material-icons):active {
+    background: var(--btn-approve-bg-hover) !important;
+}
+
+/* notify */
+button:has(.notify-material-icons),
+button:has(.notify-material-icons):focus {
+    background: var(--btn-notify-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.notify-material-icons):hover,
+button:has(.notify-material-icons):active {
+    background: var(--btn-notify-bg-hover) !important;
+}
+
+/* extra */
+button:has(.extra-material-icons),
+button:has(.extra-material-icons):focus {
+    background: var(--btn-extra-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.extra-material-icons):hover,
+button:has(.extra-material-icons):active {
+    background: var(--btn-extra-bg-hover) !important;
+}
+
+/* ----- common/header.css ----- */
+/* =========================================================
+   ヘッダー
+   ========================================================= */
+
+#Header {
+    padding: 2px 12px;
+    background-color: var(--surface-soft) !important;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.9rem;
+    color: var(--text-emphasis) !important;
+    box-shadow: var(--elevation-1);
+}
+
+#Header #ViewSelector label {
+    user-select: none;
+}
+
+#Header #ViewSelectorField .field-normal .control-dropdown {
+    width: auto;
+    min-width: 100px;
+    max-width: 200px;
+    padding: 2px 4px !important;
+    height: auto;
+    font-size: 0.83rem !important;
+}
+
+
+/* =========================================================
+   ハンバーガーメニュー
+   ========================================================= */
+
+#Header .hamburger-switch {
+    background-color: transparent !important;
+}
+
+#Header .hamburger-switch .hamburger-switch-line,
+#Header .hamburger-switch .hamburger-switch-line:before,
+#Header .hamburger-switch .hamburger-switch-line:after {
+    background: var(--text-emphasis);
+}
+
+#Header .hamburger-menubox .hamburger-cover {
+    background: var(--bg-hamburger-outer) !important;
+}
+
+#Header .hamburger-menubox .hamburger-menuwrap {
+    background-color: var(--surface-base) !important;
+    box-shadow: 2px 0 2px var(--shadow-medium);
+}
+
+#Header .hamburger-menubox .accordion a img.new {
+    background-color: var(--primary);
+}
+
+#Header .hamburger-menubox #NewMenuContainer span:has(img) {
+    margin: auto 0;
+    height: 32px;
+}
+
+#Header .hamburger-menubox #NewMenuContainer span:last-child {
+    font-size: 1rem;
+    margin-left: 0.3rem;
+}
+
+#Header .hamburger-menubox .menubox a {
+    color: var(--text-main);
+    user-select: none;
+}
+
+#Header .hamburger-menubox .menubox .menulabel span:last-child {
+    font-size: 0.94rem;
+    user-select: none;
+}
+
+#Header .hamburger-menubox .menubox .menulabel:hover,
+#Header .hamburger-menubox .accordion a:hover {
+    background-color: var(--surface-base-hover);
+}
+
+#Header .hamburger-menubox .menubox-sub {
+    background-color: var(--surface-strong);
+    font-size: 0.85rem;
+}
+
+#Header .hamburger-menubox .menubox-sub ul a {
+    padding: 0.65rem 0.5rem 0.65rem 3.3rem;
+}
+
+#Header .hamburger-menubox .menubox-sub ul a:hover {
+    background: var(--surface-strong-hover);
+}
+
+
+/* =========================================================
+   パンくずリスト
+   ========================================================= */
+
+#CopyToClipboards {
+    top: initial;
+    z-index: 95;
+}
+
+#CopyToClipboards #CopyDirectUrlToClipboard {
+    background-color: transparent !important;
+    border: none !important;
+    height: 40px !important;
+}
+
+#Breadcrumb {
+    background-color: var(--surface-soft) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: none !important;
+}
+
+#Breadcrumb span.label {
+    font-size: 0.8rem;
+    font-weight: 550;
+    white-space: pre;
+    line-height: 1.4;
+    color: var(--text-sub);
+}
+
+#Breadcrumb li:first-child a {
+    padding-left: 42px !important;
+}
+
+#Breadcrumb li:not(:last-child) a:hover {
+    text-decoration-color: var(--icon-color);
+}
+
+#Breadcrumb li:last-child {
+    background-color: var(--primary) !important;
+}
+
+#Breadcrumb li:last-child a span,
+#Breadcrumb .item:last-child:is(.trashbox) span {
+    color: var(--text-on-primary);
+    text-shadow: var(--elevation-1);
+	font-weight: 550;
+    user-select: none;
+}
+
+/* セパレーター（三角形） */
+#Breadcrumb li:is(.trashbox) span:before,
+#Breadcrumb li .separator:before {
+    border-left: 15px solid var(--border-nav) !important;
+}
+
+#Breadcrumb li:is(.trashbox) span:after,
+#Breadcrumb li .separator:after {
+    border-left: 15px solid var(--surface-soft) !important;
+}
+
+#Breadcrumb li:last-child:is(.trashbox) span:after,
+#Breadcrumb li:last-child .separator:after {
+    border-left: 15px solid var(--primary) !important;
+}
+
+#Breadcrumb .item a {
+    padding: 0 1.1rem !important;
+    user-select: none;
+}
+
+/* ----- common/tabs.css ----- */
+/* =========================================================
+   タブ（.ui-tabs）
+   ========================================================= */
+
+.ui-tabs .ui-tabs-nav {
+    border-bottom: 2px solid var(--border-light) !important;
+    background-color: var(--surface-base);
+    padding: 9px 16px;
+    gap: 7px;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) {
+    background: var(--surface-soft) !important;
+    border: 1px solid var(--primary);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover {
+    background: var(--primary) !important;
+    border: 1px solid var(--primary-hover);
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active) a label {
+    font-weight: 500;
+    color: var(--primary);
+    user-select: none;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tab:not(.ui-tabs-active):hover a label {
+    color: var(--text-on-primary)  !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    background: var(--primary) !important;
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-small) !important;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	color: var(--text-on-primary);
+    text-shadow: var(--elevation-1);
+	font-weight: 550;
+    user-select: none;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor label {
+    user-select: none;
+}
+
+.ui-tabs-panel {
+	background: var(--surface-base);
+}
+
+.ui-tabs-panel .field-label {
+    font-size: 0.85rem;
+    color: var(--text-sub);
+    line-height: 1.5;
+    padding: 0 0.7rem 0 0;
+    margin-bottom: 0;
+}
+
+.ui-tabs-panel .field-label label {
+    vertical-align: sub;
+    font-weight: 500;
+    user-select: none;
+}
+
+.ui-tabs-panel .check-option {
+    margin: 4px 0 !important;
+	gap: 0.8em;
+}
+
+/* ----- common/editor_layout.css ----- */
+/* =========================================================
+   エディター（コンテナ）
+   ========================================================= */
+
+#Editor #EditorTabsContainer,
+#Editor #GroupForm {
+    background: var(--surface-base);
+}
+
+#Editor #MainForm {
+    background: var(--surface-base);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--elevation-1);
+}
+
+#Editor #MainForm:after {
+    background-color: var(--surface-strong);
+}
+
+#TitleContainer:not(:empty) + #Warnings:empty + #Editor:has(#RecordHeader) {
+    margin-top: 0px;
+}
+
+.field-wide,
+.field-markdown {
+    min-height: initial;
+    margin-bottom: 20px;
+    padding: 0 10px 0 0;
+}
+
+.field-normal {
+    height: initial;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding: 0 20px 0 0;
+}
+
+#SiteImageIconContainer {
+    display: none;
+}
+
+.ui-icon {
+    color: var(--icon-color);
+}
+
+
+/* =========================================================
+   必須マーク
+   ========================================================= */
+
+.required::before {
+    color: var(--semantic-danger);
+    margin-right: 3px;
+    content: "*";
+}
+
+.required::after {
+    content: none !important;
+}
+
+
+/* =========================================================
+   フィールド（ラベル・入力欄のグリッド構造 / 入力コントロールの基本装飾）
+   ========================================================= */
+
+.field {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.field-label {
+    flex: 0 0 auto;
+    max-width: 100%;
+}
+
+.field-control {
+    flex: 1 1 0;
+    min-width: 0 !important;
+}
+
+.field-wide .field-control {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+.field-control input,
+.field-control select,
+.field-control textarea,
+.field-control .control-markdown {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+
+.field-control select {
+    user-select: none;
+}
+
+.field-control .control-markdown {
+    min-width: 80px;
+    border: 1px solid var(--border-normal);
+}
+
+textarea,
+input,
+select:not([name="Results_Status"]),
+.ui-widget.ui-state-default.ui-multiselect {
+    background: var(--surface-base) !important;
+    border: 1px solid var(--border-normal) !important;
+    border-radius: var(--radius-medium) !important;
+    color: var(--text-main);
+}
+
+textarea:focus,
+input:focus,
+select:not([name="Results_Status"]):focus,
+.control-dropdown:focus
+.ui-widget.ui-state-default.ui-multiselect:focus {
+    border: 1px solid var(--primary) !important;
+    background-color: var(--surface-base) !important;
+    color: var(--text-main) !important;
+}
+
+.container-normal {
+    min-height: 2rem !important;
+}
+
+[class^="control-"] {
+    font-size: 0.85rem !important;
+}
+
+.control-text {
+	color: var(--text-main);
+}
+
+.control-text,
+.control-basket {
+    border-radius: 0;
+}
+
+.control-textbox,
+.control-spinner,
+.select-field .control-dropdown:has(+.current-user),
+.select-field .control-dropdown:has(+.current-dept) {
+    padding: 4px 4px 4px 8px;
+}
+
+.select-field:not(:has(div.ui-icon-person)) .control-dropdown {
+    padding: 3px 4px 4px 5px !important;
+}
+
+.control-dropdown {
+	border: 1px solid var(--border-normal);
+}
+
+
+/* =========================================================
+   チェックボックス
+   ========================================================= */
+
+.container-normal:has(.check-option) {
+    align-content: center;;
+}
+
+.check-option {
+    gap: 0.8rem !important;
+    margin: 0;
+    align-items: center;
+}
+
+.check-option .check-icon {
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-normal) !important;
+    border-radius: var(--radius-medium) !important;
+}
+
+.check-option .check-icon:before {
+    color: var(--surface-base) !important;
+}
+
+.check-option .check-icon:has(input:checked) {
+    background-color: var(--primary);
+}
+
+.check-option .check-icon:has(input:disabled):has(input:checked) {
+    background-color: var(--bg-disabled);
+    border: 1px solid var(--border-normal);
+}
+
+.check-option .check-icon:has(input:disabled):has(input:checked):before {
+    color: var(--text-disabled) !important;
+}
+
+.check-option .check-text {
+    user-select: none;
+}
+
+
+/* =========================================================
+   スピナー
+   ========================================================= */
+
+.spinner-field .ui-spinner .ui-button {
+    position: absolute !important;
+    background-color: var(--surface-base);
+    border-left: 1px solid var(--border-normal);
+}
+
+.spinner-field:has(.with-unit) .unit {
+    padding-left: 5px;
+}
+
+
+/* =========================================================
+   テキストエリア / Markdown
+   ========================================================= */
+
+textarea {
+    field-sizing: content;
+    resize: vertical;
+    min-height: 4lh;
+    max-height: 20lh;
+    height: auto !important;
+}
+
+markdown-field .md-viewer:not(.control-text) {
+    background-color: var(--surface-base) !important;
+}
+
+markdown-field:not(.is-comment) .md-viewer:not(.not-send) {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-normal) !important;
+    padding: 8px 32px 8px 8px;
+}
+
+markdown-field .bottom-tools {
+    margin-top: 0.3rem;
+}
+
+markdown-field .md-btn-icon {
+    color: var(--icon-color);
+    user-select: none;
+}
+
+markdown-field .md-btn.is-editor {
+    right: 15px;
+}
+
+markdown-field.is-comment .md-viewer {
+    border: none !important;
+	background-color: transparent !important;
+}
+
+markdown-field .md-viewer {
+    color: var(--text-main) !important;
+    line-height: 1.55;
+    letter-spacing: 0.2px;
+}
+
+markdown-field .notes {
+    padding: 2px 0;
+}
+
+
+/* =========================================================
+   リッチエディタ / 日付ピッカー（flatpickr）
+   ========================================================= */
+
+rt-editor {
+    color: var(--text-main);
+    background-color: var(--surface-base);
+}
+
+rt-editor .se-toolbar {
+    background-color: var(--primary-dark) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    padding: 4px !important;
+}
+
+rt-editor .toggle:after {
+    background-color: var(--primary-dark) !important;
+}
+
+rt-editor .se-btn-module-border:has(.btn-editable-cmd) .btn-editable-cmd {
+    color: var(--surface-base) !important;
+}
+
+rt-editor .se-btn-tray {
+    gap: 4px !important;
+}
+
+rt-editor button:not([disabled="true"]) {
+	color: var(--text-main) !important;
+	font-weight: 450;
+}
+
+rt-editor .se-btn:enabled:active,
+rt-editor .se-btn:enabled:focus,
+rt-editor .se-btn:enabled:hover {
+	background-color: var(--surface-light);
+	border: none;
+}
+
+rt-editor .se-btn-tray .se-btn-module:not(:has(.btn-editable-cmd)) {
+    flex: 1;
+	width: fit-content;
+    max-width: fit-content;
+    min-width: max-content;
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-normal);
+}
+
+rt-editor .se-btn-list,
+rt-editor .se-btn:not(.se-btn-select):not(.btn-editable-cmd) {
+	width: min-content;
+    padding: 0 0.4rem !important;
+}
+
+rt-editor .se-tooltip .se-tooltip-inner {
+    width: 0;
+}
+
+rt-editor .se-btn-select {
+	margin: 0 !important;
+}
+
+rt-editor .se-btn-select > svg {
+    margin: 8px 0 3px 10px;
+}
+
+.sun-editor-editable {
+	background-color: var(--surface-base) !important;
+}
+
+date-field {
+    --base-text: var(--icon-color);
+    user-select: none;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year,
+span.flatpickr-weekday {
+    color: var(--text-on-primary);
+    background: transparent !important;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: var(--text-on-primary) !important;
+    fill: var(--text-on-primary) !important;
+    line-height: 1.4;
+}
+
+.flatpickr-day.selected {
+    color: var(--text-on-primary);
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day.selected:hover,
+.flatpickr-day.selected:focus {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-weekdays {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.flatpickr-day {
+    color: var(--text-main);
+}
+
+.flatpickr-day.today {
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.today:hover,
+.flatpickr-day.today:focus {
+    background: var(--cal-other-bg);
+    border-color: var(--cal-other-bg);
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay,
+.flatpickr-day.notAllowed,
+.flatpickr-day.notAllowed.prevMonthDay,
+.flatpickr-day.notAllowed.nextMonthDay {
+    color: var(--text-other-month);
+}
+
+
+/* =========================================================
+   Readonly（読取専用スタイル）
+   ========================================================= */
+
+.container-normal:has(span[data-readonly="1"]),
+.readonly-style {
+    padding: 0.3rem 0.55rem !important;
+    background: var(--bg-disabled) !important;
+    color: var(--text-disabled) !important;
+    border: 1px solid var(--border-normal) !important;
+    border-radius: var(--radius-medium) !important;
+    pointer-events: none;
+    user-select: none;
+}
+
+.container-normal span[data-readonly="1"] {
+    background: transparent !important;
+    border: none !important;
+    min-height: fit-content;
+    height: fit-content;
+    line-height: 1.4;
+}
+
+.container-normal span[data-readonly="1"]:not(:empty) {
+    padding: 0 !important;
+    color: var(--text-disabled) !important;
+}
+
+
+/* =========================================================
+   Fieldset（種類）
+   ========================================================= */
+
+.fieldset > .legend {
+    background-color: var(--bg-main-dark);
+    border: 1px solid var(--border-normal);
+    color: var(--text-emphasis);
+}
+
+.fieldset.enclosed,
+.fieldset.enclosed-half,
+.fieldset.enclosed-thin {
+    background: var(--bg-main);
+}
+
+.fieldset.enclosed:has(.legend),
+.fieldset.enclosed-half:has(.legend),
+.fieldset.enclosed-thin:has(.legend) {
+    border: 1px solid var(--border-normal);
+    box-shadow: 0 0 4px var(--shadow-strong);
+}
+
+
+/* =========================================================
+   選択肢（multiselect）
+   ========================================================= */
+
+.ui-multiselect-menu {
+    font-size: 0.9rem;
+	background: var(--surface-base);
+    border: 1px solid var(--border-strong) !important;
+    color: var(--text-main);
+    padding: 5px;
+}
+
+.ui-multiselect-menu .ui-multiselect-header {
+	color: var(--text-main);
+    background: var(--bg-main-dark);
+    border: 1px solid var(--border-strong);
+}
+
+.ui-multiselect-menu .ui-multiselect-checkboxes .ui-state-hover {
+    background: var(--surface-base-hover);
+    border: 1px solid var(--border-strong);
+    color: var(--text-main);
+}
+
+.ui-multiselect-menu .ui-multiselect-checkboxes li label {
+	padding: 0.2rem 0.3rem 0.2rem 1.3rem;
+}
+
+.ui-multiselect-menu .ui-multiselect-checkboxes li label span {
+    padding-left: 5px;
+    vertical-align: text-top;
+	line-height: 1.37;
+}
+
+.container-selectable:not(:has(#OutgoingMails_MailAddressesWrapper)) {
+	margin-top: 0;
+}
+
+.field-vertical {
+	width: fit-content !important;
+	margin-bottom: 1rem;
+}
+
+
+/* =========================================================
+   レスポンシブ（1024px以下: フィールド最小高さ解除）
+   ========================================================= */
+
+@media screen and (max-width: 1024px) and (min-width: 0) {
+    body:has(#Editor) #TitleContainer #HeaderTitle {
+        color: var(--text-main);
+    }
+
+	.field-normal,
+	.field-wide,
+	.field-auto,
+	.field-textarea,
+	.field-markdown {
+		min-height: auto;
+	}
+}
+
+/* ----- common/dialogs.css ----- */
+/* =========================================================
+   ダイアログ
+   ========================================================= */
+
+.dialog {
+    color: var(--text-main);
+}
+
+.dialog .field-wide .container-normal:has(.check-option) {
+    margin: 0;
+    place-self: center;
+}
+
+.dialog .command-center:last-of-type {
+    margin: 16px 0 2px 0;
+    gap: 14px;
+}
+
+.dialog .command-left button,
+.dialog .command-right button {
+    padding: 0.4rem 0.4rem 0.4rem 1.4rem !important;
+    line-height: 1.0;
+}
+
+.dialog .material-symbols-outlined:not(.md-btn-icon) {
+    font-size: 1.1rem;
+    left: 6px;
+}
+
+.dialog .alert-error {
+    background-color: var(--semantic-danger);
+    border: solid 1px var(--semantic-danger);
+}
+
+
+/* =========================================================
+   UIダイアログ（jQuery UI .ui-dialog）
+   ========================================================= */
+
+.ui-dialog {
+    border-radius: 10px;
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.08),
+        0 3px 6px rgba(0, 0, 0, 0.04);
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    background: var(--bg-dialog-header);
+    border: 1px solid var(--border-light);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    color: var(--text-main);
+    height: 42px !important;
+    margin: 0;
+    padding: 0.6rem 1.1rem;
+    user-select: none;
+}
+
+.ui-dialog .ui-dialog-title {
+    font-family: sans-serif;
+    font-weight: 550;
+    line-height: 1.5;
+    font-size: 0.85rem;
+}
+
+.ui-dialog .ui-dialog-content {
+    background: var(--surface-base);
+    border: 1px solid var(--border-light);
+    border-radius: 0 0 10px 10px;
+    margin: 0;
+    padding: 15px 24px !important;
+}
+
+.ui-dialog .ui-dialog-content .field-label {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.7rem 0.4rem 0;
+}
+
+.ui-dialog .ui-dialog-content .command-left .input-field {
+    width: 8rem;
+}
+
+.ui-dialog .command-center button {
+    font-size: 0.9rem;
+}
+
+#DropDownSearchDialogBody .material-symbols-outlined:not(.md-btn-icon) {
+    font-size: 1.1rem;
+    top: 54%;
+    left: 4%;
+}
+
+#ExportSitePackageDialog .field-control .material-symbols-outlined:not(.md-btn-icon) {
+    left: 2%;
+}
+
+#ExportSitePackageDialog #SitePackageForm .command-center {
+    margin: 0 0 30px;
+}
+
+#ExportSitePackageDialog #SitePackageForm .field-control {
+    align-content: end;
+}
+
+#ExportSitePackageDialog #SitePackageForm .field-wide {
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   リスト（選択可能なリスト .wrapper .ui-selectable）
+   ========================================================= */
+
+.container-selectable:has(.wrapper) {
+    margin-top: 1.2rem;
+}
+
+.wrapper {
+    background-color: var(--surface-base) !important;
+    border: 1px solid var(--border-strong) !important;
+    scrollbar-color: var(--border-strong) var(--surface-base) !important;
+}
+
+.wrapper .ui-selectable {
+    padding: 5px 10px 5px 5px !important;
+}
+
+.wrapper .ui-selectable li {
+    background-color: var(--surface-strong);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-small);
+    color: var(--text-main);
+    padding: 0.2rem 0.5rem 0.28rem;
+    margin: 4px 3px;
+    width: auto;
+}
+
+.wrapper .ui-selectable li:hover {
+    box-shadow: 0 1px 4px var(--shadow-strong);
+}
+
+.wrapper .ui-selectable li.ui-selecting,
+.wrapper .ui-selectable li.ui-selected {
+    background: var(--primary);
+    color: var(--text-on-primary);
+}
+
+
+/* =========================================================
+   ファイルアップロード（サイトパッケージ等のインポートダイアログ用）
+   ========================================================= */
+
+.file-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 32px;
+    width: 100%;
+    z-index: 500;
+}
+
+.file-button {
+    display: flex;
+    align-items: center;
+    background: var(--primary);
+    color: var(--text-white) !important;
+    padding: 6px 15px 7px;
+    border-radius: var(--radius-small);
+    z-index: 999;
+    font-weight: 500;
+    cursor: pointer !important;
+    user-select: none;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.file-button:hover {
+    background: var(--primary-hover);
+}
+
+.file-name {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    z-index: 500;
+    user-select: none;
+}
+
+#Import,
+#ImportUserTemplate_Import {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    opacity: 0;
+}
+
+label[for="Import"] {
+    cursor: default;
+    user-select: none;
+}
+
+label.error {
+    font-size: 0.75rem;
+}
+
+.ui-dialog-content a,
+.ui-dialog-content .check-text {
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.ui-dialog-overlay {
+    background: var(--primary-overlay);
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   メールダイアログ
+   ========================================================= */
+
+#OutgoingMails_DestinationSearchRange {
+    vertical-align: unset;
+}
+
+
+/* =========================================================
+   変更履歴の一覧
+   ========================================================= */
+
+#FieldSetHistories {
+    .command-left {
+        margin: 0 0 15px;
+    }
+}
+
+
+/* =========================================================
+   レコードのアクセス制御
+   ========================================================= */
+
+#FieldSetRecordAccessControlEditor {
+    .ui-tabs .ui-tabs-panel {
+        padding: 1.2em 1.5em;
+    }
+
+    .command-left {
+        margin-bottom: 12px;
+    }
+
+    .command-left:has(#OpenPermissionsDialog) {
+        float: right;
+    }
+
+    .command-left:has(#AddPermissions) {
+        float: left;
+    }
+
+    #SearchPermissionElements {
+        margin: 0;
+    }
+
+   #Notes > .readonly {
+      display: none !important;
+   }
+}
+
+/* ----- common/attachments.css ----- */
+/* =========================================================
+   添付ファイル関連。「基本見た目」と「操作系(プレビュー/D&D/サムネイル)」を統合。
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. 基本見た目（アップロード枠・一覧アイテム）
+   --------------------------------------------------------- */
+
+.control-attachments-upload {
+    padding: 1.7rem 0.8rem !important;
+    color: var(--primary);
+    background: transparent;
+    border: 2px dotted var(--border-interactive) !important;
+    border-radius: var(--radius-medium);
+    user-select: none;
+}
+
+.control-attachments-upload:hover {
+    cursor: pointer;
+}
+
+.control-attachments-items {
+    padding: 0 !important;
+    margin-top: 0.2rem;
+}
+
+.control-attachments-item {
+   padding: 0.6em;
+}
+
+.control-attachments-item.already-attachments {
+    background-color: var(--primary-surface);
+	border-color: var(--primary);
+}
+
+
+/* ---------------------------------------------------------
+   2. 添付画像のプレビュー拡大表示
+   --------------------------------------------------------- */
+
+.md-viewer .notes img[src*="/binaries/"] {
+    cursor: zoom-in;
+}
+
+#image-lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+    cursor: zoom-out;
+}
+
+#image-lightbox-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: var(--radius-medium);
+    box-shadow: var(--elevation-3);
+}
+
+
+/* ---------------------------------------------------------
+   3. 添付ファイルアップロード中の保存ボタン制御
+   --------------------------------------------------------- */
+
+#CreateCommand.is-upload-locked,
+#UpdateCommand.is-upload-locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* ---------------------------------------------------------
+   4. 添付ファイルのインライン表示（プレビューパネル）
+   --------------------------------------------------------- */
+
+#attachment-preview-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+#attachment-preview-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.attachment-preview-panel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    box-sizing: border-box;
+}
+
+.attachment-preview-frame {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-main);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--elevation-3);
+}
+
+.attachment-preview-spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: -1.2rem 0 0 -1.2rem;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--text-on-primary);
+    border-radius: 50%;
+    animation: attachment-preview-spin 0.8s linear infinite;
+}
+
+#attachment-preview-overlay.is-loading .attachment-preview-spinner {
+    display: block;
+}
+
+@keyframes attachment-preview-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.control-attachments-item .show-file {
+    cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------
+   5. 添付ファイルのドラッグ&ドロップ並べ替え
+   --------------------------------------------------------- */
+
+.control-attachments-item {
+    cursor: grab;
+}
+
+.control-attachments-item.is-dragging {
+    cursor: grabbing;
+    opacity: 0.4;
+}
+
+
+/* ---------------------------------------------------------
+   6. 添付ファイルのサムネイル表示（ホバー）
+   --------------------------------------------------------- */
+
+#attachment-thumbnail {
+    position: absolute;
+    z-index: 2200;
+    display: none;
+    padding: 4px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-normal);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--elevation-3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+#attachment-thumbnail img {
+    display: block;
+    max-width: 240px;
+    max-height: 240px;
+}
+
+/* ----- common/comments.css ----- */
+/* =========================================================
+   コメント（説明文・カード）
+   ========================================================= */
+
+#EditorComments::before {
+	content: "";
+    display: block;
+    color: var(--semantic-warning-text) !important;
+    font-weight: 550;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    background-color: var(--semantic-warning);
+    border-radius: var(--radius-large);
+    border: 1px solid var(--semantic-warning-border);
+    user-select: none;
+}
+
+#Editor #EditorComments {
+    padding: 16px 23px;
+    background: transparent;
+}
+
+#Editor #EditorComments #Comments {
+    width: 100%;
+    min-width: fit-content;
+    background: var(--surface-base) !important;
+    border: 1px solid var(--border-normal);
+}
+
+#Editor #EditorComments .comment + .comment {
+    border: none;
+}
+
+#CommentField markdown-field {
+    margin-bottom: 15px;
+}
+
+.comment {
+    margin: 0 0 13px;
+    padding: 10px 14px !important;
+    box-shadow: 3px 3px 3px var(--shadow-medium);
+	border-left: 8px solid transparent;
+}
+
+.comment > .time {
+    margin: 0 10px 8px 0;
+}
+
+#CommentList .md {
+    background-color: transparent;
+}
+
+/* コメント欄の背景色（単色） */
+#CommentList > div[id^='Comment'] {
+    background-color: var(--bg-comment) !important;
+    border-left: 8px solid var(--comment-border-color) !important;
+}
+
+#CommentList markdown-field {
+    margin: 0 !important;
+}
+
+#CommentList markdown-field .md-btn.is-delete {
+    right: -5px;
+    color: var(--icon-color);
+}
+
+#CommentList markdown-field .notes {
+    font-size: 0.88rem;
+    color: var(--text-main);
+}
+
+.comment-header {
+    flex-direction: row;
+    padding: 2px 0;
+}
+
+.comment-header .user {
+    order: 1;
+    margin-right: 0.5rem;
+}
+
+.comment-header .time {
+    order: 2;
+    font-size: 0.75rem;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 0) {
+
+	#Editor #EditorComments {
+		background: var(--surface-strong);
+	}
+
+	#Editor #EditorComments #CommentField {
+		background-color: transparent;
+		border-bottom: none;
+		padding: 0;
+	}
+}
+
+
+/* =========================================================
+   レコードヘッダー
+   ========================================================= */
+
+#RecordHeader {
+    border-bottom: 1px solid var(--border-light);
+    background-color: var(--bg-title) !important;
+    color: var(--text-main) !important;
+    padding: 0 23px 16px 23px !important;
+    user-select: none;
+}
+
+#RecordInfo div {
+    gap: 12px !important;
+}
+
+#TitleContainer {
+    padding: 5px;
+    background-color: var(--bg-title) !important;
+}
+
+#TitleContainer #HeaderTitle {
+    padding: 18px;
+    color: var(--text-main);
+}
+
+#Editor #RecordSwitchers {
+    gap: 12px;
+}
+
+#Editor #RecordSwitchers button {
+    font-weight: 550;
+}
+
+/* ----- common/submit_lock.css ----- */
+/* =========================================================
+   保存ボタンの多重クリック防止（スピナー表示）
+   ========================================================= */
+
+#CreateCommand.is-submitting,
+#UpdateCommand.is-submitting {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+#CreateCommand.is-submitting::after,
+#UpdateCommand.is-submitting::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    border: 2px solid var(--text-on-primary);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: prevent-double-submit-spin 0.7s linear infinite;
+}
+
+@keyframes prevent-double-submit-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ----- common/status.css ----- */
+/* =========================================================
+   ステータス色（値→色の対応は status振り分け.md を参照）
+   #Aggregations と p.status-* はセレクタが別物だが、
+   「同じ対応表に基づく色付け」という共通の関心事のため統合。
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. 集計欄（#Aggregations .data.link）
+   --------------------------------------------------------- */
+
+#Aggregations .data.link {
+    position: relative;
+    padding: 3px 6px;
+    border-radius: var(--radius-small);
+    font-weight: 500;
+    display: inline-block;
+	cursor: pointer;
+    line-height: 1.53;
+    user-select: none;
+}
+
+#Aggregations .data.link:not([data-selector="#ViewFilters__Status"]) {
+    background-color: var(--status-no-bg);
+    border: 1px solid var(--status-no-border);
+    color: var(--status-no-text);
+}
+#Aggregations .data.link:not([data-selector="#ViewFilters__Status"]):hover {
+    background-color: var(--status-no-bg-hover);
+    border-color: var(--status-no-border-hover);
+}
+
+/* 100番台:新規・未着手 */
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="1"] {
+    background-color: var(--status-new-bg);
+    border: 1px solid var(--status-new-border);
+    color: var(--status-new-text);
+}
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="1"]:hover {
+    background-color: var(--status-new-bg-hover);
+    border-color: var(--status-new-border-hover);
+}
+
+/* 200番台:準備中・検討中 */
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="2"] {
+    background-color: var(--status-preparation-bg);
+    border: 1px solid var(--status-preparation-border);
+    color: var(--status-preparation-text);
+}
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="2"]:hover {
+    background-color: var(--status-preparation-bg-hover);
+    border-color: var(--status-preparation-border-hover);
+}
+
+/* 300番台:対応中・進行中 */
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="3"] {
+    background-color: var(--status-inprogress-bg);
+    border: 1px solid var(--status-inprogress-border);
+    color: var(--status-inprogress-text);
+}
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="3"]:hover {
+    background-color: var(--status-inprogress-bg-hover);
+    border-color: var(--status-inprogress-border-hover);
+}
+
+/* 400番台:承認待ち・レビュー中 */
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="4"] {
+    background-color: var(--status-approval-bg);
+    border: 1px solid var(--status-approval-border);
+    color: var(--status-approval-text);
+}
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="4"]:hover {
+    background-color: var(--status-approval-bg-hover);
+    border-color: var(--status-approval-border-hover);
+}
+
+/* 900〜949:完了(成立・ポジティブ) */
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="90"],
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="91"],
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="92"],
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="93"],
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="94"] {
+    background-color: var(--status-completed-bg);
+    border: 1px solid var(--status-completed-border);
+    color: var(--status-completed-text);
+}
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="90"]:hover,
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="91"]:hover,
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="92"]:hover,
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="93"]:hover,
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="94"]:hover {
+    background-color: var(--status-completed-bg-hover);
+    border-color: var(--status-completed-border-hover);
+}
+
+/* 950〜999:完了(不成立・ネガティブ) */
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="95"],
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="96"],
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="97"],
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="98"],
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="99"] {
+    background-color: var(--status-declined-bg);
+    border: 1px solid var(--status-declined-border);
+    color: var(--status-declined-text);
+}
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="95"]:hover,
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="96"]:hover,
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="97"]:hover,
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="98"]:hover,
+#Aggregations .data.link[data-selector="#ViewFilters__Status"][data-value^="99"]:hover {
+    background-color: var(--status-declined-bg-hover);
+    border-color: var(--status-declined-border-hover);
+}
+
+
+/* ---------------------------------------------------------
+   2. 一覧・詳細画面（p.status-*）
+   --------------------------------------------------------- */
+
+/* 共通 */
+
+[class^="status-"],
+[style^="status-"] {
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    white-space: nowrap !important;
+    color: var(--text-main);
+    padding: 0.13rem 0.37rem !important;
+    border-radius: var(--radius-small) !important;
+    position: relative;
+    background-color: var(--status-no-bg);
+    border: 1px solid var(--status-no-border) !important;
+    color: var(--status-no-text);
+    transition: background-color 0.22s ease-out, border-color 0.22s ease-out;
+    user-select: none;
+}
+
+[class^="status-"]:hover,
+[style^="status-"]:hover {
+    background-color: var(--status-no-bg-hover);
+    border-color: var(--status-no-border-hover);
+}
+
+/* 未着手 */
+p.status-new {
+    background: var(--status-new-bg) !important;
+    border-color: var(--status-new-border) !important;
+	color: var(--status-new-text) !important;
+}
+p.status-new:hover {
+    background: var(--status-new-bg-hover) !important;
+    border-color: var(--status-new-border-hover) !important;
+}
+
+/* 準備 */
+p.status-preparation {
+    background: var(--status-preparation-bg) !important;
+    border-color: var(--status-preparation-border) !important;
+	color: var(--status-preparation-text) !important;
+}
+p.status-preparation:hover {
+    background: var(--status-preparation-bg-hover) !important;
+    border-color: var(--status-preparation-border-hover) !important;
+}
+
+/* 実施中 */
+p.status-inprogress {
+    background: var(--status-inprogress-bg) !important;
+    border-color: var(--status-inprogress-border) !important;
+	color: var(--status-inprogress-text) !important;
+}
+p.status-inprogress:hover {
+    background: var(--status-inprogress-bg-hover) !important;
+    border-color: var(--status-inprogress-border-hover) !important;
+}
+
+/* 承認待ち・レビュー中 */
+p.status-approval {
+    background: var(--status-approval-bg) !important;
+    border-color: var(--status-approval-border) !important;
+	color: var(--status-approval-text) !important;
+}
+p.status-approval:hover {
+    background: var(--status-approval-bg-hover) !important;
+    border-color: var(--status-approval-border-hover) !important;
+}
+
+/* 完了（成立） */
+p.status-completed {
+    background: var(--status-completed-bg) !important;
+    border-color: var(--status-completed-border) !important;
+	color: var(--status-completed-text) !important;
+}
+p.status-completed:hover {
+    background: var(--status-completed-bg-hover) !important;
+    border-color: var(--status-completed-border-hover) !important;
+}
+
+/* 完了（不成立） */
+p[style="status-declined"] {
+    background: var(--status-declined-bg) !important;
+    border-color: var(--status-declined-border) !important;
+	color: var(--status-declined-text) !important;
+}
+p[style="status-declined"]:hover {
+    background: var(--status-declined-bg-hover) !important;
+    border-color: var(--status-declined-border-hover) !important;
+}
+
+/* ランク評価（統一ルールの対象外・専用配色） */
+p.status-rank-e {
+    background: var(--status-rank-e-bg) !important;
+    border-color: var(--status-rank-e-border) !important;
+	color: var(--status-rank-e-text) !important;
+}
+p.status-rank-e:hover {
+    background: var(--status-rank-e-bg-hover) !important;
+    border-color: var(--status-rank-e-border-hover) !important;
+}
+
+p.status-rank-d {
+    background: var(--status-rank-d-bg) !important;
+    border-color: var(--status-rank-d-border) !important;
+	color: var(--status-rank-d-text) !important;
+}
+p.status-rank-d:hover {
+    background: var(--status-rank-d-bg-hover) !important;
+    border-color: var(--status-rank-d-border-hover) !important;
+}
+
+p.status-rank-c {
+    background: var(--status-rank-c-bg) !important;
+    border-color: var(--status-rank-c-border) !important;
+	color: var(--status-rank-c-text) !important;
+}
+p.status-rank-c:hover {
+    background: var(--status-rank-c-bg-hover) !important;
+    border-color: var(--status-rank-c-border-hover) !important;
+}
+
+p.status-rank-b {
+    background: var(--status-rank-b-bg) !important;
+    border-color: var(--status-rank-b-border) !important;
+	color: var(--status-rank-b-text) !important;
+}
+p.status-rank-b:hover {
+    background: var(--status-rank-b-bg-hover) !important;
+    border-color: var(--status-rank-b-border-hover) !important;
+}
+
+p.status-rank-a {
+    background: var(--status-rank-a-bg) !important;
+    border-color: var(--status-rank-a-border) !important;
+	color: var(--status-rank-a-text) !important;
+}
+p.status-rank-a:hover {
+    background: var(--status-rank-a-bg-hover) !important;
+    border-color: var(--status-rank-a-border-hover) !important;
+}
+
+p.status-rank-s {
+    background: var(--status-rank-s-bg) !important;
+    border-color: var(--status-rank-s-border) !important;
+	color: var(--status-rank-s-text) !important;
+}
+p.status-rank-s:hover {
+    background: var(--status-rank-s-bg-hover) !important;
+    border-color: var(--status-rank-s-border-hover) !important;
+}
+
+p.status-rank-x {
+    background: var(--status-rank-x-bg) !important;
+    border-color: var(--status-rank-x-border) !important;
+	color: var(--status-rank-x-text) !important;
+}
+p.status-rank-x:hover {
+    background: var(--status-rank-x-bg-hover) !important;
+    border-color: var(--status-rank-x-border-hover) !important;
+}
+
+/* ----- common/conditions.css ----- */
+/* =========================================================
+   0. 基本レイアウト
+   ========================================================= */
+
+#ViewFilters:empty,
+#Aggregations:empty {
+	display: none;
+}
+
+.display-control {
+    position: relative !important;
+	padding: 0 0.2rem 0 1.75rem !important;
+    font-weight: 600 !important;
+    color: var(--text-main) !important;
+}
+
+
+/* =========================================================
+   1. 開閉トグル
+   ========================================================= */
+#ViewFilters:not(:empty),
+#Aggregations:not(:empty) {
+    position: relative;
+    width: 100% !important;
+    padding: 0.9rem 0.8rem !important;
+    gap: 1.0rem 0.9rem;
+	background-color: var(--bg-accent);
+    border-bottom: 1px solid var(--border-strong) !important;
+    box-shadow: var(--shadow-light);
+    color: var(--text-main);
+}
+
+#ReduceViewFilters,
+#ExpandViewFilters,
+#ReduceAggregations,
+#ExpandAggregations {
+    font-size: 0.9rem;
+	height: 32px;
+    align-content: center;
+    user-select: none;
+}
+
+#ViewFilters .ui-icon-folder-open,
+#ViewFilters .ui-icon-close,
+#Aggregations .ui-icon-folder-open,
+#Aggregations .ui-icon-close {
+	display: none;
+}
+
+#ViewFilters label:not(.check-option),
+#ViewFilters span.check-text {
+    align-self: center;
+    user-select: none;
+}
+
+#ViewFilters .ui-multiselect .ui-multiselect-open+span,
+#ViewFilters [class^="control-"] {
+    font-size: 0.82rem !important;
+}
+
+
+/* =========================================================
+   2. ガイド
+   ========================================================= */
+
+#Guide {
+    background-color: var(--bg-guide);
+}
+
+#Guide .with-icon-close {
+    padding: 0;
+	min-height: 1.65rem;
+}
+
+#Guide:not(:empty) {
+    padding: 0.6rem 0.8rem !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    display: flex;
+    align-items: center;
+}
+
+#Guide .display-material-icons {
+	font-size: 1.11rem;
+    top: 55%;
+}
+
+#Guide > div {
+    background-color: transparent;
+    font-size: 0.85rem;
+    border: none !important;
+}
+
+#Guide .notes {
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-family: auto;
+}
+
+#Guide #ExpandGuides {
+	height: 1.65rem;
+	align-content: center;
+}
+
+#Guide #ReduceGuides {
+	padding-right: 0px !important;
+}
+
+
+/* =========================================================
+   3. フィルタ
+   ========================================================= */
+
+#ViewFilters {
+    font-size: 0.85rem !important;
+    overflow: hidden;
+    transition: height 0.28s ease, opacity 0.22s ease;
+}
+
+#ViewFilters .filter-fields {
+    opacity: 1;
+    height: 30px;
+    transition: opacity 0.18s ease;
+}
+
+#ViewFilters.open {
+    opacity: 1;
+}
+
+#ViewFilters.closed .filter-fields {
+    opacity: 0;
+}
+
+#ViewFilters.closed {
+    opacity: 0;
+    height: 0 !important;
+}
+
+/* リセット */
+#ViewFilters_Reset {
+    margin: 0 0.5rem 0 0;
+    height: 30px;
+	line-height: 0.2rem;
+    box-shadow: var(--elevation-2);
+}
+
+
+/* =========================================================
+   4. フィールド（ラベル・入力欄）
+   ========================================================= */
+
+#ViewFilters .field-auto-thin {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    gap: 0.5rem;
+}
+
+#ViewFilters .field-auto-thin .field-label {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+}
+
+#ViewFilters .field-auto-thin .field-control {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   5. 集計（開閉・ラベル・値のレイアウト。色は common/status.css）
+   ========================================================= */
+
+#Aggregations {
+    overflow: hidden;
+    height: auto !important;
+    transition: height 0.28s ease, opacity 0.22s ease;
+}
+
+#Aggregations.open {
+    opacity: 1;
+}
+
+#Aggregations.closed {
+    opacity: 0;
+    height: 0 !important;
+}
+
+#Aggregations .label {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.86rem;
+    color: var(--text-emphasis);
+    user-select: none;
+}
+
+#Aggregations .label.overdue {
+    color: var(--text-white);
+    background: var(--semantic-danger);
+    border: 1px solid var(--semantic-danger);
+    padding: 0.2rem 0.5rem;
+    font-weight: 600;
+}
+
+#Aggregations .label:not(:first-of-type) {
+    margin-left: 1.4rem;
+}
+
+#Aggregations .data {
+    user-select: none;
+}
+
+#Aggregations .data:not(.link) {
+    padding: 0;
+	font-size: 0.86rem;
+    color: var(--text-emphasis);
+}
+
+#Aggregations .link .bold {
+    margin-right: 0.5rem;
+    font-weight: 500 !important;
+}
+
+
+/* =========================================================
+   6. レスポンシブ
+   ========================================================= */
+
+@media screen and (max-width: 480px) {
+
+    #ViewFilters .field-auto-thin {
+        width: max-content;
+    }
+
+    #ViewFilters .button {
+        margin: 5px auto 0;
+    }
+
+    #ViewFilters #ViewFilters_Reset {
+        order: 1;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 0) {
+    #ViewSelectorField {
+        background: var(--surface-soft);
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    #ViewFilters .field-auto-thin,
+    #ViewFilters .ui-multiselect .ui-multiselect-open + span {
+        font-size: 0.85rem !important;
+    }
+
+    #ViewFilters .field-control:has(.check-option) {
+        padding: 0;
+    }
+}
+
+/* ----- common/grid.css ----- */
+/* =========================================================
+   Grid（一覧）
+   ========================================================= */
+
+.grid {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    letter-spacing: 0.3px;
+    color: var(--text-main);
+    width: 100%;
+}
+
+.grid:has(tbody:not(:empty)) {
+    border-bottom: none !important;
+}
+
+#GridObserver {
+    background: var(--bg-main);
+}
+
+
+/* =========================================================
+   表見出し
+   ========================================================= */
+.grid thead tr,
+tr.crosstab-row th {
+    background: var(--primary);
+    border: none;
+    color: var(--surface-base);
+}
+
+.grid th {
+    background-color: var(--primary) !important;
+    color: var(--text-on-primary) !important;
+	border-right: 1px solid var(--border-light) !important;
+	border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: 1px 0 0 var(--primary);
+}
+
+.grid th.sortable {
+    padding: 0.5rem 0.85rem !important;
+}
+
+.grid th.sortable:hover,
+.grid th.sortable.active {
+    background-color: var(--primary-hover) !important;
+    color: var(--text-on-primary);
+    transition: background-color 0.2s ease-out;
+}
+
+.grid th.sortable span {
+    font-weight: 550;
+    user-select: none;
+}
+
+.grid th[data-name="Owner"] {
+    min-width: 7rem;
+}
+
+/* チェックボックス */
+.grid th:first-child {
+    border-left: none !important;
+}
+
+.grid th:first-child .check-option {
+    margin: 0 auto !important;
+    width: fit-content;
+}
+
+.grid th:first-child  .check-option .check-icon:has(input:checked) {
+    border: 1px solid var(--text-on-primary);
+}
+
+#GridHeaderMenus .ui-widget-content {
+    color: var(--text-main);
+    background: var(--surface-strong);
+    border: 1px solid var(--border-light);
+}
+
+#GridHeaderMenus .ui-widget-content .ui-menu-item {
+    border-top: 1px solid var(--border-light);
+}
+
+#GridHeaderMenus .ui-widget-content .ui-menu-item-wrapper:hover {
+	color: var(--text-on-primary);
+    background: var(--primary);
+}
+
+
+/* =========================================================
+   データセル
+   ========================================================= */
+
+.grid .grid-row td {
+    background-color: var(--surface-base) !important;
+    border-left: none !important;
+    border-right: 1px solid var(--border-light) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    box-shadow: 1px 0 0 var(--surface-base) !important;
+    vertical-align: middle !important;
+    padding: 0.4rem 0.85rem !important;
+    color: var(--text-main) !important;
+	white-space: pre-line;
+}
+
+/* hover */
+.grid .grid-row:hover td {
+    background-color: var(--surface-base-hover) !important;
+    transition: background-color 0.25s ease-out;
+}
+
+/* 交互色分け（ゼブラストライプ） */
+.grid .grid-row.is-even-row:not(:hover) td {
+    background-color: var(--grid-zebra-bg) !important;
+}
+
+.grid .grid-row td * {
+    white-space: pre-line;
+}
+
+
+/* =========================================================
+   チェックボックス列
+   ========================================================= */
+
+.grid .grid-row td:first-child {
+    padding: 0 !important;
+    line-height: initial;
+}
+
+.grid .grid-row td:first-child .check-option,
+.grid .grid-row td .check-option .check-icon {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================================
+   個別
+   ========================================================= */
+
+/* ユーザー名 */
+.grid .grid-row td .user span {
+	font-weight: 400;
+}
+
+/* 内容 */
+.grid .grid-title-body {
+    margin-bottom: 0;
+    padding: 0;
+    background-color: transparent !important;
+    border: none !important;
+    vertical-align: middle;
+}
+
+.grid .grid-title-body.focus-inform {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.grid markdown-field,
+.grid markdown-field .md-viewer {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+}
+
+.grid markdown-field .notes {
+    display: block !important;
+    align-items: center !important;
+    padding: 0 !important;
+}
+
+/* リンク */
+.grid td p a {
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+    color: var(--text-main);
+}
+
+.grid td p a:not([href^="/items/"]) {
+    color: var(--text-link);
+}
+
+.grid td p a:not([href^="/items/"]):hover {
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   tooltip
+   ========================================================= */
+
+td:has(.grid-title-body) {
+    position: relative;
+}
+
+td .grid-title-body.is-clamped,
+td .notes.is-clamped {
+    -webkit-mask-image: linear-gradient(to bottom, var(--text-main) 70%, rgba(0,0,0,0.5) 100%);
+    mask-image: linear-gradient(to bottom, var(--text-main) 70%, rgba(0,0,0,0.5) 100%);
+}
+
+td .grid-title-body,
+td .notes {
+    white-space: pre-wrap !important;
+    overflow: hidden;
+    max-height: 115px !important;
+}
+
+#list-tooltip {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    background-color: var(--surface-base);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-large);
+    box-shadow: 0 4px 16px var(--shadow-strong);
+    padding: 8px 12px;
+    max-width: 400px;
+    white-space: pre-wrap;
+    font-size: 0.8rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+#Grid .limit-warning3 {
+    background-color: var(--semantic-danger);
+    color: var(--surface-base);
+    padding: 0 0.5rem;
+    user-select: none;
+}
+
+#Grid .limit-normal {
+    color: var(--semantic-danger);
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+
+/* =========================================================
+   一覧トップへ戻るボタン
+   ========================================================= */
+
+/* ボタンが一番下の行に重ならないよう、ボタン表示中のみグリッド下部に余白を確保する */
+#Grid.has-scroll-to-top-space {
+    padding-bottom: 4rem;
+}
+
+#scroll-to-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 900;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary);
+    color: var(--text-on-primary);
+    box-shadow: var(--elevation-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+#scroll-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+#scroll-to-top:hover {
+    background-color: var(--primary-hover);
+}
+
+#scroll-to-top .material-symbols-outlined {
+    font-size: 1.3rem;
+}
+
+
+/* =========================================================
+   一覧0件時の案内表示
+   ========================================================= */
+
+.empty-grid-message {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    background-color: var(--surface-soft);
+    border-top: 1px solid var(--border-light);
+}
+
+/* ----- common/site_menu.css ----- */
+/* =========================================================
+   レイアウト基盤（SiteMenu / Main）
+   ※「戻るボタン」(.nav-site.to-parent) は custom_folders.css 側
+   ========================================================= */
+
+#MainCommandsContainer {
+    background-color: var(--bg-footer) !important;
+}
+
+
+/* =========================================================
+   サイトメニュー
+   ========================================================= */
+
+#SiteMenu:not(:has(#TemplateTabsContainer)),
+.template-tab-container .ui-tabs-panel {
+    padding: calc(40px * .5) 30px;
+    width: 100%;
+}
+
+#SiteMenu, #SiteMenu * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   カード
+   ========================================================= */
+
+.nav-sites {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px 20px;
+    justify-content: start;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-site {
+    padding: 12px 12px 8px 12px;
+    min-height: 160px;
+    border-radius: 8px;
+    background: var(--surface-base);
+    box-shadow: 0 2px 4px rgba(0,0,0,.01);
+    transition: transform .12s ease, box-shadow .12s ease;
+    filter: drop-shadow(0 2px 4px var(--shadow-strong));
+}
+
+.nav-site:hover {
+    filter: drop-shadow(0 2px 4px var(--shadow-medium));
+}
+
+.nav-site > a {
+    padding: 0;
+}
+
+.nav-site .site-icon {
+    margin-top: 20px;
+}
+
+.nav-site .site-icon img {
+    height: 98%;
+}
+
+.nav-site .title {
+    font-weight: 550;
+    overflow: hidden;
+    white-space: nowrap !important;
+    text-overflow: ellipsis;
+    margin: 0;
+    color: var(--primary);
+    user-select: none;
+}
+
+.nav-site .conditions span {
+    user-select: none;
+}
+
+.nav-site .conditions {
+    padding: 10px;
+    font-size: 0.72rem;
+}
+
+.nav-site .conditions span.elapsed-time {
+    font-size: 0.75rem;
+    color: var(--text-disabled) !important;
+    font-weight: 500;
+    padding: 0 !important;
+    margin-left: 4px !important;
+}
+
+.nav-site .conditions span.elapsed-time.old {
+    color: var(--text-muted);
+}
+
+.nav-site .conditions span.count {
+    background-color: var(--bg-accent);
+    border: 1px solid var(--border-accent);
+    color: var(--text-emphasis);
+    align-content: center;
+}
+
+.nav-site .conditions span.overdue {
+    background-color: var(--semantic-danger);
+    border: 1px solid var(--semantic-danger-border);
+    color: var(--text-white);
+    align-content: center;
+}
+
+
+/* =========================================================
+   テンプレート
+   ========================================================= */
+
+#TemplateTabsContainer {
+    font-size: 0.85rem;
+    margin: 0;
+    width: 100%;
+}
+
+#TemplateTabsContainer .template {
+    background-color: var(--surface-base);
+}
+
+#TemplateTabsContainer .template-viewer {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-strong);
+}
+
+#TemplateTabsContainer .template-viewer .description,
+#TemplateTabsContainer .template-viewer .samples-displayed {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border-strong);
+}
+
+#TemplateTabsContainer .template-viewer .description {
+    color: var(--text-emphasis);
+    background: var(--bg-guide);
+}
+
+#TemplateTabsContainer .template-viewer .description:has(+.viewer:empty) {
+    border-bottom: 1px solid var(--border-strong);
+}
+
+#TemplateTabsContainer .template-viewer .samples-displayed {
+    background: var(--semantic-danger-light);
+    color: var(--semantic-danger);
+}
+
+#TemplateTabsContainer .template-viewer .template-tab-container {
+    padding: 0;
+    min-height: fit-content;
+}
+
+#TemplateTabsContainer .template-viewer .template-tab-container .ui-tabs-panel {
+    background-color: var(--surface-base);
+}
+
+.template-selectable .command-left {
+    height: auto;
+}
+
+[aria-describedby="ImportUserTemplateDialog"] .field-wide > .field-label {
+    white-space: nowrap;
+    width: 9rem;
+    margin-right: -9rem;
+}
+
+[aria-describedby="ImportUserTemplateDialog"] :not(td)>div.field-wide .container-normal {
+    margin-left: 9.2rem;
+}
+
+.field-section {
+    background-color: var(--primary);
+    color: var(--text-white);
+    user-select: none;
+    font-size: 0.94rem;
+}
+
+.field-section .ui-icon {
+    color: var(--text-white);
+}
+
+
+/* =========================================================
+   レスポンシブ
+   ========================================================= */
+
+@media (max-width:1250px) {
+
+    #Main {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    .nav-sites.sortable {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+        gap: 20px 15px !important;
+    }
+}
+
+@media (max-width:1000px) {
+
+    .nav-sites.sortable {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 20px 15px !important;
+    }
+}
+
+@media (max-width:700px) {
+
+    #SiteMenu {
+        padding: calc(40px * .4) 18px;
+    }
+
+    #SiteMenu .nav-site:not(.to-parent)  {
+        padding: 8px;
+        min-height: 140px;
+    }
+
+    .nav-sites.sortable {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 15px 10px;
+    }
+}
+
+/* ----- common/port_setting.css ----- */
+/* =========================================================
+   CSVエクスポート中の進捗フィードバック
+   ========================================================= */
+
+#export-progress-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+#export-progress-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.export-progress-box {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1rem 1.4rem;
+    background-color: var(--surface-base);
+    border-radius: var(--radius-large);
+    box-shadow: var(--elevation-3);
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+.export-progress-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border-normal);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: export-progress-spin 0.7s linear infinite;
+}
+
+@keyframes export-progress-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
