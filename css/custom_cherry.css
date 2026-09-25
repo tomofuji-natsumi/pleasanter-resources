@@ -376,9 +376,7 @@ img {
 
 #Import:not(.control-checkbox),
 #ImportUserTemplate_Import,
-#SitePackageForm #Import,
-#Encoding,
-#ExportEncoding {
+#SitePackageForm #Import {
     visibility: hidden;
 }
 

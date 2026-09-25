@@ -53,9 +53,7 @@ img {
 
 #Import:not(.control-checkbox),
 #ImportUserTemplate_Import,
-#SitePackageForm #Import,
-#Encoding,
-#ExportEncoding {
+#SitePackageForm #Import {
     visibility: hidden;
 }
 
@@ -2721,6 +2719,21 @@ td .notes {
 }
 
 /* ----- common/port_setting.css ----- */
+/* =========================================================
+   インポート/エクスポートのエンコーディング固定select
+   port_setting.js の fixEncoding() が pointer-events:none で
+   操作を無効化するが、見た目は通常のselectのままだと
+   「選択できる」ように見えてしまうため、無効状態が伝わる
+   見た目（disabled相当のグレーアウト）にする
+   ========================================================= */
+
+#Encoding.encoding-ready,
+#ExportEncoding.encoding-ready {
+    background-color: var(--bg-disabled);
+    color: var(--text-disabled);
+    cursor: not-allowed;
+}
+
 /* =========================================================
    CSVエクスポート中の進捗フィードバック
    ========================================================= */
