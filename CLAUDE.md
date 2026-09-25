@@ -112,7 +112,14 @@ Pleasanter サイト設定（SitePackage JSON の Scripts / Htmls セクショ�
 - `css/definition.css` … `:root` のデザイントークン（oklch / color-mix ベース）。色はここだけで定義し、各 CSS は変数参照のみ。
 - `css/definition_cherry.css` … `--primary` 違いの別テーマ。`custom_cherry.css` が自分で `@import` する
   （`custom_common.css` は definition を import せず、テンプレートの `<link>` に任せている点が非対称）。
-- `css/custom_common.css` … `common/*.css`（base / conditions / grid / editor / port_setting）の `@import` 束ね。
+- `css/custom_common.css` / `css/custom_cherry.css` … **`tools/build_css_common.py` の自動生成物**（直接編集禁止）。
+  配信時の `@import` 段数（HTTPリクエスト数）を増やさないため、`css/common/*.css`（layout / buttons / header /
+  tabs / editor_layout / dialogs / attachments / comments / submit_lock / status / conditions / grid /
+  site_menu / port_setting）を単一ファイルへ束ねている。`common/*.css` を編集したら必ず再実行する:
+
+  ```bash
+  python tools/build_css_common.py
+  ```
 - `css/sites/*.css` … 画面種別ごと。マニフェストの `Css` カテゴリから読む。
 - `css/status振り分け.md` … ステータス値（100〜900番台）と `--status-*` 変数の対応表。
   ステータス色を触るときは必ずこの表に従う。
@@ -129,7 +136,8 @@ Pleasanter サイト設定（SitePackage JSON の Scripts / Htmls セクショ�
 2. 足りなければ既存トークンから `color-mix()` / `oklch(from ...)` で導出する
 3. どうしても新しい実値が必要なら `definition.css` にトークンとして定義し、各 CSS からは変数参照のみにする
 
-既存の原色は `css/common/editor.css:310` と `:339` の 2 箇所のみ。触る機会があればトークンへ寄せる。
+既存の原色（`#fff`/`#ffffff`/`#000`/`#000000`）は解消済み（2026-09-25 確認、リポジトリ内ゼロ件）。
+`rgba(0,0,0,X)` / `rgba(255,255,255,X)` は影・半透明オーバーレイ用途のため対象外。
 
 ## コーディング規約（既存コードから読み取れる実態）
 
