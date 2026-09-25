@@ -200,10 +200,6 @@ python font/NotoSansJP-Regular_Original/build_font.py
 `css/` 側のトークン・ベーススタイルと共有する形にしている（旧: 全ルールを`tenant.css`に
 自己完結でコピーしていたが、`base.css`とほぼ全重複だったため整理済み）。
 
-`loader_tenant.js:80` の `window.startIconObserverForIcons` は未定義のまま
-（`icon.js` は `window` に何も export せず、自前の `pjax:complete` と MutationObserver で自走する）。
-`if (typeof ... === 'function')` でガードされているので実害は無いが、呼び出し側だけが残っている状態。
-
 ---
 
 ## Graphify Knowledge Graph
