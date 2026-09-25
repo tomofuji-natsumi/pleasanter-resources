@@ -249,6 +249,10 @@
     --cal-digestion-bg: #F2E8EF;
     --cal-digestion-text: #6A4A5A;
 
+    /* 年休消化日：所定休日（--cal-digestion-*）と完了系ステータス色を混ぜて区別する */
+    --cal-pto-bg: color-mix(in oklch, var(--cal-digestion-bg) 50%, var(--status-completed-bg) 50%);
+    --cal-pto-text: var(--status-completed-text);
+
     --cal-today-bg: oklch(from var(--primary) calc(l + 0.35) calc(c * 0.22) h);
     --cal-today-border: color-mix(in srgb, var(--primary-hover) 80%, var(--surface-base) 20%);
     --cal-today-text: var(--text-main);
