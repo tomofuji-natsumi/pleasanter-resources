@@ -2300,6 +2300,11 @@ tr.crosstab-row th {
     background-color: var(--grid-zebra-bg) !important;
 }
 
+/* ゼブラ行のhoverは非ゼブラ行と同じ色に揃えず、縞を保ったまま少し濃くする専用色を使う */
+.grid .grid-row.is-even-row:hover td {
+    background-color: var(--grid-zebra-bg-hover) !important;
+}
+
 .grid .grid-row td * {
     white-space: pre-line;
     user-select: none;

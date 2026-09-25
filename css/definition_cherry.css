@@ -35,7 +35,8 @@
     --surface-soft:   oklch(0.982 0.003 255);
     --surface-strong: oklch(0.965 0.005 255);
     --surface-strong-hover: oklch(0.922 0.006 255);
-    --grid-zebra-bg: color-mix(in oklch, var(--surface-base) 30%, var(--surface-strong-hover) 70%);
+    --grid-zebra-bg: color-mix(in oklch, var(--surface-base) 60%, var(--surface-strong-hover) 40%);
+    --grid-zebra-bg-hover: color-mix(in oklch, var(--grid-zebra-bg) 50%, var(--surface-base-hover) 50%);
 
     /* =========================================================
        2. 背景
