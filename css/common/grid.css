@@ -111,7 +111,7 @@ tr.crosstab-row th {
 
 /* 交互色分け（ゼブラストライプ） */
 .grid .grid-row.is-even-row:not(:hover) td {
-    background-color: var(--surface-soft) !important;
+    background-color: var(--grid-zebra-bg) !important;
 }
 
 .grid .grid-row td * {

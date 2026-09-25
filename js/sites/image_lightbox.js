@@ -23,7 +23,10 @@
             var url = new URL(this.src, window.location.href);
             url.searchParams.delete('thumbnail');
 
-            overlay.$el.find('.image-lightbox-img').attr('src', url.toString());
+            // 元画像のalt（意味のある説明文があればそれ）を拡大表示側にも引き継ぐ（スクリーンリーダー対応）
+            overlay.$el.find('.image-lightbox-img')
+                .attr('src', url.toString())
+                .attr('alt', this.alt || '');
             overlay.show();
         });
     });

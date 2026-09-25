@@ -29,6 +29,25 @@
     // 未定義の場合（テンプレート未反映等）に備え、フォールバック値も持たせる。
     var CDN_BASE = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@main";
 
+    // アイコン表示に必要な最小限のファイル（utils.js → dom_watcher.js → icon.jsの順で依存）を
+    // manifest_site.jsonのfetch完了を待たずに先読みする。従来は
+    // 「loader_site.js取得 → manifest fetch → 該当スクリプト取得」の3段直列だったが、
+    // 事前に分かっているこの3本だけはmanifest fetchと並行でダウンロードを始められる。
+    // 実際の<script>挿入はこれまで通りmanifest経由（__pleasanterLoadScript）で行うため、
+    // ここではプリロードヒントを出すだけ（manifest側の記載内容が正のまま変わらない）。
+    // 初回のみでよいため、pjax再実行時（__pleasanterRunSiteScripts呼び出し）では行わない。
+    [
+        "common/utils.js",
+        "common/dom_watcher.js",
+        "common/icon.js"
+    ].forEach(function (name) {
+        var link = document.createElement("link");
+        link.rel = "preload";
+        link.as = "script";
+        link.href = CDN_BASE + "/js/" + name;
+        document.head.appendChild(link);
+    });
+
     window.__pleasanterScreenType = window.__pleasanterScreenType || function () {
         var action = (location.pathname.match(/\/items\/\d+\/([a-zA-Z]+)/) || [])[1] || "";
         switch (action.toLowerCase()) {
@@ -46,6 +65,17 @@
         }
     };
 
+    // Htmls側インラインscript（CSSローダー）も同じmanifest_site.jsonをfetchするため、
+    // window.__pleasanterManifestPromiseに共有してリロード毎の二重fetchを避ける。
+    // HtmlsとScriptsの評価順序は保証されないため、どちらが先に呼んでもよい形にしてある。
+    window.__pleasanterGetManifest = window.__pleasanterGetManifest || function () {
+        if (!window.__pleasanterManifestPromise) {
+            window.__pleasanterManifestPromise = fetch(CDN_BASE + "/js/manifest_site.json")
+                .then(function (res) { return res.json(); });
+        }
+        return window.__pleasanterManifestPromise;
+    };
+
     window.__pleasanterLoadScript = window.__pleasanterLoadScript || function (name) {
         var src = CDN_BASE + "/js/" + name;
         if (document.querySelector("script[src='" + src + "']")) { return; }
@@ -60,14 +90,14 @@
     };
 
     window.__pleasanterRunSiteScripts = window.__pleasanterRunSiteScripts || function () {
-        $.getJSON(CDN_BASE + "/js/manifest_site.json")
-            .done(function (manifest) {
+        window.__pleasanterGetManifest()
+            .then(function (manifest) {
                 var screenType = window.__pleasanterScreenType();
                 var names = (manifest.Js && manifest.Js.All || [])
                     .concat((manifest.Js && manifest.Js[screenType]) || []);
                 names.forEach(window.__pleasanterLoadScript);
             })
-            .fail(function (e) {
+            .catch(function (e) {
                 console.warn("[manifest_site.json] の読み込みに失敗", e);
             });
     };

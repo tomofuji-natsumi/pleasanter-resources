@@ -26,9 +26,8 @@
     --semantic-success: oklch(0.62 0.12 140 / 0.9);
     --semantic-success-border: color-mix(in oklch, var(--semantic-success) 70%, white);
     --semantic-warning: oklch(0.98 0.04 98 / 0.9);
-    /* --semantic-warning: oklch(0.88 0.12 98 / 0.9); */
-    --semantic-warning-border: #F2B90A;
-    --semantic-warning-text: #B8860B;
+    --semantic-warning-border: oklch(0.80 0.15 98);
+    --semantic-warning-text: oklch(0.55 0.13 75);
 
     /* --- Surface --- */
     --surface-base:   oklch(0.996 0.001 255);
@@ -36,6 +35,9 @@
     --surface-soft:   oklch(0.986 0.002 255);
     --surface-strong: oklch(0.974 0.003 255);
     --surface-strong-hover: oklch(0.934 0.003 255);
+    /* 一覧のゼブラストライプ専用。--surface-soft（差0.01）だと見分けづらいため、
+       --surface-baseと--surface-strong-hoverの中間でコントラストを確保する */
+    --grid-zebra-bg: color-mix(in oklch, var(--surface-base) 40%, var(--surface-strong-hover) 60%);
 
     /* =========================================================
        2. 背景
@@ -71,7 +73,8 @@
     --border-accent: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
     --border-title: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.18) h);
     --border-interactive: oklch(0.72 0.09 255);
-    --border-comment: 1px solid oklch(from var(--primary) calc(l + 0.29) calc(c * 0.22) h);
+    --comment-border-color: oklch(from var(--primary) calc(l + 0.29) calc(c * 0.22) h);
+    --border-comment: 1px solid var(--comment-border-color);
 
     --radius-small: 4px;
     --radius-medium: 5px;

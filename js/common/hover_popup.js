@@ -36,6 +36,21 @@
         var $popup = window.ensureSingleton(id, html);
         var showTimer, hideTimer, hideDisplayTimer;
 
+        // mousemoveは高頻度（1秒間に何十回も）発火するため、そのたびに$popup.css()を
+        // 呼ぶとスタイル書き込みが積み重なる。1フレームにつき1回に間引く
+        var moveFrame = null;
+        var pendingMoveEvent = null;
+
+        function applyPendingMove() {
+            moveFrame = null;
+            if (!pendingMoveEvent) { return; }
+            $popup.css({
+                top: pendingMoveEvent.pageY + offsetY,
+                left: pendingMoveEvent.pageX + offsetX
+            });
+            pendingMoveEvent = null;
+        }
+
         $(document).on("mouseenter", itemSelector, function () {
             var $item = $(this);
             var shown = options.onEnter($popup, $item);
@@ -52,10 +67,10 @@
         });
 
         $(document).on("mousemove", itemSelector, function (e) {
-            $popup.css({
-                top: e.pageY + offsetY,
-                left: e.pageX + offsetX
-            });
+            pendingMoveEvent = e;
+            if (moveFrame === null) {
+                moveFrame = requestAnimationFrame(applyPendingMove);
+            }
         });
 
         $(document).on("mouseleave", itemSelector, function () {
