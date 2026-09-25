@@ -65,8 +65,17 @@
                 });
             }
             if (closeOnBackdrop) {
+                // 「背景クリックで閉じる」を e.target === $el[0] のみで判定すると、
+                // 中身（$elの直接の子要素）の内部レイアウトがCSS変更で入れ子構造や
+                // サイズが変わった場合に、クリックのe.targetが$el自身ではなく
+                // 常に中身側の要素になり、閉じられなくなることがある。
+                // $elの直接の子要素の内側かどうかで判定すれば、その子要素内部の
+                // DOM構造がどう変わっても「中身の外側＝背景」の判定が崩れない。
                 $el.on("click", function (e) {
-                    if (e.target === $el[0]) { close(); }
+                    var clickedInsideContent = $el.children().toArray().some(function (child) {
+                        return child === e.target || $.contains(child, e.target);
+                    });
+                    if (!clickedInsideContent) { close(); }
                 });
             }
             if (closeOnEscape) {

@@ -86,7 +86,7 @@
         // wrapper がなければ生成
         if (!input.parent().hasClass("file-wrapper")) {
             const $wrapper = $('<div class="file-wrapper">')
-                .append('<div class="file-button">選択</div>')
+                .append('<div class="file-button" role="button" tabindex="0">選択</div>')
                 .append('<span class="file-name">選択されていません</span>');
             input.after($wrapper);
             $wrapper.append(input);
@@ -102,6 +102,14 @@
 
         // ボタンクリックで input を起動
         $fileButton.off("click.import").on("click.import", function () {
+            input.trigger("click");
+        });
+
+        // role="button"のdivはネイティブのbuttonと違いEnter/Spaceで発火しないため、
+        // キーボードのみの操作でもファイル選択に到達できるよう明示的にハンドラを追加する
+        $fileButton.off("keydown.import").on("keydown.import", function (e) {
+            if (e.key !== "Enter" && e.key !== " ") { return; }
+            e.preventDefault();
             input.trigger("click");
         });
 

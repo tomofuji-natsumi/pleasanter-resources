@@ -27,6 +27,12 @@
 
     var UPDATE_URL_PATTERN = /\/items\/(\d+)\/updatebycalendar(?:$|\?)/;
 
+    // 衝突判定中（対象サイトの全レコード取得〜再送信〜reloadまで）は、
+    // 同じ全件取得がドラッグのたびに重ねて走らないよう新しいドラッグを無視する。
+    // 通常は1回の判定後にlocation.reload()するため発生しないが、
+    // reload前に素早く連続ドラッグされた場合の二重全件取得・二重送信を防ぐガード。
+    var swapInProgress = false;
+
     function parseFormData(data) {
         var result = {};
         if (typeof data === 'string') {
@@ -77,11 +83,21 @@
         var dateFieldKey = findDateFieldKey(fields);
         if (!recordId || !dateFieldKey) { return; }
 
-        var columnName = dateFieldKey.replace('Results_', '');
-        var newDateValue = fields[dateFieldKey];
-
         // 元のリクエストはここで中止し、衝突確認後に自分たちで送り直す
         options.beforeSend = function () { return false; };
+
+        if (swapInProgress) {
+            // 直前のドラッグの衝突判定（全件取得〜reload）がまだ終わっていない。
+            // 古い全件データに基づく二重の衝突判定・二重送信を避けるためこの移動は送信せず、
+            // FullCalendar側の見た目だけが先行してズレたままにならないようreloadで巻き戻す
+            console.warn('[calendar_swap_on_drop] 前回の移動の判定中のため、この操作を取り消します', recordId);
+            location.reload();
+            return;
+        }
+        swapInProgress = true;
+
+        var columnName = dateFieldKey.replace('Results_', '');
+        var newDateValue = fields[dateFieldKey];
 
         // js/common/api.js（manifestでこのファイルより先に読まれる）が
         // ApiVersionの付与（A-5）・ページング対策（B-6）・失敗時のwarnを面倒見る
