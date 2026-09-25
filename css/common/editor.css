@@ -100,7 +100,6 @@
 #TitleContainer {
     padding: 5px;
     background-color: var(--bg-title) !important;
-    border-bottom: 1px solid var(--border-title) !important;
 }
 
 #TitleContainer #HeaderTitle {
@@ -351,37 +350,14 @@
     }
 }
 
-/* 削除ボタンとセットで右端に寄せる */
-.attachment-download-button {
-    display: inline-block;
-    align-self: center;
-    margin-left: auto;
-    cursor: pointer;
-}
-
-.control-attachments-item .attachment-download-button,
 .control-attachments-item .delete-file {
     width: 16px;
     height: 16px;
     background-position-y: center;
-}
-
-.control-attachments-item .delete-file {
-    margin: 0 0 0 4px !important;
-    align-self: center;
-}
-
-.control-attachments-item {
     cursor: pointer;
 }
 
-.control-attachments-item a.file-name:not([target]) {
-    display: inline-block;
-    padding: 4px 16px 4px 0;
-}
-
-.control-attachments-item .attachment-download-button,
-.control-attachments-item .delete-file {
+.control-attachments-item .show-file {
     cursor: pointer;
 }
 

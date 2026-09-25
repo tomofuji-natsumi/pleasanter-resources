@@ -1,20 +1,18 @@
 // ===============================
-// 
-// 添付ファイルのインライン表示 ＋ ダウンロードボタン
 //
-// 添付ファイル欄のリンク（プレビュー用の /binaries/{guid}/show、ファイル名表示用の /binaries/{guid}/download）は、
-// クリックすると別タブへの遷移やダウンロード（対応アプリの起動）が発生する。
-// ブラウザがネイティブに表示できる拡張子の場合のみ既定動作を止め、Pleasanter内のオーバーレイに埋め込んだiframeでファイルを表示する。
+// 添付ファイルのインライン表示
 //
-// ファイル名クリックがプレビューに置き換わったことで、これまで通りダウンロードだけの操作ができなくなるため、
-// 削除アイコンの横に専用のダウンロードボタンを追加する。
-// 
+// 添付ファイル欄には、プレビュー用アイコンリンク（.show-file、/binaries/{guid}/show）と
+// ファイル名リンク（/binaries/{guid}/download）が並んでいる。
+// ファイル名クリックはこれまで通りダウンロード（既定動作）のままにし、
+// .show-file アイコンのクリックのみ既定動作を止めて、Pleasanter内のオーバーレイに埋め込んだiframeでファイルを表示する。
+//
 // ===============================
 (function () {
     'use strict';
 
     var ITEM_SELECTOR = '.control-attachments-item';
-    var DOWNLOAD_BUTTON_SELECTOR = '.attachment-download-button';
+    var SHOW_ICON_SELECTOR = '.show-file';
     var PREVIEW_LOAD_TIMEOUT_MS = 8000;
 
     var previewLoadTimeoutTimer = null;
@@ -39,23 +37,6 @@
             $download: $links.not('[target]').first(),
             $show: $links.filter('[target="_blank"]').first()
         };
-    }
-
-    function getDownloadUrl($item) {
-        return getLinks($item).$download.attr('href');
-    }
-
-    function ensureDownloadButtons() {
-        $(ITEM_SELECTOR).each(function () {
-            var $item = $(this);
-            if ($item.find(DOWNLOAD_BUTTON_SELECTOR).length) { return; }
-
-            var $deleteIcon = $item.find('.delete-file').first();
-            if (!$deleteIcon.length) { return; }
-
-            $('<div class="ui-icon ui-icon-circle-arrow-s attachment-download-button" title="ダウンロード" draggable="false"></div>')
-                .insertBefore($deleteIcon);
-        });
     }
 
     // js/common/overlay.js（manifestでこのファイルより先に読まれる）が
@@ -110,12 +91,9 @@
         $tempLink.remove();
     }
 
-    $(document).on('click', ITEM_SELECTOR, function (e) {
-        // ダウンロード/削除ボタン上のクリックはそれぞれの専用処理に任せる
-        if (e.target.closest('.attachment-download-button, .delete-file')) { return; }
-
-        // ファイル名以外を含む項目全体のクリックでも、対応形式のプレビュー表示以外何も起こさない（ダウンロードや別タブでの表示は行わない）。
-        // ダウンロードは一覧側／プレビュー内のダウンロードボタンからのみ行う。
+    $(document).on('click', SHOW_ICON_SELECTOR, function (e) {
+        // ファイル名リンクのクリックはこれまで通りダウンロード（既定動作）のままにする。
+        // プレビューを開くのはこの.show-fileアイコンのクリック時のみ。
         e.preventDefault();
 
         var $item = $(this).closest(ITEM_SELECTOR);
@@ -140,22 +118,6 @@
         }, PREVIEW_LOAD_TIMEOUT_MS);
     });
 
-    $(document).on('click', DOWNLOAD_BUTTON_SELECTOR, function (e) {
-        e.preventDefault();
-
-        var $item = $(this).closest(ITEM_SELECTOR);
-        triggerDownload(getDownloadUrl($item));
-    });
-
-    $(document).on('pjax:complete', ensureDownloadButtons);
-
-    // コンテナ要素だけを監視する方式も検討したが、pjax遷移でコンテナ自体が丸ごと再生成され監視対象への参照が古くなるケースがある
-    // （holiday_setting.jsのcalendarObserverで踏んだのと同種の問題）ため、常に存在し続けるdocument.bodyを監視する
-    // （js/common/dom_watcher.js に集約。manifestでこのファイルより先に読まれる）
-    window.__pleasanterWatch(ensureDownloadButtons, { delay: 50, guard: 'attachmentDownloadButtons' });
-
-    ensureDownloadButtons();
-
     });
 })();
 
@@ -176,7 +138,7 @@
 
     var ITEMS_SELECTOR = '.control-attachments-items';
     var ITEM_SELECTOR = '.control-attachments-item';
-    var NON_DRAGGABLE_SELECTOR = 'a.file-name, .delete-file, .attachment-download-button';
+    var NON_DRAGGABLE_SELECTOR = 'a.file-name, .delete-file, .show-file';
 
     var LONG_PRESS_MS = 350;
     var MOVE_CANCEL_THRESHOLD = 6; // px。これ以上動いたら長押し判定を中断する
