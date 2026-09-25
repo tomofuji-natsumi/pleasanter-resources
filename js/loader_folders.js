@@ -31,6 +31,21 @@
     var BASE_URL = window.__pleasanterCdnBase || "https://cdn.jsdelivr.net/gh/tomofuji-natsumi/pleasanter-resources@main";
     var MANIFEST_URL = BASE_URL + "/js/manifest_folder.json";
 
+    // アイコン表示に必要な最小限のファイルは、manifest_folder.jsonのfetch完了を待たずに
+    // 先読みしておく（js/loader_site.jsと同じ考え方）。実際の<script>挿入は
+    // これまで通りmanifest経由（loadScripts）で行うため、ここではヒントを出すだけ。
+    [
+        "common/utils.js",
+        "common/dom_watcher.js",
+        "common/icon.js"
+    ].forEach(function (name) {
+        var link = document.createElement("link");
+        link.rel = "preload";
+        link.as = "script";
+        link.href = BASE_URL + "/js/" + name;
+        document.head.appendChild(link);
+    });
+
     // 取得済みのマニフェストを保持する。pjax遷移のたびに取り直さないことで、
     // 再適用（reapplyFolderScripts）を通信なしで済ませる。
     var scriptUrls = null;
@@ -56,41 +71,42 @@
     }
 
     // ===============================
-    // 順番に読み込む
+    // 読み込む
     //
     // $.getScript ではなく <script> 要素を自前で挿入する。
     // $.getScript は jQuery 内部で cache:false 固定のため URL に ?_=<timestamp> が付き、
     // ブラウザキャッシュを毎回バイパスしてしまうため。
-    // s.async = false により、動的挿入でもマニフェストの記載順で実行される。
+    // s.async = false により、全要素を即座に挿入してもダウンロードは並行に進みつつ、
+    // 実行はマニフェストの記載順で行われる（旧: reduceで1本ずつダウンロード完了を待ってから
+    // 次を挿入していたため、ファイル数分だけ直列に往復が積み上がっていた）。
     // ===============================
-    function loadScriptSequential(urls) {
-        return urls.reduce(function (p, url) {
-            return p.then(function () {
-                return new Promise(function (resolve) {
-                    // 既に読み込み済みなら何もしない（再適用時に二重評価しないため）
-                    if (document.querySelector('script[src="' + url + '"]')) { return resolve(); }
+    function loadScripts(urls) {
+        var promises = urls.map(function (url) {
+            // 既に読み込み済みなら何もしない（再適用時に二重評価しないため）
+            if (document.querySelector('script[src="' + url + '"]')) { return Promise.resolve(); }
 
-                    var s = document.createElement("script");
-                    s.async = false;
+            return new Promise(function (resolve) {
+                var s = document.createElement("script");
+                s.async = false;
 
-                    // ハンドラは src より先に設定する（取り付け前にイベントが走る余地を作らないため）
-                    s.onload = function () { resolve(); };
-                    s.onerror = function (e) {
-                        console.warn("[loader_folders.js] スクリプトの読み込みに失敗", url, e);
-                        // 失敗した要素を残すと上の重複チェックに引っかかり、次回以降も再試行できなくなる
-                        s.remove();
-                        resolve();
-                    };
+                // ハンドラは src より先に設定する（取り付け前にイベントが走る余地を作らないため）
+                s.onload = function () { resolve(); };
+                s.onerror = function (e) {
+                    console.warn("[loader_folders.js] スクリプトの読み込みに失敗", url, e);
+                    // 失敗した要素を残すと上の重複チェックに引っかかり、次回以降も再試行できなくなる
+                    s.remove();
+                    resolve();
+                };
 
-                    s.src = url;
-                    document.head.appendChild(s);
-                });
+                s.src = url;
+                document.head.appendChild(s);
             });
-        }, Promise.resolve());
+        });
+        return Promise.all(promises);
     }
 
     function loadAll() {
-        return fetchManifest().then(loadScriptSequential);
+        return fetchManifest().then(loadScripts);
     }
 
     // ===============================

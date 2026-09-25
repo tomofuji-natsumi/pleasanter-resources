@@ -21,6 +21,7 @@ Htmls/Scripts の評価順序が保証されないため、各所にフォール
 - 両テンプレートの Htmls インライン `<script>` 内 `window.__pleasanterCdnBase` の定義（本体）
 - `js/loader_site.js`・`js/loader_folders.js`・`js/sites/holiday_setting.js` のフォールバック値
 - 両テンプレートの Scripts スタブ内のフォールバック値
+- `readonly_tenant/tenant.css` の `@import` 絶対URL（CSSは `window.__pleasanterCdnBase` を参照できないため、ここだけ手動で書き換える必要がある。詳細は readonly_tenant/ セクション参照）
 
 jsdelivr はブランチ指定でもキャッシュするため、反映確認時はキャッシュ遅延を考慮する。
 
@@ -194,3 +195,42 @@ python font/NotoSansJP-Regular_Original/build_font.py
 `loader_tenant.js:80` の `window.startIconObserverForIcons` は未定義のまま
 （`icon.js` は `window` に何も export せず、自前の `pjax:complete` と MutationObserver で自走する）。
 `if (typeof ... === 'function')` でガードされているので実害は無いが、呼び出し側だけが残っている状態。
+
+---
+
+## Graphify Knowledge Graph
+
+If `graph.json` and `GRAPH_REPORT.md` exist at the project root, consult them
+before using Grep/Glob for file or dependency searches.
+
+If they don't exist yet, or the codebase has changed significantly since they
+were generated, run Graphify first to (re)generate them, then proceed.
+
+## Context Caching
+
+If `.claude-cache/` exists at the project root, consult `.claude-cache/summary.md`
+(and the relevant `.claude-cache/<name>.json`) before reading the full conventions
+in `_shared/` (coding-conventions.md / api-spec.md / naming-rules.md).
+
+If `.claude-cache/` doesn't exist yet, or is older than the files under `_shared/`,
+run Context Caching first to (re)generate it, then proceed.
+
+## Log & Trace Analyzer — Incident History
+
+Before investigating a new error or exception, check whether `INCIDENT_LOG.md`
+exists at the project root. If it does, consult it first to check for a similar
+past incident before starting a fresh investigation.
+
+## Test Scenario Generator — Generated Tests
+
+Generated E2E test code lives under `tests/generated/`. Before writing a new
+E2E test for a feature, check `tests/generated/` for an existing test covering
+the same feature and update it rather than creating a duplicate.
+
+## Security Scanner — Vulnerability History
+
+Before reviewing new code for security issues, check whether `VULNERABILITY_LOG.md`
+exists at the project root. If it does, consult it first to check whether the same
+vulnerability pattern has appeared elsewhere in the codebase before starting a
+fresh review.
+

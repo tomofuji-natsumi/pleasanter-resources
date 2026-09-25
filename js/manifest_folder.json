@@ -2,10 +2,10 @@
   "Js": {
     "All": [
       "common/utils.js",
-      "common/overlay.js",
       "common/dom_watcher.js",
-      "common/port_setting.js",
-      "common/icon.js"
+      "common/icon.js",
+      "common/overlay.js",
+      "common/port_setting.js"
     ]
   },
   "Css": {

@@ -26,9 +26,8 @@
     --semantic-success: oklch(0.62 0.12 140 / 0.9);
     --semantic-success-border: color-mix(in oklch, var(--semantic-success) 70%, white);
     --semantic-warning: oklch(0.98 0.04 98 / 0.9);
-    /* --semantic-warning: oklch(0.88 0.12 98 / 0.9); */
-    --semantic-warning-border: #F2B90A;
-    --semantic-warning-text: #B8860B;
+    --semantic-warning-border: oklch(0.80 0.15 98);
+    --semantic-warning-text: oklch(0.55 0.13 75);
 
     /* --- Surface --- */
     --surface-base:   oklch(0.996 0.001 255);
@@ -36,6 +35,7 @@
     --surface-soft:   oklch(0.986 0.002 255);
     --surface-strong: oklch(0.974 0.003 255);
     --surface-strong-hover: oklch(0.934 0.003 255);
+    --grid-zebra-bg: color-mix(in oklch, var(--surface-base) 40%, var(--surface-strong-hover) 60%);
 
     /* =========================================================
        2. 背景
@@ -63,15 +63,16 @@
        ========================================================= */
 
     --border-subtle: rgba(0, 0, 0, 0.04);
-    --border-light:  #E2E2E2;
-    --border-normal: #CCCCCC;
-    --border-strong: #ADADAD;
+    --border-light:  oklch(from var(--primary) calc(l + 0.33) calc(c * 0.05) h);
+    --border-normal: oklch(from var(--primary) calc(l + 0.28) calc(c * 0.06) h);
+    --border-strong: oklch(from var(--primary) calc(l + 0.23) calc(c * 0.07) h);
 
-    --border-nav: #999999;
-    --border-accent: #C4C4C4;
-    --border-title: #999999;
+    --border-nav: oklch(from var(--primary) calc(l + 0.30) calc(c * 0.28) h);
+    --border-accent: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
+    --border-title: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.18) h);
     --border-interactive: oklch(0.72 0.09 255);
-    --border-comment: 1px solid #C4C4C4;
+    --comment-border-color: oklch(from var(--primary) calc(l + 0.29) calc(c * 0.22) h);
+    --border-comment: 1px solid var(--comment-border-color);
 
     --radius-small: 4px;
     --radius-medium: 5px;
@@ -95,7 +96,7 @@
     --text-muted:     #6A7280;
     --text-disabled:  #9CA3AF;
 
-    --text-comment: #444444;
+    --text-comment: oklch(from var(--primary) calc(l - 0.10) calc(c * 0.70) h);
     --text-white: #F5F5F5;
 
     --text-link: var(--primary);

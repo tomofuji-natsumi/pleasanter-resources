@@ -8,6 +8,22 @@
 (function () {
     "use strict";
 
+    // Escapeキーでの閉じる処理は、オーバーレイの種類ごとにdocumentへ
+    // 個別リスナーを追加するのではなく、1つの共通リスナーで
+    // 「表示中の全オーバーレイ」を走査して閉じる（オーバーレイ種類が増えても
+    // documentのkeydownリスナーが線形に積み上がらないようにする）
+    var escapeCloseHandlers = [];
+    var escapeListenerBound = false;
+
+    function bindEscapeListenerOnce() {
+        if (escapeListenerBound) { return; }
+        escapeListenerBound = true;
+        $(document).on("keydown", function (e) {
+            if (e.key !== "Escape") { return; }
+            escapeCloseHandlers.forEach(function (fn) { fn(); });
+        });
+    }
+
     /**
      * オーバーレイ要素を作成し、show/close の共通挙動を持たせる。
      * 既に存在する場合（pjax再訪問等）は要素の生成・イベント登録をスキップし、
@@ -54,11 +70,10 @@
                 });
             }
             if (closeOnEscape) {
-                $(document).on("keydown", function (e) {
-                    if (e.key === "Escape" && $el.hasClass("is-visible")) {
-                        close();
-                    }
+                escapeCloseHandlers.push(function () {
+                    if ($el.hasClass("is-visible")) { close(); }
                 });
+                bindEscapeListenerOnce();
             }
         }
 

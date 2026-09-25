@@ -2,15 +2,16 @@
   "Js": {
     "All": [
       "common/utils.js",
+      "common/dom_watcher.js",
+      "common/icon.js",
       "common/api.js",
       "common/overlay.js",
       "common/hover_popup.js",
       "common/shortcut.js",
-      "common/dom_watcher.js",
       "common/port_setting.js",
-      "common/icon.js",
       "sites/zebra_stripe.js",
-      "sites/attachment.js"
+      "sites/attachment.js",
+      "sites/holiday_setting.js"
     ],
     "Edit": [
       "sites/readonly.js",
@@ -19,18 +20,17 @@
       "sites/image_lightbox.js"
     ],
     "Calendar": [
-      "sites/holiday_setting.js",
       "sites/calendar_swap_on_drop.js",
       "sites/calendar_from_to_filter.js",
       "sites/tooltip.js"
     ],
     "Index": [
       "sites/restore_scroll_position.js",
-      "sites/holiday_setting.js",
       "sites/search_shortcut.js",
       "sites/select_all_shortcut.js",
       "sites/tooltip.js"
-    ]
+    ],
+    "ImageLib": []
   },
   "Css": {
     "Edit": [
