@@ -154,14 +154,30 @@
     // ===============================
     const ID_SELECTOR = /^#([\w-]+)$/;
 
-    function queryElements(selector) {
+    // roots未指定（または空配列＝pjax:complete/ready等の全体実行）ならdocument全体を、
+    // roots指定時（dom_watcherのtickで新規追加された要素のみ）はそれらの配下＋要素自身に絞って探す。
+    // 絞ることで、既存DOMに対する全体スキャンを避け無関係な変更時のコストを下げる（B-2 fan-out対策の一環）。
+    function queryElements(selector, roots) {
         const m = selector.match(ID_SELECTOR);
         if (m) {
             const el = document.getElementById(m[1]);
             return el ? [el] : [];
         }
+        if (!roots || !roots.length) {
+            try {
+                return Array.from(document.querySelectorAll(selector));
+            } catch (e) {
+                console.warn("[icon.js] 不正なセレクタのためスキップします", selector, e);
+                return [];
+            }
+        }
         try {
-            return Array.from(document.querySelectorAll(selector));
+            const found = [];
+            for (const root of roots) {
+                if (root.matches && root.matches(selector)) { found.push(root); }
+                if (root.querySelectorAll) { found.push(...root.querySelectorAll(selector)); }
+            }
+            return found;
         } catch (e) {
             console.warn("[icon.js] 不正なセレクタのためスキップします", selector, e);
             return [];
@@ -171,10 +187,10 @@
     // ===============================
     // 5. アイコン適用（全マップを1ループ）
     // ===============================
-    function applyIcons(defs) {
+    function applyIcons(defs, roots) {
         for (const { s, c, i } of defs) {
             const cssClass = CLASS_MAP[c];
-            for (const el of queryElements(s)) {
+            for (const el of queryElements(s, roots)) {
                 if (applied.has(el)) continue;
                 applied.add(el);
                 el.insertBefore(createIconSpan(cssClass, i), el.firstChild);
@@ -213,9 +229,11 @@
     // ===============================
     // 7. メイン実行
     // ===============================
-    function runIconApply() {
+    // changedRoots：dom_watcher.jsの共有Observerから渡される、直近で新規追加された要素の配列
+    // （ready/pjax:complete からの直接呼び出し時は未指定＝document全体を対象にする）
+    function runIconApply(changedRoots) {
         mergeCustomDefs();
-        applyIcons(allDefs);
+        applyIcons(allDefs, changedRoots);
     }
 
     // ===============================

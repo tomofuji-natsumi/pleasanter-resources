@@ -21,6 +21,6 @@
     window.once('zebraStripe', function () {
         $(document).on('pjax:complete', applyStripes);
 
-        window.__pleasanterWatch(applyStripes, { delay: 50, guard: 'zebraStripe' });
+        window.__pleasanterWatch(applyStripes, { delay: 50, guard: 'zebraStripe', root: '.grid' });
     });
 })();

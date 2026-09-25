@@ -69,9 +69,16 @@
     }
 
     // クリック前にファイルの取得を始めておくことで、開いた瞬間の表示待ちを短縮する
-    // （同じURLへのprefetchは2回目以降ブラウザ側で重複排除される）
+    // 同じURLへのprefetchはネットワーク取得自体はブラウザ側で重複排除されるが、
+    // <link>要素自体は重複チェック無しだと同じ添付を何度もホバーするたびheadに蓄積し続けるため、
+    // 既に同一hrefのprefetch linkが無いか確認してから追加する
     function prefetch(url) {
         if (!url) { return; }
+        var exists = Array.prototype.some.call(
+            document.querySelectorAll('link[rel="prefetch"]'),
+            function (link) { return link.getAttribute('href') === url; }
+        );
+        if (exists) { return; }
         $('<link rel="prefetch">').attr('href', url).appendTo('head');
     }
 

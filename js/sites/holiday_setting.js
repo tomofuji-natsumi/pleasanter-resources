@@ -93,27 +93,13 @@ const setupHolidayRendering = (getHolidayMap) => {
     // 初回
     renderHolidays();
 
-    // 常に存在し続ける document.bodyを監視することで、参照切れを避ける。
-    const observeOptions = { childList: true, subtree: true };
-    let debounceTimer = null;
+    // js/common/dom_watcher.js（manifestでこのファイルより先に読まれる）に集約。
+    // root指定により、カレンダーセル（.fc-daygrid-day）に関係する変更のときだけ発火させる。
+    // renderHolidays() 自体が.holiday-nameの削除・追加を行うが、dom_watcher側で
+    // 実行中は監視を止める（disconnect→実行→observe）ため自己発火の無限ループにはならない。
+    window.__pleasanterWatch(renderHolidays, { delay: 10, guard: 'holidayCalendarRender', root: '.fc-daygrid-day' });
 
-    // renderHolidays() 自体が .holiday-name の削除・追加等のDOM変更を行うため、
-    // そのままでは自分自身の変更を検知して再度発火し、無限ループになってしまう。
-    // 再描画中だけobserverを一時停止することでこれを防ぐ。
-    const rerender = () => {
-        calendarObserver.disconnect();
-        renderHolidays();
-        calendarObserver.observe(document.body, observeOptions);
-    };
-
-    const calendarObserver = new MutationObserver(() => {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(rerender, 10);
-    });
-
-    calendarObserver.observe(document.body, observeOptions);
-
-    return rerender;
+    return renderHolidays;
 };
 
 let holidayMap = {};

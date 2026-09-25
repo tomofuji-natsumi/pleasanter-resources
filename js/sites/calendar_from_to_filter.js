@@ -32,14 +32,7 @@
     // カレンダー設定ダイアログが pjax:complete より後に遅延生成される場合、
     // その時点では #CalendarFromTo がまだ存在せず一度も適用されないことがある。
     // ダイアログの出現を監視し、生成され次第フィルタを適用する。
-    var dialogDebounceTimer = null;
-    var dialogObserver = new MutationObserver(function () {
-        clearTimeout(dialogDebounceTimer);
-        dialogDebounceTimer = setTimeout(function () {
-            if ($('#CalendarFromTo').length) {
-                applyFilter();
-            }
-        }, 50);
-    });
-    dialogObserver.observe(document.body, { childList: true, subtree: true });
+    // js/common/dom_watcher.js（manifestでこのファイルより先に読まれる）に集約し、
+    // root指定により #CalendarFromTo に関係する変更のときだけ発火させる。
+    window.__pleasanterWatch(applyFilter, { delay: 50, guard: 'calendarFromToFilter', root: '#CalendarFromTo' });
 })();

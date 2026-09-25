@@ -40,7 +40,7 @@
     window.once('emptyGridMessage', function () {
         $(document).on('pjax:complete', updateEmptyMessage);
 
-        window.__pleasanterWatch(updateEmptyMessage, { delay: 50, guard: 'emptyGridMessage' });
+        window.__pleasanterWatch(updateEmptyMessage, { delay: 50, guard: 'emptyGridMessage', root: '.grid' });
     });
 
     updateEmptyMessage();
