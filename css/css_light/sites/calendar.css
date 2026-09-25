@@ -154,13 +154,13 @@ label[for="CalendarFromTo"] {
 /* 日曜 */
 .fc-day-sun,
 .fc-day.holiday-100,
-.fc-sat.holiday-100 {
+.fc-day-sat.holiday-100 {
     background-color: var(--cal-holi-cell-bg) !important;
 }
 
 .fc-day-sun .fc-daygrid-day-number,
 .fc-day.holiday-100 .fc-daygrid-day-number,
-.fc-sat.holiday-100 .fc-daygrid-day-number {
+.fc-day-sat.holiday-100 .fc-daygrid-day-number {
     color: var(--cal-holi-cell-text) !important;
 }
 
@@ -171,6 +171,15 @@ label[for="CalendarFromTo"] {
 
 .fc-day.holiday-150 .fc-daygrid-day-number {
     color: var(--cal-digestion-text) !important;
+}
+
+/* 年休消化日 */
+.fc-day.holiday-200 {
+    background-color: var(--cal-pto-bg) !important;
+}
+
+.fc-day.holiday-200 .fc-daygrid-day-number {
+    color: var(--cal-pto-text) !important;
 }
 
 /* 休日セルは背景色・祝日名で表現済みのため、レコード自体のイベント枠は重複表示になり不要 */
@@ -470,34 +479,39 @@ button.fc-today-button[disabled] {
 
 /* 平日 */
 .fc-daygrid-day:not(.fc-day-sat):not(.fc-day-sun):not(.fc-day-other):not([class*="holiday-"]) .fc-highlight {
-    background: color-mix(in oklch, var(--cal-weekday-cell-bg) 60%, var(--primary) 25%);
+    background: color-mix(in oklch, var(--cal-weekday-cell-bg) 78%, var(--primary) 12%);
 }
 
 /* 土曜 */
 .fc-day-sat .fc-highlight {
-    background: color-mix(in oklch, var(--cal-sat-cell-bg) 55%, var(--cal-sat-bg) 30%);
+    background: color-mix(in oklch, var(--cal-sat-cell-bg) 75%, var(--cal-sat-bg) 12%);
 }
 
 /* 日曜・祝日 */
 .fc-day-sun .fc-highlight,
 .fc-day.holiday-100 .fc-highlight,
-.fc-sat.holiday-100 .fc-highlight {
-    background: color-mix(in oklch, var(--cal-holi-cell-bg) 55%, var(--cal-holi-bg) 30%);
+.fc-day-sat.holiday-100 .fc-highlight {
+    background: color-mix(in oklch, var(--cal-holi-cell-bg) 75%, var(--cal-holi-bg) 12%);
 }
 
 /* 所定休日（会社休日） */
 .fc-day.holiday-150 .fc-highlight {
-    background: color-mix(in oklch, var(--cal-digestion-bg) 60%, var(--cal-digestion-text) 20%);
+    background: color-mix(in oklch, var(--cal-digestion-bg) 78%, var(--cal-digestion-text) 8%);
+}
+
+/* 年休消化日 */
+.fc-day.holiday-200 .fc-highlight {
+    background: color-mix(in oklch, var(--cal-pto-bg) 78%, var(--cal-pto-text) 8%);
 }
 
 /* 他月 */
 .fc-day-other .fc-highlight {
-    background: color-mix(in oklch, var(--cal-other-bg) 70%, var(--text-muted) 15%);
+    background: color-mix(in oklch, var(--cal-other-bg) 82%, var(--text-muted) 6%);
 }
 
 /* 今日 */
 .fc-day-today .fc-highlight {
-    background: color-mix(in oklch, var(--cal-today-bg) 55%, var(--primary) 30%);
+    background: color-mix(in oklch, var(--cal-today-bg) 75%, var(--primary) 12%);
 }
 
 .fc-daygrid-day-top {
