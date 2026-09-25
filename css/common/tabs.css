@@ -45,6 +45,7 @@
 .ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
     padding: 8px 16px;
     font-size: var(--font-size-sm);
+    user-select: none;
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor label {

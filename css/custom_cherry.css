@@ -784,6 +784,7 @@ button:has(.extra-material-icons):active {
 .ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor {
     padding: 8px 16px;
     font-size: var(--font-size-sm);
+    user-select: none;
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-tab .ui-tabs-anchor label {
@@ -1404,6 +1405,10 @@ span.flatpickr-weekday {
 .ui-dialog .ui-dialog-content .field-label {
     font-size: var(--font-size-sm);
     padding: 0.4rem 0.7rem 0.4rem 0;
+}
+
+.ui-dialog .ui-dialog-content .field-label label {
+    user-select: none;
 }
 
 .ui-dialog .ui-dialog-content .command-left .input-field {
@@ -2619,6 +2624,7 @@ tr.crosstab-row th {
 
 .grid .grid-row td * {
     white-space: pre-line;
+    user-select: none;
 }
 
 

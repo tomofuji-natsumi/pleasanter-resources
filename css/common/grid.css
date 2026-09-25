@@ -116,6 +116,7 @@ tr.crosstab-row th {
 
 .grid .grid-row td * {
     white-space: pre-line;
+    user-select: none;
 }
 
 
