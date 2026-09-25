@@ -4,15 +4,16 @@
 //
 // 添付ファイル欄には、プレビュー用アイコンリンク（.show-file、/binaries/{guid}/show）と
 // ファイル名リンク（/binaries/{guid}/download）が並んでいる。
-// ファイル名クリックはこれまで通りダウンロード（既定動作）のままにし、
-// .show-file アイコンのクリックのみ既定動作を止めて、Pleasanter内のオーバーレイに埋め込んだiframeでファイルを表示する。
+// a.file-name（上記2つのリンク）のクリックはこれまで通りの既定動作（プレビュー別タブ／ダウンロード）のままにし、
+// 項目内のそれ以外の部分（余白等）のクリックでPleasanter内のオーバーレイに埋め込んだiframeでファイルを表示する。
+// 閉じるのは背景クリック・Escapeキーで行う（js/common/overlay.js）。
 //
 // ===============================
 (function () {
     'use strict';
 
     var ITEM_SELECTOR = '.control-attachments-item';
-    var SHOW_ICON_SELECTOR = '.show-file';
+    var LINK_SELECTOR = 'a.file-name';
     var PREVIEW_LOAD_TIMEOUT_MS = 8000;
 
     var previewLoadTimeoutTimer = null;
@@ -40,36 +41,24 @@
     }
 
     // js/common/overlay.js（manifestでこのファイルより先に読まれる）が
-    // 生成・Escape・外側クリック・閉じるボタンを面倒見る。ダウンロードボタン・
-    // iframeのload監視はこのファイル固有の処理のため、初回のみ個別に紐付ける
+    // 生成・Escape・外側クリックでの閉じるを面倒見る。iframeのload監視は
+    // このファイル固有の処理のため、初回のみ個別に紐付ける
     var previewOverlay = window.createOverlay('attachment-preview-overlay',
         '<div id="attachment-preview-overlay">' +
             '<div class="attachment-preview-panel">' +
-                '<div class="attachment-preview-controls">' +
-                    '<div class="attachment-preview-download" title="ダウンロード">' +
-                        '<span class="ui-icon ui-icon-circle-arrow-s"></span>' +
-                    '</div>' +
-                    '<div class="attachment-preview-close" title="閉じる">&times;</div>' +
-                '</div>' +
                 '<div class="attachment-preview-spinner"></div>' +
                 '<iframe class="attachment-preview-frame" frameborder="0"></iframe>' +
             '</div>' +
         '</div>',
         {
-            closeSelector: '.attachment-preview-close',
             onClose: function ($el) {
                 clearTimeout(previewLoadTimeoutTimer);
                 $el.removeClass('is-loading');
                 $el.find('.attachment-preview-frame').attr('src', 'about:blank');
-                $el.removeData('download-url');
             }
         }
     );
 
-    previewOverlay.$el.on('click', '.attachment-preview-download', function (e) {
-        e.preventDefault();
-        triggerDownload(previewOverlay.$el.data('download-url'));
-    });
     previewOverlay.$el.find('.attachment-preview-frame').on('load', function () {
         clearTimeout(previewLoadTimeoutTimer);
         previewOverlay.$el.removeClass('is-loading');
@@ -79,21 +68,26 @@
         return previewOverlay.$el;
     }
 
-    function triggerDownload(downloadUrl) {
-        if (!downloadUrl) { return; }
-
-        var $tempLink = $('<a></a>', {
-            href: downloadUrl,
-            download: '',
-            rel: 'noopener noreferrer'
-        }).appendTo('body');
-        $tempLink[0].click();
-        $tempLink.remove();
+    // クリック前にファイルの取得を始めておくことで、開いた瞬間の表示待ちを短縮する
+    // （同じURLへのprefetchは2回目以降ブラウザ側で重複排除される）
+    function prefetch(url) {
+        if (!url) { return; }
+        $('<link rel="prefetch">').attr('href', url).appendTo('head');
     }
 
-    $(document).on('click', SHOW_ICON_SELECTOR, function (e) {
-        // ファイル名リンクのクリックはこれまで通りダウンロード（既定動作）のままにする。
-        // プレビューを開くのはこの.show-fileアイコンのクリック時のみ。
+    $(document).on('mouseenter', ITEM_SELECTOR, function () {
+        var links = getLinks($(this));
+        var text = links.$download.text() || '';
+        var fileName = text.split('　')[0].trim();
+        if (!PREVIEWABLE_PATTERN.test(fileName)) { return; }
+        prefetch(links.$show.attr('href'));
+    });
+
+    $(document).on('click', ITEM_SELECTOR, function (e) {
+        // a.file-name（ファイル名リンク・プレビュー用アイコンリンク）のクリックは
+        // これまで通りの既定動作（ダウンロード／別タブでの表示）のままにする。
+        if (e.target.closest(LINK_SELECTOR)) { return; }
+
         e.preventDefault();
 
         var $item = $(this).closest(ITEM_SELECTOR);
@@ -105,7 +99,6 @@
 
         var $overlay = ensureOverlay();
 
-        $overlay.data('download-url', links.$download.attr('href'));
         $overlay.addClass('is-loading');
         previewOverlay.show();
         $overlay.find('.attachment-preview-frame').attr('src', links.$show.attr('href'));
