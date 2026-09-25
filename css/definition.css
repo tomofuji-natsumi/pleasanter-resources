@@ -30,14 +30,14 @@
     --semantic-warning-text: oklch(0.55 0.13 75);
 
     /* --- Surface --- */
-    --surface-base:   oklch(0.996 0.001 255);
-    --surface-base-hover: oklch(0.956 0.001 255);
-    --surface-soft:   oklch(0.986 0.002 255);
-    --surface-strong: oklch(0.974 0.003 255);
-    --surface-strong-hover: oklch(0.934 0.003 255);
+    --surface-base:   oklch(0.995 0.001 255);
+    --surface-base-hover: oklch(0.948 0.004 255);
+    --surface-soft:   oklch(0.982 0.003 255);
+    --surface-strong: oklch(0.965 0.005 255);
+    --surface-strong-hover: oklch(0.922 0.006 255);
     /* 一覧のゼブラストライプ専用。--surface-soft（差0.01）だと見分けづらいため、
        --surface-baseと--surface-strong-hoverの中間でコントラストを確保する */
-    --grid-zebra-bg: color-mix(in oklch, var(--surface-base) 40%, var(--surface-strong-hover) 60%);
+    --grid-zebra-bg: color-mix(in oklch, var(--surface-base) 30%, var(--surface-strong-hover) 70%);
 
     /* =========================================================
        2. 背景
@@ -47,8 +47,8 @@
     --bg-title: oklch(from var(--primary) calc(l + 0.36) calc(c * 0.15) h);
     --bg-comment: oklch(from var(--primary) calc(l + 0.46) calc(c * 0.15) h);
     --bg-accent:         oklch(from var(--primary) calc(l + 0.36) calc(c * 0.22) h);
-    --bg-main:          oklch(0.962 0.004 255);
-    --bg-main-dark:     oklch(0.938 0.008 255);
+    --bg-main:          oklch(0.958 0.006 255);
+    --bg-main-dark:     oklch(0.930 0.010 255);
 
     --bg-disabled:    var(--surface-strong);
 	
@@ -65,9 +65,9 @@
        ========================================================= */
 
     --border-subtle: rgba(0, 0, 0, 0.04);
-    --border-light:  oklch(from var(--primary) calc(l + 0.33) calc(c * 0.05) h);
-    --border-normal: oklch(from var(--primary) calc(l + 0.28) calc(c * 0.06) h);
-    --border-strong: oklch(from var(--primary) calc(l + 0.23) calc(c * 0.07) h);
+    --border-light:  oklch(from var(--primary) calc(l + 0.31) calc(c * 0.08) h);
+    --border-normal: oklch(from var(--primary) calc(l + 0.26) calc(c * 0.10) h);
+    --border-strong: oklch(from var(--primary) calc(l + 0.20) calc(c * 0.12) h);
 
     --border-nav: oklch(from var(--primary) calc(l + 0.30) calc(c * 0.28) h);
     --border-accent: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.12) h);
@@ -92,11 +92,11 @@
        4. テキストカラー（文字色）
        ========================================================= */
 
-    --text-main:      #1F2937;
-    --text-emphasis:  #3A424C;
-    --text-sub:       #4B4F55;
-    --text-muted:     #6A7280;
-    --text-disabled:  #9CA3AF;
+    --text-main:      #1B2430;
+    --text-emphasis:  #29323D;
+    --text-sub:       #45505C;
+    --text-muted:     #64707C;
+    --text-disabled:  #96A0AA;
 
     --text-comment: oklch(from var(--primary) calc(l - 0.10) calc(c * 0.70) h);;
     --text-white: #F5F5F5;
@@ -142,47 +142,47 @@
        8. ステータス
        ========================================================= */
 
-      --status-no-bg: #F0F1F3;
-      --status-no-border: #C8CDD4;
-      --status-no-bg-hover: #E4E6EA;
-      --status-no-border-hover: #BCC1C9;
-      --status-no-text: #4A5260;
+      --status-no-bg: #EEF0F3;
+      --status-no-border: #C4CAD2;
+      --status-no-bg-hover: #E2E5EA;
+      --status-no-border-hover: #B6BCC6;
+      --status-no-text: #3E4856;
 
-      --status-new-bg: #F0F4FE;
-      --status-new-border: #C0CFEE;
-      --status-new-bg-hover: #E4ECFC;
-      --status-new-border-hover: #B0C2E6;
-      --status-new-text: #1A3A7A;
+      --status-new-bg: #EAF1FE;
+      --status-new-border: #ADC6EC;
+      --status-new-bg-hover: #DCE8FC;
+      --status-new-border-hover: #98B6E2;
+      --status-new-text: #123467;
 
-      --status-preparation-bg: #FFF8E1;
-      --status-preparation-border: #F0D080;
-      --status-preparation-bg-hover: #FFF0C0;
-      --status-preparation-border-hover: #E8C060;
-      --status-preparation-text: #7A5500;
+      --status-preparation-bg: #FFF5DA;
+      --status-preparation-border: #E8C468;
+      --status-preparation-bg-hover: #FFEDBE;
+      --status-preparation-border-hover: #DCB350;
+      --status-preparation-text: #6B4C00;
 
-      --status-inprogress-bg: #E0F8F4;
-      --status-inprogress-border: #6ACABA;
-      --status-inprogress-bg-hover: #CCF0EA;
-      --status-inprogress-border-hover: #58BCAC;
-      --status-inprogress-text: #0A5048;
+      --status-inprogress-bg: #DAF6EF;
+      --status-inprogress-border: #56BFAD;
+      --status-inprogress-bg-hover: #C4EEE4;
+      --status-inprogress-border-hover: #46AE9C;
+      --status-inprogress-text: #06463E;
 
-      --status-approval-bg: #F3EEFF;
-      --status-approval-border: #C4A8F0;
-      --status-approval-bg-hover: #EAE0FC;
-      --status-approval-border-hover: #B89AE4;
-      --status-approval-text: #4A1A8A;
+      --status-approval-bg: #F0E8FF;
+      --status-approval-border: #B790EC;
+      --status-approval-bg-hover: #E5D8FC;
+      --status-approval-border-hover: #A87EE0;
+      --status-approval-text: #3C1478;
 
-      --status-completed-bg: #E8F5EC;
-      --status-completed-border: #90CC9E;
-      --status-completed-bg-hover: #D8EEDE;
-      --status-completed-border-hover: #80BE8E;
-      --status-completed-text: #1A5830;
+      --status-completed-bg: #E2F5E6;
+      --status-completed-border: #7BC08C;
+      --status-completed-bg-hover: #D0EED6;
+      --status-completed-border-hover: #6AB27C;
+      --status-completed-text: #124D26;
 
-      --status-declined-bg: #FFEBEE;
-      --status-declined-border: #F0A0A8;
-      --status-declined-bg-hover: #FFD8DC;
-      --status-declined-border-hover: #E49098;
-      --status-declined-text: #8A1A20;
+      --status-declined-bg: #FFE6EA;
+      --status-declined-border: #E68E97;
+      --status-declined-bg-hover: #FFD0D6;
+      --status-declined-border-hover: #DA7E88;
+      --status-declined-text: #74151B;
 
       /* ランク評価専用(統一ルールの対象外) */
       --status-rank-e-bg: #F0F1F3;
@@ -238,27 +238,26 @@
     --cal-weekday-cell-bg: var(--surface-base);
     --cal-weekday-cell-text: var(--text-main);
 
-    --cal-sat-bg: oklch(0.62 0.12 255);
+    --cal-sat-bg: oklch(0.58 0.14 255);
     --cal-sat-text: var(--text-on-primary);
-    --cal-sat-cell-bg: oklch(0.970 0.015 255);
-    --cal-sat-cell-text: #2F4A7A;
+    --cal-sat-cell-bg: oklch(0.965 0.018 255);
+    --cal-sat-cell-text: #294774;
 
-    --cal-holi-bg: oklch(0.72 0.15 25);
+    --cal-holi-bg: oklch(0.68 0.17 25);
     --cal-holi-text: var(--text-on-primary);
-    --cal-holi-cell-bg: oklch(0.96 0.030 25);
-    --cal-holi-cell-text: #6A2A2A;
+    --cal-holi-cell-bg: oklch(0.955 0.035 25);
+    --cal-holi-cell-text: #642626;
 
     --cal-digestion-bg: #F2E8EF;
     --cal-digestion-text: #6A4A5A;
 
-    --cal-today-bg: oklch(from var(--primary) calc(l + 0.37) calc(c * 0.18) h);
+    --cal-today-bg: oklch(from var(--primary) calc(l + 0.35) calc(c * 0.22) h);
     --cal-today-border: color-mix(in srgb, var(--primary-hover) 80%, var(--surface-base) 20%);
     --cal-today-text: var(--text-main);
 
-    --cal-other-bg: oklch(from var(--primary) calc(l + 0.40) calc(c * 0.02) h);
+    --cal-other-bg: oklch(from var(--primary) calc(l + 0.38) calc(c * 0.03) h);
     --cal-other-text: var(--text-muted);
 
-    --cal-highlight-bg: oklch(from var(--primary) calc(l + 0.32) calc(c * 0.45) h / 0.40);
 
     /* =========================================================
        10. イベント（平日 / 土曜 / 日曜 / 他月）
