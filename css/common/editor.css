@@ -350,13 +350,6 @@
     }
 }
 
-.control-attachments-item .delete-file {
-    width: 16px;
-    height: 16px;
-    background-position-y: center;
-    cursor: pointer;
-}
-
 .control-attachments-item .show-file {
     cursor: pointer;
 }
