@@ -41,10 +41,22 @@
         var top = parseInt(saved, 10);
         if (isNaN(top)) { return; }
 
-        // pjax完了直後はレイアウト確定前のことがあるため、次フレームで復元する
-        window.requestAnimationFrame(function () {
+        // pjax完了直後はレイアウト確定前のことがあり、1回のrAFでは文書の高さが
+        // まだ足りずscrollToが暗黙にクランプされ復元位置がずれることがある（断続再現型）。
+        // 数フレームに渡り、目標位置までスクロール可能になるまでリトライする
+        var RETRY_FRAMES = 10;
+        var attempt = 0;
+        function tryRestore() {
             window.scrollTo(0, top);
-        });
+            attempt++;
+            var reachedTarget = Math.abs(window.scrollY - top) < 1;
+            var maxScrollable = document.documentElement.scrollHeight - window.innerHeight;
+            var targetIsReachable = top <= maxScrollable + 1;
+            if (!reachedTarget && targetIsReachable && attempt < RETRY_FRAMES) {
+                window.requestAnimationFrame(tryRestore);
+            }
+        }
+        window.requestAnimationFrame(tryRestore);
     }
 
     // scrollイベントは高頻度で発火するため、rAFで間引く

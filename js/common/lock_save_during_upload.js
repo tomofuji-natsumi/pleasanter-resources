@@ -27,7 +27,7 @@
         // 「アップロード中の要素が1つでも見えているか」だけが分かればよいため、
         // 全件フィルタせず最初の可視要素が見つかった時点で打ち切る
         var uploading = false;
-        $('[id$=".status"]').each(function () {
+        $(CONTAINER_SELECTOR + ' [id$=".status"]').each(function () {
             if ($(this).is(':visible')) {
                 uploading = true;
                 return false;
@@ -41,7 +41,11 @@
         var $buttons = $('#CreateCommand, #UpdateCommand');
 
         $buttons.toggleClass('is-upload-locked', uploading);
-        $buttons.attr('title', uploading ? LOCK_MESSAGE : '');
+        if (uploading) {
+            $buttons.attr('title', LOCK_MESSAGE);
+        } else {
+            $buttons.removeAttr('title');
+        }
 
         // prevent_double_submit.js が付与する is-submitting クラス（多重送信防止）を
         // ここで無条件に解除してしまうと二重送信防止が50ms程度しか効かなくなる。

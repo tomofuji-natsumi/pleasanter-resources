@@ -46,15 +46,22 @@ window.once("calendarArrowShortcut", function () {
 
 // escapeHtmlはjs/common/utils.js（manifestでこのファイルより先に読まれる）が提供する
 
+// 休日カレンダーマスタの列構成（列名・区分値）。SiteIdはjs/site_ids.jsonへ外出し済みだが、
+// こちらは同じサイト設定を再エクスポートしても変わらない前提のため名前付き定数にとどめる
+const HOLIDAY_CLASS_A_HOLIDAY_VALUE = "200"; // ClassA: 「休日」区分を表す値
+const HOLIDAY_DATE_COLUMN = "DateA";         // 休日の日付
+const HOLIDAY_NAME_COLUMN = "ClassE";        // 休日名
+const HOLIDAY_TYPE_COLUMN = "ClassD";        // 休日種別（holiday-{type}クラスに使用）
+
 const buildHolidayMap = (rows) => {
     const holidayMap = {};
     rows
-        .filter(row => row.ClassHash?.ClassA === "200")
+        .filter(row => row.ClassHash?.ClassA === HOLIDAY_CLASS_A_HOLIDAY_VALUE)
         .forEach(row => {
-            const date = row.DateHash?.DateA?.substring(0, 10);
+            const date = row.DateHash?.[HOLIDAY_DATE_COLUMN]?.substring(0, 10);
             holidayMap[date] = {
-                name: row.ClassHash?.ClassE || "",
-                type: row.ClassHash?.ClassD
+                name: row.ClassHash?.[HOLIDAY_NAME_COLUMN] || "",
+                type: row.ClassHash?.[HOLIDAY_TYPE_COLUMN]
             };
         });
     return holidayMap;
@@ -143,8 +150,15 @@ $.getJSON(CDN_BASE + "/js/site_ids.json")
         try {
             const cached = sessionStorage.getItem(HOLIDAY_CACHE_KEY);
             if (cached) {
-                holidayMap = JSON.parse(cached);
-                rerenderHolidays = setupHolidayRendering(() => holidayMap);
+                const parsed = JSON.parse(cached);
+                // ⚠️ 文字列"null"等がキャッシュされていた場合JSON.parseはnullを返すため、
+                // オブジェクトであることを確認してから採用する（不正なら未キャッシュ扱いにする）
+                if (parsed && typeof parsed === "object") {
+                    holidayMap = parsed;
+                    rerenderHolidays = setupHolidayRendering(() => holidayMap);
+                } else {
+                    console.warn("[holiday_setting.js] キャッシュの内容が不正なため無視します", parsed);
+                }
             }
         } catch (e) {
             console.warn("[holiday_setting.js] キャッシュの読み込みに失敗", e);

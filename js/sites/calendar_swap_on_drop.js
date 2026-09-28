@@ -33,26 +33,41 @@
     // reload前に素早く連続ドラッグされた場合の二重全件取得・二重送信を防ぐガード。
     var swapInProgress = false;
 
+    // ⚠️ ajaxPrefilter（画面上の全Ajax共通のフック）から直接呼ばれるため、
+    // 不正な%エスケープ列でdecodeURIComponentがthrowしても全体をtry/catchで囲み、
+    // ここで処理失敗を吸収する（空オブジェクトを返し、以降はrecordId/dateFieldKey不在として
+    // 通常のリクエストをそのまま通す）。他のAjax通信を巻き込んで止めないためのガード。
     function parseFormData(data) {
         var result = {};
-        if (typeof data === 'string') {
-            data.split('&').forEach(function (pair) {
-                if (!pair) { return; }
-                var idx = pair.indexOf('=');
-                var key = decodeURIComponent(idx === -1 ? pair : pair.slice(0, idx));
-                var value = idx === -1 ? '' : decodeURIComponent(pair.slice(idx + 1).replace(/\+/g, ' '));
-                result[key] = value;
-            });
-        } else if (data && typeof data === 'object') {
-            $.extend(result, data);
+        try {
+            if (typeof data === 'string') {
+                data.split('&').forEach(function (pair) {
+                    if (!pair) { return; }
+                    var idx = pair.indexOf('=');
+                    var rawKey = idx === -1 ? pair : pair.slice(0, idx);
+                    var rawValue = idx === -1 ? '' : pair.slice(idx + 1);
+                    var key = decodeURIComponent(rawKey.replace(/\+/g, ' '));
+                    var value = decodeURIComponent(rawValue.replace(/\+/g, ' '));
+                    result[key] = value;
+                });
+            } else if (data && typeof data === 'object') {
+                $.extend(result, data);
+            }
+        } catch (e) {
+            console.warn('[calendar_swap_on_drop] リクエストデータの解析に失敗したため入れ替え判定をスキップします', e);
+            return {};
         }
         return result;
     }
 
+    // ⚠️ new Date(value)でパースしてgetFullYear/getMonth/getDate（ローカルタイムゾーン）を
+    // 使うと、value側にZ（UTC）サフィックスが付いている場合に日本時間の深夜帯で日付が±1ずれる
+    // （holiday_setting.js:54と同様、文字列の先頭10文字を直接切り出しタイムゾーン変換を経由しない）
     function toDateKey(value) {
-        var d = new Date(value);
-        if (isNaN(d.getTime())) { return null; }
-        return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+        if (typeof value !== 'string') { return null; }
+        var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(value);
+        if (!m) { return null; }
+        return m[1] + '-' + m[2] + '-' + m[3];
     }
 
     function findDateFieldKey(fields) {
@@ -83,8 +98,16 @@
         var dateFieldKey = findDateFieldKey(fields);
         if (!recordId || !dateFieldKey) { return; }
 
-        // 元のリクエストはここで中止し、衝突確認後に自分たちで送り直す
-        options.beforeSend = function () { return false; };
+        // 元のリクエストはここで中止し、衝突確認後に自分たちで送り直す。
+        // ⚠️ Pleasanter本体がbeforeSendでCSRFトークン等のヘッダ注入を行っている場合に備え、
+        // 元のbeforeSendを保持して先に呼び出してから中止する（無条件上書きで握りつぶさない）
+        var originalBeforeSend = options.beforeSend;
+        options.beforeSend = function (jqXHR, settings) {
+            if (typeof originalBeforeSend === 'function') {
+                originalBeforeSend.call(this, jqXHR, settings);
+            }
+            return false;
+        };
 
         if (swapInProgress) {
             // 直前のドラッグの衝突判定（全件取得〜reload）がまだ終わっていない。

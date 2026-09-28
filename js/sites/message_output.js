@@ -12,9 +12,16 @@
  * @param {string} message 表示するメッセージ
  */
 function outLog(css, message){
+    // このファイルはmanifest未登録・個別サイトへの手貼り運用のため、
+    // js/common/utils.jsが同じサイトに読み込まれていない場合に備えフォールバックを持つ
+    var escape = typeof window.escapeHtml === "function"
+        ? window.escapeHtml
+        : function (s) { return String(s).replace(/[&<>"']/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[c];
+        }); };
     $p.setMessage("#Message", JSON.stringify({
         Css:css,
-        Text:message
+        Text:escape(message)
     }));
 }
 

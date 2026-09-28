@@ -168,7 +168,13 @@
         data.sort(function (a, b) {
             var guidA = String(a.Guid || '').toUpperCase();
             var guidB = String(b.Guid || '').toUpperCase();
-            return order.indexOf(guidA) - order.indexOf(guidB);
+            // DOM側(order)に存在しないGuid（データ側にのみ残る要素）はindexOfが-1になり
+            // 常に先頭へ来てしまうため、そのような要素は末尾扱いにするフォールバックを入れる
+            var posA = order.indexOf(guidA);
+            var posB = order.indexOf(guidB);
+            if (posA === -1) { posA = order.length; }
+            if (posB === -1) { posB = order.length; }
+            return posA - posB;
         });
 
         $input.val(JSON.stringify(data)).trigger('change');
@@ -226,9 +232,11 @@
     function startDragging($item) {
         $dragging = $item;
         $item.addClass('is-dragging');
-        suppressNextClick = true;
     }
 
+    // ⚠️ 長押し確定＝ドラッグ開始ではなく、実際に要素の並び替えが発生した時点で
+    // suppressNextClickを立てる。動かさず指を離した場合は通常のクリック（プレビュー起動等）を
+    // 握り潰さないようにするため
     function handleDragMove(e) {
         var point = getPoint(e);
         var el = document.elementFromPoint(point.x, point.y);
@@ -246,6 +254,7 @@
         } else {
             $target.before($dragging);
         }
+        suppressNextClick = true;
     }
 
     // B-8: document.elementFromPoint()はレイアウトを強制読み取りするため、mousemoveのたびに
