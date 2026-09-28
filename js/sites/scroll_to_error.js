@@ -177,5 +177,14 @@
             $(this).closest('.field-has-error').removeClass('field-has-error field-error-dismissed');
         });
 
+        // required属性等によるブラウザ標準のconstraint validationは、こちらのカスタム表示
+        // （label.error・.field-has-errorの赤背景）と役割が重複するうえ、ブラウザによっては
+        // 他の項目をクリックした瞬間に未入力必須項目へ強制的にフォーカスを戻してしまい、
+        // ユーザーがエラー項目から離れられなくなる（実機確認済み）。'invalid'イベントは
+        // バブリングしないためcaptureフェーズで拾い、preventDefault()でこの標準UIを無効化する
+        document.addEventListener('invalid', function (e) {
+            e.preventDefault();
+        }, true);
+
     });
 })();
