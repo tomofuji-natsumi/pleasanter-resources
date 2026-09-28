@@ -22,6 +22,22 @@
     // 他の項目にフォーカスを移せなくなる不具合が発生していた（実機確認済み）。
     window.once('scrollToError', function () {
 
+        // jQuery Validateには、無効な項目が残っている間はフォーム全体を再検証するたびに
+        // 最初の無効項目へ強制的にフォーカスし直す設定（focusInvalid、既定でtrue）がある。
+        // これはブラウザ標準のconstraint validation（'invalid'イベント）とは別物で、
+        // preventDefault()では止められない。他の項目をクリック→blur→フォーム全体を
+        // 再検証、という流れの中でこれが働き、エラー項目から離れられなくなっていた
+        // （実機確認済み）。エラー内容自体はこちらのlabel.error/.field-has-errorベースの
+        // 表示で既にユーザーに伝えているため、この自動フォーカスは無効化する。
+        function disableValidatorAutoFocus() {
+            $('form').each(function () {
+                var validator = $(this).data('validator');
+                if (validator && validator.settings) {
+                    validator.settings.focusInvalid = false;
+                }
+            });
+        }
+
         // 前回マーキング分をクリアしてから再マーキングする（クリアせずに追記すると、
         // 修正済みで解消されたエラーのハイライトが残り続けてしまう）
         function clearErrorMarks() {
@@ -42,6 +58,7 @@
         }
 
         function markErrorFields() {
+            disableValidatorAutoFocus();
             clearErrorMarks();
 
             getActiveErrors().each(function () {
