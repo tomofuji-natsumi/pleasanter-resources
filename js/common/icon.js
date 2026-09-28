@@ -233,7 +233,11 @@
     // （ready/pjax:complete からの直接呼び出し時は未指定＝document全体を対象にする）
     function runIconApply(changedRoots) {
         mergeCustomDefs();
-        applyIcons(allDefs, changedRoots);
+        // $(document).ready(runIconApply)・$(document).on("pjax:complete", runIconApply)の
+        // ようにイベントハンドラとして直接登録しているため、呼び出し元次第でjQueryEventや
+        // jQuery関数自体（どちらも.lengthを持つがiterableではない）が渡ってくることがある。
+        // 配列（dom_watcher.jsのpendingAdded）以外はroots未指定＝全体スキャン扱いにする
+        applyIcons(allDefs, Array.isArray(changedRoots) ? changedRoots : undefined);
     }
 
     // ===============================
