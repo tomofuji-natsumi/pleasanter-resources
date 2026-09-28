@@ -813,6 +813,23 @@ button:has(.extra-material-icons):active {
 	gap: 0.8em;
 }
 
+
+/* =========================================================
+   タブ内バリデーションエラー（js/sites/scroll_to_error.js が .ui-tab-has-error を付与）
+   非アクティブタブの裏に隠れたエラーに気付けるよう、タブ名の後ろに赤丸バッジを出す
+   ========================================================= */
+
+.ui-tabs .ui-tabs-nav li.ui-tab-has-error .ui-tabs-anchor::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-left: 6px;
+    border-radius: 50%;
+    background: var(--semantic-danger);
+    vertical-align: middle;
+}
+
 /* ----- common/editor_layout.css ----- */
 /* =========================================================
    エディター（コンテナ）
@@ -1211,6 +1228,35 @@ span.flatpickr-weekday {
 .flatpickr-day.notAllowed.prevMonthDay,
 .flatpickr-day.notAllowed.nextMonthDay {
     color: var(--text-other-month);
+}
+
+
+/* =========================================================
+   バリデーションエラー（js/sites/scroll_to_error.js が .field-has-error を付与）
+   ========================================================= */
+
+.field-has-error .field-control input,
+.field-has-error .field-control select,
+.field-has-error .field-control textarea,
+.field-has-error .control-dropdown,
+.field-has-error .control-markdown,
+.field-has-error .ui-widget.ui-state-default.ui-multiselect,
+.field-has-error .check-option .check-icon {
+    border: 1px solid var(--semantic-danger-border) !important;
+    background-color: var(--semantic-danger-light) !important;
+}
+
+/* クリックで一時的に解除した状態（js側で.field-error-dismissedを付与）。
+   エラー自体は解消していないため、次回のmarkErrorFields実行時（保存クリック等）で見た目は復活する */
+.field-has-error.field-error-dismissed .field-control input,
+.field-has-error.field-error-dismissed .field-control select,
+.field-has-error.field-error-dismissed .field-control textarea,
+.field-has-error.field-error-dismissed .control-dropdown,
+.field-has-error.field-error-dismissed .control-markdown,
+.field-has-error.field-error-dismissed .ui-widget.ui-state-default.ui-multiselect,
+.field-has-error.field-error-dismissed .check-option .check-icon {
+    border: 1px solid var(--border-normal) !important;
+    background-color: var(--surface-base) !important;
 }
 
 

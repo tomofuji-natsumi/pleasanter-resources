@@ -413,6 +413,19 @@ span.flatpickr-weekday {
     background-color: var(--semantic-danger-light) !important;
 }
 
+/* クリックで一時的に解除した状態（js側で.field-error-dismissedを付与）。
+   エラー自体は解消していないため、次回のmarkErrorFields実行時（保存クリック等）で見た目は復活する */
+.field-has-error.field-error-dismissed .field-control input,
+.field-has-error.field-error-dismissed .field-control select,
+.field-has-error.field-error-dismissed .field-control textarea,
+.field-has-error.field-error-dismissed .control-dropdown,
+.field-has-error.field-error-dismissed .control-markdown,
+.field-has-error.field-error-dismissed .ui-widget.ui-state-default.ui-multiselect,
+.field-has-error.field-error-dismissed .check-option .check-icon {
+    border: 1px solid var(--border-normal) !important;
+    background-color: var(--surface-base) !important;
+}
+
 
 /* =========================================================
    Readonly（読取専用スタイル）

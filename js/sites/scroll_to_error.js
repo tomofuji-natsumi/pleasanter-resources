@@ -6,7 +6,8 @@
 // （css/common/base.css の label.error 定義済みスタイルより確認）。
 // この仕組みを利用し、保存操作の直後に
 //   1. 最初のエラー項目まで自動スクロール＋フォーカス
-//   2. どの項目がエラーかひと目で分かるよう、入力欄自体に赤枠を付与（css/common/editor_layout.css の .field-has-error）
+//   2. どの項目がエラーかひと目で分かるよう、入力欄自体に赤背景を付与（css/common/editor_layout.css の .field-has-error）
+//      クリックで一時的に非表示（.field-error-dismissed）、入力で完全に解除する
 //   3. タブ分割された画面でエラーがタブの裏に隠れている場合、該当タブに赤丸バッジを表示（css/common/tabs.css の .ui-tab-has-error）
 // を行う。
 //
@@ -102,30 +103,55 @@
         root: 'label.error'
     });
 
-    // 保存クリック後、Pleasanter自身のバリデーションによるDOM変更（エラーラベルの生成・
-    // 末尾フィールドへのfocus等）が一定時間止まるのを待ってから、最初のエラーへ
-    // スクロール・フォーカス・タブ切替を1回だけ行う。setTimeout固定だと、Pleasanter側の
-    // 処理がその後も続いていた場合に上書きされてしまうため、監視を使う。
-    function waitForValidationThenScroll() {
-        var timer = null;
-        var observer = new MutationObserver(function () {
-            clearTimeout(timer);
-            timer = setTimeout(finish, 150);
-        });
-
-        function finish() {
-            observer.disconnect();
+    // 保存クリック後、Pleasanter自身のバリデーション処理（エラーラベルの生成・末尾フィールドへの
+    // focus等）が終わるのを一定時間待ってから、最初のエラーへスクロール・フォーカス・タブ切替を
+    // 1回だけ行う。
+    //
+    // ⚠️ 以前はdocument.body全体を監視するMutationObserverで「DOM変更が止まるまで」待つ
+    // 実装にしていたが、保存後にユーザーが手動でタブを切り替える操作自体もDOM変更として
+    // 拾ってしまい、そのたびに監視期間が延長→最初のエラータブへ強制的に戻される、という形で
+    // タブ移動ができなくなる不具合を起こした（実機確認済み）。そのため単純な固定遅延に戻し、
+    // 保存クリック時に1回だけ実行する（連打時は前回分をキャンセルして最新の1回だけ実行する）。
+    // markErrorFieldsは常時監視(__pleasanterWatch)にも乗せているが、それはあくまで
+    // 「label.errorのDOM変更をたまたま検知できたら」の保険に過ぎない。同じ文言へのエラー
+    // メッセージ書き換えなどでmutationが発生しない・拾われないケースもあり得るため、
+    // 保存クリック時は確実性を優先してここで明示的にmarkErrorFieldsを呼び直してから
+    // スクロールする（これが無いと、2回目以降の保存で新しいエラー箇所のハイライトが
+    // 更新されないまま古い状態を見せてしまう恐れがある）。
+    var scrollTimer = null;
+    $(document).on('click', '#CreateCommand, #UpdateCommand', function () {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () {
+            markErrorFields();
             scrollToFirstError();
-        }
-
-        observer.observe(document.body, { childList: true, subtree: true });
-        // 保存後にDOM変更が全く起きないケースの保険
-        timer = setTimeout(finish, 150);
-    }
-
-    $(document).on('click', '#CreateCommand, #UpdateCommand', waitForValidationThenScroll);
+        }, 200);
+    });
 
     // ページ読み込み時点で既にエラーが表示されているケース（サーバー側バリデーション等）にも対応
     markErrorFields();
     scrollToFirstError();
+
+    // ハイライトの解除操作は、入力欄そのもの（ラベル文字列やフィールドの余白は対象外）への
+    // 操作に限定する。.field全体をクリック対象にすると、エラーメッセージや項目名ラベルを
+    // クリックしただけでも解除されてしまい、「クリック＝入力欄を操作した」という意図から外れるため
+    var ERROR_CONTROL_SELECTOR =
+        '.field-has-error .field-control input, ' +
+        '.field-has-error .field-control select, ' +
+        '.field-has-error .field-control textarea, ' +
+        '.field-has-error .control-dropdown, ' +
+        '.field-has-error .ui-widget.ui-state-default.ui-multiselect, ' +
+        '.field-has-error .check-option .check-icon';
+
+    // クリック: ハイライトを一時的に非表示にする（エラー追跡自体は.field-has-errorとして
+    // 保持したままなので、何も修正せず離れた場合は次回の保存クリック時に見た目が復活する）
+    $(document).on('click', ERROR_CONTROL_SELECTOR, function () {
+        $(this).closest('.field-has-error').addClass('field-error-dismissed');
+    });
+
+    // 入力: Pleasanter側の再検証（blur等）を待たず、その場で完全に解除する。
+    // ただし実際にはまだ不正な値のままのケースもあるため、ここでの解除はあくまで即時の
+    // 見た目のフィードバックであり、最終的な正誤判定は保存クリック時のmarkErrorFieldsが行う
+    $(document).on('input change', ERROR_CONTROL_SELECTOR, function () {
+        $(this).closest('.field-has-error').removeClass('field-has-error field-error-dismissed');
+    });
 })();
