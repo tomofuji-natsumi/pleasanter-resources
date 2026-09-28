@@ -1,5 +1,12 @@
 // ===============================
 //
+// ⚠️ 現在無効化中（js/manifest_site.json の Edit から本ファイルの記載を削除済み）。
+// 保存後、他フィールドをクリックしてもエラー項目へフォーカスが戻り続けて操作不能になる
+// 不具合が解消できなかったため、一旦呼び出しを止めている。ファイル自体は残しているので、
+// 再度有効化する場合は manifest_site.json の Edit 配列に "sites/scroll_to_error.js" を
+// 書き戻す。css/common/editor_layout.css・css/common/tabs.css 側の
+// .field-has-error / .ui-tab-has-error 用スタイルは無効化に伴う実害が無いためそのまま残している。
+//
 // 必須未入力項目へのスクロール誘導＋視認性強化（新規作成・編集画面）
 //
 // Pleasanterはバリデーションエラー時、対象フィールドの近くに<label class="error" for="対象のid">を生成する
