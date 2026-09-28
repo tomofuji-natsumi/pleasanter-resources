@@ -103,28 +103,42 @@
         root: 'label.error'
     });
 
-    // 保存クリック後、Pleasanter自身のバリデーション処理（エラーラベルの生成・末尾フィールドへの
-    // focus等）が終わるのを一定時間待ってから、最初のエラーへスクロール・フォーカス・タブ切替を
-    // 1回だけ行う。
+    // 保存クリック後、Pleasanter自身のバリデーション処理（エラーラベルの生成・タブ切替・末尾
+    // フィールドへのfocus等）が終わったら、最初のエラーへスクロール・フォーカス・タブ切替を1回だけ行う。
     //
-    // ⚠️ 以前はdocument.body全体を監視するMutationObserverで「DOM変更が止まるまで」待つ
-    // 実装にしていたが、保存後にユーザーが手動でタブを切り替える操作自体もDOM変更として
-    // 拾ってしまい、そのたびに監視期間が延長→最初のエラータブへ強制的に戻される、という形で
-    // タブ移動ができなくなる不具合を起こした（実機確認済み）。そのため単純な固定遅延に戻し、
-    // 保存クリック時に1回だけ実行する（連打時は前回分をキャンセルして最新の1回だけ実行する）。
-    // markErrorFieldsは常時監視(__pleasanterWatch)にも乗せているが、それはあくまで
-    // 「label.errorのDOM変更をたまたま検知できたら」の保険に過ぎない。同じ文言へのエラー
-    // メッセージ書き換えなどでmutationが発生しない・拾われないケースもあり得るため、
-    // 保存クリック時は確実性を優先してここで明示的にmarkErrorFieldsを呼び直してから
-    // スクロールする（これが無いと、2回目以降の保存で新しいエラー箇所のハイライトが
-    // 更新されないまま古い状態を見せてしまう恐れがある）。
-    var scrollTimer = null;
+    // ⚠️ 以前はsetTimeoutで固定時間（200ms）待ってから実行していたが、これだと
+    //   1. Pleasanter自身がエラーの中の最後の項目のタブへ切り替える（実機で確認: 例えばタブ1を
+    //      見ている状態で保存すると、一瞬タブ2に切り替わる）
+    //   2. ブラウザがその状態を描画する
+    //   3. 200ms後にこちらの処理が動き、正しいタブ（最初にエラーがあるタブ）へ戻す
+    //   4. ブラウザがもう一度描画する
+    // という2回描画になり、「一瞬別タブが見えてから戻る」チラつきの原因になっていた（実機確認済み）。
+    //
+    // MutationObserverのコールバックはマイクロタスクとして、現在の同期処理が終わった直後・
+    // ブラウザが再描画する前に呼ばれる仕様のため、setTimeoutを使わずここで直接エラー内容を
+    // 確定させて操作すれば、Pleasander自身の変更とこちらの訂正が同じ描画に収まり、
+    // 中間状態（誤ったタブ）が画面に出ないまま最終状態だけが表示される。
+    // そのため、最初に検知したDOM変更（＝Pleasanter側の一連の処理が生んだひとかたまりの変更）
+    // だけを見て即座に確定させ、確認後はただちにdisconnectして以降のDOM変更（ユーザーの
+    // 手動タブ操作等）には反応しないようにする（タブ移動が固まる不具合の再発防止）。
     $(document).on('click', '#CreateCommand, #UpdateCommand', function () {
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(function () {
+        var settled = false;
+        var fallbackTimer;
+
+        function finish() {
+            if (settled) { return; }
+            settled = true;
+            clearTimeout(fallbackTimer);
+            observer.disconnect();
             markErrorFields();
             scrollToFirstError();
-        }, 200);
+        }
+
+        var observer = new MutationObserver(finish);
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        // 何らかの事情でDOM変更が観測できなかった場合の保険（保存成功等で画面遷移した場合など）
+        fallbackTimer = setTimeout(finish, 3000);
     });
 
     // ページ読み込み時点で既にエラーが表示されているケース（サーバー側バリデーション等）にも対応
