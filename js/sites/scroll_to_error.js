@@ -63,8 +63,6 @@
     }
 
     function scrollToFirstError() {
-        markErrorFields();
-
         // 非アクティブなタブの中の項目は:visibleでは拾えないため、getActiveErrors()で
         // 全体から探し、対象タブが非アクティブならこちらでアクティブ化してから
         // スクロール・フォーカスする
@@ -91,17 +89,43 @@
         }
     }
 
-    // 保存操作の直後、Pleasanter自身のバリデーション処理は各フィールドを順番に検証し、
-    // 最後に検証した（＝末尾の）エラー項目にfocusを当てて完了する。固定のsetTimeoutで
-    // 先に自分がfocusを当てても、その後にPleasanter側の処理が末尾フィールドへ再focusして
-    // 上書きしてしまうため、「label.errorに関するDOM変更が一定時間止まったら実行する」
-    // dom_watcher.jsのデバウンス機構を使い、Pleasanter側の処理完了を待ってから実行する。
-    window.__pleasanterWatch(scrollToFirstError, {
+    // markErrorFields（ハイライト付け替えのみ）はDOM変更のたびに何度実行しても副作用が無いため、
+    // dom_watcher.jsの常時監視に乗せてよい。
+    // 一方scrollToFirstError（スクロール・フォーカス・タブ切替）はtabs('option','active',...)自体が
+    // label.errorを含むタブパネルの属性・表示状態を変える＝常時監視のroot条件に再度マッチしてしまい、
+    // 「切り替えたタブがまた監視に引っかかって呼び直される」無限の呼び直しループ
+    // （体感上は「一瞬別タブへ移動してから最初のタブに戻る」ような挙動になる）を起こすため、
+    // 常時監視には乗せず、保存クリックのたびに一度だけ実行する一回限りの監視で待ち受ける。
+    window.__pleasanterWatch(markErrorFields, {
         delay: 150,
-        guard: 'scrollToError',
+        guard: 'markErrorFields',
         root: 'label.error'
     });
 
+    // 保存クリック後、Pleasanter自身のバリデーションによるDOM変更（エラーラベルの生成・
+    // 末尾フィールドへのfocus等）が一定時間止まるのを待ってから、最初のエラーへ
+    // スクロール・フォーカス・タブ切替を1回だけ行う。setTimeout固定だと、Pleasanter側の
+    // 処理がその後も続いていた場合に上書きされてしまうため、監視を使う。
+    function waitForValidationThenScroll() {
+        var timer = null;
+        var observer = new MutationObserver(function () {
+            clearTimeout(timer);
+            timer = setTimeout(finish, 150);
+        });
+
+        function finish() {
+            observer.disconnect();
+            scrollToFirstError();
+        }
+
+        observer.observe(document.body, { childList: true, subtree: true });
+        // 保存後にDOM変更が全く起きないケースの保険
+        timer = setTimeout(finish, 150);
+    }
+
+    $(document).on('click', '#CreateCommand, #UpdateCommand', waitForValidationThenScroll);
+
     // ページ読み込み時点で既にエラーが表示されているケース（サーバー側バリデーション等）にも対応
+    markErrorFields();
     scrollToFirstError();
 })();
