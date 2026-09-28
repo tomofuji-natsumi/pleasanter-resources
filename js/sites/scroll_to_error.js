@@ -21,10 +21,22 @@
         $('.ui-tab-has-error').removeClass('ui-tab-has-error');
     }
 
+    // 現在実際にエラーメッセージを表示している label.error だけを取得する。
+    // 非アクティブタブ内の項目も拾うため:visibleでは絞り込めないが、
+    // Pleasanterは項目が有効になった後もlabel.error要素自体は空文字のままDOMに
+    // 残すことがあるため、代わりにテキスト内容の有無で判定する
+    // （空文字のまま残ったものまで拾うと、実際にはエラーの無いタブへ
+    // 一瞬切り替わってから戻る、といった誤動作の原因になる）
+    function getActiveErrors() {
+        return $('label.error').filter(function () {
+            return $.trim(this.textContent) !== '';
+        });
+    }
+
     function markErrorFields() {
         clearErrorMarks();
 
-        $('label.error').each(function () {
+        getActiveErrors().each(function () {
             var $error = $(this);
             var forId = $error.attr('for');
             var target = forId ? document.getElementById(forId) : null;
@@ -53,12 +65,10 @@
     function scrollToFirstError() {
         markErrorFields();
 
-        // label.errorはPleasanterがバリデーション時に全項目分生成するため、非アクティブな
-        // タブの中の項目も:hidden化されずDOM上に残る場合がある。そのため最初の1件は
-        // :visibleに絞らず全体から探し、対象タブが非アクティブならこちらでアクティブ化してから
-        // スクロール・フォーカスする（visibleのみで探すと、先頭のタブに隠れたエラーを
-        // 見逃して後続タブの:visibleなエラーに飛んでしまう）
-        var $error = $('label.error').first();
+        // 非アクティブなタブの中の項目は:visibleでは拾えないため、getActiveErrors()で
+        // 全体から探し、対象タブが非アクティブならこちらでアクティブ化してから
+        // スクロール・フォーカスする
+        var $error = getActiveErrors().first();
         if (!$error.length) { return; }
 
         var $panel = $error.closest('.ui-tabs-panel');
