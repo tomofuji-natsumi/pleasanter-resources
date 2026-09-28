@@ -74,3 +74,20 @@
     margin: 4px 0 !important;
 	gap: 0.8em;
 }
+
+
+/* =========================================================
+   タブ内バリデーションエラー（js/sites/scroll_to_error.js が .ui-tab-has-error を付与）
+   非アクティブタブの裏に隠れたエラーに気付けるよう、タブ名の後ろに赤丸バッジを出す
+   ========================================================= */
+
+.ui-tabs .ui-tabs-nav li.ui-tab-has-error .ui-tabs-anchor::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-left: 6px;
+    border-radius: 50%;
+    background: var(--semantic-danger);
+    vertical-align: middle;
+}

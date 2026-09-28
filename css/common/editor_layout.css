@@ -399,6 +399,22 @@ span.flatpickr-weekday {
 
 
 /* =========================================================
+   バリデーションエラー（js/sites/scroll_to_error.js が .field-has-error を付与）
+   ========================================================= */
+
+.field-has-error .field-control input,
+.field-has-error .field-control select,
+.field-has-error .field-control textarea,
+.field-has-error .control-dropdown,
+.field-has-error .control-markdown,
+.field-has-error .ui-widget.ui-state-default.ui-multiselect,
+.field-has-error .check-option .check-icon {
+    border: 1px solid var(--semantic-danger-border) !important;
+    background-color: var(--semantic-danger-light) !important;
+}
+
+
+/* =========================================================
    Readonly（読取専用スタイル）
    ========================================================= */
 
