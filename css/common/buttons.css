@@ -15,9 +15,14 @@
 }
 
 .button-negative {
-    background-color: var(--semantic-danger) !important;
+    background-color: var(--btn-danger-bg) !important;
     color: var(--text-on-primary) !important;
     border-color: var(--semantic-danger-border) !important;
+}
+
+/* hover は背景のみ変える。枠線を変えると .ui-button の透明枠より詳細度が高く、hover 時だけ枠が現れるため */
+.button-negative:hover {
+    background-color: var(--btn-danger-bg-hover) !important;
 }
 
 .button-positive {
@@ -28,7 +33,6 @@
 
 .button-positive:hover {
     background-color: var(--primary-hover) !important;
-    border-color: var(--primary-hover) !important;
 }
 
 .button-neutral {
@@ -39,7 +43,6 @@
 
 .button-neutral:hover {
     background-color: var(--btn-dark-bg-hover) !important;
-    border-color: var(--btn-dark-bg-hover) !important;
 }
 
 .material-symbols-outlined:not(.md-btn-icon) {
@@ -172,4 +175,26 @@ button:has(.extra-material-icons):focus {
 button:has(.extra-material-icons):hover,
 button:has(.extra-material-icons):active {
     background: var(--btn-extra-bg-hover) !important;
+}
+
+/* output */
+button:has(.output-material-icons),
+button:has(.output-material-icons):focus {
+    background: var(--btn-output-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.output-material-icons):hover,
+button:has(.output-material-icons):active {
+    background: var(--btn-output-bg-hover) !important;
+}
+
+/* confirm */
+button:has(.confirm-material-icons),
+button:has(.confirm-material-icons):focus {
+    background: var(--btn-confirm-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.confirm-material-icons):hover,
+button:has(.confirm-material-icons):active {
+    background: var(--btn-confirm-bg-hover) !important;
 }

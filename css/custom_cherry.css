@@ -156,7 +156,7 @@
     --btn-dark-bg-hover: #333;
 
     --btn-danger-bg: var(--semantic-danger);
-    --btn-danger-bg-hover: oklch(from var(--semantic-danger) calc(l - 0.08) c h);
+    --btn-danger-bg-hover: oklch(from var(--btn-danger-bg) calc(l - 0.06) c h);
 
     /* Green → execute */
     --btn-execute-bg:       oklch(from var(--primary) calc(l + 0.01) calc(c + 0.00) 175);
@@ -171,8 +171,16 @@
     --btn-notify-bg-hover:  oklch(from var(--primary) calc(l + 0.00) calc(c + 0.03) 55);
 
     /* Pink → extra */
-    --btn-extra-bg:         oklch(from var(--primary) calc(l + 0.09) calc(c - 0.03) 350);
-    --btn-extra-bg-hover:   oklch(from var(--primary) calc(l + 0.03) calc(c - 0.03) 350);
+    --btn-extra-bg:         oklch(from var(--primary) calc(l + 0.05) calc(c + 0.00) 350);
+    --btn-extra-bg-hover:   oklch(from var(--primary) calc(l - 0.01) calc(c + 0.00) 350);
+
+    /* Output → 出力（ダウンロード・エクスポート・印刷） */
+    --btn-output-bg:           oklch(from var(--primary) calc(l + 0.015) calc(c + 0.00) 220);
+    --btn-output-bg-hover:     oklch(from var(--primary) calc(l - 0.045) calc(c + 0.00) 220);
+
+    /* Green → confirm（確定・登録） */
+    --btn-confirm-bg:          oklch(from var(--primary) calc(l + 0.06) calc(c - 0.02) 135);
+    --btn-confirm-bg-hover:    oklch(from var(--primary) calc(l + 0.00) calc(c - 0.02) 135);
 
         /* =========================================================
        8. ステータス
@@ -412,9 +420,14 @@ img {
 }
 
 .button-negative {
-    background-color: var(--semantic-danger) !important;
+    background-color: var(--btn-danger-bg) !important;
     color: var(--text-on-primary) !important;
     border-color: var(--semantic-danger-border) !important;
+}
+
+/* hover は背景のみ変える。枠線を変えると .ui-button の透明枠より詳細度が高く、hover 時だけ枠が現れるため */
+.button-negative:hover {
+    background-color: var(--btn-danger-bg-hover) !important;
 }
 
 .button-positive {
@@ -425,7 +438,6 @@ img {
 
 .button-positive:hover {
     background-color: var(--primary-hover) !important;
-    border-color: var(--primary-hover) !important;
 }
 
 .button-neutral {
@@ -436,7 +448,6 @@ img {
 
 .button-neutral:hover {
     background-color: var(--btn-dark-bg-hover) !important;
-    border-color: var(--btn-dark-bg-hover) !important;
 }
 
 .material-symbols-outlined:not(.md-btn-icon) {
@@ -569,6 +580,28 @@ button:has(.extra-material-icons):focus {
 button:has(.extra-material-icons):hover,
 button:has(.extra-material-icons):active {
     background: var(--btn-extra-bg-hover) !important;
+}
+
+/* output */
+button:has(.output-material-icons),
+button:has(.output-material-icons):focus {
+    background: var(--btn-output-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.output-material-icons):hover,
+button:has(.output-material-icons):active {
+    background: var(--btn-output-bg-hover) !important;
+}
+
+/* confirm */
+button:has(.confirm-material-icons),
+button:has(.confirm-material-icons):focus {
+    background: var(--btn-confirm-bg) !important;
+    color: var(--text-white) !important;
+}
+button:has(.confirm-material-icons):hover,
+button:has(.confirm-material-icons):active {
+    background: var(--btn-confirm-bg-hover) !important;
 }
 
 /* ----- common/header.css ----- */

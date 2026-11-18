@@ -13,9 +13,19 @@
     // ===============================
     // 1. アイコンマップ定義
     //    各エントリは { s: selector, c: color, i: icon } の形式
-    //    color: "display" | "primary" | "dark" | "light" | "danger" | 
+    //    color: "display" | "primary" | "dark" | "light" | "danger" |
+    //           "execute" | "confirm" | "approve" | "notify" | "output" | "extra"
     // ===============================
     const ICON_DEFS = [
+
+        // --- 共通（先頭に置く） ---
+        // applyIcons は先に一致した定義を優先する（適用済み要素は後続を無視）。
+        // #OpenCopyDialogCommand 等の primary 定義にも同じ data-icon が付くため、
+        // （コピー: ui-icon-copy / インポート: ui-icon-arrowreturnthick-1-e / エクスポート: -1-w）
+        // 色を統一するには primary 定義より前に置く必要がある。
+        { s: "[data-icon='ui-icon-copy']",                                              c: "confirm", i: "content_copy" },
+        { s: "[data-icon='ui-icon-arrowreturnthick-1-e']",                              c: "confirm", i: "move_to_inbox" },
+        { s: "[data-icon='ui-icon-arrowreturnthick-1-w']",                              c: "output",  i: "table_view" },
 
         // --- display ---
         { s: "#ReduceGuides",                                                           c: "display", i: "expand_more" },
@@ -111,9 +121,13 @@
         
         // --- execute ---
 
+        // --- confirm ---
+
         // --- approve ---
 
         // --- notify ---
+
+        // --- output ---
 
         // --- extra ---
 
@@ -128,8 +142,10 @@
         danger:  "danger-material-icons",
 
         execute: "execute-material-icons",
+        confirm: "confirm-material-icons",
         approve: "approve-material-icons",
         notify:  "notify-material-icons",
+        output:  "output-material-icons",
         extra:   "extra-material-icons",
     };
 

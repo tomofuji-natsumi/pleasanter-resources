@@ -151,7 +151,7 @@
     --btn-dark-bg-hover: #333;
 
     --btn-danger-bg: var(--semantic-danger);
-    --btn-danger-bg-hover: oklch(from var(--semantic-danger) calc(l - 0.08) c h);
+    --btn-danger-bg-hover: oklch(from var(--btn-danger-bg) calc(l - 0.06) c h);
 
     /* Green → execute */
     --btn-execute-bg:       oklch(from var(--primary) calc(l + 0.01) calc(c + 0.00) 175);
@@ -166,8 +166,16 @@
     --btn-notify-bg-hover:  oklch(from var(--primary) calc(l + 0.00) calc(c + 0.03) 55);
 
     /* Pink → extra */
-    --btn-extra-bg:         oklch(from var(--primary) calc(l + 0.09) calc(c - 0.03) 350);
-    --btn-extra-bg-hover:   oklch(from var(--primary) calc(l + 0.03) calc(c - 0.03) 350);
+    --btn-extra-bg:         oklch(from var(--primary) calc(l + 0.05) calc(c + 0.00) 350);
+    --btn-extra-bg-hover:   oklch(from var(--primary) calc(l - 0.01) calc(c + 0.00) 350);
+
+    /* Output → 出力（ダウンロード・エクスポート・印刷） */
+    --btn-output-bg:           oklch(from var(--primary) calc(l + 0.015) calc(c + 0.00) 220);
+    --btn-output-bg-hover:     oklch(from var(--primary) calc(l - 0.045) calc(c + 0.00) 220);
+
+    /* Green → confirm（確定・登録） */
+    --btn-confirm-bg:          oklch(from var(--primary) calc(l + 0.06) calc(c - 0.02) 135);
+    --btn-confirm-bg-hover:    oklch(from var(--primary) calc(l + 0.00) calc(c - 0.02) 135);
 
         /* =========================================================
        8. ステータス

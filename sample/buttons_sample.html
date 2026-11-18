@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プロセスボタン サンプル</title>
+<!-- 実CSSをそのまま読む（definition.css のトークン + common/buttons.css の配色ルール） -->
+<link rel="stylesheet" href="../css/definition.css">
+<link rel="stylesheet" href="../css/common/buttons.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+<style>
+  body { margin: 0; padding: 24px 16px; background: var(--bg-main); color: var(--text-main);
+         font-family: "Noto Sans JP","Yu Gothic UI","Meiryo UI",sans-serif; font-size: var(--font-size-base); }
+  main { max-width: 56rem; margin: 0 auto; }
+  h1 { font-size: var(--font-size-2xl); margin: 0 0 8px; }
+  p.note { color: var(--text-sub); margin: 0 0 24px; }
+  section { background: var(--surface-base); border: 1px solid var(--border-normal);
+            border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  h2 { font-size: var(--font-size-md); margin: 0 0 12px; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .item { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+  code { font-size: var(--font-size-xs); color: var(--text-muted); }
+  .ui-button { cursor: pointer; }
+  .pal { display: flex; flex-wrap: wrap; gap: 10px 12px; }
+  .strip { position: relative; height: 28px; margin: 16px 0 48px; border-radius: 6px;
+           background: linear-gradient(90deg in oklch, oklch(0.88 0.06 0), oklch(0.88 0.06 60), oklch(0.88 0.06 120), oklch(0.88 0.06 180), oklch(0.88 0.06 240), oklch(0.88 0.06 300), oklch(0.88 0.06 360)); }
+  .strip i b { position: absolute; top: 26px; left: 50%; transform: translateX(-50%); font-size: var(--font-size-xs);
+               font-weight: var(--font-weight-normal); line-height: var(--line-height-snug); text-align: center; white-space: nowrap; color: var(--text-muted); }
+  .strip i { position: absolute; top: 4px; width: 18px; height: 18px; margin-left: -9px;
+             border-radius: 50%; border: 2px solid var(--surface-base); }
+
+  .grp { display: grid; grid-template-columns: 14rem 1fr; gap: 8px 16px; align-items: center; padding: 10px 0; border-top: 1px solid var(--border-subtle); }
+  .grp:first-of-type { border-top: 0; }
+  .grp-h { display: flex; flex-direction: column; gap: 2px; }
+  .grp-h small { color: var(--text-muted); font-size: var(--font-size-xs); }
+  @media (max-width: 40rem) { .grp { grid-template-columns: 1fr; } }
+  .strip i b { font-style: normal; }
+  .guide h3 { font-size: var(--font-size-base); margin: 16px 0 8px; }
+  .scroll-x { overflow-x: auto; }
+  table.t { border-collapse: collapse; width: 100%; font-size: var(--font-size-sm); }
+  table.t th, table.t td { border: 1px solid var(--border-normal); padding: 6px 10px; text-align: left; vertical-align: top; line-height: var(--line-height-normal); }
+  table.t thead th { background: var(--surface-strong); }
+  table.t tbody th { background: var(--surface-soft); white-space: nowrap; font-weight: var(--font-weight-bold); }
+  table.t td b { font-weight: var(--font-weight-bold); }
+  .chip { display: inline-block; width: 0.8em; height: 0.8em; margin-right: 6px; border-radius: 50%; vertical-align: -0.05em; }
+  .grid-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); gap: 16px 12px; }
+  .grid-list .item { align-items: flex-start; }
+  .grid-list code { overflow-wrap: anywhere; }
+  .grp .pal { gap: 12px 12px; align-items: flex-start; }
+</style>
+</head>
+<body>
+<main>
+  <h1>プロセスボタン サンプル</h1>
+  <p class="note">ボタン内のアイコン span のクラスで配色が決まります（<code>button:has(.xxx-material-icons)</code>）。マウスを載せると hover 色を確認できます。</p>
+
+  <section>
+    <h2>ボタン一覧（definition.css「6. ボタン」の色）</h2>
+    <div class="row grid-list">
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined execute-material-icons">check_circle</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>完了</button><code>.execute-material-icons</code></div>
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined confirm-material-icons">task_alt</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>確定</button><code>.confirm-material-icons</code></div>
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined approve-material-icons">approval</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>承認</button><code>.approve-material-icons</code></div>
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined notify-material-icons">notifications</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>通知</button><code>.notify-material-icons</code></div>
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined extra-material-icons">star</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>その他</button><code>.extra-material-icons</code></div>
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined output-material-icons">download</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>ダウンロード</button><code>.output-material-icons</code></div>
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined primary-material-icons">save</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>保存</button><code>.primary-material-icons</code></div>
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined light-material-icons">close</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>閉じる</button><code>.light-material-icons</code></div>
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined danger-material-icons">delete</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>削除</button><code>.danger-material-icons</code></div>
+      <div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined dark-material-icons">arrow_back</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>戻る</button><code>.dark-material-icons</code></div>
+    </div>
+  </section>
+
+
+  <section>
+    <h2>全体のバランス</h2>
+    <div class="pal">
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined danger-material-icons">delete</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>削除</button>
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined notify-material-icons">notifications</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>通知</button>
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined confirm-material-icons">task_alt</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>確定</button>
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined execute-material-icons">check_circle</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>完了</button>
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined output-material-icons">download</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>ダウンロード</button>
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined primary-material-icons">save</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>保存</button>
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined approve-material-icons">approval</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>承認</button>
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined extra-material-icons">star</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>その他</button>
+    </div>
+    <div class="strip" aria-hidden="true">
+      <i style="left:7%;background:var(--btn-danger-bg)"><b>danger<br>25°</b></i>
+      <i style="left:15.3%;background:var(--btn-notify-bg)"><b>notify<br>55°</b></i>
+      <i style="left:37.5%;background:var(--btn-confirm-bg)"><b>confirm<br>135°</b></i>
+      <i style="left:48.6%;background:var(--btn-execute-bg)"><b>execute<br>175°</b></i>
+      <i style="left:61.1%;background:var(--btn-output-bg)"><b>output<br>220°</b></i>
+      <i style="left:71.7%;background:var(--primary)"><b>primary<br>258°</b></i>
+      <i style="left:83.3%;background:var(--btn-approve-bg)"><b>approve<br>300°</b></i>
+      <i style="left:97.2%;background:var(--btn-extra-bg)"><b>extra<br>350°</b></i>
+    </div>
+        <p class="note" style="margin:8px 0 0">帯は色相の位置（0〜360°）。隣り合う色相差は約 30〜60° で、output は execute と primary の間（約 40° ずつ）に入ります。</p>
+    <p class="note" style="margin:16px 0 8px">無彩色（色相の帯の対象外）</p>
+    <div class="pal">
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined dark-material-icons">arrow_back</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>戻る</button>
+      <button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined light-material-icons">close</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>閉じる</button>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h2>色と文言の対応</h2>
+    <p class="note" style="margin:0 0 8px">色を「動作の意味」に結び付け、同じ意味の文言は同じ色にそろえる案です。紫・オレンジは現状の色のまま、文言だけ足しています。</p>
+      <div class="grp"><div class="grp-h"><strong>主ボタン（青）</strong><small>画面の主目的。1画面に原則1つ</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined primary-material-icons">save</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>保存</button><code>save</code></div></div></div>
+      <div class="grp"><div class="grp-h"><strong>実行系（ティール）</strong><small>処理を進める・成果物を出す</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined execute-material-icons">check_circle</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>完了</button><code>check_circle</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined execute-material-icons">receipt_long</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>発行</button><code>receipt_long</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined execute-material-icons">autorenew</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>再発行</button><code>autorenew</code></div></div></div>
+      <div class="grp"><div class="grp-h"><strong>承認系（紫）※現状維持</strong><small>承認者へ回す・判断を受ける</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined approve-material-icons">approval</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>承認</button><code>approval</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined approve-material-icons">edit_document</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>申請</button><code>edit_document</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined approve-material-icons">upload_file</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>提出</button><code>upload_file</code></div></div></div>
+      <div class="grp"><div class="grp-h"><strong>通知系（オレンジ）※現状維持</strong><small>相手に知らせる・働きかける</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined notify-material-icons">notifications</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>通知</button><code>notifications</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined notify-material-icons">assignment_add</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>依頼</button><code>assignment_add</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined notify-material-icons">send</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>送信</button><code>send</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined notify-material-icons">outgoing_mail</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>再送信</button><code>outgoing_mail</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined notify-material-icons">reply</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>差し戻し</button><code>reply</code></div></div></div>
+            <div class="grp"><div class="grp-h"><strong>確定・登録系（黄緑）</strong><small>入力内容を確定して残す</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined confirm-material-icons">task_alt</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>確定</button><code>task_alt</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined confirm-material-icons">post_add</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>登録</button><code>post_add</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined confirm-material-icons">content_copy</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>複製</button><code>content_copy</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined confirm-material-icons">input</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>取り込み</button><code>input</code></div></div></div>
+      <div class="grp"><div class="grp-h"><strong>出力系（水色）</strong><small>データを外へ取り出す（状態は変えない）</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined output-material-icons">download</span></span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>ダウンロード</button><code>download</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined output-material-icons">table_view</span></span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>エクスポート</button><code>table_view</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined output-material-icons">print</span></span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>印刷</button><code>print</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined output-material-icons">picture_as_pdf</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>PDF出力</button><code>picture_as_pdf</code></div></div></div>
+      <div class="grp"><div class="grp-h"><strong>破壊系（赤）</strong><small>元に戻せない操作。確認ダイアログを通す</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined danger-material-icons">delete</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>削除</button><code>delete</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined danger-material-icons">delete_forever</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>破棄</button><code>delete_forever</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined danger-material-icons">toggle_off</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>無効化</button><code>toggle_off</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined danger-material-icons">link_off</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>解除</button><code>link_off</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined danger-material-icons">block</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>却下</button><code>block</code></div></div></div>
+      <div class="grp"><div class="grp-h"><strong>戻る系（暗灰）</strong><small>直前の画面・状態へ戻る</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined dark-material-icons">arrow_back</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>戻る</button><code>arrow_back</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined dark-material-icons">stop_circle</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>中断</button><code>stop_circle</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined dark-material-icons">remove_done</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>取り下げ</button><code>remove_done</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined dark-material-icons">undo</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>取消</button><code>undo</code></div></div></div>
+      <div class="grp"><div class="grp-h"><strong>中立（淡灰）</strong><small>確定を伴わない副次の操作</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined light-material-icons">close</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>閉じる</button><code>close</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined light-material-icons">cancel</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>キャンセル</button><code>cancel</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined light-material-icons">restart_alt</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>リセット</button><code>restart_alt</code></div><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined light-material-icons">draft</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>下書き保存</button><code>draft</code></div></div></div>
+      <div class="grp"><div class="grp-h"><strong>その他（ピンク）</strong><small>上記に当てはまらない補助操作</small></div><div class="pal"><div class="item"><button type="button" class="button button-icon ui-button ui-corner-all ui-widget applied"><span class="material-symbols-outlined extra-material-icons">star</span><span class="ui-button-icon ui-icon"></span><span class="ui-button-icon-space"> </span>その他</button><code>star</code></div></div></div>
+    <div class="guide">
+      <h3>使い分けの軸は「誰の行為か」</h3>
+      <div class="scroll-x"><table class="t">
+        <thead><tr><th>色</th><th>意味</th><th>文言</th></tr></thead>
+        <tbody><tr><th scope="row"><span class="chip" style="background:var(--btn-execute-bg)"></span>ティール</th><td>自分の作業で完結する</td><td>完了・発行・再発行</td></tr><tr><th scope="row"><span class="chip" style="background:var(--btn-approve-bg)"></span>紫</th><td>承認者の判断が必要になる</td><td>承認・申請・提出</td></tr><tr><th scope="row"><span class="chip" style="background:var(--btn-notify-bg)"></span>オレンジ</th><td>相手に知らせる・動いてもらう</td><td>通知・依頼・送信・再送信・差し戻し</td></tr><tr><th scope="row"><span class="chip" style="background:var(--btn-confirm-bg)"></span>黄緑</th><td>入力内容を確定して残す</td><td>確定・登録・取り込み・複製</td></tr><tr><th scope="row"><span class="chip" style="background:var(--btn-danger-bg)"></span>赤</th><td>元に戻せない操作。確認を通し、既定フォーカスはキャンセルに置く</td><td>削除・破棄・却下・無効化・解除</td></tr><tr><th scope="row"><span class="chip" style="background:var(--btn-dark-bg)"></span>暗灰</th><td>直前の状態へ戻る</td><td>戻る・中断・取り下げ・取消</td></tr><tr><th scope="row"><span class="chip" style="background:var(--surface-strong);border:1px solid var(--border-strong)"></span>淡灰</th><td>確定を伴わない副次の操作</td><td>閉じる・キャンセル・リセット・下書き保存</td></tr><tr><th scope="row"><span class="chip" style="background:var(--btn-output-bg)"></span>水色</th><td>データを外へ取り出す</td><td>ダウンロード・エクスポート・印刷・PDF出力</td></tr></tbody>
+      </table></div>
+      <h3>迷いやすい文言の決め方</h3>
+      <div class="scroll-x"><table class="t">
+        <thead><tr><th>組</th><th>一方</th><th>もう一方</th></tr></thead>
+        <tbody><tr><th scope="row">提出 / 送信</th><td>承認フローに乗る → <b>提出</b>（紫）</td><td>単に相手へ渡す → <b>送信</b>（オレンジ）</td></tr><tr><th scope="row">申請 / 依頼</th><td>承認の判断を求める → <b>申請</b>（紫）</td><td>作業を求める → <b>依頼</b>（オレンジ）</td></tr><tr><th scope="row">依頼 / 通知</th><td>相手の対応が必要 → <b>依頼</b></td><td>知らせるだけ → <b>通知</b>（どちらもオレンジ）</td></tr><tr><th scope="row">発行 / 出力</th><td>帳票などを新しく作って出す → <b>発行</b>（ティール）</td><td>既存のデータを取り出すだけ → <b>出力</b>（水色。印刷を含む）</td></tr><tr><th scope="row">完了 / 確定</th><td>作業を終える → <b>完了</b>（ティール）</td><td>入力内容を確定して残す → <b>確定・登録</b>（黄緑）</td></tr><tr><th scope="row">完了 / 承認</th><td>自分の作業を終える → <b>完了</b>（ティール）</td><td>他人の申請を確定する → <b>承認</b>（紫）</td></tr><tr><th scope="row">取消 / 取り下げ</th><td>自分の処理を取り消す → <b>取消</b></td><td>出した申請を引っ込める → <b>取り下げ</b>（どちらも暗灰。直前へ戻す動作にそろえる）</td></tr><tr><th scope="row">取消 / キャンセル</th><td>実行済みの処理を取り消す → <b>取消</b>（暗灰）</td><td>これからの操作をやめる → <b>キャンセル</b>（淡灰）</td></tr><tr><th scope="row">差し戻し / 却下</th><td>やり直しを求める → <b>差し戻し</b>（オレンジ）</td><td>断って終える → <b>却下</b>（赤）</td></tr><tr><th scope="row">送信 / 再送信</th><td>初回 → <b>送信</b></td><td>失敗後や再依頼で同じ内容を送り直す → <b>再送信</b>（どちらもオレンジ）</td></tr><tr><th scope="row">登録 / 下書き保存</th><td>確定して残す → <b>登録</b>（黄緑）</td><td>確定せず途中で残す → <b>下書き保存</b>（淡灰）</td></tr><tr><th scope="row">戻る / 閉じる</th><td>画面遷移を伴う → <b>戻る</b>（暗灰）</td><td>ダイアログなどをその場で閉じる → <b>閉じる</b>（淡灰）</td></tr></tbody>
+      </table></div>
+      <p class="note" style="margin:8px 0 0">発行と送信を1操作で行う場合は、主目的の側に合わせます（帳票を出すなら発行）。</p>
+    </div>
+    <p class="note" style="margin:8px 0 0">色の割り当ては案です（再発行をティールにするか、提出・申請を紫にするかなど）。アイコン名は仮です。</p>
+  </section>
+
+
+
+
+
+
+
+
+</main>
+</body>
+</html>
